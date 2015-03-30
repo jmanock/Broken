@@ -6,6 +6,7 @@ angular.module('fantasy', ['ui.router', 'firebase'])
     baseUrl:'https://reditclone.firebaseio.com/'
   }
 })
+
 .config(function($stateProvider, $urlRouterProvider){
   $stateProvider
   .state('home', {
@@ -17,6 +18,11 @@ angular.module('fantasy', ['ui.router', 'firebase'])
     url:'/profile/:id',
     templateUrl: 'app/profile/profile.html',
     controller: 'SearchCtrl'
+  })
+  .state('standings',{
+    url:'/standings',
+    templateUrl: 'app/standings/standings.html',
+    controller: 'StandingsCtrl'
   });
   $urlRouterProvider.otherwise('/');
 });
