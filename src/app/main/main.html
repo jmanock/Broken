@@ -10,7 +10,7 @@
   <div ng-show='app.user'>
     <p>Welcome back, {{app.user.facebook.displayName}}</p>
     <img src="{{app.user.facebook.cachedUserProfile.picture.data.url}}">
-    <button ng-click='app.logout()'>Log Out</button>
-    <button ui-sref='profile({id:app.user.uid})'>Enter</button>
+    <button ui-sref='profile({id:app.user.uid})' class='btn btn-success'>Enter</button>
+    <button ng-click='app.logout()' class='btn btn-danger'>Log Out</button>
   </div>
 </div>
