@@ -41,4 +41,5 @@ angular.module('fantasy')
   Auth.onAuth(function(user){
     self.user = user;
   });
+
 });
