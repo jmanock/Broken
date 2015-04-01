@@ -1,5 +1,25 @@
 <div class='container'>
   <div ng-include="'components/navbar/navbar.html'"></div>
 
-  <div ng-controller='StandingsCtrl as standings'></div>
+  <div ng-controller='StandingsCtrl as standings'>
+    <p>This is the standings page</p>
+    <p>* This should show the usersTeam (weeksTeam)</p>
+    <p>* This should show the leader board (pga leaderboard)</p>
+    <p>* This should show the overall leaders (overallLeaders)</p>
+
+    <ul id='pgaLeaderboard'>
+      <h4>Pga Leaderboard</h4>
+      <li ng-repeat='players in standings.player'>{{player.Name}}</li>
+    </ul>
+
+    <ul id='weeksTeam'>
+      <h4>Weeks Team's</h4>
+      <li ng-repeat='(id, team) in standings.team'>{{team.name}}</li>
+    </ul>
+
+    <ul id='overallLeaders'>
+      <h4>Overall Leaders</h4>
+      <li ng-repeat='leaders in standings.leader'>{{leader}}</li>
+    </ul>
+  </div>
 </div>
