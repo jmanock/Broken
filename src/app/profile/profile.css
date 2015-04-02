@@ -1,0 +1,30 @@
+.container{
+  font-size:1.2em;
+}
+#players{
+  border:solid 1px orange;
+  float:left;
+}
+
+#players > li{
+  border:1px solid gray;
+}
+
+#players > li > button{
+  border:solid 1px red;
+  float: right;
+  background-color:orange;
+}
+
+#team{
+  border:solid 1px green;
+  float:right;
+}
+
+#team > li{
+  border:solid 1px gray;
+}
+
+#team > li > button{
+  float:right;
+}
