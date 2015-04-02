@@ -1,14 +1,28 @@
 'use strict';
 
-angular.module('fantasy', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize', 'ngResource', 'ui.router', 'ui.bootstrap'])
-  .config(function ($stateProvider, $urlRouterProvider) {
-    $stateProvider
-      .state('home', {
-        url: '/',
-        templateUrl: 'app/main/main.html',
-        controller: 'MainCtrl'
-      });
+angular.module('fantasy', ['ui.router', 'firebase'])
+.constant('CONFIG',{
+  Firebase: {
+    baseUrl:'https://reditclone.firebaseio.com/'
+  }
+})
 
-    $urlRouterProvider.otherwise('/');
+.config(function($stateProvider, $urlRouterProvider){
+  $stateProvider
+  .state('home', {
+    url:'/',
+    templateUrl: 'app/main/main.html',
+    controller: 'MainCtrl'
   })
-;
+  .state('profile',{
+    url:'/profile/:id',
+    templateUrl: 'app/profile/profile.html',
+    controller: 'SearchCtrl'
+  })
+  .state('standings',{
+    url:'/standings',
+    templateUrl: 'app/standings/standings.html',
+    controller: 'StandingsCtrl'
+  });
+  $urlRouterProvider.otherwise('/');
+});

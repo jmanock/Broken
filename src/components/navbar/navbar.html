@@ -8,13 +8,13 @@
 
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-6">
       <ul class="nav navbar-nav">
-        <li class="active"><a ng-href="#">Home</a></li>
-        <li><a ng-href="#">About</a></li>
-        <li><a ng-href="#">Contact</a></li>
+        <li><a ui-sref='profile({id:app.user.uid})'>Profile</a></li>
+        <li><a ui-sref='standings'>Standings</a></li>
+        <li><a ng-click='app.logout()' href='#'>Log Out</a> </li>
       </ul>
 
       <ul class="nav navbar-nav navbar-right">
-        <li>Current date: {{ date | date:'yyyy-MM-dd' }}</li>
+        <li my-current-time='format' style='color:gray'>{{Date}}</li>
       </ul>
     </div>
   </div>
