@@ -17,10 +17,12 @@ angular.module('fantasy')
   });
 
   this.addPlayer = function(player){
-    var userTeam = FirebaseUrl.child('userTeam').child(self.user.uid).child('team').child(player.$id);
+    var count = 1;
+    var userTeam = FirebaseUrl.child('userTeam').child(self.user.uid).child('team').child(count).child(player.$id);
     userTeam.update({
       name: player.Name
     });
+    count =+1;
   };
 
   this.removePlayer = function(id){
