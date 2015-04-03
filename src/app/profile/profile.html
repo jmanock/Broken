@@ -13,9 +13,9 @@
       </li>
     </ul>
 
-    <ul id='team'>
+    <ol id='team'>
       <h4>Team</h4>
-      <li ng-repeat='(id, team) in search.teams' style='list-style-type:none'>
+      <li ng-repeat='(id, team) in search.teams'>
         {{team.name}}
         <button ng-click='search.removePlayer(id)' class='btn-xs btn-danger'>Remove Player</button>
       </li>

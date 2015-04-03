@@ -22,7 +22,7 @@ angular.module('fantasy', ['ui.router', 'firebase'])
   .state('standings',{
     url:'/standings',
     templateUrl: 'app/standings/standings.html',
-    controller: 'StandingsCtrl'
+    controller: ''
   });
   $urlRouterProvider.otherwise('/');
 });
