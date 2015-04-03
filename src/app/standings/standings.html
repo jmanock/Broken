@@ -1,4 +1,4 @@
-<!--<div class='container'>
+<div class='container'>
   <div ng-include="'components/navbar/navbar.html'"></div>
 
    <div ng-controller='StandingsCtrl as standings'>
@@ -7,50 +7,14 @@
   <p>* This should show the leader board (pga leaderboard)</p>
   <p>* This should show the overall leaders (overallLeaders)</p>
 
-  <ul id='pgaLeaderboard'>
-    <h4>Pga Leaderboard</h4>
-    <li ng-repeat='players in standings.player'>{{player.Name}}</li>
-  </ul>
-
-  <ul id='weeksTeam'>
-    <h4>Weeks Team's</h4>
-    <li ng-repeat='(id, team) in standings.team'>{{team.name}}</li>
-  </ul>
-
-  <ul id='overallLeaders'>
-    <h4>Overall Leaders</h4>
-    <li ng-repeat='leaders in standings.leader'>{{leader}}</li>
+  <ul>
+    <h3>Players</h3>
+    <li ng-repeat='(id, player) in standings.players'>{{player.Name}}
+     <button ng-click='standings.addPlayer(standings.players[$index])' class='add'>Add</button></li> 
   </ul>
 </div>
 </div>
- -->
-<style>
-div {
-  padding: 20px;
-  font-size: 48px;
-  border-radius: 15px;
-  background-color: #fafafa;
-  border: 1px solid #999;
-  width: 750px;
-}
 
-h3 {
-  clear: both;
-  padding-top: 20px;
-}
-
-button {
- clear: both;
-}
-
-pre {
-
-}
-
-p {
-  color: red;
-}
-</style>
  <h3>Current Id</h3>
  <div></div>
  <button id="inc">increment</button>
@@ -67,7 +31,7 @@ p {
 
 // monitors changes and updates UI
 //fb.child('counter').on('value', updateDiv);
-fb.on('value', updatePre);
+//fb.on('value', updatePre);
 
 // creates a new, incremental record
 $('#inc').on('click', incId);
