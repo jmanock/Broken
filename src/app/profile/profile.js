@@ -17,16 +17,33 @@ angular.module('fantasy')
   });
 
   this.addPlayer = function(player){
-    var userTeam = FirebaseUrl.child('userTeam').child(self.user.uid).child('team').child(player.$id);
-      userTeam.update({
-        name:player.Name
-    });
+    // var userTeam = FirebaseUrl.child('userTeam').child(self.user.uid).child('team').child(player.$id);
+    //   userTeam.update({
+    //     name:player.Name
+    // });
+    this.incId(player);
   };
 
+  this.incId = function(player){
+    FirebaseUrl.child('userTeam').child(self.user.uid).child('team').child('counter').transaction(function(id){
+      return(id||0)+1;
+    }, function(err, committed, ss){
+      if(err){
+        console.log(err);
+      }else if(committed){
+        var id = ss.val();
+        var userTeam = FirebaseUrl.child('userTeam').child(self.user.uid).child('team').child(player.$id);
+        userTeam.update({
+          name:player.Name
+        });
+      }
+    });
+  }
 
   this.removePlayer = function(id){
     var userTeam = FirebaseUrl.child('userTeam').child(self.user.uid).child('team').child(id);
     userTeam.remove();
+
   };
 
 });

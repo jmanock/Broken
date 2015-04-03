@@ -10,7 +10,7 @@
   <ul>
     <h3>Players</h3>
     <li ng-repeat='(id, player) in standings.players'>{{player.Name}}
-     <button ng-click='standings.addPlayer(standings.players[$index])' class='add'>Add</button></li> 
+     <button ng-click='standings.addPlayer(standings.players[$index])' class='add'>Add</button></li>
   </ul>
 </div>
 </div>
@@ -59,7 +59,8 @@ function incId() {
       else if( committed ) {
          // if counter update succeeds, then create record
          // probably want a recourse for failures too
-         addRecord(ss.val());
+         var id = ss.val();
+         addRecord(id);
       }
   });
 }
@@ -73,22 +74,10 @@ function addRecord(id) {
   });
 }
 
-// for demo purposes
-function updateDiv(ss) {
- $('div').text(ss.val()||0);
- $('#custom').val('rec'+(parseInt(ss.val(), 10)+1));
-}
 
-// for demo purposes
-function updatePre(ss) {
- $('#data').text(JSON.stringify(ss.val(), null, 2));
-}
 
-// for demo purposes
-function setError(msg) {
-  var id = ++errId;
-  $('body').append('<p id="err'+id+'">'+msg+'</p>');
-  setTimeout(function() { $('#err'+id).fadeOut(); }, 2500);
-}
+
+
+
 
  </script>
