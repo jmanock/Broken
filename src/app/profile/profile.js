@@ -25,7 +25,7 @@ angular.module('fantasy')
   };
 
   this.incId = function(player){
-    FirebaseUrl.child('userTeam').child(self.user.uid).child('team').child('counter').transaction(function(id){
+    FirebaseUrl.child('userTeam').child(self.user.uid).child('counter').transaction(function(id){
       return(id||0)+1;
     }, function(err, committed, ss){
       if(err){
