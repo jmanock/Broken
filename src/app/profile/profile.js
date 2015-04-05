@@ -17,13 +17,7 @@ angular.module('fantasy')
   });
 
   this.addPlayer = function(player){
-    // var userTeam = FirebaseUrl.child('userTeam').child(self.user.uid).child('team').child(player.$id);
-    //   userTeam.update({
-    //     name:player.Name
-    // });
-
     this.incId(player);
-
   };
 
   this.incId = function(player){
@@ -51,10 +45,7 @@ angular.module('fantasy')
   };
 
   this.removePlayer = function(id,player){
-    //var userTeam = FirebaseUrl.child('userTeam').child(self.user.uid).child('team').child(id);
-
     this.remove(player, id);
-
   };
 
   this.remove = function(player, id){
