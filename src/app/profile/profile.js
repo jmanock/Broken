@@ -21,24 +21,33 @@ angular.module('fantasy')
     //   userTeam.update({
     //     name:player.Name
     // });
+
     this.incId(player);
+
   };
 
   this.incId = function(player){
     FirebaseUrl.child('userTeam').child(self.user.uid).child('counter').transaction(function(id){
+    if(player.$id){
+      //console.log(player.$id);
       return(id||0)+1;
+    }
     }, function(err, committed, ss){
       if(err){
         console.log(err);
       }else if(committed){
         var id = ss.val();
+        if(id <=5){
         var userTeam = FirebaseUrl.child('userTeam').child(self.user.uid).child('team').child(player.$id);
         userTeam.update({
           name:player.Name
         });
+      }else{
+        console.log('To many fucking players!');
+      }
       }
     });
-  }
+  };
 
   this.removePlayer = function(id){
     var userTeam = FirebaseUrl.child('userTeam').child(self.user.uid).child('team').child(id);
