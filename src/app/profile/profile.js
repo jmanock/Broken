@@ -28,10 +28,13 @@ angular.module('fantasy')
 
   this.incId = function(player){
     FirebaseUrl.child('userTeam').child(self.user.uid).child('counter').transaction(function(id){
-    if(player.$id){
-      //console.log(player.$id);
+      if(id >=5){
+        console.log('no more fucking players can be added!');
+      }else{
+      console.log(id);
       return(id||0)+1;
     }
+
     }, function(err, committed, ss){
       if(err){
         console.log(err);
@@ -43,7 +46,8 @@ angular.module('fantasy')
           name:player.Name
         });
       }else{
-        console.log('To many fucking players!');
+        console.log('To many fucking players!' + id);
+        id = 5;
       }
       }
     });
