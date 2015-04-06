@@ -36,14 +36,16 @@ angular.module('fantasy')
         var id = ss.val();
         if(id <=5){
         var userTeam = FirebaseUrl.child('userTeam').child(self.user.uid).child('team').child(player.$id);
-        var teamUser = FirebaseUrl.child('teamUser').child(player.$id).child(self.user.uid);
+        var teamUser = FirebaseUrl.child('teamUser').child(player.$id);
         userTeam.update({
           name:player.Name
         });
-        
+
         teamUser.update({
-          name:player.Name
+          name:player.Name,
+          user: self.user.uid
         });
+
       }
       }
     });
@@ -63,6 +65,8 @@ angular.module('fantasy')
       }else if(committed){
         var i = ss.val();
         var userTeam = FirebaseUrl.child('userTeam').child(self.user.uid).child('team').child(id);
+        var teamUser = FirebaseUrl.child('teamUser').child(id);
+        teamUser.remove();
         userTeam.remove();
         console.log(i);
       }
