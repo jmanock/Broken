@@ -2,82 +2,32 @@
   <div ng-include="'components/navbar/navbar.html'"></div>
 
    <div ng-controller='StandingsCtrl as standings'>
-  <p>This is the standings page</p>
-  <p>* This should show the usersTeam (weeksTeam)</p>
-  <p>* This should show the leader board (pga leaderboard)</p>
-  <p>* This should show the overall leaders (overallLeaders)</p>
+  <!-- <h2>The Standings page should have!!!</h2>
+  <h3>* Team Standings</h3>
+  <h4>- Players get a score thats updated in real time</h4>
+  <h4>- Players are ordered from best to worst</h4>
+  <h4>- Teams are ordered from best to worst</h4>
+  <h4>- Teams should not show players unless clicked</h4>
+  <h3>* Pga Leaderboard</h3>
+  <h4>- Should have the list of players and scores</h4>
+  <h4>- Only show players that have made the cut</h4>
+  <h4>- Show total score only</h4>
+  <h3>* Ideas</h3>
+  <h4>- How to call the teams</h4>
+  <h4>- How to add all the scores together to get a team score</h4>
+  <h4>- Compair team scores together</h4> -->
 
-  <ul>
-    <h3>Players</h3>
-    <li ng-repeat='(id, player) in standings.players'>{{player.Name}}
-     <button ng-click='standings.addPlayer(standings.players[$index])' class='add'>Add</button></li>
-  </ul>
+  <div>
+    <h3>Leaderboard</h3>
+    <ul>
+      <li ng-repeat='player in standings.players'>{{player.Name || player.Score}}</li>
+    </ul>
+  </div>
+  <div>
+    <h3>Teams</h3>
+    <ul>
+      <li ng-repeat='team in standings.teams'>{{team.players}}</li>
+    </ul>
+  </div>
 </div>
 </div>
-
- <h3>Current Id</h3>
- <div></div>
- <button id="inc">increment</button>
- <button id="clear">reset data</button>
-
- <h4>Try to make record without incrementing ID</h4>
- <input type="text" id="custom" /><button id="customButton">add</button>
-
- <pre id="data"></pre>
-
-
- <script>
- var fb = new Firebase("https://reditclone.firebaseio.com/Team");
-
-// monitors changes and updates UI
-//fb.child('counter').on('value', updateDiv);
-//fb.on('value', updatePre);
-
-// creates a new, incremental record
-$('#inc').on('click', incId);
-
-// resets the data
-$('#clear').on('click', function() {
- fb.remove();
-});
-
-// attempts to create any id you put in
-$('#customButton').on('click', function() {
- addRecord($('#custom').val());
-});
-
-var errId = 0;
-// creates a new, incremental record
-function incId() {
-  // increment the counter
-  fb.child('counter').transaction(function(currentValue) {
-      return (currentValue||0) + 1
-  }, function(err, committed, ss) {
-      if( err ) {
-         setError(err);
-      }
-      else if( committed ) {
-         // if counter update succeeds, then create record
-         // probably want a recourse for failures too
-         var id = ss.val();
-         addRecord(id);
-      }
-  });
-}
-
-// creates new incremental record
-function addRecord(id) {
-  setTimeout(function() {
-     fb.child('Players').child('player'+id).set('player #'+id, function(err) {
-        err && setError(err);
-     });
-  });
-}
-
-
-
-
-
-
-
- </script>
