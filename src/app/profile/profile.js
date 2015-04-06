@@ -17,13 +17,7 @@ angular.module('fantasy')
   });
 
   this.addPlayer = function(player){
-    // var userTeam = FirebaseUrl.child('userTeam').child(self.user.uid).child('team').child(player.$id);
-    //   userTeam.update({
-    //     name:player.Name
-    // });
-
     this.incId(player);
-
   };
 
   this.incId = function(player){
@@ -45,18 +39,29 @@ angular.module('fantasy')
         userTeam.update({
           name:player.Name
         });
-      }else{
-        console.log('To many fucking players!' + id);
-        id = 5;
       }
       }
     });
   };
 
-  this.removePlayer = function(id){
-    var userTeam = FirebaseUrl.child('userTeam').child(self.user.uid).child('team').child(id);
-    userTeam.remove();
+  this.removePlayer = function(id,player){
+    this.remove(player, id);
+  };
 
+  this.remove = function(player, id){
+    console.log('this should be called when remove is pressed???');
+     FirebaseUrl.child('userTeam').child(self.user.uid).child('counter').transaction(function(id){
+      return(id || 0)-1;
+    }, function(err, committed, ss){
+      if(err){
+        console.log(err);
+      }else if(committed){
+        var i = ss.val();
+        var userTeam = FirebaseUrl.child('userTeam').child(self.user.uid).child('team').child(id);
+        userTeam.remove();
+        console.log(i);
+      }
+    });
   };
 
 });
