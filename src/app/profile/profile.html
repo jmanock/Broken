@@ -14,7 +14,7 @@
     </ul>
 
     <ol id='team'>
-      <h4>Team</h4>
+      <input type="text" ng-model='syncedValue.$value' ng-change='syncedValue.$save()' placeholder='TeamName'>{{syncedValue.$value}}
       <li ng-repeat='(id, team) in search.teams'>
         {{team.name}}
         <button ng-click='search.removePlayer(id)' class='btn-xs btn-danger'>Remove Player</button>

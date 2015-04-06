@@ -1,6 +1,6 @@
 'use strict';
 angular.module('fantasy')
-.controller('SearchCtrl', function( $firebaseArray, FirebaseUrl, Auth, $stateParams, $firebaseObject){
+.controller('SearchCtrl', function( $firebaseArray, FirebaseUrl, Auth, $stateParams, $firebaseObject, $scope){
   var self = this;
   var ref = new Firebase('https://toga.firebaseio.com/');
   this.players = $firebaseArray(ref);
@@ -36,7 +36,12 @@ angular.module('fantasy')
         var id = ss.val();
         if(id <=5){
         var userTeam = FirebaseUrl.child('userTeam').child(self.user.uid).child('team').child(player.$id);
+        var teamUser = FirebaseUrl.child('teamUser').child(player.$id).child(self.user.uid);
         userTeam.update({
+          name:player.Name
+        });
+        
+        teamUser.update({
           name:player.Name
         });
       }
