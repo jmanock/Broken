@@ -73,4 +73,10 @@ angular.module('fantasy')
     });
   };
 
+  var object = $firebaseObject(FirebaseUrl.child('teamUser'));
+  object.$bindTo($scope, 'data');
+  $scope.saveTeam = function(){
+
+    console.log('something should happen when this is pushed');
+  };
 });
