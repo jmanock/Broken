@@ -13,9 +13,14 @@
       </li>
     </ul>
 
-    <ol id='team'>
-      <input type="text" ng-model='data.text' placeholder='TeamName'>
-      <button ng-click='saveTeam()'>Save</button>
+
+      <form ng-submit='saveProfile()'>
+        <label>Team Name:</label>
+        <input type="text" ng-model='profile'>
+        <button type='submit'>Save Team Name</button>
+      </form>
+      <ol id='team'>
+        {{profile}}
       <li ng-repeat='(id, team) in search.teams'>
         {{team.name}}
         <button ng-click='search.removePlayer(id)' class='btn-xs btn-danger'>Remove Player</button>
