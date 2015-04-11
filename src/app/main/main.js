@@ -18,6 +18,7 @@ angular.module('fantasy')
       avatarUrl: authdUser.facebook.cachedUserProfile.picture.data.url
     });
     user = $firebaseObject(FirebaseUrl.child('users').child(authdUser.uid));
+
     return user;
   }
   return{
@@ -41,6 +42,6 @@ angular.module('fantasy')
   this.logout = Auth.logout;
   Auth.onAuth(function(user){
     self.user = user;
+    console.log(user);
   });
-console.log(Auth.user);
 });
