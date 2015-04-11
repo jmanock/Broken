@@ -74,11 +74,14 @@ angular.module('fantasy')
   };
   var something = FirebaseUrl.child('TeamName');
 
-  var nameField = $('#teamName');
-
-  $('#save').click(function(){
-    var teamName = nameField.val();
-    something.update({TeamName: teamName});
-  });
-
+  // var nameField = $('#teamName');
+  //
+  // $('#save').click(function(){
+  //   var teamName = nameField.val();
+  //   something.update({TeamName: teamName});
+  // });
+  $scope.teamName = function(){
+    $scope.profile = something.update({TeamName: $scope.profile});
+    console.log($scope.profile);
+  };
 });
