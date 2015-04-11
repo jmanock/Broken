@@ -80,8 +80,12 @@ angular.module('fantasy')
   //   var teamName = nameField.val();
   //   something.update({TeamName: teamName});
   // });
-  $scope.teamName = function(){
-    $scope.profile = something.update({TeamName: $scope.profile});
-    console.log($scope.profile);
+  this.teamName = function(profile){
+    //this.profile = something.update({TeamName: this.profile});
+    console.log(profile);
+    something.update({
+      TeamName: profile
+    });
+
   };
 });

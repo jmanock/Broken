@@ -15,7 +15,7 @@
 
 
     <input type="text" placeholder='Team Name.....' id='teamName' ng-model='profile'>
-    <button id='save' ng-click='teamName()'>Save team name</button>
+    <button id='save' ng-click='search.teamName(profile)'>Save team name</button>
       <ol id='team'>
         {{profile}}
       <li ng-repeat='(id, team) in search.teams'>
