@@ -72,13 +72,6 @@ angular.module('fantasy')
       }
     });
   };
-  $scope.todos = $firebaseObject(FirebaseUrl);
-  $scope.saveProfile = function(){
-    var profile = $scope.profile.trim();
-    console.log('the save button was pressed');
-    $scope.todos.$add({
-      title: profile
-    });
-  };
+
 
 });
