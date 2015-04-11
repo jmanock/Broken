@@ -72,6 +72,13 @@ angular.module('fantasy')
       }
     });
   };
+  var something = FirebaseUrl.child('TeamName');
 
+  var nameField = $('#teamName');
+
+  $('#save').click(function(){
+    var teamName = nameField.val();
+    something.update({TeamName: teamName});
+  });
 
 });
