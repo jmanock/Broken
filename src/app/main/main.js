@@ -33,6 +33,7 @@ angular.module('fantasy')
       auth.$unauth();
     }
   };
+
 })
 .controller('MainCtrl', function(Auth){
   var self = this;
@@ -41,5 +42,5 @@ angular.module('fantasy')
   Auth.onAuth(function(user){
     self.user = user;
   });
-
+console.log(Auth.user);
 });

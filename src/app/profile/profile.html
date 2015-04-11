@@ -13,8 +13,8 @@
       </li>
     </ul>
 
-
-    <input type="text" placeholder='Team Name.....' id='teamName' ng-model='profile'>
+    <label for="">Team Name:</label>
+    <input type="text" placeholder='{{app.user.facebook.displayName}}' id='teamName' ng-model='profile'>
     <button id='save' ng-click='search.teamName(profile)'>Save team name</button>
       <ol id='team'>
         {{profile}}
