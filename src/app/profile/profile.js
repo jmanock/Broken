@@ -16,10 +16,9 @@ angular.module('fantasy')
 
   this.currentUser.$loaded(function(){
     self.teams = $firebaseObject(FirebaseUrl.child('userTeam').child($stateParams.id).child('team'));
-    self.user.$loaded(function(){
-      self.show = (self.currentUser.uid === self.user.uid);
-    });
-
+    // self.user.$loaded(function(){
+    //   self.show = (self.currentUser.uid === self.user.uid);
+    // });
   });
 
   this.addPlayer = function(player){
@@ -91,7 +90,7 @@ angular.module('fantasy')
     if(profile===undefined){
 
     }
-    console.log(profile);
+
   };
 
 });

@@ -48,7 +48,7 @@ angular.module('fantasy')
   this.enter = function(){
     console.log(this.teamName);
     teams.update({
-      teams:this.teamName
+      Name:this.teamName
     });
   };
 });
