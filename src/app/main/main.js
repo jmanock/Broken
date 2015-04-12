@@ -36,12 +36,19 @@ angular.module('fantasy')
   };
 
 })
-.controller('MainCtrl', function(Auth){
+.controller('MainCtrl', function(Auth, FirebaseUrl){
   var self = this;
   this.login = Auth.login;
   this.logout = Auth.logout;
   Auth.onAuth(function(user){
     self.user = user;
-    console.log(user);
   });
+
+  var teams = FirebaseUrl.child('teams');
+  this.enter = function(){
+    console.log(this.teamName);
+    teams.update({
+      teams:this.teamName
+    });
+  };
 });

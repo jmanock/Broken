@@ -10,9 +10,10 @@
   <div ng-show='app.user'>
     <p>Welcome back, {{app.user.facebook.displayName}}</p>
     <img src="{{app.user.facebook.cachedUserProfile.picture.data.url}}">
-    <button ui-sref='profile({id:app.user.uid})' class='btn btn-success'>Enter</button>
+    
     <button ng-click='app.logout()' class='btn btn-danger'>Log Out</button>
     <label for="">Team Name:</label>
-    <input type="text" ng-model='teamName' placeholder={{app.user.facebook.displayName}}>
+    <input type="text" ng-model='app.teamName' placeholder={{app.user.facebook.displayName}}>
+    <button ng-click='app.enter()' ng-disabled='!app.teamName' ui-sref='profile({id:app.user.uid})' class='btn btn-success'>Enter</button>
   </div>
 </div>
