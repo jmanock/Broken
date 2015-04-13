@@ -20,13 +20,14 @@
   <div>
     <h3>Leaderboard</h3>
     <ul>
-      <li ng-repeat='player in standings.players'>{{player.Name || player.Score}}</li>
+      <li ng-repeat='player in standings.players'>{{player.name }} {{text}}</li>
+
     </ul>
   </div>
   <div>
     <h3>Teams</h3>
     <ul>
-      <li ng-repeat='team in standings.teams'>{{team.players}}</li>
+      <li ng-repeat='team in standings.teams'>{{team}}</li>
     </ul>
   </div>
 </div>
