@@ -13,8 +13,11 @@
       </li>
     </ul>
 
-    <ol id='team'>
-      <h4>Team</h4>
+    <label for="">Team Name:</label>
+    <input type="text" placeholder='{{app.user.facebook.displayName}}' id='teamName' ng-model='profile'>
+    <button id='save' ng-click='search.teamName(profile)'>Save team name</button>
+      <ol id='team'>
+        {{profile}}
       <li ng-repeat='(id, team) in search.teams'>
         {{team.name}}
         <button ng-click='search.removePlayer(id)' class='btn-xs btn-danger'>Remove Player</button>

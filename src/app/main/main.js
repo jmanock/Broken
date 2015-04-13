@@ -18,6 +18,7 @@ angular.module('fantasy')
       avatarUrl: authdUser.facebook.cachedUserProfile.picture.data.url
     });
     user = $firebaseObject(FirebaseUrl.child('users').child(authdUser.uid));
+
     return user;
   }
   return{
@@ -33,8 +34,9 @@ angular.module('fantasy')
       auth.$unauth();
     }
   };
+
 })
-.controller('MainCtrl', function(Auth){
+.controller('MainCtrl', function(Auth, FirebaseUrl){
   var self = this;
   this.login = Auth.login;
   this.logout = Auth.logout;
@@ -42,4 +44,11 @@ angular.module('fantasy')
     self.user = user;
   });
 
+  var teams = FirebaseUrl.child('teams');
+  this.enter = function(){
+    console.log(this.teamName);
+    teams.update({
+      Name:this.teamName
+    });
+  };
 });

@@ -1,19 +1,24 @@
 'use strict';
 angular.module('fantasy')
-.controller('SearchCtrl', function( $firebaseArray, FirebaseUrl, Auth, $stateParams, $firebaseObject){
+.controller('SearchCtrl', function( $firebaseArray, FirebaseUrl, Auth, $stateParams, $firebaseObject, $scope){
   var self = this;
+  var profile = this.profile;
+
+  // Getting the players from firebase
   var ref = new Firebase('https://toga.firebaseio.com/');
   this.players = $firebaseArray(ref);
+
   this.currentUser = $firebaseArray(FirebaseUrl.child('users').child($stateParams.id));
   Auth.onAuth(function(user){
     self.user = user;
   });
 
+
   this.currentUser.$loaded(function(){
     self.teams = $firebaseObject(FirebaseUrl.child('userTeam').child($stateParams.id).child('team'));
-    self.user.$loaded(function(){
-      self.show = (self.currentUser.uid === self.user.uid);
-    });
+    // self.user.$loaded(function(){
+    //   self.show = (self.currentUser.uid === self.user.uid);
+    // });
   });
 
   this.addPlayer = function(player){
@@ -36,9 +41,15 @@ angular.module('fantasy')
         var id = ss.val();
         if(id <=5){
         var userTeam = FirebaseUrl.child('userTeam').child(self.user.uid).child('team').child(player.$id);
+        //var teamUser = FirebaseUrl.child('teamUser').child(profile).child(player.$id);
         userTeam.update({
           name:player.Name
         });
+
+        // teamUser.update({
+        //   name:player.Name,
+        //   user: self.user.uid
+        // });
       }
       }
     });
@@ -58,10 +69,28 @@ angular.module('fantasy')
       }else if(committed){
         var i = ss.val();
         var userTeam = FirebaseUrl.child('userTeam').child(self.user.uid).child('team').child(id);
+        var teamUser = FirebaseUrl.child('teamUser').child(id);
+        teamUser.remove();
         userTeam.remove();
         console.log(i);
       }
     });
+  };
+
+  this.teamName = function(profile){
+    // var userTeam = FirebaseUrl.child('userTeam').child(self.user.uid);
+    // var teamUser = FirebaseUrl.child('teamUser');
+    // userTeam.update({
+    //   TeamName: profile
+    // });
+    //
+    // teamUser.update({
+    //   TeamName:profile
+    // });
+    if(profile===undefined){
+
+    }
+
   };
 
 });
