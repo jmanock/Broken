@@ -33,13 +33,11 @@ angular.module('fantasy')
   $scope.movies = [];
   for(var i=0; i<score.length; i++){
     $scope.movies[i] = {
-      t:par[i],
-      l:score[i],
-      e:par[i]-score[i],
+      par:par[i],
+      score:score[i],
+      points:par[i]-score[i],
       };
 
-    // Add all of `e` together to get the total points
-    // title [index] - link [index] = points
     // 0 points for par
     // 1 point for birdie
     // 3 points for eagle
@@ -48,6 +46,7 @@ angular.module('fantasy')
   }
 
  })
+ // adds together all the points
  .filter('sumOf', function(){
    return function(data, key){
      var sum = 0;
@@ -72,72 +71,3 @@ angular.module('fantasy')
 //       sum = sum +(data[i][key1] - data[i][key2]);
 //     }return sum;
 //   };
-
-// .filter('sumOfValue', function(){
-//   return function(data, key){
-//
-//     var sum = 0;
-//     for(var i = 0; i<data.length; i++){
-//       sum = sum + data[i][key];
-//     }return sum;
-//   };
-// })
-// .filter('totalSumPriceQty',function(){
-//   return function(data, key1, key2){
-//
-//
-//     var sum = 0;
-//     for(var i=0; i<data.length; i++){
-//       sum = sum + (data[i][key1]* data[i][key2]);
-//     }return sum;
-//   };
-// })
- // .controller('TestCtrl', function($scope){
- //   $scope.courses =[{
- //     'par': 4,
- //     'score': 3,
- //     'points':'par'-'score'
- //   },{
- //     'par':5,
- //     'score':3,
- //
- //   },{
- //     'par':4,
- //     'score':7,
- //
- //   },{
- //     'par':3,
- //     'score':4,
- //
- //   }];
-//   $scope.items = [{
-//     "id":1,
-//     "details":"test11",
-//     "quantity":2,
-//     "price":100
-//   },{
-//     "id":2,
-//     "details":"test12",
-//     "quantity":5,
-//     "price":120
-//   },{
-//     "id":3,
-//     "details":"test3",
-//     "quantity":6,
-//     "price":170
-//   },{
-//     "id":4,
-//     "details":"test4",
-//     "quantity":8,
-//     "price":70
-//   },{
-//     "id":5,
-//     "details":"test5",
-//     "quantity":2,
-//     "price":160
-//   },{
-//     "id":6,
-//     "details":"test6",
-//     "quantity":9,
-//     "price":100
-//   }]
