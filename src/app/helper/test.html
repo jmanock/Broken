@@ -2,6 +2,37 @@
 <p ng-repeat='country in countries'>Hole:{{country.hole}}| Par:{{country.par}}</p>
 <p ng-repeat='player in players'>{{player.scores}}</p>
 <h2>{{name}}</h2>
-<ui ng-repeat='movie in movies'>
-  <li>{{movie.t}} - {{movie.l}} = {{movie.e}}</li>
-</ui>
+
+<!-- <input type="text" ng-model='searchFilter'>
+<h4>Id</h4>
+<h4>Details</h4>
+<h4>Quantity</h4>
+<h4>Price</h4>
+<h4>Total</h4>
+<div ng-repeat='item in resultValue = (items )'>
+  <div>{{item.id}}</div>
+  <div>{{item.details}}</div>
+  <div>{{item.quantity}}</div>
+  <div>{{item.price}}</div>
+  <div>{{item.quantity * item.price}}</div>
+  <div>{{resultValue | sumOfValue:'quantity'}}</div>
+</div>
+<h4>{{resultValue | sumOfValue:'price'}}</h4>
+<h4>{{resultValue | totalSumPriceQty:'quantity':'price'}}</h4> -->
+
+<!-- <div ng-repeat='course in newValue = (courses)'>
+  <p>Score: {{course.score}}</p>
+  <p>Par:{{course.par}}</p>
+  <p>Points:{{course.par - course.score}}</p>
+  <p>Test: {{course.points}}</p>
+</div>
+<p>sum of score: {{newValue | sumOf:'score'}}</p>
+<p>sum of par: {{newValue | sumOf:'par'}}</p>
+<p>Sum of points: {{newValue | sumOf:'points'}}</p>
+<p>total sum: {{newValue | totalSum:'par':'score'}}</p> -->
+<div ng-repeat='movie in total =(movies)'>
+  <p>par: {{movie.t}}</p>
+  <p>score: {{movie.l}}</p>
+  <p>Points: {{movie.e}}</p>
+</div>
+<p>Total sum of points: {{total | sumOf:'e'}}</p>
