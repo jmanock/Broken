@@ -8,26 +8,8 @@ angular.module('fantasy')
     $scope.players = data;
   });
   $scope.name = 'Testing';
-  var par = [];
-  var score = [];
-  par[0] = '4';
-  par[1] = '5';
-  par[2] = '4';
-  par[3] = '5';
-  par[4] ='3';
-  par[5] = '4';
-  par[6] = '3';
-  par[7] = '5';
-  par[8] = '4';
-  score[0] = '3';
-  score[1] = '4';
-  score[2] = '4';
-  score[3] = '6';
-  score[4] = '5';
-  score[5] = '3';
-  score[6] = '4';
-  score[7] = '5';
-  score[8] = '5';
+  var par = ['4','5','4','5','3','4','3','4','5'];
+  var score = ['3','4','4','6','5','3','4','4','4'];
 
   $scope.points = [];
   $scope.movies = [];
@@ -52,6 +34,7 @@ angular.module('fantasy')
      var sum = 0;
      for (var i=0; i<data.length; i++){
        sum = sum + data[i][key];
+       console.log(sum);
      }return sum;
    };
  });
