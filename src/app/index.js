@@ -23,6 +23,11 @@ angular.module('fantasy', ['ui.router', 'firebase'])
     url:'/standings',
     templateUrl: 'app/standings/standings.html',
     controller: 'StandingsCtrl'
+  })
+  .state('test', {
+    url:'/test',
+    templateUrl:'app/helper/test.html',
+    controller:'TestCtrl'
   });
   $urlRouterProvider.otherwise('/');
 });
