@@ -15,6 +15,7 @@
 <p>Sum of points: {{newValue | sumOf:'points'}}</p>
 <p>total sum: {{newValue | totalSum:'par':'score'}}</p> -->
 <div ng-repeat='movie in total =(movies)'>
+  <p><b>Hole: {{movie.hole}}</b></p>
   <p>par: {{movie.par}}</p>
   <p>score: {{movie.score}}</p>
   <p>Points: {{movie.points}}</p>
