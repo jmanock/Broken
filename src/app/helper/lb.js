@@ -2,17 +2,29 @@
 var request = require('request');
 var cheerio = require('cheerio');
 
-request('http://www.cbssports.com/golf/leaderboard/pga-tour/292758/masters-tournament', function(err, response, body){
-  if(!err && response.statusCode === 200){
-    var $ = cheerio.load(body);
+request('http://espn.go.com/golf/leaderboard', function(error, response, html){
+  if(!error && response.statusCode === 200){
+    var $ = cheerio.load(html);
+    // Gets all the players names
+    $('td.player').each(function(i, element){
+      var a = $(this);
+      //console.log(a.text() + ' ' + i);
+    });
 
-    /* This get the players list*/
-    // $('.pName').each(function(i, element){
-    //   var name = $(this).text();
-    //   //console.log(name);
-    // });
-
-    var name = $('a').html();
-    console.log(name);
+    // Working on the hole by hole scores
+  $('tr.sl').each(function(i, element){
+    var a = $(this).addClass('expanded');
+  //  console.log(a + ' ' + i);
+  })
   }
 });
+
+// request('https://news.ycombinator.com', function(error, response, html){
+//   if(!error && response.statusCode ===200){
+//     var $ = cheerio.load(html);
+//     $('span.comhead').each(function(i, element){
+//       var a = $(this).prev();
+//       console.log(i + ' ' + a.text());
+//     });
+//   }
+//});
