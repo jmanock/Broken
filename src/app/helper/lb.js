@@ -20,13 +20,12 @@ var cheerio = require('cheerio');
 // });
 
 // Test to get all pages open
-var url = 'https://sports.yahoo.com/golf/pga/leaderboard',
-words = [],
-results = 0;
+var url = 'https://sports.yahoo.com/golf/pga/leaderboard';
+var something = [];
+
 
 function callBack(){
-	results = results + 1;
-	//console.log(words);
+
 
 }
 request(url, function(error, response, body){
@@ -42,12 +41,32 @@ request(url, function(error, response, body){
 			request(pages, function(error, response, body){
 				if(!error){
 					var $t = cheerio.load(body),
-					text = $t('h1').text();
-					// words.push(text);
-					 console.log(i + ' ' + text);
+					score = 0,
+					text = $t('h1').text(),
+					birdie = $t('.birdie').text(),
+					dblbogey = $t('.dblbogey').text(),
+					eagle = $t('.eagle').text(),
+					bogie = $t('.bogey').text();
+
+					// birdie = score + 1;
+					// bogie = score -1;
+					// dblbogey = score -2;
+					// eagle = score + 3;
+					var data = {
+						Name: text,
+						Birdies:birdie.length * 1,
+						Bogies: bogie.length * -1,
+						eagle: eagle.length * 3,
+						db: dblbogey.length * -2,
+						points: birdie.length*1 + bogie.length * -1 + eagle.length * 3 + dblbogey.length * -2 
+					};
+
+					// Score gets updated by birdie and bogies
+					console.log( data);
+
 				}
 			});
-			callBack();
+			//callBack();
 		});
 	}
 });
