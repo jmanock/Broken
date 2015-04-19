@@ -26,7 +26,7 @@ var golfers = [];
 						var bogey = $page('.bogey').text();
 						var double = $page('.dblbogey').text();
 
-						var data = {
+						 var data = {
 							Name: text,
 							Eagles: eagle.length * 3,
 							Birdies: birdie.length * 1,
@@ -35,8 +35,8 @@ var golfers = [];
 							Points: eagle.length * 3 + birdie.length * 1 + bogey.length * -1 + double.length * -2
 						};
 						golfers.push(data);
-						console.log(golfers);
-						ref.set(golfers);
+						//ref.set(golfers);
+						console.log(data);
 					}
 				});
 			});
@@ -44,4 +44,3 @@ var golfers = [];
 	});
 }
 points();
-setInterval(points, 30000);
