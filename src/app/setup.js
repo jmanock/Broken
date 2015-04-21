@@ -3,7 +3,7 @@ var request = require('request');
 var cheerio = require('cheerio');
 var firebase = require('firebase');
 var url  = 'https://sports.yahoo.com/golf/pga/leaderboard';
-var ref = new firebase('https://fireseedangular.firebaseio.com');
+var ref = new firebase('https://toga.firebaseio.com');
 var golfers = [];
 
 function pages(){
@@ -26,6 +26,7 @@ function req(page){
     if(!error && response.statusCode === 200){
       var $ = cheerio.load(body);
       var name = $('h1').text();
+      name = name.substring(0, name.length -12);
       var eagle = $('.eagle').text();
       var birdie = $('.birdie').text();
       var bogey = $('.bogey').text();
