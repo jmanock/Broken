@@ -47,8 +47,14 @@ request(url, function(error, response, body){
         }
         // Prints out the index of the pages and the counter
         // console.log(i + ' ' + count)
-         for(var i = 0; i< notLoadedPages.length; i++){
-           console.log('I am a fucking good sometimes');
+         for(var i in notLoadedPages){
+           request(notLoadedPages[i], function(error, response, body){
+             if(!error && response.statusCode === 200){
+               var $reloaded = cheerio.load(body);
+               var name = $reloaded('h1').text();
+               console.log(name);
+             }
+           });
          }
       }); // End of `pages` request
     });
