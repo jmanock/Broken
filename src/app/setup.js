@@ -6,21 +6,6 @@ var url  = 'https://sports.yahoo.com/golf/pga/leaderboard';
 var ref = new firebase('https://toga.firebaseio.com');
 var golfers = [];
 
-function pages(){
-  request(url, function(error, response, body){
-    if(!error && response.statusCode === 200){
-      var $ = cheerio.load(body);
-      var links = $('.player > a');
-
-      links.each(function(i, link){
-        var urls = $(link).attr('href');
-        var page = ('https://sports.yahoo.com'+urls);
-        req(page, i);
-      });
-    }
-  });
-}
-
 function req(page){
   request(page, function(error, response, body){
     if(!error && response.statusCode === 200){
@@ -37,6 +22,11 @@ function req(page){
         Points: points
       };
 
+      if(data.Name === 'PGA Tour'){
+        delete data.Name;
+        delete data.Points;
+      }
+
       if(data.Name === ''){
         req(page);
       }
@@ -45,6 +35,22 @@ function req(page){
     }
   });
 }
+function pages(){
+  request(url, function(error, response, body){
+    if(!error && response.statusCode === 200){
+      var $ = cheerio.load(body);
+      var links = $('.player > a');
+
+      links.each(function(i, link){
+        var urls = $(link).attr('href');
+        var page = ('https://sports.yahoo.com'+urls);
+        req(page, i);
+      });
+    }
+  });
+}
+
+
 
 
 pages();
