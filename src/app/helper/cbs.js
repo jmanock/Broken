@@ -2,45 +2,22 @@
 var cheerio = require('cheerio');
 var request = require('request');
 var url = 'https://sports.yahoo.com/golf/pga/leaderboard';
+var count = 0;
 
-// request(url, function(error, response, body){
-//   if(!error && response.statusCode === 200){
-//     console.log('We have conection to the website');
-//     var $ = cheerio.load(body);
-//     var links = $('.player > a');
-//
-//     links.each(function(i, link){
-//       var urls = $(link).attr('href');
-//       var pages = ('https://sports.yahoo.com' + urls);
-//
-//       request(pages, function(error, response, body){
-//         if(!error && response.statusCode === 200){
-//           //console.log('we have another connection to all the other pages!');
-//           var $page = cheerio.load(body);
-//           var text = $page('h1').text();
-//           var eagle = $page('.eagle').text();
-//           var birdie = $page('.birdie').text();
-//           var bogie = $page('.bogey').text();
-//           var double = $page('.dblbogey').text();
-//           var data ={
-//             Name: text,
-//             Points: eagle.length * 3 + birdie.length * 1 + bogie.length * -1 + double.length * -2
-//           };
-//           console.log(data.Name);
-//         }
-//       });
-//     });
-//   }
-// });
-
+// Requesting the yahoo leaderboard page
 request(url, function(error, response, body){
+  // If no errors and status code is a go
   if(!error && response.statusCode === 200){
+    // Load cheerio
     var $ = cheerio.load(body);
     var links = $('.player > a');
 
+    // Find all `links` with a class of player and a child of `a`
     links.each(function(i, link){
       var urls = $(link).attr('href');
       var pages = ('https://sports.yahoo.com'+urls);
+
+      // Search all `pages` from `links`
       request(pages, function(error, response, body){
         if(!error && response.statusCode ===  200){
           var $playersPage = cheerio.load(body);
@@ -54,13 +31,15 @@ request(url, function(error, response, body){
             Name: name,
             Points: points
           };
-          var count = 0;
-          if(data.Name === ''){
-            return count + 1;
 
+          // Set up a counter for pages that don't load
+          if(data.Name === ''){
+            console.log(pages);
+             count++;
           }
-          console.log(data );
+          //console.log(data.Name);
         }
+        console.log(i + ' ' + count);
       });
     });
   }
