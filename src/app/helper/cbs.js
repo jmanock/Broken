@@ -1,8 +1,14 @@
+// Things still to do
+// run that array
+// push arrays that dont load a 2nd time into another array
+// run that array etc
+
 'use strict';
 var cheerio = require('cheerio');
 var request = require('request');
 var url = 'https://sports.yahoo.com/golf/pga/leaderboard';
 var count = 0;
+var notLoadedPages = [];
 
 // Requesting the yahoo leaderboard page
 request(url, function(error, response, body){
@@ -34,13 +40,18 @@ request(url, function(error, response, body){
 
           // Set up a counter for pages that don't load
           if(data.Name === ''){
-            console.log(pages);
+            // Prints out the urls of the pages that didnt load
+            notLoadedPages.push(pages);
              count++;
           }
-          //console.log(data.Name);
         }
-        console.log(i + ' ' + count);
-      });
+        // Prints out the index of the pages and the counter
+        // console.log(i + ' ' + count)
+         for(var i = 0; i< notLoadedPages.length; i++){
+           console.log('I am a fucking good sometimes');
+         }
+      }); // End of `pages` request
     });
   }
-});
+
+}); // End of `url` request
