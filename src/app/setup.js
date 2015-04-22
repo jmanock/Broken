@@ -1,11 +1,11 @@
 'use strict';
 var request = require('request');
 var cheerio = require('cheerio');
-var firebase = require('firebase');
+//var firebase = require('firebase');
 var url  = 'https://sports.yahoo.com/golf/pga/leaderboard';
-var ref = new firebase('https://toga.firebaseio.com');
-var golfers = [];
-var pagesLeft = [];
+// var ref = new firebase('https://toga.firebaseio.com');
+// var golfers = [];
+// var pagesLeft = [];
 
 function req(page,i){
   request(page, function(error, response, body){
@@ -42,7 +42,7 @@ function req(page,i){
       // }
       //golfers.push(data);
       //ref.set(golfers);
-      console.log(i);
+      //console.log(i);
     }
   });
 }
@@ -57,6 +57,7 @@ function pages(){
         var page = ('https://sports.yahoo.com'+urls);
         req(page, i);
       });
+      console.log(links.length);
     }
   });
 }
