@@ -5,6 +5,7 @@ var firebase = require('firebase');
 var url  = 'https://sports.yahoo.com/golf/pga/leaderboard';
 var ref = new firebase('https://toga.firebaseio.com');
 var golfers = [];
+var pagesLeft = [];
 
 function req(page,i){
   request(page, function(error, response, body){
@@ -22,19 +23,26 @@ function req(page,i){
         Points: points,
         Id: i
       };
+      // if(data.Id === 0){
+      //   delete data.Name;
+      //   delete data.Points;
+      //   delete data.Id;
+      // }
 
-      if(data.Name === 'PGA Tour' || data.Id ===0){
-        delete data.Name;
-        delete data.Points;
-        delete data.i;
-      }
+      // if(data.Name === 'PGA Tour'){
+      //   delete data.Name;
+      //   delete data.Points;
+      //   delete data.i;
+      // }
 
-      if(data.Name === ''){
-        req(page,i);
-      }
-      golfers.push(data);
-      ref.set(golfers);
-      console.log(data);
+      // if(data.Name === ' '){
+      //   //pagesLeft.push(data.Id);
+      //   //req(page,i);
+      //   console.log('page not loaded!!!');
+      // }
+      //golfers.push(data);
+      //ref.set(golfers);
+      console.log(i);
     }
   });
 }
