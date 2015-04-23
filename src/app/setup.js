@@ -5,11 +5,9 @@ var cheerio = require('cheerio');
 //var firebase = require('firebase');
 var url  = 'https://sports.yahoo.com/golf/pga/leaderboard';
 // var ref = new firebase('https://toga.firebaseio.com');
- var golfers = [];
-// var pagesLeft = [];
 
-function req(golfers,i){
-  request(golfers, function(error, response, body){
+function req(page,i){
+  request(page, function(error, response, body){
     if(!error && response.statusCode === 200){
       var $ = cheerio.load(body);
       var name = $('h1').text();
@@ -43,14 +41,15 @@ function req(golfers,i){
       // }
       //golfers.push(data);
       //ref.set(golfers);
-      //console.log(i + ' ' + page);
+      console.log(i + ' winner!' );
 
+    }else{
+      console.log(i + ' not a fucking winner!');
+      req(page, i);
     }
   });
 }
-function text(golfers, i){
 
-}
 function pages(){
   request(url, function(error, response, body){
     if(!error && response.statusCode === 200){
@@ -61,20 +60,22 @@ function pages(){
         var urls = $(link).attr('href');
         var page = ('https://sports.yahoo.com'+urls);
 
-        request(page, function(error, response, body){
-          if(!error && response.statusCode === 200){
-            console.log('winner! ' + i);
-          }else{
-            console.log('nooooo ' + i + error);
-            request(page, function(error, response, body){
-              if(!error && response.statusCode === 200){
-                console.log('winner a 2nd go around! ' + i);
-              }else{
-                console.log('something is still going wrong ' + i + error);
-              }
-            });
-          }
-        });
+        req(page, i);
+
+        // request(page, function(error, response, body){
+        //   if(!error && response.statusCode === 200){
+        //     console.log('winner! ' + i);
+        //   }else{
+        //     console.log('nooooo ' + i + error);
+        //     request(page, function(error, response, body){
+        //       if(!error && response.statusCode === 200){
+        //         console.log('winner a 2nd go around! ' + i);
+        //       }else{
+        //         console.log('something is still going wrong ' + i + error);
+        //       }
+        //     });
+        //   }
+        // });
       });
 
 
