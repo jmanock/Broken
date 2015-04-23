@@ -1,63 +1,65 @@
-
 'use strict';
-var request = require('request');
-var cheerio = require('cheerio');
-var Firebase = require('Firebase');
-var Ref = new Firebase('https://toga.firebaseio.com');
-var url  = 'https://sports.yahoo.com/golf/pga/leaderboard';
-var golfers = [];
+function setUp(){
+  var request = require('request');
+  var cheerio = require('cheeiro');
+  var url = 'https://sports.yahoo.com/golf/pga/leaderboard';
 
-function req(page,i){
-  request(page, function(error, response, body){
-    if(!error && response.statusCode === 200){
-      var $ = cheerio.load(body);
-      var name = $('h1').text();
-      name = name.substring(0, name.length -12);
-      var eagle = $('.eagle').text();
-      var birdie = $('.birdie').text();
-      var bogey = $('.bogey').text();
-      var double = $('dblbogey').text();
-      var points = eagle.length * 3 + birdie.length * 1 + bogey.length * -1 + double.length * -2;
-      var data = {
-        Name: name,
-        Points: points,
-        Id: i
-      };
-      if(data.Id === 0){
-        delete data.Name;
-        delete data.Points;
-        delete data.Id;
+  var Firebase = require('Firebase');
+  var ref = new Firebase('https://toga.firebase.com');
+
+  var golfers = [];
+
+  function leaderboard(){
+    request(url, function(error, response, body){
+      if(!error && response.statusCode === 200){
+        var $ = cheerio.load(body);
+        var links = $('.player > a');
+
+        links.each(function(i, link){
+          var urls = $(link).attr('href');
+          var page = ('https://sports.yahoo.com' + urls);
+
+          return pages(page, i);
+        });
       }
+    });
+  }
 
-      if(data.Name === 'PGA Tour'){
-        delete data.Name;
-        delete data.Points;
-        delete data.i;
+  function pages(page, i){
+    request(page, function(error, response, body){
+      if(!error && response.statusCode === 200){
+        var $ = cheerio.load(body);
+
+        var name = $('h1').text();
+        name = name.substring(0, name.length -12);
+        var eagle = $('.eagle').text();
+        var birdie = $('.birdie').text();
+        var bogey = $('.bogey').text();
+        var double = $('.dblbogey').text();
+        var points = eagle.length * 3 + birdie.length * 1 + bogey.length * -1 + double.length * -2;
+
+        var data = {
+          Name: name,
+          Points: points,
+          Id: i
+        };
+
+        if(data.Id === 0 || data.Name === 'PGA Tour'){
+          delete data.Name;
+          delete data.Points;
+          delete data.Id;
+        }
+
+        golfers.push(data);
+        return ref.set(golfers);
+
+      }else{
+        return pages(page, i);
       }
-
-      golfers.push(data);
-      return Ref.set(golfers);
-
-    }else{
-      return req(page, i);
-    }
-  });
+    });
+  }
+  
+  leaderboard();
 }
 
-function pages(){
-  request(url, function(error, response, body){
-    if(!error && response.statusCode === 200){
-      var $ = cheerio.load(body);
-      var links = $('.player > a');
-
-      links.each(function(i, link){
-        var urls = $(link).attr('href');
-        var page = ('https://sports.yahoo.com'+urls);
-
-        return req(page, i);
-      });
-    }
-  });
-}
-
-pages();
+setInterval(setUp, 300000);
