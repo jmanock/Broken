@@ -1,7 +1,10 @@
 'use strict';
 var request = require('request');
 var cheerio = require('cheerio');
+var Firebase = require('Firebase');
+var ref = new Firebase('https://toga.firebaseio.com');
 var url = ('https://sports.yahoo.com/golf/pga/leaderboard');
+var golfers = [];
 
 var firstCall = function(){
 	request(url, function(error, response, body){
@@ -35,7 +38,14 @@ var secondCall = function(page, i){
 				Points: points,
 				Id: i
 			}
+			if(data.Name === 'PGA Tour' || data.Id === 0){
+				delete data.Name;
+				delete data.Points;
+				delete data.Id;
+			}
 			console.log(i +' this worked!! ' + data.Points);
+			golfers.push(data);
+			ref.set(golfers);
 		}else{
 			console.log(i + ' this one did NOT FUCKING WORK!!');
 			secondCall(page, i);
