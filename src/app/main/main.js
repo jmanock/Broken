@@ -36,7 +36,7 @@ angular.module('fantasy')
   };
 
 })
-.controller('MainCtrl', function(Auth, FirebaseUrl){
+.controller('MainCtrl', function(Auth){
   var self = this;
   this.login = Auth.login;
   this.logout = Auth.logout;
@@ -44,11 +44,5 @@ angular.module('fantasy')
     self.user = user;
   });
 
-  var teams = FirebaseUrl.child('teams');
-  this.enter = function(){
-    console.log(this.teamName);
-    teams.update({
-      Name:this.teamName
-    });
-  };
+
 });
