@@ -20,7 +20,7 @@ var firstCall = function(){
 			});
 		}
 	});
-}
+};
 
 var secondCall = function(page, i){
 	request(page, function(error, response, body){
@@ -37,7 +37,7 @@ var secondCall = function(page, i){
 				Name: name,
 				Points: points,
 				Id: i
-			}
+			};
 			if(data.Name === 'PGA Tour' || data.Id === 0){
 				delete data.Name;
 				delete data.Points;
@@ -51,5 +51,5 @@ var secondCall = function(page, i){
 			secondCall(page, i);
 		}
 	});
-}
+};
 firstCall();

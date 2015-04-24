@@ -40,15 +40,16 @@ angular.module('fantasy')
         var id = ss.val();
         if(id <=5){
         var userTeam = FirebaseUrl.child('userTeam').child(self.user.uid).child('team').child(player.$id);
-        //var teamUser = FirebaseUrl.child('teamUser').child(profile).child(player.$id);
+        var teamUser = FirebaseUrl.child('teamUser').child(player.$id);
         userTeam.update({
           name:player.Name
         });
 
-        // teamUser.update({
-        //   name:player.Name,
-        //   user: self.user.uid
-        // });
+        teamUser.update({
+          name:player.Name,
+          points: player.Points,
+          id: player.Id
+        });
       }
       }
     });
