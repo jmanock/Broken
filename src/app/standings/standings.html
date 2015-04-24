@@ -19,11 +19,11 @@
           <th>Points</th>
           <th>Total</th>
         </tr>
-        <tr ng-repeat='team in standings.teams | orderBy:"-points"' >
+        <tr ng-repeat='team in resultValue = (standings.teams) | orderBy:"-points"' >
           <td>{{team.name}}</td>
           <td>{{team.points}}</td>
-          <td>{{getTotal()}}</td>
+          <td>{{resultValue | sumOfValue:'points'}}</td>
         </tr>
-      </table>
-    </div>
-  </div>
+      </table> 
+
+     
