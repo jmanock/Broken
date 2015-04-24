@@ -5,7 +5,7 @@
     <div>
       <h3>Leaderboard</h3>
       <ul>
-        <li ng-repeat='player in standings.players'>
+        <li ng-repeat='player in standings.players | orderBy:"-Points"'>
           {{player.Name}} | {{player.Points}}
         </li>
       </ul>
@@ -13,10 +13,15 @@
 
     <div>
       <h3>Teams</h3>
-      <ol>
-        <li ng-repeat='team in standings.teams'>
-          {{team.name }} | {{team.points}}
-        </li>
-      </ol>
-    </div> 
+      <table>
+        <tr>
+          <th>Name</th>
+          <th>Points</th>
+        </tr>
+        <tr ng-repeat='team in standings.teams | orderBy:"-points"'>
+          <td>{{team.name}}</td>
+          <td>{{team.points}}</td>
+        </tr>
+      </table>
+    </div>
   </div>
