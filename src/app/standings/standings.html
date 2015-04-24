@@ -12,17 +12,17 @@
     </div>
 
     <div>
-      <h3 ng-click='toggle = !toggle'>Teams</h3>
+      <h3 ng-click='toggle = !toggle' >Teams</h3>
       <table ng-show='toggle'>
         <tr >
           <th>Name</th>
           <th>Points</th>
-          <th>Total</th>
+          
         </tr>
         <tr ng-repeat='team in resultValue = (standings.teams) | orderBy:"-points"' >
           <td>{{team.name}}</td>
           <td>{{team.points}}</td>
-          <td>{{resultValue | sumOfValue:'points'}}</td>
+          <h4>Total: {{resultValue | sumOfValue:'points'}}</h4>
         </tr>
       </table> 
 
