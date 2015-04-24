@@ -1,8 +1,7 @@
 'use strict';
 angular.module('fantasy')
-.controller('SearchCtrl', function( $firebaseArray, FirebaseUrl, Auth, $stateParams, $firebaseObject, $scope){
+.controller('SearchCtrl', function( $firebaseArray, FirebaseUrl, Auth, $stateParams, $firebaseObject){
   var self = this;
-  var profile = this.profile;
 
   // Getting the players from firebase
   var ref = new Firebase('https://toga.firebaseio.com/');
@@ -75,22 +74,6 @@ angular.module('fantasy')
         console.log(i);
       }
     });
-  };
-
-  this.teamName = function(profile){
-    // var userTeam = FirebaseUrl.child('userTeam').child(self.user.uid);
-    // var teamUser = FirebaseUrl.child('teamUser');
-    // userTeam.update({
-    //   TeamName: profile
-    // });
-    //
-    // teamUser.update({
-    //   TeamName:profile
-    // });
-    if(profile===undefined){
-
-    }
-
   };
 
 });
