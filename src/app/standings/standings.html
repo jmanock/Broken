@@ -12,13 +12,13 @@
     </div>
 
     <div>
-      <h3>Teams</h3>
-      <table>
-        <tr>
+      <h3 ng-click='toggle = !toggle'>Teams</h3>
+      <table ng-show='toggle'>
+        <tr >
           <th>Name</th>
           <th>Points</th>
         </tr>
-        <tr ng-repeat='team in standings.teams | orderBy:"-points"'>
+        <tr ng-repeat='team in standings.teams | orderBy:"-points"' >
           <td>{{team.name}}</td>
           <td>{{team.points}}</td>
         </tr>
