@@ -4,7 +4,7 @@ angular.module('fantasy')
   var self = this;
 
   // Getting the players from firebase
-  var ref = new Firebase('https://toga.firebaseio.com/');
+  var ref = new Firebase('https://fireseedangular.firebaseio.com/');
   this.players = $firebaseArray(ref);
 
   this.currentUser = $firebaseArray(FirebaseUrl.child('users').child($stateParams.id));
@@ -42,13 +42,11 @@ angular.module('fantasy')
         var userTeam = FirebaseUrl.child('userTeam').child(self.user.uid).child('team').child(player.$id);
         var teamUser = FirebaseUrl.child('teamUser').child(player.$id);
         userTeam.update({
-          name:player.Name
+          name:player.name
         });
 
         teamUser.update({
-          name:player.Name,
-          points: player.Points,
-          id: player.Id
+          name:player.name
         });
       }
       }
