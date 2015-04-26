@@ -26,6 +26,12 @@ angular.module('fantasy')
 
 	// Gets the teams
 	this.teams = $firebaseArray(FirebaseUrl.child('teamUser'));
+	FirebaseUrl.child('teamUser').on('value', function(team){
+		team.forEach(function(mine){
+			//console.log(mine.val().name);
+		});
+	});
+	
 });
 /* Work on loading points by matching names with names to get the points'
 	* also find out why there is still an error but points still work.

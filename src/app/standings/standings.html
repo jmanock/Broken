@@ -2,6 +2,19 @@
   <div ng-include="'components/navbar/navbar.html'"></div>
   
   <div ng-controller='StandingsCtrl as standings'>
+   <div>
+     <table>
+       <tr>
+         <th>Name</th>
+         <th>Points</th>
+       </tr>
+       <tr ng-repeat='team in standings.teams'>
+         <td>{{team.name}}</td>
+         <td>{{team.points}}</td>
+       </tr>
+     </table>
+   </div>
+
     <div>
       <h3>Leaderboard</h3>
       <ul>
@@ -11,7 +24,7 @@
       </ul>
     </div>
 
-    <div>
+     <!-- <div>
       <h3 ng-click='toggle = !toggle' >Teams</h3>
       <table ng-show='toggle'>
       <th>Total: {{resultValue | sumOfValue:'points'}}</th>  
@@ -23,6 +36,6 @@
           <td>{{team.name}}</td>
           <td>{{team.points}}</td> 
         </tr>
-      </table> 
+      </table>  -->
 
      

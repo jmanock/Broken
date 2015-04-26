@@ -51,7 +51,9 @@
 //  });
 'use strict';
 angular.module('fantasy')
-.controller('TestCtrl', function($scope){
+.controller('TestCtrl', function($scope, FirebaseUrl, $firebaseArray){
+
+$scope.teams = $firebaseArray(FirebaseUrl.child('teamUser'));
 $scope.two =[{
   name:'jon'
 },{
@@ -64,32 +66,34 @@ $scope.two =[{
   name:'jason'
 }];
 $scope.one = [{
-  name:'brit',
+  name:'Jason Day',
   points:100
 },{
-  name:'ryan',
+  name:'Erik Compton',
   points:200
 },{
-  name:'steve',
+  name:'Daniel Berger',
   points:-2
 },{
-  name:'orange',
+  name:'Chris Stroud',
   ponts:213
 },{
-  name:'jason',
+  name:'Hudson Swafford',
   points:300
 },{
   name:'jon',
   points:2033
 }];
-angular.forEach($scope.two, function(item1){
-  angular.forEach($scope.one, function(item2){
-    if(item1.name === item2.name){
-      console.log('winner winner chicke dinner!!!!');
-      item1.points = item2.points
-    }
-  })
-})
+
+// This works with test data!!!
+// angular.forEach($scope.two, function(item1){
+//   angular.forEach($scope.one, function(item2){
+//     if(item1.name === item2.name){
+//       console.log('winner winner chicke dinner!!!!');
+//       item1.points = item2.points
+//     }
+//   })
+// })
 
 
 })
