@@ -82,15 +82,14 @@ $scope.one = [{
   name:'jon',
   points:2033
 }];
-var players = []
-angular.forEach($scope.two, function(value, index){
-   var name = value.name
-  return players.push(name);
-  
-  });
-angular.forEach($scope.one, function(value, index){
-console.log(value.name);
-console.log(players);
+angular.forEach($scope.two, function(item1){
+  angular.forEach($scope.one, function(item2){
+    if(item1.name === item2.name){
+      console.log('winner winner chicke dinner!!!!');
+      item1.points = item2.points
+    }
+  })
 })
+
 
 })
