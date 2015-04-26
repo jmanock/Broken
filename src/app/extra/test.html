@@ -1,23 +1,17 @@
-<h1>hello?</h1>
+<!-- h1>hello?</h1>
 <p ng-repeat='country in countries'>Hole:{{country.hole}}| Par:{{country.par}}</p>
 <p ng-repeat='player in players'>{{player.scores}}</p>
 <h2>{{name}}</h2>
 
-
-<!-- <div ng-repeat='course in newValue = (courses)'>
-  <p>Score: {{course.score}}</p>
-  <p>Par:{{course.par}}</p>
-  <p>Points:{{course.par - course.score}}</p>
-  <p>Test: {{course.points}}</p>
-</div>
-<p>sum of score: {{newValue | sumOf:'score'}}</p>
-<p>sum of par: {{newValue | sumOf:'par'}}</p>
-<p>Sum of points: {{newValue | sumOf:'points'}}</p>
-<p>total sum: {{newValue | totalSum:'par':'score'}}</p> -->
 <div ng-repeat='movie in total =(movies)'>
   <p><b>Hole: {{movie.hole}}</b></p>
   <p>par: {{movie.par}}</p>
   <p>score: {{movie.score}}</p>
   <p>Points: {{movie.points}}</p>
 </div>
-<p>Total sum of points: {{total | sumOf:'points'}}</p>
+<p>Total sum of points: {{total | sumOf:'points'}}</p> -->
+
+<h3>Show players with points from another array</h3>
+<div ng-repeat='twos in two'>
+	<p>{{twos.name}}|{{twos.points}}</p>
+</div>

@@ -1,5 +1,6 @@
 'use strict';
 angular.module('fantasy')
+// Adds all the points together
 .filter('sumOfValue', function(){
 	return function(data, key){
 		if(typeof(data)=== 'undefined' && typeof(key)=== 'undefined'){
@@ -12,6 +13,7 @@ angular.module('fantasy')
 		return sum;
 	}
 })
+// Loads the Leaderboard and teams
 .controller('StandingsCtrl', function($scope, FirebaseUrl, $firebaseObject, $firebaseArray){
 	var self = this;
 
@@ -25,6 +27,8 @@ angular.module('fantasy')
 	// Gets the teams
 	this.teams = $firebaseArray(FirebaseUrl.child('teamUser'));
 });
-
+/* Work on loading points by matching names with names to get the points'
+	* also find out why there is still an error but points still work.
+*/
 
 
