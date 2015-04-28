@@ -2,23 +2,21 @@
   <div ng-include="'components/navbar/navbar.html'"></div>
 
   <div ng-controller='SearchCtrl as search'>
-    <input type="text" placeholder='Search Players' class='form-control'
-    ng-model='searchForm'>
+    <input type="text" ng-model='searchForm' placeholder='Search for Player' class='form-control'>
 
-    <ul id='players'>
+    <ul>
       <h4>Players</h4>
-      <li ng-repeat='player in search.players | filter:searchForm' style='list-style-type:none'>
-        {{player.name}}
-        <button ng-click='search.addPlayer(search.players[$index])' class='btn-xs '>Add Player</button>
+      <li ng-repeat='player in search.players | filter:searchForm'>
+        {{player.Name}}
+        <button ng-click='search.addPlayer(search.players[$index])' class='btn-success'>Add Player</button>
       </li>
     </ul>
 
-
-      <ol id='team'>
-        <li ng-repeat='(id, team) in search.teams'>
+    <ol>
+      <h4>Team</h4>
+      <li ng-repeat='(id,team) in search.teams'>
         {{team.name}}
-          <button ng-click='search.removePlayer(id)' class='btn-xs btn-danger'>Remove Player</button>
+        <button ng-click='search.removePlayer(id)' class='btn-danger'>Remove Player</button>
       </li>
-    </ul>
+    </ol>
   </div>
-</div>
