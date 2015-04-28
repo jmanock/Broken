@@ -94,6 +94,8 @@ $scope.one = [{
 //     }
 //   })
 // })
+var something = 'https://www.reditclone.firebaseio.come/teamUser'
+console.log(something)
 
 
 })
