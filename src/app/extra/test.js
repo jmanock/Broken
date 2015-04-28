@@ -94,8 +94,20 @@ $scope.one = [{
 //     }
 //   })
 // })
-var something = 'https://www.reditclone.firebaseio.come/teamUser'
-console.log(something)
-
+var bitch = [];
+$scope.teams.$loaded(function(data){
+  data.forEach(function(something){
+    bitch.push(something);
+    return bitch
+  })
+  angular.forEach(bitch, function(team){
+    angular.forEach($scope.one, function(leader){
+      if(team.name === leader.name){
+        console.log('Fuck you firebase!!!');
+        team.points = leader.points;
+      }
+    })
+  })
+})
 
 })
