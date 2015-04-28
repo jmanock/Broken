@@ -1,6 +1,7 @@
 ul{
   float:left;
 }
-ol > h4{
+
+ol > h4 > li{
   float:right;
 }
