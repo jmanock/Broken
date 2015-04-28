@@ -1,34 +1,41 @@
 <div class='container'>
   <div ng-include="'components/navbar/navbar.html'"></div>
+  
+  <div ng-controller='StandingsCtrl as standings'>
+   <div>
+     <table>
+       <tr>
+         <th>Name</th>
+         <th>Points</th>
+       </tr>
+       <tr ng-repeat='team in standings.teams'>
+         <td>{{team.name}}</td>
+         <td>{{team.points}}</td>
+       </tr>
+     </table>
+   </div>
 
-   <div ng-controller='StandingsCtrl as standings'>
-  <!-- <h2>The Standings page should have!!!</h2>
-  <h3>* Team Standings</h3>
-  <h4>- Players get a score thats updated in real time</h4>
-  <h4>- Players are ordered from best to worst</h4>
-  <h4>- Teams are ordered from best to worst</h4>
-  <h4>- Teams should not show players unless clicked</h4>
-  <h3>* Pga Leaderboard</h3>
-  <h4>- Should have the list of players and scores</h4>
-  <h4>- Only show players that have made the cut</h4>
-  <h4>- Show total score only</h4>
-  <h3>* Ideas</h3>
-  <h4>- How to call the teams</h4>
-  <h4>- How to add all the scores together to get a team score</h4>
-  <h4>- Compair team scores together</h4> -->
+    <div>
+      <h3>Leaderboard</h3>
+      <ul>
+        <li ng-repeat='player in standings.players | orderBy:"-Points"'>
+          {{player.Name}} | {{player.Points}}
+        </li>
+      </ul>
+    </div>
 
-  <div>
-    <h3>Leaderboard</h3>
-    <ul>
-      <li ng-repeat='player in standings.players'>{{player.name }} {{text}}</li>
+     <!-- <div>
+      <h3 ng-click='toggle = !toggle' >Teams</h3>
+      <table ng-show='toggle'>
+      <th>Total: {{resultValue | sumOfValue:'points'}}</th>  
+        <tr >
+          <th>Name</th>
+          <th>Points</th>
+        </tr>
+        <tr ng-repeat='team in resultValue = (standings.teams) | orderBy:"-points"' >
+          <td>{{team.name}}</td>
+          <td>{{team.points}}</td> 
+        </tr>
+      </table>  -->
 
-    </ul>
-  </div>
-  <div>
-    <h3>Teams</h3>
-    <ul>
-      <li ng-repeat='team in standings.teams'>{{team}}</li>
-    </ul>
-  </div>
-</div>
-</div>
+     
