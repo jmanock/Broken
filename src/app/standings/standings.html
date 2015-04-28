@@ -8,10 +8,12 @@
        <tr>
          <th>Name</th>
          <th>Points</th>
+         <th>Total</th>
        </tr>
-       <tr ng-repeat='team in standings.teams | orderBy:"-points"'>
+       <tr ng-repeat='team in result = (standings.teams) | orderBy:"-points"'>
          <td>{{team.name}}</td>
          <td>{{team.points}}</td>
+         <td>Total:{{result | sumOfValue:'points'}}</td>
        </tr>
      </table>
    </div>
