@@ -3,7 +3,8 @@
   
   <div ng-controller='StandingsCtrl as standings'>
    <div>
-     <table>
+   <h4 ng-click='toggle = !toggle'>MyTeam</h4>
+     <table ng-show='toggle'>
        <tr>
          <th>Name</th>
          <th>Points</th>
@@ -24,18 +25,5 @@
       </ul>
     </div>
 
-     <!-- <div>
-      <h3 ng-click='toggle = !toggle' >Teams</h3>
-      <table ng-show='toggle'>
-      <th>Total: {{resultValue | sumOfValue:'points'}}</th>  
-        <tr >
-          <th>Name</th>
-          <th>Points</th>
-        </tr>
-        <tr ng-repeat='team in resultValue = (standings.teams) | orderBy:"-points"' >
-          <td>{{team.name}}</td>
-          <td>{{team.points}}</td> 
-        </tr>
-      </table>  -->
-
+    
      
