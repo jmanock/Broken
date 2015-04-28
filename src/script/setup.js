@@ -1,3 +1,4 @@
+
 'use strict';
 var request = require('request');
 var cheerio = require('cheerio');
@@ -20,7 +21,7 @@ var firstCall = function(){
 			});
 		}
 	});
-}
+};
 
 var secondCall = function(page, i){
 	request(page, function(error, response, body){
@@ -32,16 +33,14 @@ var secondCall = function(page, i){
 			var birdie = $('.birdie').text();
 			var bogey = $('.bogey').text();
 			var dub = $('.dblbogey').text();
-			var points = eagle.length * 3 + birdie.length * 1 + bogey.length * -1 + dub.length * -2;
+			var points = eagle.length * 4 + birdie.length * 2 + bogey.length * -1 + dub.length * -2;
 			var data = {
 				Name: name,
-				Points: points,
-				Id: i
-			}
+				Points: points
+			};
 			if(data.Name === 'PGA Tour' || data.Id === 0){
 				delete data.Name;
 				delete data.Points;
-				delete data.Id;
 			}
 			console.log(i +' this worked!! ' + data.Points);
 			golfers.push(data);
@@ -51,5 +50,5 @@ var secondCall = function(page, i){
 			secondCall(page, i);
 		}
 	});
-}
+};
 firstCall();

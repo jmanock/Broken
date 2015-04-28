@@ -26,7 +26,7 @@ angular.module('fantasy', ['ui.router', 'firebase'])
   })
   .state('test', {
     url:'/test',
-    templateUrl:'app/helper/test.html',
+    templateUrl:'app/extra/test.html',
     controller:'TestCtrl'
   });
   $urlRouterProvider.otherwise('/');
