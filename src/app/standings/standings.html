@@ -8,7 +8,7 @@
          <th>Name</th>
          <th>Points</th>
        </tr>
-       <tr ng-repeat='team in standings.teams'>
+       <tr ng-repeat='team in standings.teams | orderBy:"-points"'>
          <td>{{team.name}}</td>
          <td>{{team.points}}</td>
        </tr>

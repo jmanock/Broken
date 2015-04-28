@@ -52,7 +52,8 @@ angular.module('fantasy')
           });
 
            teamUser.update({
-             name:player.Name
+             name:player.Name,
+             points:player.Points
            });
         }
       }
