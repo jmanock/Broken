@@ -25,8 +25,10 @@ angular.module('fantasy')
 	$scope.toggle = false;
 
 	// Gets the teams
-	this.teams = $firebaseObject(FirebaseUrl.child('teamUser'));
-	console.log(this.teams)
+	this.teams = $firebaseArray(FirebaseUrl.child('teamUser'));
+	
+	var t = [];
+
 });
 /* Work on loading points by matching names with names to get the points'
 	* also find out why there is still an error but points still work.

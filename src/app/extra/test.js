@@ -95,19 +95,20 @@ $scope.one = [{
 //   })
 // })
 var bitch = [];
-$scope.teams.$loaded(function(data){
-  data.forEach(function(something){
-    bitch.push(something);
-    return bitch
-  })
-  angular.forEach(bitch, function(team){
-    angular.forEach($scope.one, function(leader){
-      if(team.name === leader.name){
-        console.log('Fuck you firebase!!!');
-        team.points = leader.points;
-      }
-    })
-  })
-})
+// This works as an Idea * have to get the info globally 
+// $scope.teams.$loaded(function(data){
+//   data.forEach(function(something){
+//     bitch.push(something);
+//     return bitch
+//   })
+//   angular.forEach(bitch, function(team){
+//     angular.forEach($scope.one, function(leader){
+//       if(team.name === leader.name){
+//         console.log('Fuck you firebase!!!');
+//         team.points = leader.points;
+//       }
+//     })
+//   })
+// })
 
 })
