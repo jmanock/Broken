@@ -3,7 +3,7 @@
 var request = require('request');
 var cheerio = require('cheerio');
 var Firebase = require('Firebase');
-var ref = new Firebase('https://toga.firebaseio.com');
+var ref = new Firebase('https://reditclone.firebaseio.com/leaderboard');
 var url = ('https://sports.yahoo.com/golf/pga/leaderboard');
 var golfers = [];
 
