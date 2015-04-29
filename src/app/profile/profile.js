@@ -7,7 +7,6 @@ angular.module('fantasy')
   this.currentUser = $firebaseArray(FirebaseUrl.child('users').child($stateParams.id));
   Auth.onAuth(function(user){
     self.user = user;
-    
   });
 
   // Load `Team` if any is there
@@ -80,4 +79,8 @@ angular.module('fantasy')
       }
     });
   };
+  // Display the user name
+
+  
+  
 });
