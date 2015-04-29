@@ -13,7 +13,7 @@
     </ul>
 
     <ol>
-      <h4>Team</h4>
+      <h4>{{self.user.fullName}}</h4>
       <li ng-repeat='(id,team) in search.teams'>
         {{team.name}}
         <button ng-click='search.removePlayer(id)' class='btn-danger'>Remove Player</button>

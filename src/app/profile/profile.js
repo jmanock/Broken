@@ -7,6 +7,7 @@ angular.module('fantasy')
   this.currentUser = $firebaseArray(FirebaseUrl.child('users').child($stateParams.id));
   Auth.onAuth(function(user){
     self.user = user;
+    
   });
 
   // Load `Team` if any is there
@@ -16,9 +17,6 @@ angular.module('fantasy')
 
   // Get  `Players`
   this.players = $firebaseArray(FirebaseUrl.child('leaderboard'));
-
-  // Get `Teams`
-  this.teams = $firebaseObject(FirebaseUrl.child('teamUsers'));
 
   // Add `Player` to `Team`
   this.addPlayer = function(player){
@@ -44,7 +42,7 @@ angular.module('fantasy')
         var id = ss.val();
         if(id <= 5){
           var userTeam = FirebaseUrl.child('userTeam').child(self.user.uid).child('team').child(player.$id);
-          var teamUser = FirebaseUrl.child('teamUser').child(player.$id);
+          var teamUser = FirebaseUrl.child('teamUser').child(self.user.fullName).child(player.$id);
 
           // Update both `userTeam` and `teamUser` with `Players`
           userTeam.update({
@@ -75,7 +73,7 @@ angular.module('fantasy')
       }else if(committed){
         var i = ss.val();
         var userTeam = FirebaseUrl.child('userTeam').child(self.user.uid).child('team').child(id);
-        var teamUser = FirebaseUrl.child('teamUser').child(id);
+        var teamUser = FirebaseUrl.child('teamUser').child(self.user.fullName).child(id);
         teamUser.remove();
         userTeam.remove();
         console.log(i);
