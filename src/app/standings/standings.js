@@ -1,10 +1,10 @@
 'use strict';
 angular.module('fantasy')
-.controller('StandingsCtrl', function(FirebaseUrl, $firebaseArray, $scope){
+.controller('StandingsCtrl', function(FirebaseUrl, $firebaseArray, $scope, $firebaseObject){
 var self = this;
 
 	// Get the `Team`
-	this.teams = $firebaseArray(FirebaseUrl.child('teamUser').child());
+	this.teams = $firebaseObject(FirebaseUrl.child('teamUser'));
 
 	// Get the `Leaderboard`
 	this.players = $firebaseArray(FirebaseUrl.child('leaderboard'));
@@ -21,4 +21,15 @@ var self = this;
 		}
 		return total;
 	};
+	getTeamName(FirebaseUrl.child('teamUser'), function(userId, data){
+		console.log(userId, data);
+	});
+
+	function getTeamName(callback){
+		FirebaseUrl.child('teamUser').on('child_added', function(snap){
+			var userId = snap.key();
+			var userData = snap.val();
+			console.log(userId)
+		})
+	}
 });

@@ -3,7 +3,7 @@
   
   <div ng-controller='StandingsCtrl as standings'>
    <div>
-   <h4 ng-click='toggle = !toggle'>MyTeam</h4>
+   <h4 ng-click='toggle = !toggle'>{{getTeamName(userId)}}</h4>
      <table ng-show='toggle'>
        <tr>
          <th>Name</th>
