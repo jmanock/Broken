@@ -13,22 +13,22 @@ var self = this;
 	$scope.toggle = false;
 
 	// Get the `Total` of `Points` from `Team`
-	$scope.getTotal = function(){
-		var total = 0;
-		for (var i = 0; i < $scope.standings.teams.length; i++){
-			var something = $scope.standings.teams[i];
-			total += something.points;
-		}
-		return total;
-	};
+	// $scope.getTotal = function(){
+	// 	var total = 0;
+	// 	for (var i = 0; i < $scope.standings.teams.length; i++){
+	// 		var something = $scope.standings.teams[i];
+	// 		total += something.points;
+	// 	}
+	// 	return total;
+	// };
 	$scope.ass = [];
 	something.$loaded().then(function(){
-		console.log('loaded record:', something.$id);
+		//console.log('loaded record:', something.$id);
 
 		angular.forEach(something, function(value, key){
-			console.log('what is this' + key);
+			//console.log('what is this' + key);
 			angular.forEach(value, function(k){
-				console.log(k.name + ' ' + k.points);
+				//console.log(k.name + ' ' + k.points);
 				$scope.ass.push(k);
 			})
 		});
