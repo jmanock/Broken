@@ -21,15 +21,5 @@ var self = this;
 		}
 		return total;
 	};
-	getTeamName(FirebaseUrl.child('teamUser'), function(userId, data){
-		console.log(userId, data);
-	});
-
-	function getTeamName(callback){
-		FirebaseUrl.child('teamUser').on('child_added', function(snap){
-			var userId = snap.key();
-			var userData = snap.val();
-			console.log(userId)
-		})
-	}
+	
 });

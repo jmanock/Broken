@@ -3,15 +3,15 @@
   
   <div ng-controller='StandingsCtrl as standings'>
    <div>
-   <h4 ng-click='toggle = !toggle'>{{getTeamName(userId)}}</h4>
+   <h4 ng-click='toggle = !toggle'>Placeholder</h4>
      <table ng-show='toggle'>
        <tr>
          <th>Name</th>
          <th>Points</th>
        </tr>
        <tr ng-repeat='team in standings.teams | orderBy:"-points"'>
-         <td>{{team.name}}</td>
-         <td>{{team.points}}</td>
+         <td>{{team.key}}</td>
+         <td>{{team.value}}</td>
        </tr>
      </table>
      <h4>Total: {{getTotal()}}</h4>
