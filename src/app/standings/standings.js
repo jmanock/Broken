@@ -1,10 +1,10 @@
 'use strict';
 angular.module('fantasy')
-.controller('StandingsCtrl', function(FirebaseUrl, $firebaseArray, $scope, $firebaseObject){
+.controller('StandingsCtrl', function(FirebaseUrl, $firebaseArray, $scope, $firebaseObject, $stateParams){
 var self = this;
 
 	// Get the `Team`
-	$scope.teams = $firebaseObject(FirebaseUrl.child('teamUser'));
+	var something = $firebaseObject(FirebaseUrl.child('teamUser'));
 
 	// Get the `Leaderboard`
 	this.players = $firebaseArray(FirebaseUrl.child('leaderboard'));
@@ -21,4 +21,14 @@ var self = this;
 		}
 		return total;
 	};
+	something.$loaded().then(function(){
+		console.log('loaded record:', something.$id);
+
+		angular.forEach(something, function(value, key){
+			console.log('what is this' + key, value);
+			console.log(value)
+		});
+	});
+	$scope.data = something;
+
 });
