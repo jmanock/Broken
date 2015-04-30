@@ -65,7 +65,7 @@ $scope.two =[{
 },{
   name:'jason'
 }];
-$scope.one = [{
+$scope.one = [{'something':[{
   name:'Jason Day',
   points:100
 },{
@@ -83,7 +83,7 @@ $scope.one = [{
 },{
   name:'jon',
   points:2033
-}];
+}]}];
 
 // This works with test data!!!
 // angular.forEach($scope.two, function(item1){

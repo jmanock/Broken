@@ -4,7 +4,7 @@ angular.module('fantasy')
 var self = this;
 
 	// Get the `Team`
-	this.teams = $firebaseObject(FirebaseUrl.child('teamUser'));
+	$scope.teams = $firebaseObject(FirebaseUrl.child('teamUser'));
 
 	// Get the `Leaderboard`
 	this.players = $firebaseArray(FirebaseUrl.child('leaderboard'));
@@ -21,9 +21,4 @@ var self = this;
 		}
 		return total;
 	};
-	// this.teams = FirebaseUrl.child('teamUser').on('child_added', function(snap){
-	// 	var userId = snap.key();
-	// 	return userId;
-	// })
-$scope.teams = $firebaseObject(FirebaseUrl.child('teamUser'));
 });
