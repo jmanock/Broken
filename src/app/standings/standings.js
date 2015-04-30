@@ -21,13 +21,15 @@ var self = this;
 		}
 		return total;
 	};
+	$scope.ass = [];
 	something.$loaded().then(function(){
 		console.log('loaded record:', something.$id);
 
 		angular.forEach(something, function(value, key){
-			console.log('what is this' + key, value);
+			console.log('what is this' + key);
 			angular.forEach(value, function(k){
-				console.log(k.name + k.points);
+				console.log(k.name + ' ' + k.points);
+				$scope.ass.push(k);
 			})
 		});
 	});

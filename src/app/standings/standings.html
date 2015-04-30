@@ -16,13 +16,12 @@
      </table>
      <h4>Total: {{getTotal()}}</h4>
    </div>-->
-    <div ng-repeat='(k, v) in teams'>
-      {{k}}
-    </div>
-
-    <div ng-repeat='item in something'>
-      {{item.name}}
-    </div>
+   <div ng-repeat='(key, value) in data'>
+     {{key}} | 
+     <div ng-repeat='some in ass'>
+       {{some.name}} | {{some.points}}
+     </div>
+   </div>
   
     <div>
       <h3>Leaderboard</h3>
