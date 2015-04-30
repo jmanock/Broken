@@ -26,7 +26,9 @@ var self = this;
 
 		angular.forEach(something, function(value, key){
 			console.log('what is this' + key, value);
-			console.log(value)
+			angular.forEach(value, function(k){
+				console.log(k.name + k.points);
+			})
 		});
 	});
 	$scope.data = something;
