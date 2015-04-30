@@ -3,20 +3,26 @@
   
   <div ng-controller='StandingsCtrl as standings'>
    <div>
-   <h4 ng-click='toggle = !toggle'>Placeholder</h4>
+   <h4 ng-click='toggle = !toggle'>{{}}</h4>
      <table ng-show='toggle'>
        <tr>
          <th>Name</th>
          <th>Points</th>
        </tr>
-       <tr ng-repeat='team in standings.teams | orderBy:"-points"'>
-         <td>{{team.key}}</td>
+       <!-- <tr ng-repeat='team in standings.teams | orderBy:"-points"'>
+         <td>{{team.userId}}</td>
          <td>{{team.value}}</td>
-       </tr>
+       </tr> 
      </table>
      <h4>Total: {{getTotal()}}</h4>
-   </div>
-
+   </div>-->
+    <div ng-repeat='(tid,team) in standings.teams'>
+      {{tid}} {{team.name}}
+      <p>
+        {{team.name}} | {{team.points}}
+      </p>
+    </div>
+  
     <div>
       <h3>Leaderboard</h3>
       <ul>

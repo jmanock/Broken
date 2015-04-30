@@ -21,5 +21,9 @@ var self = this;
 		}
 		return total;
 	};
-	
+	// this.teams = FirebaseUrl.child('teamUser').on('child_added', function(snap){
+	// 	var userId = snap.key();
+	// 	return userId;
+	// })
+$scope.teams = $firebaseObject(FirebaseUrl.child('teamUser'));
 });
