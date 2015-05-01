@@ -13,7 +13,10 @@
 
 <h3>Show players with points from another array</h3>
 
-<div ng-repeat='ones in one'>
-	<p>{{ones.name}} | {{ones.points}}</p>
+<div>
+	<li ng-repeat='player in players'>{{player.Name}}
+	<button ng-click='addPlayer(players[$index])'>Add</button></li>
 </div>
+
+
 
