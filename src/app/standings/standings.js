@@ -35,4 +35,12 @@ var self = this;
 	});
 	$scope.data = something;
 
+	$scope.getTotal = function(){
+		var total = 0;
+		for (var i = 0; i < $scope.ass.length; i++){
+			var something = $scope.ass[i];
+			total += something.points;
+		}
+		return total;
+	}
 });
