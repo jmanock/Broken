@@ -53,7 +53,6 @@
 angular.module('fantasy')
 .controller('TestCtrl', function($scope, FirebaseUrl, $firebaseArray){
 
-$scope.teams = $firebaseArray(FirebaseUrl.child('teamUser'));
 $scope.two =[{
   name:'jon'
 },{
@@ -65,25 +64,26 @@ $scope.two =[{
 },{
   name:'jason'
 }];
-$scope.one = [{'something':[{
-  name:'Jason Day',
+
+$scope.one = [{
+  name:'jon',
   points:100
 },{
-  name:'Erik Compton',
-  points:200
+  name:'ryan',
+  points:100
 },{
-  name:'Daniel Berger',
-  points:-2
+  name:'steve',
+  points:99
 },{
-  name:'Chris Stroud',
-  ponts:213
+  name:'brit',
+  points:99
 },{
-  name:'Hudson Swafford',
-  points:300
+  name:'less',
+  points:98
 },{
-  name:'jon',
-  points:2033
-}]}];
+  name:'orange',
+  points:97
+}];
 
 // This works with test data!!!
 // angular.forEach($scope.two, function(item1){
@@ -95,5 +95,11 @@ $scope.one = [{'something':[{
 //   })
 // })
 
+// Working on the ranking system
+angular.forEach($scope.one, function(rank){
+if (rank.points === rank.points){
+  console.log('tied ')
+}
+})
 
 })

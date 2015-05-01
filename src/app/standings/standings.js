@@ -12,15 +12,6 @@ var self = this;
 	// Hides the `Players` from the `Team`
 	$scope.toggle = false;
 
-	// Get the `Total` of `Points` from `Team`
-	// $scope.getTotal = function(){
-	// 	var total = 0;
-	// 	for (var i = 0; i < $scope.standings.teams.length; i++){
-	// 		var something = $scope.standings.teams[i];
-	// 		total += something.points;
-	// 	}
-	// 	return total;
-	// };
 	$scope.ass = [];
 	something.$loaded().then(function(){
 		//console.log('loaded record:', something.$id);
@@ -35,6 +26,7 @@ var self = this;
 	});
 	$scope.data = something;
 
+	// Add `Points` together 
 	$scope.getTotal = function(){
 		var total = 0;
 		for (var i = 0; i < $scope.ass.length; i++){
