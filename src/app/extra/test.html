@@ -11,10 +11,13 @@
 </div>
 <p>Total sum of points: {{total | sumOf:'points'}}</p> -->
 
-<h3>Show players with points from another array</h3>
+<!-- <h3>Show players with points from another array</h3>
 <div ng-repeat='twos in two'>
 	<p>{{twos.name}}|{{twos.points}}</p>
 </div>
 <div ng-repeat='team in teams'>
 	<p>{{team.name}} | {{team.points}}</p>
+</div> -->
+<div ng-repeat='(k,v) in one'>
+	{{v}}
 </div>

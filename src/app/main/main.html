@@ -1,19 +1,15 @@
-<div class='container'>
+<div ng-include='"components/navbar/navbar.html"'></div>
 
-  <div ng-include="'components/navbar/navbar.html'"></div>
+<div ng-controller='MainCtrl as app'>
   <p ng-show='app.user'></p>
   <div ng-hide='app.user'>
     <p>Login, to play Fantasy Golf</p>
-    <button ng-click='app.login()' class='btn btn-primary'>Login with Facebook</button>
+    <button ng-click='app.login()' class='btn-primary'>Login with Facebook</button>
   </div>
 
   <div ng-show='app.user'>
     <p>Welcome back, {{app.user.facebook.displayName}}</p>
-    <img src="{{app.user.facebook.cachedUserProfile.picture.data.url}}">
-
-    <button ng-click='app.logout()' class='btn btn-danger'>Log Out</button>
-    <label for="">Team Name:</label>
-    <input type="text" ng-model='app.teamName' placeholder={{app.user.facebook.displayName}}>
-    <button ng-click='app.enter()' ng-disabled='app.teamName' ui-sref='profile({id:app.user.uid})' class='btn btn-success'>Enter</button>
+    <img src="{{app.user.facebook.cachedUserProfile.picture.data.url}}" alt="">
+    <button ng-click='app.enter()' ui-sref='profile({id:app.user.uid})' class='btn-success'>Enter</button>
   </div>
 </div>
