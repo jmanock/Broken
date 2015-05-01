@@ -12,10 +12,12 @@
 <p>Total sum of points: {{total | sumOf:'points'}}</p> -->
 
 <h3>Show players with points from another array</h3>
-
+<h5 ng-repeat='something in list'>
+	{{something.name}} | {{something.points}}
+</h5>
 <div>
 	<li ng-repeat='player in players'>{{player.Name}}
-	<button ng-click='addPlayer(players[$index])'>Add</button></li>
+	<button ng-click='addPlayer(player)'>Add</button></li>
 </div>
 
 

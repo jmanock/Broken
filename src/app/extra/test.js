@@ -96,9 +96,23 @@ angular.module('fantasy')
 // })
 
 // Working on the ranking system
-$scope.players =$firebaseArray(FirebaseUrl.child('leaderboard'));
+
+// Working on the arrays 
+$scope.list = [];
+$scope.players = $firebaseArray(FirebaseUrl.child('leaderboard'));
 $scope.addPlayer = function(player){
+  //$scope.selected = player;
+  $scope.list.push({
+    name: player.Name,
+    points: player.Points
+  });
   console.log(player.Name);
 }
+
+// $scope.isSelected = function(player){
+//   return $scope.selected === player;
+// }
+
+
 
 })
