@@ -3,20 +3,34 @@
   
   <div ng-controller='StandingsCtrl as standings'>
    <div>
-   <h4 ng-click='toggle = !toggle'>MyTeam</h4>
+   <!--<h4 ng-click='toggle = !toggle'>{{}}</h4>
      <table ng-show='toggle'>
        <tr>
          <th>Name</th>
          <th>Points</th>
        </tr>
-       <tr ng-repeat='team in standings.teams | orderBy:"-points"'>
-         <td>{{team.name}}</td>
-         <td>{{team.points}}</td>
+        <tr ng-repeat='team in standings.teams | orderBy:"-points"'>
+         <td>{{team.userId}}</td>
+         <td>{{team.value}}</td>
+       </tr> 
+     </table>
+     <h4>Total: {{getTotal()}}</h4>
+   </div>-->
+   <div ng-repeat='(key, value) in data'>
+     <h4 ng-click='toggle = !toggle'>{{key}}</h4>
+     <table ng-show='toggle'>
+       <tr>
+         <th>Name</th>
+         <th>Points</th>
+       </tr>
+       <tr ng-repeat='some in ass | orderBy:"-points"'>
+         <td>{{some.name}}</td>
+         <td>{{some.points}}</td>
        </tr>
      </table>
      <h4>Total: {{getTotal()}}</h4>
    </div>
-
+  
     <div>
       <h3>Leaderboard</h3>
       <ul>

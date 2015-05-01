@@ -65,7 +65,7 @@ $scope.two =[{
 },{
   name:'jason'
 }];
-$scope.one = [{
+$scope.one = [{'something':[{
   name:'Jason Day',
   points:100
 },{
@@ -83,7 +83,7 @@ $scope.one = [{
 },{
   name:'jon',
   points:2033
-}];
+}]}];
 
 // This works with test data!!!
 // angular.forEach($scope.two, function(item1){
@@ -94,21 +94,6 @@ $scope.one = [{
 //     }
 //   })
 // })
-var bitch = [];
-// This works as an Idea * have to get the info globally 
-// $scope.teams.$loaded(function(data){
-//   data.forEach(function(something){
-//     bitch.push(something);
-//     return bitch
-//   })
-//   angular.forEach(bitch, function(team){
-//     angular.forEach($scope.one, function(leader){
-//       if(team.name === leader.name){
-//         console.log('Fuck you firebase!!!');
-//         team.points = leader.points;
-//       }
-//     })
-//   })
-// })
+
 
 })
