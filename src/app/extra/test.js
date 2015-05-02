@@ -51,7 +51,7 @@
 //  });
 'use strict';
 angular.module('fantasy')
-.controller('TestCtrl', function($scope, FirebaseUrl, $firebaseArray){
+.controller('TestCtrl', function($scope, FirebaseUrl, $firebaseArray, $firebaseObject){
 
 // $scope.two =[{
 //   name:'jon'
@@ -95,33 +95,16 @@ $scope.one = [{
 //   })
 // })
 
-// Working on the ranking system
-
-// Working on the arrays 
-$scope.list = [];
-$scope.players = $firebaseArray(FirebaseUrl.child('leaderboard'));
+// Working on getting the right way to keep track of names and points
+$scope.teams = [];
+var ref = new Firebase('https://fireseedangular.firebaseio.com');
+$scope.account = $firebaseObject(ref);
 $scope.addPlayer = function(player){
-  //$scope.selected = player;
-  $scope.list.push({
-    name: player.name,
-    points: player.points
-  });
-  if(player.Name === player.Name){
-    console.log('you already added this one')
-  }
-  console.log(player.Name);
+  console.log(player);
+  var something = $scope.teams.push(player.name)
+  ref.child('team').child(something);
+  
 }
-
-$scope.remove = function(index){
-  var player = $scope.list[index];
-  //console.log(player + ' should be removed');
-  $scope.list.splice(player, 1)
-}
-
-$scope.save = function(){
-  console.log('this should save the team');
-}
-
 
 
 })
