@@ -14,9 +14,11 @@
 <h3>Show players with points from another array</h3>
 <h5 ng-repeat='something in list'>
 	{{something.name}} | {{something.points}}
+	<button ng-click='remove($index)'>Remove</button>
 </h5>
+<button ng-click='save()'>Save</button>
 <div>
-	<li ng-repeat='player in players'>{{player.Name}}
+	<li ng-repeat='player in one'>{{player.name}}
 	<button ng-click='addPlayer(player)'>Add</button></li>
 </div>
 

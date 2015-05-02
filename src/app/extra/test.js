@@ -65,25 +65,25 @@ angular.module('fantasy')
 //   name:'jason'
 // }];
 
-// $scope.one = [{
-//   name:'jon',
-//   points:100
-// },{
-//   name:'ryan',
-//   points:100
-// },{
-//   name:'steve',
-//   points:99
-// },{
-//   name:'brit',
-//   points:99
-// },{
-//   name:'less',
-//   points:98
-// },{
-//   name:'orange',
-//   points:97
-// }];
+$scope.one = [{
+  name:'jon',
+  points:100
+},{
+  name:'ryan',
+  points:100
+},{
+  name:'steve',
+  points:99
+},{
+  name:'brit',
+  points:99
+},{
+  name:'less',
+  points:98
+},{
+  name:'orange',
+  points:97
+}];
 
 // This works with test data!!!
 // angular.forEach($scope.two, function(item1){
@@ -103,15 +103,24 @@ $scope.players = $firebaseArray(FirebaseUrl.child('leaderboard'));
 $scope.addPlayer = function(player){
   //$scope.selected = player;
   $scope.list.push({
-    name: player.Name,
-    points: player.Points
+    name: player.name,
+    points: player.points
   });
+  if(player.Name === player.Name){
+    console.log('you already added this one')
+  }
   console.log(player.Name);
 }
 
-// $scope.isSelected = function(player){
-//   return $scope.selected === player;
-// }
+$scope.remove = function(index){
+  var player = $scope.list[index];
+  //console.log(player + ' should be removed');
+  $scope.list.splice(player, 1)
+}
+
+$scope.save = function(){
+  console.log('this should save the team');
+}
 
 
 
