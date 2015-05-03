@@ -96,7 +96,11 @@ $scope.one = [{
 // })
 
 // Working on getting the right way to keep track of names and points
+
+
+
 $scope.players = $firebaseArray(FirebaseUrl.child('leaderboard'));
+
 var ref = new Firebase('https://fireseedangular.firebaseio.com');
 $scope.addPlayer = function(player){
   var team = ref.child('team');
@@ -105,9 +109,20 @@ $scope.addPlayer = function(player){
   });
 
 };
-$scope.teams = $firebaseArray(ref.child('team'));
+var something = $firebaseArray(ref.child('team'));
+
 $scope.removePlayer = function(team){
   $scope.teams.$remove(team);
 };
-
+$scope.teams = something;
+something.$loaded(function(data){
+  angular.forEach(data, function(team){
+    angular.forEach($scope.players, function(player){
+      if(team.name === player.Name){
+        console.log('why does this work only some time?');
+        team.points = player.Points;
+      }
+    });
+  });
+});
 });
