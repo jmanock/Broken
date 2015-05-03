@@ -96,15 +96,18 @@ $scope.one = [{
 // })
 
 // Working on getting the right way to keep track of names and points
-$scope.teams = [];
+$scope.players = $firebaseArray(FirebaseUrl.child('leaderboard'));
 var ref = new Firebase('https://fireseedangular.firebaseio.com');
-$scope.account = $firebaseObject(ref);
 $scope.addPlayer = function(player){
-  console.log(player);
-  var something = $scope.teams.push(player.name)
-  ref.child('team').child(something);
-  
-}
+  var team = ref.child('team');
+  team.push({
+    name: player.Name
+  });
 
+};
+$scope.teams = $firebaseArray(ref.child('team'));
+$scope.removePlayer = function(team){
+  $scope.teams.$remove(team);
+};
 
-})
+});

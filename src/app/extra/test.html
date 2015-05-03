@@ -27,11 +27,13 @@
 </div>
 <button ng-click='save(list)'>Save</button>
  -->
-<div ng-repeat='player in one'>
-	{{player.name}}
-	<button ng-click='addPlayer(player)'>Add Player to team</button>
-</div>
-<h3>Team</h3>
-<div ng-repeat='player in teams'>
-	{{player}}
+ <h3>Team</h3>
+ <div ng-repeat='team in teams'>
+ 	{{team.name}}
+ 	<button ng-click='removePlayer(team)'>Remove</button>
+ </div>
+ <br>
+<div ng-repeat='player in players'>
+	{{player.Name}}
+	<button ng-click='addPlayer(player)'>Add Player</button>
 </div>
