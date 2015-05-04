@@ -27,7 +27,7 @@ angular.module('fantasy')
 	// $scope.data = something;
 
 	// Working on a new way to do team layout and points
-	$scope.team = [];
+	/* $scope.team = [];
 var something = new Firebase('https://reditclone.firebaseio.com/userTeam');
 something.orderByChild('team').on('child_added', function(snap){
 	//console.log(snap.key());
@@ -37,6 +37,13 @@ something.orderByChild('team').on('child_added', function(snap){
 		$scope.team.push(some);
 		
 	});
+});*/
+
+// now see if I can get it to work with loaded
+var something = $firebaseArray(FirebaseUrl.child('userTeam'));
+$scope.teams = something;
+something.$loaded(function(data){
+	console.log(data);
 });
 
 	// Add `Points` together 
