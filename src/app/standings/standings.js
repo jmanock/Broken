@@ -7,7 +7,7 @@ angular.module('fantasy')
 	//var something = $firebaseObject(FirebaseUrl.child('teamUser'));
 
 	// Get the `Leaderboard`
-	this.players = $firebaseArray(FirebaseUrl.child('leaderboard'));
+	$scope.players = $firebaseArray(FirebaseUrl.child('leaderboard'));
 
 	// Hides the `Players` from the `Team`
 	$scope.toggle = false;
@@ -27,7 +27,18 @@ angular.module('fantasy')
 	// $scope.data = something;
 
 	// Working on a new way to do team layout and points
-$scope.data = $firebaseObject(FirebaseUrl.child('userTeam'));
+	$scope.team = [];
+var something = new Firebase('https://reditclone.firebaseio.com/userTeam');
+something.orderByChild('team').on('child_added', function(snap){
+	//console.log(snap.key());
+	var obj = snap.val().team;
+	
+	angular.forEach(obj, function(some){
+		$scope.team.push(some);
+		
+	});
+});
+
 	// Add `Points` together 
 	$scope.getTotal = function(){
 		var total = 0;
