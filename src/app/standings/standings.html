@@ -18,9 +18,9 @@
      </table>
      <h5>Total: {{getTotal()}}</h5>
    </div> -->
-  <h3>Team</h3>
-   <div ng-repeat='p in person'>
-     {{p.$key}}
+
+   <div ng-repeat='(key, value) in data'>
+     {{key}} {{value}}
    </div>
   
     <div>

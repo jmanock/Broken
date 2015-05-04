@@ -1,6 +1,6 @@
 'use strict';
 angular.module('fantasy')
-.controller('StandingsCtrl', function(FirebaseUrl, $firebaseArray, $scope, $firebaseObject){
+.controller('StandingsCtrl', function(FirebaseUrl, $firebaseArray, $scope, $firebaseObject, $stateParams){
 //var self = this;
 
 	// Get the `Team`
@@ -27,16 +27,7 @@ angular.module('fantasy')
 	// $scope.data = something;
 
 	// Working on a new way to do team layout and points
-	var obj = $firebaseObject(FirebaseUrl.child('teamUser'));
-	obj.$loaded().then(function(){
-		angular.forEach(obj, function(value, key){
-			console.log(key, value);
-		});
-	});
-	$scope.data = obj;
-	obj.$bindTo($scope, 'data');
-
-
+$scope.data = $firebaseObject(FirebaseUrl.child('userTeam'));
 	// Add `Points` together 
 	$scope.getTotal = function(){
 		var total = 0;
