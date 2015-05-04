@@ -11,7 +11,7 @@ angular.module('fantasy')
 
   // Load `Team` if any is there
   this.currentUser.$loaded(function(){
-    self.teams = $firebaseObject(FirebaseUrl.child('userTeam').child($stateParams.id).child('team'));
+    self.teams = $firebaseObject(FirebaseUrl.child('userTeam').child(self.user.fullName).child('team'));
   });
 
   // Get  `Players`
@@ -25,7 +25,7 @@ angular.module('fantasy')
 
   this.include = function(player){
     // Set up a counter to only add 5 players to a team
-    FirebaseUrl.child('userTeam').child(self.user.uid).child('counter')
+    FirebaseUrl.child('userTeam').child(self.user.fullName).child('counter')
     .transaction(function(id){
       if(id >= 5){
         // CHANGE TO ALERT
@@ -40,54 +40,40 @@ angular.module('fantasy')
       }else if(committed){
         var id = ss.val();
         if(id <= 5){
-          var userTeam = FirebaseUrl.child('userTeam').child(self.user.uid).child('team');
-          var teamUser = FirebaseUrl.child('teamUser').child(self.user.fullName);
+          var userTeam = FirebaseUrl.child('userTeam').child(self.user.fullName).child('team');
+        
 
-          // Update both `userTeam` and `teamUser` with `Players`
+          // Update both `userTeam` with `Players`
           userTeam.push({
             name:player.Name
           });
-
-           teamUser.push({
-             name:player.Name
-           });
         }
       }
     });
+  };  
+  
+  // Remove `players` from `userTeam`
+  this.removePlayer = function(id, player){
+    this.remove(player, id);
+    
   };
 
-  // Get the `id` and `player` from the `remove` button
-  // this.removePlayer = function( team){
-  //   this.remove(team);
-  // };
-
-  // // Remove the `player` and update the `counter`
-  // this.remove = function(team){
-  //   FirebaseUrl.child('userTeam').child(self.user.uid).child('counter').transaction(function(id){
-  //     return(id || 0)-1;
-  //   }, function(err, committed, ss){
-  //     if(err){
-  //       console.log(err);
-  //     }else if(committed){
-  //       var i = ss.val();
-  //       var userTeam = FirebaseUrl.child('userTeam').child(self.user.uid).child('team').child(team);
-  //       var teamUser = FirebaseUrl.child('teamUser').child(self.user.fullName).child(team);
-  //       teamUser.remove();
-  //       userTeam.remove();
-  //       console.log(i);
-  //     }
-  //   });
-  // };
-  
-  // Remove the player on the click
-  this.removePlayer = function(team){
-    //this.teams.$remove(team);
-    this.remove(team);
+  this.remove = function(player, id){
+    FirebaseUrl.child('userTeam').child(self.user.fullName).child('counter').transaction(function(id){
+      return(id || 0)-1;
+    }, function(err, committed, ss){
+      if(err){
+        console.log(err);
+      }else if(committed){
+        var i = ss.val();
+        
+        
+        var userTeam = FirebaseUrl.child('userTeam').child(self.user.fullName).child('team').child(id);
+        
+        userTeam.remove();
+        
+        console.log(i);
+      }
+    });
   };
-  this.remove = function(team){
-    var userTeam = FirebaseUrl.child('userTeam').child(self.user.uid).child('team');
-    userTeam.remove(team);
-  }
-  
-  
 });
