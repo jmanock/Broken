@@ -114,6 +114,7 @@ var something = $firebaseArray(ref.child('team'));
 $scope.removePlayer = function(team){
   $scope.teams.$remove(team);
 };
+// search the teams vs leaderboard to get the points
 $scope.teams = something;
 something.$loaded(function(data){
   angular.forEach(data, function(team){
@@ -124,5 +125,12 @@ something.$loaded(function(data){
       }
     });
   });
+});
+
+// orderby example see if this will work
+var shiz = new Firebase('https://fireseedangular.firebaseio.com/team');
+shiz.orderByChild('name').on('child_added', function(snap){
+//console.log(snap.val().name);
+
 });
 });

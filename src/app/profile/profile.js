@@ -40,17 +40,16 @@ angular.module('fantasy')
       }else if(committed){
         var id = ss.val();
         if(id <= 5){
-          var userTeam = FirebaseUrl.child('userTeam').child(self.user.uid).child('team').child(player.$id);
-          var teamUser = FirebaseUrl.child('teamUser').child(self.user.fullName).child(player.$id);
+          var userTeam = FirebaseUrl.child('userTeam').child(self.user.uid).child('team');
+          var teamUser = FirebaseUrl.child('teamUser').child(self.user.fullName);
 
           // Update both `userTeam` and `teamUser` with `Players`
-          userTeam.update({
+          userTeam.push({
             name:player.Name
           });
 
-           teamUser.update({
-             name:player.Name,
-             points:player.Points
+           teamUser.push({
+             name:player.Name
            });
         }
       }
@@ -58,29 +57,37 @@ angular.module('fantasy')
   };
 
   // Get the `id` and `player` from the `remove` button
-  this.removePlayer = function(id, player){
-    this.remove(player, id);
-  };
+  // this.removePlayer = function( team){
+  //   this.remove(team);
+  // };
 
-  // Remove the `player` and update the `counter`
-  this.remove = function(player, id){
-    FirebaseUrl.child('userTeam').child(self.user.uid).child('counter').transaction(function(id){
-      return(id || 0)-1;
-    }, function(err, committed, ss){
-      if(err){
-        console.log(err);
-      }else if(committed){
-        var i = ss.val();
-        var userTeam = FirebaseUrl.child('userTeam').child(self.user.uid).child('team').child(id);
-        var teamUser = FirebaseUrl.child('teamUser').child(self.user.fullName).child(id);
-        teamUser.remove();
-        userTeam.remove();
-        console.log(i);
-      }
-    });
+  // // Remove the `player` and update the `counter`
+  // this.remove = function(team){
+  //   FirebaseUrl.child('userTeam').child(self.user.uid).child('counter').transaction(function(id){
+  //     return(id || 0)-1;
+  //   }, function(err, committed, ss){
+  //     if(err){
+  //       console.log(err);
+  //     }else if(committed){
+  //       var i = ss.val();
+  //       var userTeam = FirebaseUrl.child('userTeam').child(self.user.uid).child('team').child(team);
+  //       var teamUser = FirebaseUrl.child('teamUser').child(self.user.fullName).child(team);
+  //       teamUser.remove();
+  //       userTeam.remove();
+  //       console.log(i);
+  //     }
+  //   });
+  // };
+  
+  // Remove the player on the click
+  this.removePlayer = function(team){
+    //this.teams.$remove(team);
+    this.remove(team);
   };
-  // Display the user name
-
+  this.remove = function(team){
+    var userTeam = FirebaseUrl.child('userTeam').child(self.user.uid).child('team');
+    userTeam.remove(team);
+  }
   
   
 });

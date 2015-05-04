@@ -4,7 +4,7 @@
   <div ng-controller='StandingsCtrl as standings'>
    <div>
   
-   <div ng-repeat='(key, value) in data'>
+   <!-- <div ng-repeat='(key, value) in data'>
      <h4 ng-click='toggle = !toggle'>{{key}}</h4>
      <table ng-show='toggle'>
        <tr>
@@ -17,6 +17,10 @@
        </tr>
      </table>
      <h5>Total: {{getTotal()}}</h5>
+   </div> -->
+  <h3>Team</h3>
+   <div ng-repeat='p in person'>
+     {{p.$key}}
    </div>
   
     <div>
