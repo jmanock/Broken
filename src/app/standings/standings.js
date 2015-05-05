@@ -42,8 +42,15 @@ something.orderByChild('team').on('child_added', function(snap){
 // now see if I can get it to work with loaded
 var something = $firebaseArray(FirebaseUrl.child('userTeam'));
 $scope.teams = something;
-something.$loaded(function(data){
-	console.log(data);
+$scope.fbName = [];
+// something.$loaded(function(data){
+	var knew = new Firebase('https://reditclone.firebaseio.com/userTeam')
+knew.orderByChild('team').on('child_added', function(snap){
+	
+	var obj = snap.val().team;
+	angular.forEach(obj, function(players){
+		console.log(players);
+	});
 });
 
 	// Add `Points` together 
