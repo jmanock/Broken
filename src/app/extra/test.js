@@ -51,39 +51,39 @@
 //  });
 'use strict';
 angular.module('fantasy')
-.controller('TestCtrl', function($scope, FirebaseUrl, $firebaseArray){
+.controller('TestCtrl', function($scope, FirebaseUrl, $firebaseArray, $firebaseObject){
 
-$scope.teams = $firebaseArray(FirebaseUrl.child('teamUser'));
-$scope.two =[{
-  name:'jon'
-},{
-  name:'brit'
-},{
-  name:'steve'
-},{
-  name:'ryan'
-},{
-  name:'jason'
-}];
-$scope.one = [{'something':[{
-  name:'Jason Day',
+// $scope.two =[{
+//   name:'jon'
+// },{
+//   name:'brit'
+// },{
+//   name:'steve'
+// },{
+//   name:'ryan'
+// },{
+//   name:'jason'
+// }];
+
+$scope.one = [{
+  name:'jon',
   points:100
 },{
-  name:'Erik Compton',
-  points:200
+  name:'ryan',
+  points:100
 },{
-  name:'Daniel Berger',
-  points:-2
+  name:'steve',
+  points:99
 },{
-  name:'Chris Stroud',
-  ponts:213
+  name:'brit',
+  points:99
 },{
-  name:'Hudson Swafford',
-  points:300
+  name:'less',
+  points:98
 },{
-  name:'jon',
-  points:2033
-}]}];
+  name:'orange',
+  points:97
+}];
 
 // This works with test data!!!
 // angular.forEach($scope.two, function(item1){
@@ -95,5 +95,42 @@ $scope.one = [{'something':[{
 //   })
 // })
 
+// Working on getting the right way to keep track of names and points
 
-})
+
+
+$scope.players = $firebaseArray(FirebaseUrl.child('leaderboard'));
+
+var ref = new Firebase('https://fireseedangular.firebaseio.com');
+$scope.addPlayer = function(player){
+  var team = ref.child('team');
+  team.push({
+    name: player.Name
+  });
+
+};
+var something = $firebaseArray(ref.child('team'));
+
+$scope.removePlayer = function(team){
+  $scope.teams.$remove(team);
+};
+// search the teams vs leaderboard to get the points
+$scope.teams = something;
+something.$loaded(function(data){
+  angular.forEach(data, function(team){
+    angular.forEach($scope.players, function(player){
+      if(team.name === player.Name){
+        console.log('why does this work only some time?');
+        team.points = player.Points;
+      }
+    });
+  });
+});
+
+// orderby example see if this will work
+var shiz = new Firebase('https://fireseedangular.firebaseio.com/team');
+shiz.orderByChild('name').on('child_added', function(snap){
+//console.log(snap.val().name);
+
+});
+});
