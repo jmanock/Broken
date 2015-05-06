@@ -1,40 +1,59 @@
 'use strict';
 angular.module('fantasy')
 .controller('StandingsCtrl', function(FirebaseUrl, $firebaseArray, $scope, $firebaseObject, $stateParams){
-var self = this;
+//var self = this;
 
 	// Get the `Team`
-	var something = $firebaseObject(FirebaseUrl.child('teamUser'));
+	//var something = $firebaseObject(FirebaseUrl.child('teamUser'));
 
 	// Get the `Leaderboard`
-	this.players = $firebaseArray(FirebaseUrl.child('leaderboard'));
+	$scope.players = $firebaseArray(FirebaseUrl.child('leaderboard'));
 
 	// Hides the `Players` from the `Team`
 	$scope.toggle = false;
 
-	// Get the `Total` of `Points` from `Team`
-	// $scope.getTotal = function(){
-	// 	var total = 0;
-	// 	for (var i = 0; i < $scope.standings.teams.length; i++){
-	// 		var something = $scope.standings.teams[i];
-	// 		total += something.points;
-	// 	}
-	// 	return total;
-	// };
-	$scope.ass = [];
-	something.$loaded().then(function(){
-		//console.log('loaded record:', something.$id);
+	// This is for the `teamUser` layout
+	// $scope.ass = [];
+	// something.$loaded().then(function(){
 
-		angular.forEach(something, function(value, key){
-			//console.log('what is this' + key);
-			angular.forEach(value, function(k){
-				//console.log(k.name + ' ' + k.points);
-				$scope.ass.push(k);
-			})
-		});
+	// 	angular.forEach(something, function(value){
+			
+	// 		angular.forEach(value, function(k){
+				
+	// 			$scope.ass.push(k);
+	// 		});
+	// 	});
+	// });
+	// $scope.data = something;
+
+	// Working on a new way to do team layout and points
+	/* $scope.team = [];
+var something = new Firebase('https://reditclone.firebaseio.com/userTeam');
+something.orderByChild('team').on('child_added', function(snap){
+	//console.log(snap.key());
+	var obj = snap.val().team;
+	
+	angular.forEach(obj, function(some){
+		$scope.team.push(some);
+		
 	});
-	$scope.data = something;
+});*/
 
+// now see if I can get it to work with loaded
+var something = $firebaseArray(FirebaseUrl.child('userTeam'));
+$scope.teams = something;
+$scope.fbName = [];
+// something.$loaded(function(data){
+	var knew = new Firebase('https://reditclone.firebaseio.com/userTeam')
+knew.orderByChild('team').on('child_added', function(snap){
+	
+	var obj = snap.val().team;
+	angular.forEach(obj, function(players){
+		console.log(players);
+	});
+});
+
+	// Add `Points` together 
 	$scope.getTotal = function(){
 		var total = 0;
 		for (var i = 0; i < $scope.ass.length; i++){
@@ -42,5 +61,5 @@ var self = this;
 			total += something.points;
 		}
 		return total;
-	}
+	};
 });
