@@ -20,11 +20,11 @@ angular.module('fantasy')
 
 	// Figure out how to match the leaderboard names to team names
 	$scope.test = function(){
-		angular.forEach($scope.players, function(leaders){
-			angular.forEach($scope.teams, function(teams){
+		angular.forEach($scope.teams, function(teams){
+			angular.forEach($scope.players, function(leaders){
 				if(leaders.Name === teams.name){
 					teams.points = leaders.Points;
-					console.log(teams.points);
+					console.log('helloooo???');
 				}
 			});
 		});
