@@ -4,8 +4,14 @@ angular.module('fantasy')
 //var self = this;
 
 	// Get the `Team`
-	$scope.teams = $firebaseObject(FirebaseUrl.child('teamUser'));
-
+	var something = $firebaseObject(FirebaseUrl.child('teamUser'));
+	something.$loaded().then(function(){
+		angular.forEach(something, function(key, vale){
+			angular.forEach(key, function(play){
+				console.log(play.name);
+			})
+		})
+	})
 	// Get the `Leaderboard`
 	$scope.players = $firebaseArray(FirebaseUrl.child('leaderboard'));
 
