@@ -103,18 +103,16 @@ $scope.players = $firebaseArray(FirebaseUrl.child('leaderboard'));
 
 var ref = new Firebase('https://fireseedangular.firebaseio.com');
 $scope.addPlayer = function(player){
-  var team = ref.child('team');
-  team.push({
+  var team = ref.child('team').child(player.$id);
+  team.update({
     name: player.Name
   });
 
 };
-var something = $firebaseArray(ref.child('team'));
+var something = $firebaseObject(ref.child('team'));
 
 $scope.removePlayer = function(team){
-  team.remove(function(error){
-    console.log('i think this worked');
-  });
+  
 };
 // search the teams vs leaderboard to get the points
 $scope.teams = something;
