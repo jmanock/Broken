@@ -5,20 +5,30 @@ angular.module('fantasy')
 
 	// Get the `Players` from the `teamUser`
 	$scope.teams = [];
-	var something = $firebaseObject(FirebaseUrl.child('teamUser'));
-	something.$loaded().then(function(){
-		angular.forEach(something, function(key, vale){
+	var teamUser = $firebaseObject(FirebaseUrl.child('teamUser'));
+	teamUser.$loaded().then(function(){
+		angular.forEach(teamUser, function(key){
 			angular.forEach(key, function(play){
 				 return $scope.teams.push(play);
 			});
 		});
 	});
-	$scope.data = something;
-
+	$scope.data = teamUser;
 
 	// Get the `Leaderboard`
 	$scope.players = $firebaseArray(FirebaseUrl.child('leaderboard'));
 
+	// Figure out how to match the leaderboard names to team names
+	$scope.test = function(){
+		angular.forEach($scope.players, function(leaders){
+			angular.forEach($scope.teams, function(teams){
+				if(leaders.Name === teams.name){
+					teams.points = leaders.Points;
+					console.log(teams.points);
+				}
+			});
+		});
+	};
 	// Hides the `Players` from the `Team`
 	$scope.toggle = false;
 

@@ -18,9 +18,10 @@
      </table>
      <h5>Total: {{getTotal()}}</h5>
    </div> -->
+   <div>{{test()}}</div>
    <div ng-repeat='(k,v) in data'>
-   <h4>{{k}}</h4>
-  <table>
+   <h4 ng-click='toggle = !toggle'>{{k}}</h4>
+  <table ng-show='toggle'>
     <tr>
       <th>Name</th>
       <th>Points</th>
@@ -29,9 +30,9 @@
       <td>{{t.name}}</td>
       <td>{{t.point}}</td>
     </tr> 
-    
   </table>
-  
+  <h5>Total:</h5>
+  </div>
     <div>
       <h3>Leaderboard</h3>
       <ul>
