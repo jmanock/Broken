@@ -112,7 +112,9 @@ $scope.addPlayer = function(player){
 var something = $firebaseArray(ref.child('team'));
 
 $scope.removePlayer = function(team){
-  $scope.teams.$remove(team);
+  team.remove(function(error){
+    console.log('i think this worked');
+  });
 };
 // search the teams vs leaderboard to get the points
 $scope.teams = something;

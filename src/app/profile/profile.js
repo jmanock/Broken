@@ -74,7 +74,7 @@ angular.module('fantasy')
         var userTeam = FirebaseUrl.child('userTeam').child(self.user.fullName).child('team').child(id);
         var teamUser = FirebaseUrl.child('teamUser').child(self.user.fullName).child('team').child(id);
         userTeam.remove();
-        console.log(teamUser);
+        teamUser.remove();
         console.log(i);
       }
     });
