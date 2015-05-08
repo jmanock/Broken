@@ -4,7 +4,7 @@ angular.module('fantasy')
 //var self = this;
 
 	// Get the `Team`
-	$scope.teams = $firebaseArray(FirebaseUrl.child('teamUser'));
+	$scope.teams = $firebaseObject(FirebaseUrl.child('teamUser'));
 
 	// Get the `Leaderboard`
 	$scope.players = $firebaseArray(FirebaseUrl.child('leaderboard'));
