@@ -3,15 +3,19 @@ angular.module('fantasy')
 .controller('StandingsCtrl', function(FirebaseUrl, $firebaseArray, $scope, $firebaseObject, $stateParams){
 //var self = this;
 
-	// Get the `Team`
+	// Get the `Players` from the `teamUser`
+	$scope.teams = [];
 	var something = $firebaseObject(FirebaseUrl.child('teamUser'));
 	something.$loaded().then(function(){
 		angular.forEach(something, function(key, vale){
 			angular.forEach(key, function(play){
-				console.log(play.name);
-			})
-		})
-	})
+				 return $scope.teams.push(play);
+			});
+		});
+	});
+	$scope.data = something;
+
+
 	// Get the `Leaderboard`
 	$scope.players = $firebaseArray(FirebaseUrl.child('leaderboard'));
 

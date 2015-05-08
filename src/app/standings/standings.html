@@ -18,15 +18,16 @@
      </table>
      <h5>Total: {{getTotal()}}</h5>
    </div> -->
-   
+   <div ng-repeat='(k,v) in data'>
+   <h4>{{k}}</h4>
   <table>
     <tr>
       <th>Name</th>
       <th>Points</th>
     </tr>
-    <tr ng-repeat='(k,v) in teams'>
-      <td>{{k}}</td>
-      <td>{{v}}</td>
+    <tr ng-repeat='t in teams'>
+      <td>{{t.name}}</td>
+      <td>{{t.point}}</td>
     </tr> 
     
   </table>
