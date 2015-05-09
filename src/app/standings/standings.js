@@ -4,28 +4,35 @@ angular.module('fantasy')
 //var self = this;
 
 	// Get the `Players` from the `teamUser`
-	$scope.teams = [];
-	var teamUser = $firebaseObject(FirebaseUrl.child('teamUser'));
-	teamUser.$loaded().then(function(){
-		angular.forEach(teamUser, function(key){
-			angular.forEach(key, function(play){
-				 return $scope.teams.push(play);
-			});
-		});
-	});
-	$scope.data = teamUser;
+	// $scope.teams = [];
+	 var teamUser = $firebaseObject(FirebaseUrl.child('teamUser'));
+	// teamUser.$loaded().then(function(){
+	// 	angular.forEach(teamUser, function(key){
+	// 		angular.forEach(key, function(play){
+	// 			 return $scope.teams.push(play);
+	// 		});
+	// 	});
+	// });
+	//$scope.data = teamUser;
 
 	// Get the `Leaderboard`
 	$scope.players = $firebaseArray(FirebaseUrl.child('leaderboard'));
 
 	// Figure out how to match the leaderboard names to team names
 	$scope.test = function(){
-		angular.forEach($scope.teams, function(teams){
-			angular.forEach($scope.players, function(leaders){
-				if(leaders.Name === teams.name){
-					teams.points = leaders.Points;
-					
-				}
+		$scope.teams = [];
+		
+		
+		angular.forEach(teamUser, function(key, value){
+			//console.log(key, value);
+			angular.forEach(key, function(play){
+				
+				angular.forEach($scope.players, function(leader){
+					if(play.name === leader.Name){
+						$scope.teams.push(leader);
+						console.log('winner winner chicken dinner');
+					}
+				});
 			});
 		});
 	};
