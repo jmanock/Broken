@@ -18,26 +18,23 @@
      </table>
      <h5>Total: {{getTotal()}}</h5>
    </div> -->
-   <div>{{test()}}
-    <h5 ng-repeat='t in teams'>
-      {{t.Name}}
-      {{t.Points}}
-    </h5>
+   
+   <div>
+   {{getTeams()}}
+     <h4 ng-click='toggle = !toggle'>The name should go here</h4>
+     <table ng-show='toggle'>
+       <tr>
+         <th>Name</th>
+         <th>Points</th>
+       </tr>
+       <tr ng-repeat='t in teams'>
+         <td>{{t.Name}}</td>
+         <td>{{t.Points}}</td>
+       </tr>
+     </table>
+     <h5>Total:</h5>
    </div>
-   <div ng-repeat='(k,v) in data'>
-   <h4 ng-click='toggle = !toggle'>{{k}}</h4>
-  <table ng-show='toggle'>
-    <tr>
-      <th>Name</th>
-      <th>Points</th>
-    </tr>
-    <tr ng-repeat='t in teams'>
-      <td>{{t.name}}</td>
-      <td>{{t.point}}</td>
-    </tr> 
-  </table>
-  <h5>Total:</h5>
-  </div>
+
     <div>
       <h3>Leaderboard</h3>
       <ul>
