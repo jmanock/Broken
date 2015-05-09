@@ -10,9 +10,9 @@ angular.module('fantasy')
   });
 
   // Load `Team` if any is there
-  this.currentUser.$loaded(function(){
-    self.teams = $firebaseObject(FirebaseUrl.child('userTeam').child(self.user.fullName).child('team'));
-  });
+  // this.currentUser.$loaded(function(){
+  //   self.teams = $firebaseObject(FirebaseUrl.child('teamUser').child(self.user.fullName));
+  // });
 
   // Get  `Players`
   this.players = $firebaseArray(FirebaseUrl.child('leaderboard'));
@@ -40,12 +40,15 @@ angular.module('fantasy')
       }else if(committed){
         var id = ss.val();
         if(id <= 5){
-          var userTeam = FirebaseUrl.child('userTeam').child(self.user.fullName).child('team');
-        
+          var userTeam = FirebaseUrl.child('userTeam').child(self.user.fullName).child('team').child(player.$id);
+        	var teamUser = FirebaseUrl.child('teamUser').child(self.user.fullName).child(player.$id);
 
           // Update both `userTeam` with `Players`
-          userTeam.push({
+          userTeam.update({
             name:player.Name
+          });
+          teamUser.update({
+          	name:player.Name
           });
         }
       }
@@ -69,9 +72,9 @@ angular.module('fantasy')
         
         
         var userTeam = FirebaseUrl.child('userTeam').child(self.user.fullName).child('team').child(id);
-        
+        var teamUser = FirebaseUrl.child('teamUser').child(self.user.fullName).child(id);
         userTeam.remove();
-        
+        teamUser.remove();
         console.log(i);
       }
     });

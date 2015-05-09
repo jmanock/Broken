@@ -2,35 +2,23 @@
   <div ng-include="'components/navbar/navbar.html'"></div>
   
   <div ng-controller='StandingsCtrl as standings'>
-   <div>
-  
-   <!-- <div ng-repeat='(key, value) in data'>
-     <h4 ng-click='toggle = !toggle'>{{key}}</h4>
+   
+   <div ng-repeat='(k, v) in data'>
+     <h4 ng-click='toggle = !toggle'>{{k}}</h4>
+     {{getTeams()}}
      <table ng-show='toggle'>
        <tr>
          <th>Name</th>
          <th>Points</th>
        </tr>
-       <tr ng-repeat='some in ass | orderBy:"-points"'>
-         <td>{{some.name}}</td>
-         <td>{{some.points}}</td>
+       <tr ng-repeat='t in teams | orderBy:"-Points"'>
+         <td>{{t.Name}}</td>
+         <td>{{t.Points}}</td>
        </tr>
      </table>
      <h5>Total: {{getTotal()}}</h5>
-   </div> -->
-   
-  <table>
-    <tr>
-      <th>Name</th>
-      <th>Points</th>
-    </tr>
-    <tr ng-repeat='name in teams'>
-      <td>{{name.$id}}</td>
-    
-    </tr>
-    
-  </table>
-  
+   </div>
+
     <div>
       <h3>Leaderboard</h3>
       <ul>
