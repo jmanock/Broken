@@ -24,7 +24,7 @@ angular.module('fantasy')
 			angular.forEach($scope.players, function(leaders){
 				if(leaders.Name === teams.name){
 					teams.points = leaders.Points;
-					console.log('helloooo???');
+					
 				}
 			});
 		});
