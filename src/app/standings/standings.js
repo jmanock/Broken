@@ -4,22 +4,27 @@ angular.module('fantasy')
 
 	// Set the `teamUser`
 	var teamUser = $firebaseObject(FirebaseUrl.child('teamUser'));
-	$scope.data = teamUser;
+	//$scope.data = teamUser;
 	// Get the `Leaderboard`
 	$scope.players = $firebaseArray(FirebaseUrl.child('leaderboard'));
-
+$scope.teams = teamUser;
 	// Run a function to match the `teamUser` players to `leaderboard` players
+	// Works but not in the right way
 	$scope.getTeams = function(){
-		$scope.teams = [];
-		angular.forEach(teamUser, function(key){
-			angular.forEach(key, function(play){
-				angular.forEach($scope.players, function(leader){
-					if(play.name === leader.Name){
-						return $scope.teams.push(leader);
-					}
-				});
-			});
-		});
+		// $scope.teams = [];
+		// angular.forEach(teamUser, function(key){
+		// 	angular.forEach(key, function(play){
+		// 		angular.forEach($scope.players, function(leader){
+		// 			if(play.name === leader.Name){
+		// 				return $scope.teams.push(leader);
+		// 			}
+		// 		});
+		// 	});
+		// });
+
+	angular.forEach(teamUser, function(k, v){
+		console.log(k.length);
+	});
 	};
 
 	// Hides the `Players` from the `Team`
