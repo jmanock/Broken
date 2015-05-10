@@ -10,21 +10,23 @@ angular.module('fantasy')
 
 	// Run a function to match the `teamUser` players to `leaderboard` players
 	// Works but not in the right way
-	$scope.getTeams = function(){
-		$scope.teams = [];
-		angular.forEach(teamUser, function(key){
-			angular.forEach(key, function(play){
-				angular.forEach($scope.players, function(leader){
-					if(play.name === leader.Name){
-						 return $scope.teams.push(leader);
+	// $scope.getTeams = function(){
+	// 	$scope.teams = [];
+	// 	angular.forEach(teamUser, function(key){
+	// 		angular.forEach(key, function(play){
+	// 			angular.forEach($scope.players, function(leader){
+	// 				if(play.name === leader.Name){
+	// 					 return $scope.teams.push(leader);
 						 
-					}
-				});
-			});
-		});
+	// 				}
+	// 			});
+	// 		});
+	// 	});
 
-	};
-
+	// };
+	
+	
+	
 	// Hides the `Players` from the `Team`
 	$scope.toggle = false;
 
