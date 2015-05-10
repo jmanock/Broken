@@ -3,32 +3,37 @@
   
   <div ng-controller='StandingsCtrl as standings'>
    
-  <!--   <div ng-repeat='(k, v) in data'>
+     <div ng-repeat='(k, v) in data | orderBy:"-total"'>
      <h4 ng-click='toggle = !toggle'>{{k}}</h4>
-     {{getTeams()}}
+     {{getPoints()}}
      <table ng-show='toggle'>
        <tr>
          <th>Name</th>
          <th>Points</th>
        </tr>
-       <tr ng-repeat='t in teams | orderBy:"-Points"'>
-         <td>{{t.Name}}</td>
-         <td>{{t.Points}}</td>
+       <tr>
+         <td>{{v[1].name}}</td>
+         <td>{{v[1].points}}</td>
+       </tr>
+       <tr>
+         <td>{{v[2].name}}</td>
+         <td>{{v[2].points}}</td>
+       </tr>
+       <tr>
+         <td>{{v[3].name}}</td>
+         <td>{{v[3].points}}</td>
+       </tr>
+       <tr>
+         <td>{{v[4].name}}</td>
+         <td>{{v[4].points}}</td>
+       </tr>
+       <tr>
+         <td>{{v[5].name}}</td>
+         <td>{{v[5].points}}</td>
        </tr>
      </table>
-     <h5>Total: {{getTotal()}}</h5>
-   </div> --> 
-  <div ng-repeat='(k,v) in data'>
-    {{k}}
-    <pre>
-    {{v[1].name}} | {{v[1].points}}
-    {{v[2].name}} | {{v[2].points}}
-    {{v[3].name}} | {{v[3].points}}
-    {{v[4].name}} | {{v[4].points}}
-    {{v[5].name}} | {{v[5].points}}
-    </pre>
-    {{getPoints()}}
-  </div>
+     <h5>Total: {{v[1].points + v[2].points + v[3].points + v[4].points +v[5].points}}</h5>
+   </div>
   
   
     <div>
