@@ -10,25 +10,21 @@ angular.module('fantasy')
 
 	// Run a function to match the `teamUser` players to `leaderboard` players
 	$scope.getPoints = function(){
-		angular.forEach(teamUser, function(data){
-			angular.forEach(data, function(players){
-				angular.forEach($scope.players, function(leader){
-					if(leader.Name === players.name){
-						players.points = leader.Points;
+		
+		
+	};
+	
+	$scope.players.$loaded(function(data){
+		angular.forEach(data, function(leader){
+			angular.forEach(teamUser, function(data){
+				angular.forEach(data, function(player){
+					if(player.name === leader.Name){
+						player.points = leader.Points;
 					}
 				});
 			});
 		});
-	};
-	
-	$scope.testIdea = function(v){
-		var something = [];
-		for(var i =1; i<v.length; i++){
-			 something.push(v[i].name);
-		}
-		return something;
-		//console.log(v[1].name);
-	};
+	});
 	// Hides the `Players` from the `Team`
 	$scope.toggle = false;
 
