@@ -21,11 +21,13 @@
   <div ng-repeat='(k,v) in data'>
     {{k}}
     <pre>
-    {{v[1].name}}
-    {{v[2].name}}
-    {{v[3].name}}
-    {{v[4].name}}
-    {{v[5].name}}</pre>
+    {{v[1].name}} | {{v[1].points}}
+    {{v[2].name}} | {{v[2].points}}
+    {{v[3].name}} | {{v[3].points}}
+    {{v[4].name}} | {{v[4].points}}
+    {{v[5].name}} | {{v[5].points}}
+    </pre>
+    {{getPoints()}}
   </div>
   
   

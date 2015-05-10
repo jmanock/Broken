@@ -24,7 +24,17 @@ angular.module('fantasy')
 	// 	});
 
 	// };
-	
+	$scope.getPoints = function(){
+		angular.forEach(teamUser, function(data){
+			angular.forEach(data, function(something){
+				angular.forEach($scope.players, function(leader){
+					if(leader.Name === something.name){
+						something.points = leader.Points;
+					}
+				});
+			});
+		});
+	};
 	
 	
 	// Hides the `Players` from the `Team`
