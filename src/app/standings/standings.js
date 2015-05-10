@@ -21,7 +21,14 @@ angular.module('fantasy')
 		});
 	};
 	
-	
+	$scope.testIdea = function(v){
+		var something = [];
+		for(var i =1; i<v.length; i++){
+			 something.push(v[i].name);
+		}
+		return something;
+		//console.log(v[1].name);
+	};
 	// Hides the `Players` from the `Team`
 	$scope.toggle = false;
 
@@ -34,6 +41,6 @@ angular.module('fantasy')
 		// 	total += totalPoints.points;
 		// }
 		// return total;
-		
+
 	};
 });
