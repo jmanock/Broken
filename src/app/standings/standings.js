@@ -5,15 +5,11 @@ angular.module('fantasy')
 	// Set the `teamUser`
 	var teamUser = $firebaseObject(FirebaseUrl.child('teamUser'));
 	$scope.data = teamUser;
+
 	// Get the `Leaderboard`
 	$scope.players = $firebaseArray(FirebaseUrl.child('leaderboard'));
 
-	// Run a function to match the `teamUser` players to `leaderboard` players
-	$scope.getPoints = function(){
-		
-		
-	};
-	
+	// Load the `Leaderboard` and pull points that match `userTeam`
 	$scope.players.$loaded(function(data){
 		angular.forEach(data, function(leader){
 			angular.forEach(teamUser, function(data){
@@ -25,18 +21,18 @@ angular.module('fantasy')
 			});
 		});
 	});
+	
 	// Hides the `Players` from the `Team`
 	$scope.toggle = false;
 
 
 	// Add `Points` together 
 	$scope.getTotal = function(){
-		 var total = 0;
-		// for (var i = 0; i < $scope.data.length; i++){
-		// 	var totalPoints = $scope.data[i];
-		// 	total += totalPoints.points;
-		// }
-		// return total;
-
+		var total = 0;
+		for(var i = 0; i < $scope.v.length; i++){
+			var totalPoints = $scope.v[i];
+			total += totalPoints.Points;
+		}
+		return total;
 	};
 });
