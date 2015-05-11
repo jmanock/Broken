@@ -4,8 +4,9 @@ var request = require('request');
 var cheerio = require('cheerio');
 var Firebase = require('Firebase');
 var ref = new Firebase('https://reditclone.firebaseio.com/leaderboard');
-var url = ('https://sports.yahoo.com/golf/pga/leaderboard');
+var url = ('http://sports.yahoo.com/golf/pga/leaderboard');
 var golfers = [];
+
 
 var firstCall = function(){
 	request(url, function(error, response, body){
@@ -15,7 +16,7 @@ var firstCall = function(){
 
 			links.each(function(i, link){
 				var urls = $(link).attr('href');
-				var page = ('https://sports.yahoo.com' + urls);
+				var page = ('http://sports.yahoo.com' + urls);
 
 				return secondCall(page, i);
 			});
