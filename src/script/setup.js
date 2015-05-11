@@ -7,7 +7,6 @@ var ref = new Firebase('https://reditclone.firebaseio.com/leaderboard');
 var url = ('http://sports.yahoo.com/golf/pga/leaderboard');
 var golfers = [];
 
-
 var firstCall = function(){
 	request(url, function(error, response, body){
 		if(!error && response.statusCode === 200){

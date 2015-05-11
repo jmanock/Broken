@@ -10,12 +10,12 @@
         <th>Name</th>
         <th>Points</th>
       </tr>
-      <tr ng-repeat='value in v'>
+      <tr ng-repeat='value in v | orderBy:"-points"'>
         <td>{{value.name}}</td>
         <td>{{value.points}}</td>
       </tr>
     </table>
-    <h5>Total: something should go here???</h5>
+    <h5>Total: {{getTotal(v)}}</h5>
   </div>
   
     <div>

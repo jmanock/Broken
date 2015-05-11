@@ -25,14 +25,13 @@ angular.module('fantasy')
 	// Hides the `Players` from the `Team`
 	$scope.toggle = false;
 
-
-	// Add `Points` together 
-	$scope.getTotal = function(){
+	// Add the `points` together
+	$scope.getTotal = function(v){
 		var total = 0;
-		for(var i = 0; i < $scope.v.length; i++){
-			var totalPoints = $scope.v[i];
-			total += totalPoints.Points;
-		}
+		angular.forEach(v, function(s){
+			total += s.points;
+		})
 		return total;
-	};
+	}
+	
 });
