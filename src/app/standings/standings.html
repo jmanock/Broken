@@ -3,7 +3,7 @@
   
   <div ng-controller='StandingsCtrl as standings'>
    
-  <div ng-repeat='(k,v) in data'>
+  <div ng-repeat='(k,v) in data | orderBy:"-getTotal()"'>
     <h4 ng-click='toggle = !toggle'>{{k}}</h4>
     <table ng-show='toggle'>
       <tr>
@@ -20,11 +20,11 @@
   
     <div>
       <h3>Leaderboard</h3>
-      <ul>
+      <ol>
         <li ng-repeat='player in players | orderBy:"-Points"'>
-          {{player.Name}} | {{player.Points}}
+         {{rank(players)}} | {{player.Name}} | {{player.Points}}
         </li>
-      </ul>
+      </ol>
     </div>
 
     

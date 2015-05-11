@@ -34,4 +34,17 @@ angular.module('fantasy')
 		return total;
 	}
 	
+	$scope.players.$loaded(function(data){
+		var rank = [];
+		angular.forEach(data, function(points){
+			rank.push(points.Points);
+			for(var i = 1; i<rank.length; i++){
+				if(rank[i] === rank[i]){
+					console.log('tied');
+				}else{
+					console.log('not tied');
+				}
+			}
+		})
+	})
 });
