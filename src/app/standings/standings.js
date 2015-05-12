@@ -38,13 +38,17 @@ angular.module('fantasy')
 		var s = [];
 		for(var i = 0; i< data.length; i++){
 			var points = data[i].Points;
+			var rank;
 			s.push(points);	
 			s.sort(function(a, b){return b-a});
-			if(s[i] === s[i-1]){
-				console.log('cooking with gas now');
-			}else{
-				console.log('might have got this shit right');
-			}
+			// if(s[i] === s[i-1]){
+			// 	rank = i;
+			// 	console.log(rank);
+			// }else{
+			// 	rank = i+1;
+			// 	console.log(rank);
+			// }
+			console.log(s)
 		}
 		
 	})
