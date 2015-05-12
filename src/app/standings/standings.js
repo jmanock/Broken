@@ -35,8 +35,18 @@ angular.module('fantasy')
 	}
 	
 	$scope.players.$loaded(function(data){
-		var score = [];
-		var rank = 1;
+		var s = [];
+		for(var i = 0; i< data.length; i++){
+			var points = data[i].Points;
+			s.push(points);	
+			s.sort(function(a, b){return b-a});
+			if(s[i] === s[i-1]){
+				console.log('cooking with gas now');
+			}else{
+				console.log('might have got this shit right');
+			}
+		}
 		
 	})
+		
 });

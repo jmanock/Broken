@@ -21,7 +21,7 @@
     <div>
       <h3>Leaderboard</h3>
       <ol>
-        <li ng-repeat='player in players | orderBy:"-Points"'>
+        <li ng-repeat='player in players'>
          {{rank(players)}} | {{player.Name}} | {{player.Points}}
         </li>
       </ol>
