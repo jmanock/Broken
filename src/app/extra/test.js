@@ -95,7 +95,19 @@ $scope.one = [{
 //   })
 // })
 
-// Working on getting the right way to keep track of names and points
+// Testing sort and rank
+var something = [35,66, 66, 75, 85, 88, 88, 88, 90, 100, 66, 55];
+something.sort(function(a,b) {return b - a});
+for (var i = 0; i<something.length; i++){
+  var rank = [];
+  
+  if(something[i] === something[i-1]  ){
+    rank.push(i);
+  }else{
+    rank.push(i +1);
+  }
+  console.log(rank, something[i]);
+}
 
 
 
