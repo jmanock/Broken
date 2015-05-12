@@ -100,18 +100,22 @@ var something = [35,66, 66, 75, 85, 88, 88,66, 88, 90, 100, 66, 55];
 something.sort(function(a,b) {return b - a});
 for(var i = 0; i< something.length; i++){
   var rank = [];
-  if(something[i] === something[i-1] && something[i] === something[i-2]&& something[i] === something[i-3]){
-    rank.push(i-2);
+  // if(something[i] === something[i-1] && something[i] === something[i-2]&& something[i] === something[i-3]){
+  //   rank.push(i-2);
     
-  }else if( something[i] === something[i-1] && something[i] === something[i-2]){
-    rank.push(i-1)
+  // }else if( something[i] === something[i-1] && something[i] === something[i-2]){
+  //   rank.push(i-1)
     
-  }else if(something[i] === something[i-1]){
-    rank.push(i);
-  }else{
-    rank.push(i+1);
+  // }else if(something[i] === something[i-1]){
+  //   rank.push(i);
+  // }else{
+  //   rank.push(i+1);
+  // }
+  if(something[i] === something[i-i]){
+    console.log('yello');
+
   }
-  console.log(rank, something[i]);
+  // console.log( something[i]);
 }
 
 
