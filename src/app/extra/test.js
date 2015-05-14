@@ -105,14 +105,11 @@ var rank = [];
 var count = 0;
 for(var i =0; i< something.length; i++){
   if(something[i] === something[i -1] || something[i+1] === something[i]){
-    if(count === 0){
-      count = i;
-    }else{
-      count++;
-      var x = i - count;
+    
+      var x = i + 1 - count;
       console.log(count);
       rank.push(x)
-    }
+    count++;
   }else{
     rank.push(i+1);
   }
