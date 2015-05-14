@@ -110,7 +110,7 @@ for(var i = 0; i< something.length; i++){
       if(p === something[j]){
         count++;
         //console.log('count: '+ count + ' index: '+  i  + ' number:' + something[i]);
-        rank.push(i );
+        rank.push(i);
       }
     }
   }
