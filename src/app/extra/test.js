@@ -108,6 +108,8 @@ for(var i =0; i< something.length; i++){
     count++;
     var x = i - count;
     rank.push(x);
+  }else{
+    rank.push(i);
   }
   console.log(rank);
 
