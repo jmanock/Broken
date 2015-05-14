@@ -100,11 +100,17 @@ var something = [35,66, 66, 75, 85, 88, 88,66, 88, 90, 100, 66, 55];
 something.sort(function(a,b) {return b - a});
 for(var i = 0; i< something.length; i++){
   var rank = [];
-  
-  if(something[i] === something[i-1]){
-    var joke = something[i-1];
-    if(joke === something[i-1]){
-      console.log('two steps deep');
+  var x = -1;
+  if(something[i] === something[i-x]){
+    // come up with a way to count how many times a number repeats
+    // give that number to rank and subtract the index
+    var p = something[i];
+    var count = 0;
+    for(var j=1; j<something.length; j++){
+      if(p === something[j]){
+        count++;
+        console.log(count, i, something[i]);
+      }
     }
   }
   console.log(something)
