@@ -101,10 +101,13 @@ something.sort(function(a,b) {
 
   return b - a
 });
+var rank = [];
 for(var i =0; i< something.length; i++){
   if(something[i] === something[i -1] || something[i+1] === something[i]){
-    console.log('ok??');
+    i = i
+    rank.push(i);
   }
+  console.log(rank);
 }
   
   // if(something[i] === something[i-1] && something[i] === something[i-2]&& something[i] === something[i-3]){
