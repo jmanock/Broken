@@ -97,25 +97,16 @@ $scope.one = [{
 
 // Testing sort and rank
 var something = [35,66, 66, 75, 85, 88, 88,66, 88, 90, 100, 66, 55];
-something.sort(function(a,b) {return b - a});
-for(var i = 0; i< something.length; i++){
-  var rank = [];
-  var x = -1;
-  if(something[i] === something[i-x]){
-    // come up with a way to count how many times a number repeats
-    // give that number to rank and subtract the index
-    var p = something[i];
-    var count = 0;
-    for(var j=1; j<something.length; j++){
-      if(p === something[j]){
-        count++;
-        //console.log('count: '+ count + ' index: '+  i  + ' number:' + something[i]);
-        rank.push(i);
-      }
-    }
+something.sort(function(a,b) {
+
+  return b - a
+});
+for(var i =0; i< something.length; i++){
+  if(something[i] === something[i -1] || something[i+1] === something[i]){
+    console.log('ok??');
   }
-  rank.push(i);
-  console.log(rank, something[i]); 
+}
+  
   // if(something[i] === something[i-1] && something[i] === something[i-2]&& something[i] === something[i-3]){
   //   rank.push(i-2);
     
@@ -129,7 +120,7 @@ for(var i = 0; i< something.length; i++){
   // }
   
 
-}
+
 
 
 $scope.players = $firebaseArray(FirebaseUrl.child('leaderboard'));
