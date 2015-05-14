@@ -96,18 +96,21 @@ $scope.one = [{
 // })
 
 // Testing sort and rank
-var something = [35,66, 66, 75, 85, 88, 88,66, 88, 90, 100, 66, 55];
+var something = [35,66, 66, 75, 85, 88, 88,66, 88, 90, 100, 66, 55, 66];
 something.sort(function(a,b) {
 
   return b - a
 });
 var rank = [];
+var count =0;
 for(var i =0; i< something.length; i++){
   if(something[i] === something[i -1] || something[i+1] === something[i]){
-    i = i
-    rank.push(i);
+    count++;
+    var x = i - count;
+    rank.push(x);
   }
   console.log(rank);
+
 }
   
   // if(something[i] === something[i-1] && something[i] === something[i-2]&& something[i] === something[i-3]){
