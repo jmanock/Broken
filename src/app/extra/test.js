@@ -102,14 +102,16 @@ something.sort(function(a,b) {
   return b - a
 });
 var rank = [];
-var count =0;
+var count = 0;
 for(var i =0; i< something.length; i++){
   if(something[i] === something[i -1] || something[i+1] === something[i]){
-    count++;
-    var x = i - count;
+    count ++;
+    
+    var x = i-count ;
+    //console.log(count)
     rank.push(x);
   }else{
-    rank.push(i);
+    rank.push(i+1);
   }
   console.log(rank);
 
