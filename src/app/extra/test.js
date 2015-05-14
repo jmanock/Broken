@@ -109,11 +109,13 @@ for(var i = 0; i< something.length; i++){
     for(var j=1; j<something.length; j++){
       if(p === something[j]){
         count++;
-        console.log(count, i, something[i]);
+        //console.log('count: '+ count + ' index: '+  i  + ' number:' + something[i]);
+        rank.push(i );
       }
     }
   }
-  console.log(something)
+  rank.push(i);
+  console.log(rank, something[i]); 
   // if(something[i] === something[i-1] && something[i] === something[i-2]&& something[i] === something[i-3]){
   //   rank.push(i-2);
     
