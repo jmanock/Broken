@@ -95,7 +95,8 @@ $scope.one = [{
 //   })
 // })
 
-// Testing sort and rank
+// Testing sort and rank 
+// This works now!!!
 var something = [35,66, 66, 75, 85, 88, 88,66, 88, 90, 100, 66, 55, 66];
 something.sort(function(a,b) {
 
@@ -107,15 +108,32 @@ for(var i =0; i< something.length; i++){
   if(something[i] === something[i -1] || something[i+1] === something[i]){
     
       var x = i + 1 - count;
-      console.log(count);
+      //console.log(count);
       rank.push(x)
     count++;
   }else{
     rank.push(i+1);
     count = 0;
   }
-  console.log(rank);
+  //console.log(rank);
 
+}
+
+$scope.rank = function(players){
+  // angular.forEach(players, function(k){
+  //   var something = [];
+  //   var points = k.Points;
+  //   something.push(points);
+  //   something.sort(function(a,b){return b-a});
+  //   console.log(something);
+  // })
+for(var i = 0; i < players.length; i++){
+  var points = players[i].Points;
+  var something =[];
+  something.push(points);
+  something.sort(function(a,b){return b-a});
+  
+}
 }
   
   // if(something[i] === something[i-1] && something[i] === something[i-2]&& something[i] === something[i-3]){
