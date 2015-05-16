@@ -127,12 +127,9 @@ $scope.rank = function(players){
   //   something.sort(function(a,b){return b-a});
   //   console.log(something);
   // })
-for(var i = 0; i < players.length; i++){
-  var points = players[i].Points;
-  var something =[];
-  something.push(points);
-  something.sort(function(a,b){return b-a});
-  
+var i = players.length;
+while(i--){
+  console.log(players);
 }
 }
   
