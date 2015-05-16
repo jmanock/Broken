@@ -112,6 +112,7 @@ for(var i =0; i< something.length; i++){
     count++;
   }else{
     rank.push(i+1);
+    count = 0;
   }
   console.log(rank);
 
