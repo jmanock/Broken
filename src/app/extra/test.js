@@ -105,7 +105,6 @@ something.sort(function(a,b) {
 var rank = [];
 var count = 0;
 for(var i =0; i< something.length; i++){
-  
   if(something[i] === something[i-1] ){
     var x = i  - count;
     //console.log(count);
@@ -136,9 +135,16 @@ play.$loaded(function(data){
     });
 
   });
+  // for(var i = 0; i<first.length; i++){
+    
+  // }
   for(var i = 0; i<first.length; i++){
-
+    $scope.data =[{
+      name: first[i].Name,
+      points: first[i].Points
+    }]
   }
+
 });
 $scope.data = play;
 
