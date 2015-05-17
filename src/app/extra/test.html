@@ -34,7 +34,7 @@
  </div>
  
  <br>
-<div ng-repeat='player in players | orderBy:"-Points"'>
+<div ng-repeat='player in players'>
 	 {{player.rank}} | {{player.Name}} | {{player.Points}}
 	<button ng-click='addPlayer(player)'>Add Player</button>
 </div>

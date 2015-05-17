@@ -138,8 +138,26 @@ var first = [];
 $scope.players = play;
 
 play.$loaded(function(data){
-  angular.forEach(data, function(players){
-    players.rank = players.$id;
+  angular.forEach(data, function(plays){
+    //plays.rank = plays.$id;
+    var ps = plays.Points;
+    var rank = [];
+    var count = 0;
+    first.push(ps);
+    first.sort(function(a,b){return b-a});
+    for(var i = 0; i<first.length; i++){
+      if(first[i] === first[i-1]){
+        var x = i - count;
+        rank.push(x);
+        count++;
+      }else{
+        rank.push(i+1);
+        count = 0;
+      }
+    }
+    for(var i = 0; i<rank.length; i++){
+      plays.rank = rank[i];
+    }
   });
 });
 
