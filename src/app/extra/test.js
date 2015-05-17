@@ -137,38 +137,23 @@ var play = $firebaseArray(FirebaseUrl.child('leaderboard'));
 var first = [];
 $scope.players = play;
 
+
 play.$loaded(function(data){
-  angular.forEach(data, function(plays){
-    //plays.rank = plays.$id;
-    var ps = plays.Points;
-    var rank = [];
-    var count = 0;
-    first.push(ps);
-    first.sort(function(a,b){return b-a});
-    for(var i = 0; i<first.length; i++){
-      if(first[i] === first[i-1]){
-        var x = i - count;
-        rank.push(x);
-        count++;
-      }else{
-        rank.push(i+1);
-        count = 0;
-      }
-    }
-    console.log(first);
-    console.log(rank);
-    
+  angular.forEach(data, function(ps){
+    first.push(ps); 
   });
+  first.sort(function(a,b){
+    return b.Points - a.Points
+  });
+  console.log(first);
 });
-
-
-// *MAKE SOMETHING OUTPUT FIRST!!!!*
+// THIS WORKS TO OUTPUT RANK BUT WITH BUGS!!!
 // play.$loaded(function(data){
 //   angular.forEach(data, function(plays){
+//     //plays.rank = plays.$id;
 //     var ps = plays.Points;
 //     var rank = [];
 //     var count = 0;
-//     var rk = plays.rank;
 //     first.push(ps);
 //     first.sort(function(a,b){return b-a});
 //     for(var i = 0; i<first.length; i++){
@@ -181,12 +166,16 @@ play.$loaded(function(data){
 //         count = 0;
 //       }
 //     }
-//     for(var j=0; j<rank.length; j++){
-//     rk = rank[j];  
+//     // console.log(first);
+//     // console.log(rank);
+//     for(var i = 0; i<rank.length; i++){
+//       plays.rank = rank[i];
 //     }
-//     return rk;
-//   })
-// })
+//   });
+// });
+
+
+
 
 
 
