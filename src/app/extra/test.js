@@ -141,11 +141,16 @@ $scope.players = play;
 play.$loaded(function(data){
   angular.forEach(data, function(ps){
     first.push(ps); 
-  });
+  
   first.sort(function(a,b){
     return b.Points - a.Points
   });
-  console.log(first);
+  for(var i = 0; i< first.length; i++){
+    if(ps.Name === first[i].Name){
+      ps.rank = first[i].Points
+    }
+  }
+  });
 });
 // THIS WORKS TO OUTPUT RANK BUT WITH BUGS!!!
 // play.$loaded(function(data){
