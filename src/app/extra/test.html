@@ -11,7 +11,7 @@
 </div>
 <p>Total sum of points: {{total | sumOf:'points'}}</p> -->
 
-<h3>Show players with points from another array</h3>
+<!-- <h3>Show players with points from another array</h3> -->
 <!-- <h5 ng-repeat='something in list'>
 	{{something.name}} | {{something.points}}
 	<button ng-click='remove($index)'>Remove</button>
@@ -32,9 +32,12 @@
  	{{team.name}} | {{team.points}}
  	<button ng-click='removePlayer(team)'>Remove</button>
  </div>
- 
+ <br>
+ <div ng-repeat='d in data'>
+ 	{{d.name}} | {{d.points}} | {{d.rank}}
+ </div>
  <br>
 <div ng-repeat='player in players'>
-	 {{player.rank}} | {{player.Name}} | {{player.Points}}
+	  {{player.Name}} | {{player.Points}}
 	<button ng-click='addPlayer(player)'>Add Player</button>
 </div>

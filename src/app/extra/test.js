@@ -137,21 +137,37 @@ var play = $firebaseArray(FirebaseUrl.child('leaderboard'));
 var first = [];
 $scope.players = play;
 
+$scope.data = play;
 
+// Maybe this idea will work???
 play.$loaded(function(data){
-  angular.forEach(data, function(ps){
-    first.push(ps); 
-  
-  first.sort(function(a,b){
-    return b.Points - a.Points
+  angular.forEach(data, function(plays){
+    first.push(plays);
+    first.sort(function(a,b){
+      return b.Points - a.Points;
+    });
   });
   for(var i = 0; i< first.length; i++){
-    if(ps.Name === first[i].Name){
-      ps.rank = first[i].Points
-    }
+    console.log(first[i].Name, first[i].Points);   
   }
-  });
-});
+})
+
+// RIGHT IDEA SORTA WORKING BUT MAYBE A BETER WAY???
+// play.$loaded(function(data){
+//   angular.forEach(data, function(ps){
+//     first.push(ps); 
+  
+//   first.sort(function(a,b){
+//     return b.Points - a.Points
+//   });
+//   for(var i = 0; i< first.length; i++){
+//     if(ps.Name === first[i].Name){
+
+//     }
+//   }
+//   });
+// });
+
 // THIS WORKS TO OUTPUT RANK BUT WITH BUGS!!!
 // play.$loaded(function(data){
 //   angular.forEach(data, function(plays){
