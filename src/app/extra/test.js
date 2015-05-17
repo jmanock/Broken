@@ -135,22 +135,40 @@ for(var i =0; i< something.length; i++){
 
 var play = $firebaseArray(FirebaseUrl.child('leaderboard'));
 var first = [];
-$scope.players = play;
+//$scope.players = play;
 
-$scope.data = play;
-
-// Maybe this idea will work???
 play.$loaded(function(data){
   angular.forEach(data, function(plays){
+    // plays.name = plays.Name;
+    // plays.points = plays.Points;
+
     first.push(plays);
     first.sort(function(a,b){
       return b.Points - a.Points;
     });
+
   });
-  for(var i = 0; i< first.length; i++){
-    console.log(first[i].Name, first[i].Points);   
-  }
-})
+  angular.forEach(first, function(kew){
+    
+  })
+});
+$scope.data = play;
+
+
+// RIGHT TRACK NEEDS SOMETHING ELSE
+// Maybe this idea will work??? 
+// play.$loaded(function(data){
+//   angular.forEach(data, function(plays){
+//     first.push(plays);
+//     first.sort(function(a,b){
+//       return b.Points - a.Points;
+//     });
+//   });
+//   angular.forEach(first, function(some){
+//     play.name = some.Name;
+//     play.points = some.Points;
+//   })
+// })
 
 // RIGHT IDEA SORTA WORKING BUT MAYBE A BETER WAY???
 // play.$loaded(function(data){
