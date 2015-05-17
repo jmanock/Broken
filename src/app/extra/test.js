@@ -139,11 +139,13 @@ play.$loaded(function(data){
     
   // }
   for(var i = 0; i<first.length; i++){
-    $scope.data =[{
-      name: first[i].Name,
-      points: first[i].Points
-    }]
+    // $scope.something =[{
+    //   name: first[i].Name,
+    //   points: first[i].Points
+    // }]
+    
   }
+
 
 });
 $scope.data = play;
