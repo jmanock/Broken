@@ -33,7 +33,11 @@
  	<button ng-click='removePlayer(team)'>Remove</button>
  </div>
  <br>
+ <div>
+ 	{{rank()}}
+ </div>
+ <br>
 <div ng-repeat='player in players'>
-	{{rank(players)}} | {{player.Name}} | {{player.Points}}
+	 {{player.Name}} | {{player.Points}}
 	<button ng-click='addPlayer(player)'>Add Player</button>
 </div>

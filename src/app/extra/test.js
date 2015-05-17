@@ -119,7 +119,7 @@ for(var i =0; i< something.length; i++){
 
 }
 
-$scope.rank = function(players){
+$scope.rank = function(){
   // angular.forEach(players, function(k){
   //   var something = [];
   //   var points = k.Points;
@@ -127,10 +127,7 @@ $scope.rank = function(players){
   //   something.sort(function(a,b){return b-a});
   //   console.log(something);
   // })
-var i = players.length;
-while(i--){
-  console.log(players);
-}
+console.log();
 }
   
   // if(something[i] === something[i-1] && something[i] === something[i-2]&& something[i] === something[i-3]){
