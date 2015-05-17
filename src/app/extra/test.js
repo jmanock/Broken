@@ -97,7 +97,7 @@ $scope.one = [{
 
 // Testing sort and rank 
 // This works now!!!
-var something = [35,66, 66, 75, 85, 88, 88,66, 88, 90, 100, 66, 55, 66];
+var something = [35,66, 66, 75, 85, 88, 88,66, 88, 66, 55, 66, 55, 35, 20];
 something.sort(function(a,b) {
 
   return b - a
@@ -115,38 +115,38 @@ for(var i =0; i< something.length; i++){
     rank.push(i+1);
     count = 0;
   }
-  //console.log(rank);
-
+  console.log(rank);
+  console.log(something)
 }
 
-$scope.rank = function(){
-  // angular.forEach(players, function(k){
-  //   var something = [];
-  //   var points = k.Points;
-  //   something.push(points);
-  //   something.sort(function(a,b){return b-a});
-  //   console.log(something);
-  // })
-console.log();
-}
-  
-  // if(something[i] === something[i-1] && something[i] === something[i-2]&& something[i] === something[i-3]){
-  //   rank.push(i-2);
-    
-  // }else if( something[i] === something[i-1] && something[i] === something[i-2]){
-  //   rank.push(i-1)
-    
-  // }else if(something[i] === something[i-1]){
-  //   rank.push(i);
-  // }else{
-  //   rank.push(i+1);
-  // }
   
 
+var play = $firebaseArray(FirebaseUrl.child('leaderboard'));
+var first = [];
+$scope.players = play;
+// play.$loaded(function(data){
+//   angular.forEach(data, function(player){
+//     var score = player.Points;
+//     first.push(score);
+//     first.sort(function(a,b){return b-a});
+//     var rank = [];
+//     var count = 0;
+//     for(var i =0; i<first.length; i++){
+//       if(first[i] === first[i-1] || first[i+1] === first[i]){
+//         var x = i  - count;
+//         rank.push(x);
+//         count++;
+//       }else{
+//         rank.push(i+1)
+//         count = 0;
+//       }
+//       console.log(rank);
+//     }
+//   })
+// })
 
 
 
-$scope.players = $firebaseArray(FirebaseUrl.child('leaderboard'));
 
 var ref = new Firebase('https://fireseedangular.firebaseio.com');
 $scope.addPlayer = function(player){
