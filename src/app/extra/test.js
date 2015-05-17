@@ -155,9 +155,9 @@ play.$loaded(function(data){
         count = 0;
       }
     }
-    for(var i = 0; i<rank.length; i++){
-      plays.rank = rank[i];
-    }
+    console.log(first);
+    console.log(rank);
+    
   });
 });
 
