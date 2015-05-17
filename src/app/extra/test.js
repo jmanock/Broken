@@ -120,15 +120,15 @@ for(var i =0; i< something.length; i++){
   // console.log(something);
   if(something[i] === something[i-1] ){
     var x = i  - count;
-    console.log(count);
+    //console.log(count);
     rank.push(x);
     count++;
   }else{
     rank.push(i+1)
     count = 0;
   }
-  console.log(something)
-  console.log(rank);
+  //console.log(something)
+  //console.log(rank)
 }
 
   
@@ -136,26 +136,30 @@ for(var i =0; i< something.length; i++){
 var play = $firebaseArray(FirebaseUrl.child('leaderboard'));
 var first = [];
 $scope.players = play;
-// play.$loaded(function(data){
-//   angular.forEach(data, function(player){
-//     var score = player.Points;
-//     first.push(score);
-//     first.sort(function(a,b){return b-a});
-//     var rank = [];
-//     var count = 0;
-//     for(var i =0; i<first.length; i++){
-//       if(first[i] === first[i-1] || first[i+1] === first[i]){
-//         var x = i  - count;
-//         rank.push(x);
-//         count++;
-//       }else{
-//         rank.push(i+1)
-//         count = 0;
-//       }
-//       console.log(rank);
-//     }
-//   })
-// })
+play.$loaded(function(data){
+  angular.forEach(data, function(plays){
+    var ps = plays.Points;
+    var rank = [];
+    var count = 0;
+    var rk = plays.rank;
+    first.push(ps);
+    first.sort(function(a,b){return b-a});
+    for(var i = 0; i<first.length; i++){
+      if(first[i] === first[i-1]){
+        var x = i - count;
+        rank.push(x);
+        count++;
+      }else{
+        rank.push(i+1);
+        count = 0;
+      }
+    }
+    for(var j=0; j<rank.length; j++){
+      rank[j] = rk;
+    }
+    return rk;
+  })
+})
 
 
 
