@@ -97,7 +97,7 @@ $scope.one = [{
 
 // Testing sort and rank 
 // This works now!!!
-var something = [35,66, 66, 75, 85, 88, 88,66, 88, 66, 55, 66, 55, 35, 20];
+var something = [10,10,20,20,33,34,20,55,55,66,66,20,20];
 something.sort(function(a,b) {
 
   return b - a
@@ -105,18 +105,30 @@ something.sort(function(a,b) {
 var rank = [];
 var count = 0;
 for(var i =0; i< something.length; i++){
-  if(something[i] === something[i -1] || something[i+1] === something[i]){
+  // THIS IS WRONG FOR BACK TO BACK DOUBLES
+  // if(something[i] === something[i -1] || something[i+1] === something[i]){
     
-      var x = i + 1 - count;
-      //console.log(count);
-      rank.push(x)
+  //     var x = i + 1 - count;
+  //     console.log(count);
+  //     rank.push(x)
+  //   count++;
+  // }else{
+  //   rank.push(i+1);
+  //   count = 0;
+  // }
+  // console.log(rank);
+  // console.log(something);
+  if(something[i] === something[i-1] ){
+    var x = i  - count;
+    console.log(count);
+    rank.push(x);
     count++;
   }else{
-    rank.push(i+1);
+    rank.push(i+1)
     count = 0;
   }
-  console.log(rank);
   console.log(something)
+  console.log(rank);
 }
 
   
