@@ -105,19 +105,7 @@ something.sort(function(a,b) {
 var rank = [];
 var count = 0;
 for(var i =0; i< something.length; i++){
-  // THIS IS WRONG FOR BACK TO BACK DOUBLES
-  // if(something[i] === something[i -1] || something[i+1] === something[i]){
-    
-  //     var x = i + 1 - count;
-  //     console.log(count);
-  //     rank.push(x)
-  //   count++;
-  // }else{
-  //   rank.push(i+1);
-  //   count = 0;
-  // }
-  // console.log(rank);
-  // console.log(something);
+  
   if(something[i] === something[i-1] ){
     var x = i  - count;
     //console.log(count);
@@ -148,9 +136,9 @@ play.$loaded(function(data){
     });
 
   });
-  angular.forEach(first, function(kew){
-    
-  })
+  for(var i = 0; i<first.length; i++){
+
+  }
 });
 $scope.data = play;
 
@@ -245,10 +233,5 @@ something.$loaded(function(data){
   });
 });
 
-// orderby example see if this will work
-var shiz = new Firebase('https://fireseedangular.firebaseio.com/team');
-shiz.orderByChild('name').on('child_added', function(snap){
-//console.log(snap.val().name);
 
-});
 });
