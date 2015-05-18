@@ -132,26 +132,44 @@ play.$loaded(function(data){
       return b.Points - a.Points;
     });
   });
+
+  // Get this to show up as first.Rank somehow???
   var rank = [];
   var count = 0;
   var newRank = [];
   for(var i = 0; i<first.length; i++){
+    
     rank.push(first[i].Points);
   }
   for(var i = 0; i<rank.length; i++){
+    //console.log(rank);
     if(rank[i] === rank[i-1]){
       var x = i - count;
       newRank.push(x);
       count++;
     }else{
       newRank.push(i+1);
+      x = i + 1;
       count =0;
     }
+
   }
-  angular.forEach(first, function(some){
-  some.rank = newRank;
-  })
+
+    
+
+  
+
+  // THIS SHOWS THE ARRAY OR PRINTS OUT THE LAST NUMBER (WRONG)
+  // angular.forEach(first, function(some){
+  // // some.rank = newRank;
+  // for(var i = 0; i<newRank.length; i++){
+  //   //some.rank = newRank[i];
+  // }
+  // })
   $scope.something = first;
+  
+  
+  
 });
 
 
