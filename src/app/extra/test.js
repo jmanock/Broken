@@ -130,25 +130,15 @@ play.$loaded(function(data){
     // plays.points = plays.Points;
 
     first.push(plays);
+
     first.sort(function(a,b){
       return b.Points - a.Points;
     });
-
+    $scope.something = first;
   });
-  // for(var i = 0; i<first.length; i++){
-    
-  // }
-  for(var i = 0; i<first.length; i++){
-    // $scope.something =[{
-    //   name: first[i].Name,
-    //   points: first[i].Points
-    // }]
-    
-  }
-
 
 });
-$scope.data = play;
+
 
 
 // RIGHT TRACK NEEDS SOMETHING ELSE
