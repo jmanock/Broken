@@ -147,7 +147,9 @@ play.$loaded(function(data){
 });
 
 $scope.rank = function(d){
-  
+    var rank = [];
+    rank.push(d.Points);
+    console.log(rank)
 }
 
 
