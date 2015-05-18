@@ -132,12 +132,24 @@ play.$loaded(function(data){
       return b.Points - a.Points;
     });
   });
+var rank = [];
+for(var i = 0; i<first.length; i++){
+  rank.push(first[i].Points);
+}
+    for(var i = 0; i<rank.length; i++){
+      var count = 0
+      if(rank[i] === rank[i-1]){
+        var x = i - count;
+        count++;
+        
+      }else{
+        x = i + 1;
+        count = 0;
 
-  
-    
-  
+      }
 
-    
+    }
+    $scope.rank = x;
 
   
 
