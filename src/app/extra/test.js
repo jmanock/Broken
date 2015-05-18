@@ -122,82 +122,35 @@ for(var i =0; i< something.length; i++){
 
 var play = $firebaseArray(FirebaseUrl.child('leaderboard'));
 var first = [];
-//$scope.players = play;
 
-play.$loaded(function(data){
-  angular.forEach(data, function(plays){
-    // plays.name = plays.Name;
-    // plays.points = plays.Points;
-
-    first.push(plays);
-
-    first.sort(function(a,b){
-      return b.Points - a.Points;
-    });
-    $scope.something = first;
-  });
-
-});
-
-
-
-// RIGHT TRACK NEEDS SOMETHING ELSE
-// Maybe this idea will work??? 
+// This works now to show players and points view most points first
 // play.$loaded(function(data){
 //   angular.forEach(data, function(plays){
 //     first.push(plays);
+
 //     first.sort(function(a,b){
 //       return b.Points - a.Points;
 //     });
-//   });
-//   angular.forEach(first, function(some){
-//     play.name = some.Name;
-//     play.points = some.Points;
-//   })
-// })
-
-// RIGHT IDEA SORTA WORKING BUT MAYBE A BETER WAY???
-// play.$loaded(function(data){
-//   angular.forEach(data, function(ps){
-//     first.push(ps); 
-  
-//   first.sort(function(a,b){
-//     return b.Points - a.Points
-//   });
-//   for(var i = 0; i< first.length; i++){
-//     if(ps.Name === first[i].Name){
-
-//     }
-//   }
+//     $scope.something = first;
 //   });
 // });
 
-// THIS WORKS TO OUTPUT RANK BUT WITH BUGS!!!
-// play.$loaded(function(data){
-//   angular.forEach(data, function(plays){
-//     //plays.rank = plays.$id;
-//     var ps = plays.Points;
-//     var rank = [];
-//     var count = 0;
-//     first.push(ps);
-//     first.sort(function(a,b){return b-a});
-//     for(var i = 0; i<first.length; i++){
-//       if(first[i] === first[i-1]){
-//         var x = i - count;
-//         rank.push(x);
-//         count++;
-//       }else{
-//         rank.push(i+1);
-//         count = 0;
-//       }
-//     }
-//     // console.log(first);
-//     // console.log(rank);
-//     for(var i = 0; i<rank.length; i++){
-//       plays.rank = rank[i];
-//     }
-//   });
-// });
+// NOW to show the ranking 
+play.$loaded(function(data){
+  angular.forEach(data, function(plays){
+    first.push(plays);
+    first.sort(function(a,b){
+      return b.Points - a.Points;
+    });
+    //$scope.something = first;
+  });
+  for(var i = 0; i<first.length; i++){
+    if(first[i].Points === first[i-1].Points){
+      console.log('baby steps please');
+    }
+  }
+})
+
 
 
 
