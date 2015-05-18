@@ -148,7 +148,8 @@ play.$loaded(function(data){
       count =0;
     }
   }
-  console.log(newRank);
+  console.log(first.Points);
+  
   $scope.something = first;
 });
 
