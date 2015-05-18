@@ -148,8 +148,9 @@ play.$loaded(function(data){
       count =0;
     }
   }
-  console.log(first.Points);
-  
+  angular.forEach(first, function(some){
+  some.rank = newRank;
+  })
   $scope.something = first;
 });
 
