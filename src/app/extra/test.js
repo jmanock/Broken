@@ -142,13 +142,26 @@ play.$loaded(function(data){
     first.sort(function(a,b){
       return b.Points - a.Points;
     });
-    //$scope.something = first;
+    $scope.something = first;
   });
+  var rank = [];
   for(var i = 0; i<first.length; i++){
-    if(first[i].Points === first[i-1].Points){
-      console.log('baby steps please');
-    }
+    rank.push(first[i].Points);
   }
+  var kewRank = [];
+  var count = 0;
+  for(var i = 0; i<rank.length; i++){
+    if(rank[i] === rank[i-1]){
+      var x = i - count;
+      kewRank.push(x);
+      count++;
+    }else{
+      kewRank.push(i+1);
+      count=0;
+    }
+    console.log(kewRank);
+  }
+
 })
 
 
