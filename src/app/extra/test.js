@@ -123,50 +123,16 @@ for(var i =0; i< something.length; i++){
 var play = $firebaseArray(FirebaseUrl.child('leaderboard'));
 var first = [];
 
-// THIS WORKS TO SORT AND SHOW POINTS IN ORDER ***
-// *** Now to get the rank to show up ****
 play.$loaded(function(data){
-  angular.forEach(data, function(plays){
-    first.push(plays);
+  angular.forEach(data, function(some){
+    first.push(some);
     first.sort(function(a,b){
       return b.Points - a.Points;
-    });
-  });
-var rank = [];
-for(var i = 0; i<first.length; i++){
-  rank.push(first[i].Points);
-}
-    for(var i = 0; i<rank.length; i++){
-      var count = 0
-      if(rank[i] === rank[i-1]){
-        var x = i - count;
-        count++;
-        
-      }else{
-        x = i + 1;
-        count = 0;
-
-      }
-
-    }
-    // MAYBE STORE THE RANK IN AN ARRAY AND RUN A FUNCTION OFF THAT??
-    $scope.rank = x;
-
-  
-
-  // THIS SHOWS THE ARRAY OR PRINTS OUT THE LAST NUMBER (WRONG)
-  // angular.forEach(first, function(some){
-  // // some.rank = newRank;
-  // for(var i = 0; i<newRank.length; i++){
-  //   //some.rank = newRank[i];
-  // }
-  // })
+    }); // SORT FUNCTION
+    
+  }); // FOREACH FUNCTION
   $scope.something = first;
-  
-  
-  
-});
-
+}); // LOAD FUNCTION
 
 
 
