@@ -149,6 +149,7 @@ for(var i = 0; i<first.length; i++){
       }
 
     }
+    // MAYBE STORE THE RANK IN AN ARRAY AND RUN A FUNCTION OFF THAT??
     $scope.rank = x;
 
   
