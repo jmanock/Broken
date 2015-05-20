@@ -121,16 +121,34 @@ for(var i =0; i< something.length; i++){
   
 
 var play = $firebaseArray(FirebaseUrl.child('leaderboard'));
-var first = [];
+//var first = [];
 
 play.$loaded(function(data){
+  var first = [];
   angular.forEach(data, function(some){
     first.push(some);
     first.sort(function(a,b){
       return b.Points - a.Points;
     }); // SORT FUNCTION
-    console.log(first);
+    
   }); // FOREACH FUNCTION
+  var second = [];
+  for(var i = 0; i<first.length; i++){
+    second.push(first[i].Points);
+  }
+  var count = 0;
+  var third = [];
+  for(var i = 0; i<second.length; i++){
+    if(second[i] === second[i-1]){
+      var x = i - count;
+      third.push(x);
+      count++;
+    }else{
+      third.push(i+1);
+      count=0;
+    }
+  }
+  
   $scope.something = first;
 }); // LOAD FUNCTION
 
