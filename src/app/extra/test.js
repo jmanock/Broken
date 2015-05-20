@@ -97,26 +97,26 @@ $scope.one = [{
 
 // Testing sort and rank 
 // This works now!!!
-var something = [10,10,20,20,33,34,20,55,55,66,66,20,20];
-something.sort(function(a,b) {
+// var something = [10,10,20,20,33,34,20,55,55,66,66,20,20];
+// something.sort(function(a,b) {
 
-  return b - a
-});
-var rank = [];
-var count = 0;
-for(var i =0; i< something.length; i++){
-  if(something[i] === something[i-1] ){
-    var x = i  - count;
-    //console.log(count);
-    rank.push(x);
-    count++;
-  }else{
-    rank.push(i+1)
-    count = 0;
-  }
-  //console.log(something)
-  //console.log(rank)
-}
+//   return b - a
+// });
+// var rank = [];
+// var count = 0;
+// for(var i =0; i< something.length; i++){
+//   if(something[i] === something[i-1] ){
+//     var x = i  - count;
+//     //console.log(count);
+//     rank.push(x);
+//     count++;
+//   }else{
+//     rank.push(i+1)
+//     count = 0;
+//   }
+//   //console.log(something)
+//   //console.log(rank)
+// }
 
   
 
@@ -148,7 +148,11 @@ play.$loaded(function(data){
       count=0;
     }
   }
-  
+ var map = {}
+  for(var i = 0; i<first.length; i++){
+    map[third[i] ] = first[i];
+  }
+  console.log(map);
   $scope.something = first;
 }); // LOAD FUNCTION
 
