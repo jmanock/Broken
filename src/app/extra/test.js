@@ -130,29 +130,27 @@ play.$loaded(function(data){
     first.sort(function(a,b){
       return b.Points - a.Points;
     }); // SORT FUNCTION
-    
+
   }); // FOREACH FUNCTION
+  var rank = [];
   var second = [];
-  for(var i = 0; i<first.length; i++){
-    second.push(first[i].Points);
-  }
   var count = 0;
-  var third = [];
-  for(var i = 0; i<second.length; i++){
-    if(second[i] === second[i-1]){
+  for(var i = 0; i< first.length; i++){
+    rank.push(first[i].Points);
+  }
+  for(var i = 0; i<rank.length; i++){
+    if(rank[i] === rank[i-1]){
       var x = i - count;
-      third.push(x);
+      second.push(x);
       count++;
     }else{
-      third.push(i+1);
-      count=0;
+      second.push(i+1);
+      count = 0;
     }
   }
- var map = {}
-  for(var i = 0; i<first.length; i++){
-    map[third[i] ] = first[i];
-  }
-  console.log(map);
+  console.log(rank);
+  console.log(second);
+
   $scope.something = first;
 }); // LOAD FUNCTION
 
