@@ -129,7 +129,7 @@ play.$loaded(function(data){
     first.sort(function(a,b){
       return b.Points - a.Points;
     }); // SORT FUNCTION
-    
+    console.log(first);
   }); // FOREACH FUNCTION
   $scope.something = first;
 }); // LOAD FUNCTION
