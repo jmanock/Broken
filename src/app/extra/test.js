@@ -132,30 +132,16 @@ play.$loaded(function(data){
     }); // SORT FUNCTION
 
   }); // FOREACH FUNCTION
-  var rank = [];
-  var second = [];
-  var count = 0;
-  for(var i = 0; i< first.length; i++){
-    rank.push(first[i].Points);
-  }
-  for(var i = 0; i<rank.length; i++){
-    if(rank[i] === rank[i-1]){
-      var x = i - count;
-      second.push(x);
-      count++;
-    }else{
-      second.push(i+1);
-      count = 0;
-    }
-  }
-  console.log(rank);
-  console.log(second);
-
+  
   $scope.something = first;
 }); // LOAD FUNCTION
 
 
-
+// NEED TO THINK OF SOME OTHER WAY TO LOAD THE RANKING NUMBERS????
+var som = [];
+$scope.rank = function(d){
+ console.log(d.Points);
+}
 
 
 
