@@ -97,7 +97,7 @@ $scope.one = [{
 
 // Testing sort and rank 
 // This works now!!!
-// var something = [10,10,20,20,33,34,20,55,55,66,66,20,20];
+//var something = [10,10,20,20,33,34,20,55,55,66,66,20,20];
 // something.sort(function(a,b) {
 
 //   return b - a
@@ -136,7 +136,8 @@ play.$loaded(function(data){
   var second = [];
   var count = 0;
   for(var i = 0; i<first.length; i++){
-    rank.push(first[i].Points);
+    var ex = first[i].Points;
+    rank.push(ex);
   }
   for(var i = 0; i<rank.length; i++){
     if(rank[i] === rank[i-1]){
@@ -148,7 +149,11 @@ play.$loaded(function(data){
       count = 0;
     }
   }
-  $scope.rank = second;
+  angular.forEach(first, function(som){
+    angular.forEach(second, function(sum){
+      som.rank = sum;
+    })
+  })
   $scope.something = first;
 }); // LOAD FUNCTION
 
