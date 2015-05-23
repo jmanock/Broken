@@ -147,21 +147,22 @@ play.$loaded(function(data){
     count = 0;
    }
   }
-  var map ={};
+  var map = [];
   for(var i = 0; i<second.length; i++){
-    map[rank[i]] = second[i];
+    map.push({
+      points:second[i]
+    });
   }
   console.log(map);
+ 
   $scope.something = first;
 }); // LOAD FUNCTION
 
-// IDEA
-// IF first.points is equal to second.points
-// THEN first.rank gets second.rank
-// STEPS
-  // get points and rank in array
-  // 
-
+// MORE BETTER IDEA
+  // IF first[i].points is equal to second[i].points
+  // THEN first[i].rank gets second[i].rank 
+// MAKE IT HAPPEN
+  // have to get second array to have points and rank
 
 
 var ref = new Firebase('https://fireseedangular.firebaseio.com');
