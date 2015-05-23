@@ -148,11 +148,13 @@ play.$loaded(function(data){
    }
   }
   var map = [];
-  for(var i = 0; i<second.length; i++){
+  for(var i = 0; i<second.length && i<rank.length; i++){
     map.push({
-      points:second[i]
-    });
+      points:second[i],
+      rank:rank[i]
+    })
   }
+
   console.log(map);
  
   $scope.something = first;
