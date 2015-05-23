@@ -159,16 +159,11 @@ play.$loaded(function(data){
       first[i].rank = map[i].rank;
     }
   }
-  //console.log(map);
   
   $scope.something = first;
 }); // LOAD FUNCTION
 
-// MORE BETTER IDEA
-  // IF first[i].points is equal to second[i].points
-  // THEN first[i].rank gets second[i].rank 
-// MAKE IT HAPPEN
-  // have to get second array to have points and rank
+
 
 
 var ref = new Firebase('https://fireseedangular.firebaseio.com');
