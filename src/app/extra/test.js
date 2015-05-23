@@ -154,9 +154,13 @@ play.$loaded(function(data){
       rank:rank[i]
     })
   }
-
-  console.log(map);
- 
+  for(var i = 0; i<first.length && i<map.length; i++){
+    if(first[i].Points === map[i].points){
+      first[i].rank = map[i].rank;
+    }
+  }
+  //console.log(map);
+  
   $scope.something = first;
 }); // LOAD FUNCTION
 
