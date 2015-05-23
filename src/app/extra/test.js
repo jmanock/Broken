@@ -160,15 +160,7 @@ play.$loaded(function(data){
 
 // NEED TO THINK OF SOME OTHER WAY TO LOAD THE RANKING NUMBERS????
 
-$scope.rank = function(d){
- var second = [];
- second.push(d);
- for(var i = 0; i<second.length; i++){
-  if(second[i] === second[i-1]){
-    console.log('OMG???');
-  }
- }
-}
+
 
 
 var ref = new Firebase('https://fireseedangular.firebaseio.com');
