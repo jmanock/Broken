@@ -149,17 +149,10 @@ play.$loaded(function(data){
       count = 0;
     }
   }
-  //console.log(first);
-  //console.log(second);
-  var third = [];
-  for(var i = 0; i<second.length; i++){
-    third.push({
-      r:second[i]
-    })
-    $scope.rank = third;
-    
-  }
   $scope.something = first;
+  // Maybe if I check the points array against the first points and give it the rank that will work???
+
+  
 }); // LOAD FUNCTION
 
 
