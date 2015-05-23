@@ -130,17 +130,37 @@ play.$loaded(function(data){
     first.sort(function(a,b){
       return b.Points - a.Points;
     }); // SORT FUNCTION
-
   }); // FOREACH FUNCTION
- 
-//  return first;
+  var second = [];
+  angular.forEach(first,function(ps){
+    second.push(ps.Points);
+  });
+  var count = 0;
+  var rank = [];
+  for(var i = 0; i<second.length; i++){
+   if(second[i] === second[i-1]){
+    var x = i - count;
+    rank.push(x);
+    count++;
+   }else{
+    rank.push(i+1);
+    count = 0;
+   }
+  }
+  var map ={};
+  for(var i = 0; i<second.length; i++){
+    map[rank[i]] = second[i];
+  }
+  console.log(map);
   $scope.something = first;
 }); // LOAD FUNCTION
 
 // IDEA
 // IF first.points is equal to second.points
 // THEN first.rank gets second.rank
-
+// STEPS
+  // get points and rank in array
+  // 
 
 
 
