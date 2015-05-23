@@ -149,11 +149,16 @@ play.$loaded(function(data){
       count = 0;
     }
   }
-  angular.forEach(first, function(som){
-    angular.forEach(second, function(sum){
-      som.rank = sum;
+  //console.log(first);
+  //console.log(second);
+  var third = [];
+  for(var i = 0; i<second.length; i++){
+    third.push({
+      r:second[i]
     })
-  })
+    $scope.rank = third;
+    
+  }
   $scope.something = first;
 }); // LOAD FUNCTION
 
