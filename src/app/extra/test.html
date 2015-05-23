@@ -32,7 +32,9 @@
  	{{team.name}} | {{team.points}}
  	<button ng-click='removePlayer(team)'>Remove</button>
  </div>
-
+<div ng-repeat='r in rank'>
+	{{r}}
+</div>
  <br>
  <div ng-repeat='d in something'>
  	{{d.Name}} | {{d.Points}} | {{d.rank}}

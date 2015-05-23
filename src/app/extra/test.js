@@ -124,7 +124,7 @@ var play = $firebaseArray(FirebaseUrl.child('leaderboard'));
 //var first = [];
 
 play.$loaded(function(data){
-  var first = [];
+ var first = [];
   angular.forEach(data, function(some){
     first.push(some);
     first.sort(function(a,b){
@@ -132,31 +132,14 @@ play.$loaded(function(data){
     }); // SORT FUNCTION
 
   }); // FOREACH FUNCTION
-  var rank = [];
-  var second = [];
-  var count = 0;
-  for(var i = 0; i<first.length; i++){
-    var ex = first[i].Points;
-    rank.push(ex);
-  }
-  for(var i = 0; i<rank.length; i++){
-    if(rank[i] === rank[i-1]){
-      var x = i - count;
-      second.push(x);
-      count++;
-    }else{
-      second.push(i+1);
-      count = 0;
-    }
-  }
+ 
+//  return first;
   $scope.something = first;
-  // Maybe if I check the points array against the first points and give it the rank that will work???
-
-  
 }); // LOAD FUNCTION
 
-
-// NEED TO THINK OF SOME OTHER WAY TO LOAD THE RANKING NUMBERS????
+// IDEA
+// IF first.points is equal to second.points
+// THEN first.rank gets second.rank
 
 
 
