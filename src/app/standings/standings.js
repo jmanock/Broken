@@ -31,7 +31,34 @@ angular.module('fantasy')
 			});
 		});
 
-		
+		var second = [];
+		var count = 0;
+		var third = [];
+		angular.forEach(first, function(some){
+			second.push(some.Points);
+		});
+		for(var i = 0; i<second.length; i++){
+			if(second[i] === second[i-1]){
+				var x = i - count;
+				third.push(x);
+				count++;
+			}else{
+				third.push(i+1);
+				count = 0;
+			}
+		}
+		var map = [];
+		for(var i = 0; i < second.length && i < third.length; i++){
+			map.push({
+				points:second[i],
+				rank: third[i]
+			});
+		}
+		for(var i = 0; i<first.length && i<map.length; i++){
+			if(first[i].Points === map[i].points){
+				first[i].Rank = map[i].rank;
+			}
+		}
 		$scope.players = first;
 	}); // END LOAD FUNCTION
 	
