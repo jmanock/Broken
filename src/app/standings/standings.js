@@ -4,7 +4,7 @@ angular.module('fantasy')
 
 	// Set the `teamUser`
 	var teamUser = $firebaseObject(FirebaseUrl.child('teamUser'));
-	$scope.data = teamUser;
+	 $scope.data = teamUser;
 
 	// Get the `Leaderboard`
 	var players = $firebaseArray(FirebaseUrl.child('leaderboard'));
@@ -67,11 +67,6 @@ angular.module('fantasy')
 
 	// Add the `points` together
 	$scope.getTotal = function(v){
-		// var total = 0;
-		// angular.forEach(v, function(s){
-		// 	total += s.points;
-		// })
-		// return total;
 		var total = 0;
 		angular.forEach(v, function(ps){
 			if(ps.points === undefined){
@@ -81,6 +76,7 @@ angular.module('fantasy')
 		});
 		return total;
 	}
+
 	
 	
 		
