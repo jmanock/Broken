@@ -67,10 +67,18 @@ angular.module('fantasy')
 
 	// Add the `points` together
 	$scope.getTotal = function(v){
+		// var total = 0;
+		// angular.forEach(v, function(s){
+		// 	total += s.points;
+		// })
+		// return total;
 		var total = 0;
-		angular.forEach(v, function(s){
-			total += s.points;
-		})
+		angular.forEach(v, function(ps){
+			if(ps.points === undefined){
+				ps.points = 0;
+			}
+			total += ps.points;
+		});
 		return total;
 	}
 	
