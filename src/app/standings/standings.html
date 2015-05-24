@@ -17,14 +17,11 @@
     </table>
     <h5>Total: {{getTotal(v)}}</h5>
   </div> -->
+  <h3>Teams</h3>
   <div ng-repeat='(k,v) in data'>
     <table>
       <tr>
-        <th>Name</th>
-        <th>Total</th>
-      </tr>
-      <tr>
-        <td ng-click='toggle = !toggle'>{{k}}</td>
+        <td ng-click='toggle = !toggle'>{{k}} &nbsp; &nbsp;</td>
         <td>{{getTotal(v)}}</td>
       </tr>
       <table ng-show='toggle'>
