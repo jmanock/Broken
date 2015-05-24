@@ -76,8 +76,6 @@ angular.module('fantasy')
 		});
 		return total;
 	}
-
-	
 	
 		
 });
