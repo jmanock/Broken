@@ -7,23 +7,36 @@ angular.module('fantasy')
 	$scope.data = teamUser;
 
 	// Get the `Leaderboard`
-	$scope.players = $firebaseArray(FirebaseUrl.child('leaderboard'));
+	var players = $firebaseArray(FirebaseUrl.child('leaderboard'));
 
-	// Load the `Leaderboard` and pull points that match `userTeam`
-	$scope.players.$loaded(function(data){
+	// Load `Leaderboard` and sort based on `Points`
+	players.$loaded(function(data){
+		var first = [];
 		angular.forEach(data, function(leader){
-			angular.forEach(teamUser, function(data){
-				angular.forEach(data, function(player){
-					if(player.name === leader.Name){
-						player.points = leader.Points;
+			first.push(leader);
+			first.sort(function(a,b){
+				return b.Points - a.Points;
+			}); // END SORT FUNCTION
+
+		}); // END FOR EACH FUNCTION 
+
+		// Get the `Points` from `Leaderboard` and give them to `team'
+		angular.forEach(first, function(leaderboard){
+			angular.forEach(teamUser, function(teams){
+				angular.forEach(teams, function(players){
+					if(players.name === leaderboard.Name){
+						players.points = leaderboard.Points;
 					}
-				});
+				}); 
 			});
 		});
-	});
+
+		
+		$scope.players = first;
+	}); // END LOAD FUNCTION
 	
 	// Hides the `Players` from the `Team`
-	$scope.toggle = false;
+	// $scope.toggle = false;
 
 	// Add the `points` together
 	$scope.getTotal = function(v){
@@ -34,23 +47,6 @@ angular.module('fantasy')
 		return total;
 	}
 	
-	$scope.players.$loaded(function(data){
-		var s = [];
-		for(var i = 0; i< data.length; i++){
-			var points = data[i].Points;
-			var rank;
-			s.push(points);	
-			s.sort(function(a, b){return b-a});
-			// if(s[i] === s[i-1]){
-			// 	rank = i;
-			// 	console.log(rank);
-			// }else{
-			// 	rank = i+1;
-			// 	console.log(rank);
-			// }
-			console.log(s)
-		}
-		
-	})
+	
 		
 });
