@@ -77,5 +77,5 @@ angular.module('fantasy')
 		return total;
 	}
 	
-		
+	// Need a new way of ordering the key and value pair to sort the totals	
 });
