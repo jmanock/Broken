@@ -1,31 +1,35 @@
 <div class='container'>
   <div ng-include="'components/navbar/navbar.html'"></div>
-  
+
   <div ng-controller='StandingsCtrl as standings'>
-   
-  <div ng-repeat='(k,v) in data | orderBy:"-getTotal()"'>
-    <h4 ng-click='toggle = !toggle'>{{k}}</h4>
-    <table ng-show='toggle'>
-      <tr>
-        <th>Name</th>
-        <th>Points</th>
-      </tr>
-      <tr ng-repeat='value in v | orderBy:"-points"'>
-        <td>{{value.name}}</td>
-        <td>{{value.points}}</td>
-      </tr>
-    </table>
-    <h5>Total: {{getTotal(v)}}</h5>
-  </div>
-  
-    <div>
-      <h3>Leaderboard</h3>
-      <ol>
-        <li ng-repeat='player in players '>
-         {{rank(players)}} | {{player.Name}} | {{player.Points}}
-        </li>
-      </ol>
+    
+    <h3>Teams</h3>
+    <div ng-repeat='(k,v) in data'>
+      <table>
+        <tr>
+          <td ng-click='toggle = !toggle'>{{k}} &nbsp; &nbsp;</td>
+          <td>{{getTotal(v)}}</td>
+        </tr>
+        <table ng-show='toggle'>
+          <tr>
+            <th>Players</th>
+            <th>Points</th>
+          </tr>
+          <tr ng-repeat='value in v | orderBy:"-points"'>
+            <td>{{value.name}}</td>
+            <td>{{value.points}}</td>
+          </tr>
+        </table>
+      </table>
     </div>
 
-    
-     
+    <div>
+      <h3>Leaderboard</h3>
+      <ul>
+        <li ng-repeat='player in players' style='list-style-type:none;'>
+          {{player.Rank}} | {{player.Name}} | {{player.Points}}
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
