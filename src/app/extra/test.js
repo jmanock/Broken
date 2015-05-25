@@ -95,45 +95,76 @@ $scope.one = [{
 //   })
 // })
 
-// Testing sort and rank
-var something = [35,66, 66, 75, 85, 88, 88,66, 88, 90, 100, 66, 55, 66];
-something.sort(function(a,b) {
+// Testing sort and rank 
+// This works now!!!
+//var something = [10,10,20,20,33,34,20,55,55,66,66,20,20];
+// something.sort(function(a,b) {
 
-  return b - a
-});
-var rank = [];
-var count = 0;
-for(var i =0; i< something.length; i++){
-  if(something[i] === something[i -1] || something[i+1] === something[i]){
-    
-      var x = i + 1 - count;
-      console.log(count);
-      rank.push(x)
+//   return b - a
+// });
+// var rank = [];
+// var count = 0;
+// for(var i =0; i< something.length; i++){
+//   if(something[i] === something[i-1] ){
+//     var x = i  - count;
+//     //console.log(count);
+//     rank.push(x);
+//     count++;
+//   }else{
+//     rank.push(i+1)
+//     count = 0;
+//   }
+//   //console.log(something)
+//   //console.log(rank)
+// }
+
+  
+
+var play = $firebaseArray(FirebaseUrl.child('leaderboard'));
+//var first = [];
+
+play.$loaded(function(data){
+ var first = [];
+  angular.forEach(data, function(some){
+    first.push(some);
+    first.sort(function(a,b){
+      return b.Points - a.Points;
+    }); // SORT FUNCTION
+  }); // FOREACH FUNCTION
+  var second = [];
+  angular.forEach(first,function(ps){
+    second.push(ps.Points);
+  });
+  var count = 0;
+  var rank = [];
+  for(var i = 0; i<second.length; i++){
+   if(second[i] === second[i-1]){
+    var x = i - count;
+    rank.push(x);
     count++;
-  }else{
+   }else{
     rank.push(i+1);
+    count = 0;
+   }
   }
-  console.log(rank);
-
-}
+  var map = [];
+  for(var i = 0; i<second.length && i<rank.length; i++){
+    map.push({
+      points:second[i],
+      rank:rank[i]
+    })
+  }
+  for(var i = 0; i<first.length && i<map.length; i++){
+    if(first[i].Points === map[i].points){
+      first[i].rank = map[i].rank;
+    }
+  }
   
-  // if(something[i] === something[i-1] && something[i] === something[i-2]&& something[i] === something[i-3]){
-  //   rank.push(i-2);
-    
-  // }else if( something[i] === something[i-1] && something[i] === something[i-2]){
-  //   rank.push(i-1)
-    
-  // }else if(something[i] === something[i-1]){
-  //   rank.push(i);
-  // }else{
-  //   rank.push(i+1);
-  // }
-  
+  $scope.something = first;
+}); // LOAD FUNCTION
 
 
 
-
-$scope.players = $firebaseArray(FirebaseUrl.child('leaderboard'));
 
 var ref = new Firebase('https://fireseedangular.firebaseio.com');
 $scope.addPlayer = function(player){
@@ -161,10 +192,5 @@ something.$loaded(function(data){
   });
 });
 
-// orderby example see if this will work
-var shiz = new Firebase('https://fireseedangular.firebaseio.com/team');
-shiz.orderByChild('name').on('child_added', function(snap){
-//console.log(snap.val().name);
 
-});
 });

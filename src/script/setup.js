@@ -4,7 +4,7 @@ var request = require('request');
 var cheerio = require('cheerio');
 var Firebase = require('Firebase');
 var ref = new Firebase('https://reditclone.firebaseio.com/leaderboard');
-var url = ('http://sports.yahoo.com/golf/pga/leaderboard');
+var url = ('https://sports.yahoo.com/golf/pga/leaderboard');
 var golfers = [];
 
 var firstCall = function(){
@@ -15,7 +15,7 @@ var firstCall = function(){
 
 			links.each(function(i, link){
 				var urls = $(link).attr('href');
-				var page = ('http://sports.yahoo.com' + urls);
+				var page = ('https://sports.yahoo.com' + urls);
 
 				return secondCall(page, i);
 			});
@@ -39,10 +39,11 @@ var secondCall = function(page, i){
 				Points: points
 			};
 			if(data.Name === 'PGA Tour' || data.Id === 0){
+				console.log('deleted');
 				delete data.Name;
 				delete data.Points;
 			}
-			console.log(i +' this worked!! ' + data.Points);
+			console.log(i +' this worked!! ' + data.Name);
 			golfers.push(data);
 			ref.set(golfers);
 		}else{
