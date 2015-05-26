@@ -80,11 +80,12 @@ $scope.getTotal = function(v){
 	});
 	$scope.slut(total);
 	return total;
+
 }
 
 $scope.slut = function(total){
-console.log(total);	
-
+// What do I need to do to get the total in an array?
+	// Then need to run the rank algorithm 
 }
 
 });
