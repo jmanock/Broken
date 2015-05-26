@@ -5,6 +5,9 @@ angular.module('fantasy')
 	// Set the `teamUser`
 	var teamUser = $firebaseObject(FirebaseUrl.child('teamUser'));
 	$scope.data = teamUser;
+	teamUser.$loaded(function(data){
+		console.log(data);
+	})
 
 	// Get the `LeaderBoard`
 	var players = $firebaseArray(FirebaseUrl.child('leaderboard'));
@@ -73,5 +76,5 @@ angular.module('fantasy')
 		return total;
 	};
 
-	
-}); // END CONTROLLER
+
+}); // END OF CONTROLLER
