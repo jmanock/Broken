@@ -71,6 +71,7 @@ angular.module('fantasy')
 	}); // END LOAD FUNCTION
 
 $scope.getTotal = function(v){
+	
 	var total = 0;
 	angular.forEach(v, function(ps){
 		if(ps.points === undefined){
@@ -78,14 +79,33 @@ $scope.getTotal = function(v){
 		}
 		total += ps.points;
 	});
-	$scope.slut(total);
+	$scope.slut(total, v);
 	return total;
 
 }
-
-$scope.slut = function(total){
-// What do I need to do to get the total in an array?
+var suck = [];
+$scope.slut = function(total,v){
+// How to get the total into an array 
 	// Then need to run the rank algorithm 
+	
+	var stinky = [];
+	var count = 0;
+	if(total > 0){
+		suck.push(total);
+	}
+	for(var i = 0; i<suck.length; i++){
+		if(suck[i] === suck[i-1]){
+			var x = i - count;
+			stinky.push(x);
+			count++;
+		}else{
+			stinky.push(i+1);
+			count = 0;
+		}
+	}
+	for(var j = 0; j<stinky.length; j++){
+		return stinky[j];
+	}
 }
 
 });
