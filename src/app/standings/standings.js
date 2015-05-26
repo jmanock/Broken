@@ -71,5 +71,7 @@ angular.module('fantasy')
 			total += ps.points;
 		});
 		return total;
-	}
-});
+	};
+
+	
+}); // END CONTROLLER
