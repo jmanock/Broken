@@ -31,14 +31,14 @@ angular.module('fantasy')
         // CHANGE TO ALERT
         console.log('Thats enough players');
       }else{
-        console.log(id);
-        return(id||0)+1;
+        return (id || 0) +1;
       }
     }, function(err, committed, ss){
       if(err){
         console.log(err);
       }else if(committed){
         var id = ss.val();
+        console.log(id);
         if(id <= 5){
           var userTeam = FirebaseUrl.child('userTeam').child(self.user.uid).child('team').child(player.$id);
         	var teamUser = FirebaseUrl.child('teamUser').child(self.user.fullName).child(id);
