@@ -6,7 +6,10 @@ angular.module('fantasy')
 	var teamUser = $firebaseObject(FirebaseUrl.child('teamUser'));
 	$scope.data = teamUser;
 	teamUser.$loaded(function(data){
-		console.log(data);
+		angular.forEach(data, function(k,v){
+			k.splice(0,1);
+			console.log(k);
+		})
 	})
 
 	// Get the `LeaderBoard`
