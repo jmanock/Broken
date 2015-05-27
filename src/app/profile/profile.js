@@ -4,25 +4,25 @@ angular.module('fantasy')
 
 var self = this;
 // Setup `CurrentUser`
-$scope.currentUser = $firebaseArray(FirebaseUrl.child('users').child($stateParams.id));
+this.currentUser = $firebaseArray(FirebaseUrl.child('users').child($stateParams.id));
 Auth.onAuth(function(user){
   self.user = user;
 });
 
 // Load `Team`
-$scope.currentUser.$loaded(function(){
-  $scope.teams = $firebaseObject(FirebaseUrl.child('userTeam').child($stateParams.id).child('team'));
+this.currentUser.$loaded(function(){
+  self.teams = $firebaseObject(FirebaseUrl.child('userTeam').child($stateParams.id).child('team'));
 });
 
 // Load `LeaderBoard`
-$scope.players = $firebaseArray(FirebaseUrl.child('leaderboard'));
+this.players = $firebaseArray(FirebaseUrl.child('leaderboard'));
 
 // Make the buttons do something
-$scope.add = function(p){
-  $scope.count(p);
+this.add = function(p){
+  this.count(p);
 };
 
-$scope.count = function(p){
+this.count = function(p){
   // Set up a `Counter` to limit `Players` added
   FirebaseUrl.child('userTeam').child(self.user.uid).child('count')
   .transaction(function(count){
@@ -53,4 +53,28 @@ $scope.count = function(p){
     }
   });
 };
+
+this.removePlayer = function(id){
+  this.remove( id);
+};
+
+this.remove = function( id){
+  FirebaseUrl.child('userTeam').child(self.user.uid).child('count').transaction(function(id){
+    return(id || 0)-1;
+  }, function(err, committed, ss){
+    if(err){
+      console.log(err);
+    }else if(committed){
+      var i = ss.val();
+      var userTeam = FirebaseUrl.child('userTeam').child(self.user.uid).child('team').child(id);
+      var teamUser = FirebaseUrl.child('teamUser').child(self.user.fullName).child(i);
+
+      userTeam.remove();
+      teamUser.remove();
+      console.log('i ' + i);
+      console.log('id ' + id);
+    }
+  });
+};
+
 });

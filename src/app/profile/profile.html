@@ -5,19 +5,18 @@
   <div>
     <h4>Team</h4>
     <ol>
-      <li ng-repeat='team in teams'>
-      {{teams}}
+      <li ng-repeat='(id,team) in search.teams'>
         {{team.name}} 
-        <button>Remove player</button>
+        <button ng-click='search.removePlayer(id)'>Remove player</button>
       </li>
     </ol>
   </div>
     <div>
       <h4>Players</h4>
       <ul>
-        <li ng-repeat='p in players'>
+        <li ng-repeat='p in search.players'>
           {{p.Name}} &nbsp;
-          <button ng-click='add(players[$index])'>Add Player</button>
+          <button ng-click='search.add(search.players[$index])'>Add Player</button>
         </li>
       </ul>
     </div>
