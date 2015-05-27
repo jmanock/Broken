@@ -1,82 +1,51 @@
 'use strict';
 angular.module('fantasy')
-.controller('SearchCtrl', function(FirebaseUrl, $firebaseObject, $stateParams, Auth, $firebaseArray){
-  var self = this;
+.controller('SearchCtrl', function(FirebaseUrl, $scope, $firebaseArray, $firebaseObject, $stateParams, Auth){
 
-  // Setup `currentUser`
-  this.currentUser = $firebaseArray(FirebaseUrl.child('users').child($stateParams.id));
-  Auth.onAuth(function(user){
-    self.user = user;
+var self = this;
+// Setup `CurrentUser`
+$scope.currentUser = $firebaseArray(FirebaseUrl.child('users').child($stateParams.id));
+Auth.onAuth(function(user){
+  self.user = user;
+});
+
+// Load `LeaderBoard`
+$scope.players = $firebaseArray(FirebaseUrl.child('leaderboard'));
+
+// Make the buttons do something
+$scope.add = function(p){
+  $scope.count(p);
+};
+
+$scope.count = function(p){
+  // Set up a `Counter` to limit `Players` added
+  FirebaseUrl.child('userTeam').child(self.user.uid).child('count')
+  .transaction(function(count){
+    if(count === null){
+      count = 0;
+    }
+    if(count >= 5){
+      console.log('That is all the players you can have');
+    }else{
+      //console.log(id);
+      return(count ||0)+1;
+    }
+  }, function(err, committed, ss){
+    if(err){
+      console.log(err);
+    }else if(committed){      
+      var id = ss.val()-1;
+      console.log(id);
+      var userTeam = FirebaseUrl.child('userTeam').child(self.user.uid).child('team').child(p.$id);
+      var teamUser = FirebaseUrl.child('teamUser');
+
+      userTeam.update({
+        name: p.Name
+      });
+      teamUser.update({
+        user: self.user.fullName
+      });
+    }
   });
-
-  // Load `Team` if any is there
-  this.currentUser.$loaded(function(){
-    self.teams = $firebaseObject(FirebaseUrl.child('userTeam').child($stateParams.id).child('team'));
-  });
-
-  // Get  `Players`
-  this.players = $firebaseArray(FirebaseUrl.child('leaderboard'));
-
-  // Add `Player` to `Team`
-  this.addPlayer = function(player){
-    // Send `Player` to `include` function
-    this.include(player);  
-  };
-
-  this.include = function(player){
-    // Set up a counter to only add 5 players to a team
-    FirebaseUrl.child('userTeam').child(self.user.uid).child('counter')
-    .transaction(function(id){
-      if(id >= 5){
-        // CHANGE TO ALERT
-        console.log('Thats enough players');
-      }else{
-        return (id || 0) +1;
-      }
-    }, function(err, committed, ss){
-      if(err){
-        console.log(err);
-      }else if(committed){
-        var id = ss.val();
-        console.log(id);
-        if(id <= 5){
-          var userTeam = FirebaseUrl.child('userTeam').child(self.user.uid).child('team').child(player.$id);
-        	var teamUser = FirebaseUrl.child('teamUser').child(self.user.fullName).child(id);
-
-          // Update both `userTeam` with `Players`
-          userTeam.update({
-            name:player.Name
-          });
-          teamUser.update({
-          	name:player.Name
-          });
-        }
-      }
-    });
-  };  
-  
-  // Remove `players` from `userTeam`
-  this.removePlayer = function(id, player){
-    this.remove(player, id);
-    
-  };
-
-  this.remove = function(player, id){
-    FirebaseUrl.child('userTeam').child(self.user.uid).child('counter').transaction(function(id){
-      return(id || 0)-1;
-    }, function(err, committed, ss){
-      if(err){
-        console.log(err);
-      }else if(committed){
-        var i = ss.val();
-        
-        
-        var userTeam = FirebaseUrl.child('userTeam').child(self.user.uid).child('team').child(id);
-        var teamUser = FirebaseUrl.child('teamUser').child(self.user.fullName).child(id);
-        userTeam.remove();
-        teamUser.remove();
-        console.log(i);
-      }
-    });
-  };
+};
 });
