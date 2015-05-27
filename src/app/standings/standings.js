@@ -71,17 +71,20 @@ angular.module('fantasy')
 	}); // END LOAD FUNCTION
 
 $scope.getTotal = function(v){
-
-	for(var i = 0; i<v.length; i++){
-		console.log(v[i].points);
-	}
-
+	var total = 0;
+	angular.forEach(v, function(p){
+		if(p.points === undefined){
+			p.points = 0;
+		}
+		total += p.points;
+	});
+	return total;
 };
 
-$scope.slut = function(total,v){
+$scope.somethingGood = function(s){
 // How to get the total into an array 
 	// Then need to run the rank algorithm 
-	
+console.log(s);	
 
 };
 
