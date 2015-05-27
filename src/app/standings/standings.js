@@ -12,7 +12,7 @@ angular.module('fantasy')
 			
 		});
 		$scope.data = teamUser;
-	})
+	});
 
 	// Get the `LeaderBoard`
 	var players = $firebaseArray(FirebaseUrl.child('leaderboard'));
@@ -71,41 +71,18 @@ angular.module('fantasy')
 	}); // END LOAD FUNCTION
 
 $scope.getTotal = function(v){
-	
-	var total = 0;
-	angular.forEach(v, function(ps){
-		if(ps.points === undefined){
-			ps.points = 0;
-		}
-		total += ps.points;
-	});
-	$scope.slut(total, v);
-	return total;
 
-}
-var suck = [];
+	for(var i = 0; i<v.length; i++){
+		console.log(v[i].points);
+	}
+
+};
+
 $scope.slut = function(total,v){
 // How to get the total into an array 
 	// Then need to run the rank algorithm 
 	
-	var stinky = [];
-	var count = 0;
-	if(total > 0){
-		suck.push(total);
-	}
-	for(var i = 0; i<suck.length; i++){
-		if(suck[i] === suck[i-1]){
-			var x = i - count;
-			stinky.push(x);
-			count++;
-		}else{
-			stinky.push(i+1);
-			count = 0;
-		}
-	}
-	for(var j = 0; j<stinky.length; j++){
-		return stinky[j];
-	}
-}
+
+};
 
 });
