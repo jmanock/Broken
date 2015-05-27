@@ -37,13 +37,13 @@ $scope.count = function(p){
       var id = ss.val()-1;
       console.log(id);
       var userTeam = FirebaseUrl.child('userTeam').child(self.user.uid).child('team').child(p.$id);
-      var teamUser = FirebaseUrl.child('teamUser');
+      var teamUser = FirebaseUrl.child('teamUser').child(self.user.fullName).child('team').child(id);
 
       userTeam.update({
         name: p.Name
       });
       teamUser.update({
-        user: self.user.fullName
+        name:p.Name
       });
     }
   });
