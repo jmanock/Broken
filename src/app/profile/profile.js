@@ -9,6 +9,11 @@ Auth.onAuth(function(user){
   self.user = user;
 });
 
+// Load `Team`
+$scope.currentUser.$loaded(function(){
+  $scope.teams = $firebaseObject(FirebaseUrl.child('userTeam').child($stateParams.id).child('team'));
+});
+
 // Load `LeaderBoard`
 $scope.players = $firebaseArray(FirebaseUrl.child('leaderboard'));
 
@@ -37,7 +42,7 @@ $scope.count = function(p){
       var id = ss.val()-1;
       console.log(id);
       var userTeam = FirebaseUrl.child('userTeam').child(self.user.uid).child('team').child(p.$id);
-      var teamUser = FirebaseUrl.child('teamUser').child(self.user.fullName).child('team').child(id);
+      var teamUser = FirebaseUrl.child('teamUser').child(self.user.fullName).child(id);
 
       userTeam.update({
         name: p.Name

@@ -4,6 +4,13 @@
   <div ng-controller='SearchCtrl as search'>
   <div>
     <h4>Team</h4>
+    <ol>
+      <li ng-repeat='team in teams'>
+      {{teams}}
+        {{team.name}} 
+        <button>Remove player</button>
+      </li>
+    </ol>
   </div>
     <div>
       <h4>Players</h4>

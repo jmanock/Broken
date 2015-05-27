@@ -4,15 +4,15 @@ angular.module('fantasy')
 .controller('StandingsCtrl', function(FirebaseUrl, $firebaseArray, $firebaseObject, $scope){
 	// Set the `teamUser`
 	var teamUser = $firebaseObject(FirebaseUrl.child('teamUser'));
-	//$scope.data = teamUser;
+	$scope.data = teamUser;
 
-	teamUser.$loaded(function(data){
-		angular.forEach(data, function(s){
-			s.splice(0,1);
+	// teamUser.$loaded(function(data){
+	// 	angular.forEach(data, function(s){
+	// 		s.splice(0,1);
 			
-		});
-		$scope.data = teamUser;
-	});
+	// 	});
+	// 	$scope.data = teamUser;
+	// });
 
 	// Get the `LeaderBoard`
 	var players = $firebaseArray(FirebaseUrl.child('leaderboard'));
