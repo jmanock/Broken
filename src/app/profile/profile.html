@@ -7,7 +7,7 @@
     <ol>
       <li ng-repeat='(id,team) in search.teams'>
         {{team.name}} 
-        <button ng-click='search.removePlayer(id)'>Remove player</button>
+        <button ng-click='search.removePlayer(id,team)'>Remove player</button>
       </li>
     </ol>
   </div>

@@ -54,11 +54,12 @@ this.count = function(p){
   });
 };
 
-this.removePlayer = function(id){
-  this.remove( id);
+this.removePlayer = function(id, player){
+  console.log(player);
+  this.remove( player,id);
 };
 
-this.remove = function( id){
+this.remove = function( player,id){
   FirebaseUrl.child('userTeam').child(self.user.uid).child('count').transaction(function(id){
     return(id || 0)-1;
   }, function(err, committed, ss){
@@ -67,7 +68,7 @@ this.remove = function( id){
     }else if(committed){
       var i = ss.val();
       var userTeam = FirebaseUrl.child('userTeam').child(self.user.uid).child('team').child(id);
-      var teamUser = FirebaseUrl.child('teamUser').child(self.user.fullName).child(i);
+      var teamUser = FirebaseUrl.child('teamUser').child(self.user.fullName);
 
       userTeam.remove();
       teamUser.remove();
