@@ -89,12 +89,12 @@ this.remove = function(id){
         * also easy to reorder based on rank
       * how long is this going to take would like to be done sometime soon
   */
-  var something = FirebaseUrl.child('teams');
+  var something = FirebaseUrl.child('teams').child(self.user.fullName);
   
   angular.forEach(self.teams, function(s){
     something.push({
       player:s.name,
-      user:self.user.fullName
+      
     });
   });
   

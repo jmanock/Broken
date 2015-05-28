@@ -24,7 +24,10 @@
       </table>
     </div>  -->
     <div ng-repeat='t in teams'>
-      {{t.player}} | {{t.user}}
+      {{t.$id}} 
+      <div ng-repeat='s in t'>
+        {{s.player}}
+      </div>
     </div>
     <div>
       <h3>Leaderboard</h3>
