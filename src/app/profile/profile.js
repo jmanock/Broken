@@ -83,4 +83,32 @@ this.save = function(){
     });
   });
 };
+
+// Reset the `Team` back to Empty
+this.reset = function(){
+  /*
+    # Need to do
+      * Delete the `teamUser`
+      * Delete the `team` only the user
+      * Set the counter back to 0
+  */
+  console.log('hello');
+};
+
 });// END CONTROLLER
+
+
+/*
+  Bugs need to fix
+  # PROBLEM
+    * Adding the same player more than once
+      - Doesn't add the player but it does increase the count
+  # IDEA
+    * Maybe a hide / show when the add button is clicked
+  # PROBLEM
+    * Saving the team more than once
+      - Adds the team again and again
+  # IDEA
+    * Delete anything that is there then add!!!
+
+*/
