@@ -76,5 +76,22 @@ this.remove = function(id){
     }
   });
 };
+ this.save = function(){
+  /* This is used to store the team to be called in the standings page
+    * the goal is to be able to get rid of the key value in standings
+    WHAT I NEED
+      * players
+      * user
+    PROBLEMS I SEE
+      * indexing the different teams
+      * not sure what to use, ie array or hash seems like the best idea
+      * how to not make it 100 levels deep
+      * is it going to work for the standings page 
+        * easy to call for points and total
+        * also easy to reorder based on rank
+      * how long is this going to take would like to be done sometime soon
+      
 
+  */
+ };
 });
