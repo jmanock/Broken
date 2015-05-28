@@ -92,6 +92,7 @@ this.remove = function(id){
   var something = FirebaseUrl.child('teams');
   angular.forEach(self.teams, function(s){
     something.push({
+      user:self.user.fullName,
       names: s.name
     });
   });
