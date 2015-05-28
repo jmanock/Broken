@@ -1,10 +1,18 @@
 'use strict';
+
 angular.module('fantasy')
 .controller('StandingsCtrl', function(FirebaseUrl, $firebaseArray, $firebaseObject, $scope){
-
 	// Set the `teamUser`
 	var teamUser = $firebaseObject(FirebaseUrl.child('teamUser'));
 	$scope.data = teamUser;
+
+	// teamUser.$loaded(function(data){
+	// 	angular.forEach(data, function(s){
+	// 		s.splice(0,1);
+			
+	// 	});
+	// 	$scope.data = teamUser;
+	// });
 
 	// Get the `LeaderBoard`
 	var players = $firebaseArray(FirebaseUrl.child('leaderboard'));
@@ -19,7 +27,7 @@ angular.module('fantasy')
 			}); // END SORT FUNCTION
 		}); // END FOR EACH FUNCTION
 
-		// Ger the `Points` from `LeaderBoard` and something
+		// Get the `Points` from `LeaderBoard` and give them to the `teamUser`
 		angular.forEach(first, function(leaderboard){
 			angular.forEach(teamUser, function(teams){
 				angular.forEach(teams, function(players){
@@ -29,6 +37,7 @@ angular.module('fantasy')
 				});
 			});
 		});
+
 		var second = [];
 		var count = 0;
 		var third = [];
@@ -45,7 +54,7 @@ angular.module('fantasy')
 				count = 0;
 			}
 		}
-		var map =[];
+		var map = [];
 		for(var j = 0; j<second.length && j < third.length; j++){
 			map.push({
 				points: second[j],
@@ -61,15 +70,22 @@ angular.module('fantasy')
 		$scope.players = first;
 	}); // END LOAD FUNCTION
 
-// Add the `points` together
-	$scope.getTotal = function(v){
-		var total = 0;
-		angular.forEach(v, function(ps){
-			if(ps.points === undefined){
-				ps.points = 0;
-			}
-			total += ps.points;
-		});
-		return total;
-	}
+$scope.getTotal = function(v){
+	var total = 0;
+	angular.forEach(v, function(p){
+		if(p.points === undefined){
+			p.points = 0;
+		}
+		total += p.points;
+	});
+	return total;
+};
+
+$scope.somethingGood = function(s){
+// How to get the total into an array 
+	// Then need to run the rank algorithm 
+console.log(s);	
+
+};
+
 });
