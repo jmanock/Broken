@@ -10,7 +10,8 @@
         <button ng-click='search.removePlayer(id)'>Remove player</button>
       </li>
     </ol>
-    <button ng-click='search.save()'>Save Team</button>
+    <button ng-click='search.save(search.team)'>Save Team</button>
+    <button ng-click='search.reset(search.team)'>Reset Team</button>
   </div>
     <div>
       <h4>Players</h4>

@@ -5,25 +5,12 @@
     
     <h3>Teams</h3>
 
-      <div ng-repeat='(k,v) in data'>
-      <table>
-        <tr>
-          <td ng-click='toggle = !toggle'><h4>{{k}} &nbsp;</h4></td>
-          <td>{{getTotal(v)}}</td>
-        </tr>
-        <table ng-show='toggle'>
-          <tr>
-            <th>Players</th>
-            <th>Points</th>
-          </tr>
-          <tr ng-repeat='value in v '>
-            <td>{{value.name}} &nbsp;</td>
-            <td>{{value.points}}</td>
-          </tr>
-        </table>
-      </table>
-    </div> 
-
+    <div ng-repeat='t in teams'>
+      <h4>{{t.$id}}</h4>
+      <div ng-repeat='s in t'>
+        {{s.player}}
+      </div>
+    </div>
     <div>
       <h3>Leaderboard</h3>
       <ul>
