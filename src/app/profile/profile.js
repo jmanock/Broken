@@ -17,7 +17,7 @@ this.currentUser.$loaded(function(){
 // Load `LeaderBoard`
 this.players = $firebaseArray(FirebaseUrl.child('leaderboard'));
 
-// Make the buttons do something
+// Add the `Player` to the `Team`
 this.add = function(p){
   this.count(p);
 };
@@ -41,15 +41,12 @@ this.count = function(p){
     }else if(committed){      
       var id = ss.val()-1;
       console.log(id);
-      var userTeam = FirebaseUrl.child('userTeam').child(self.user.uid).child('team').child(id);
-      var teamUser = FirebaseUrl.child('teamUser').child(self.user.fullName).child(id);
-
+      var userTeam = FirebaseUrl.child('userTeam').child(self.user.uid).child('team').child(p.$id);
+      
       userTeam.update({
         name: p.Name
       });
-      teamUser.update({
-        name:p.Name
-      });
+      
     }
   });
 };
@@ -67,15 +64,16 @@ this.remove = function(id){
     }else if(committed){
       var i = ss.val();
       var userTeam = FirebaseUrl.child('userTeam').child(self.user.uid).child('team').child(id);
-      var teamUser = FirebaseUrl.child('teamUser').child(self.user.fullName).child(id);
 
       userTeam.remove();
-      teamUser.remove();
+      
       console.log(i);
       
     }
   });
 };
+
+// Save the `Team` into the `Standings` array??
  this.save = function(){
   /* This is used to store the team to be called in the standings page
     * the goal is to be able to get rid of the key value in standings
@@ -90,8 +88,10 @@ this.remove = function(id){
         * easy to call for points and total
         * also easy to reorder based on rank
       * how long is this going to take would like to be done sometime soon
-      
-
   */
+  angular.forEach(self.teams, function(s){
+    console.log(s);
+  });
+  
  };
 });
