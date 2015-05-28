@@ -90,10 +90,11 @@ this.remove = function(id){
       * how long is this going to take would like to be done sometime soon
   */
   var something = FirebaseUrl.child('teams');
+  
   angular.forEach(self.teams, function(s){
     something.push({
-      user:self.user.fullName,
-      names: s.name
+      player:s.name,
+      user:self.user.fullName
     });
   });
   
