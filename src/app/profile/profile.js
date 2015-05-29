@@ -92,7 +92,8 @@ this.reset = function(){
       * Delete the `team` only the user
       * Set the counter back to 0
   */
-  console.log('hello');
+  var something = FirebaseUrl.child('teams').child(self.user.fullName);
+  something.remove();
 };
 
 });// END CONTROLLER
