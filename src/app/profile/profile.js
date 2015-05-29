@@ -76,7 +76,7 @@ this.remove = function(id){
 this.save = function(){
   // need to change this var name
   var something = FirebaseUrl.child('teams').child(self.user.fullName);
-
+  something.remove();
   angular.forEach(self.teams, function(s){
     something.push({
       player: s.name
