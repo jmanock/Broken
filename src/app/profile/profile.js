@@ -15,7 +15,7 @@ this.currentUser.$loaded(function(){
   self.teams = $firebaseObject(FirebaseUrl.child('userTeam').child($stateParams.id).child('team'));
 
 });
-
+$scope.hide = true;
 // Load `LeaderBoard`
 this.players = $firebaseArray(FirebaseUrl.child('leaderboard'));
 
@@ -103,12 +103,3 @@ this.reset = function(){
 });// END CONTROLLER
 
 
-/*
-  Bugs need to fix
-  # PROBLEM
-    * Adding the same player more than once
-      - Doesn't add the player but it does increase the count
-  # IDEA
-    * Maybe a hide / show when the add button is clicked
-
-*/
