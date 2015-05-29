@@ -16,10 +16,10 @@ this.currentUser.$loaded(function(){
 
 // Load `LeaderBoard`
 this.players = $firebaseArray(FirebaseUrl.child('leaderboard'));
-$scope.isDisabled = false;
+
 // Add the `Player` to the `Team`
 this.add = function(p){
-  $scope.isDisabled = true;
+  p.hide=true;
   this.count(p);
 };
 
@@ -53,6 +53,7 @@ this.count = function(p){
 
 // Remove a `Player` from `Team`
 this.removePlayer = function(id){
+  
   this.remove(id);
 };
 

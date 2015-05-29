@@ -5,7 +5,7 @@
   <div>
     <h4>Team</h4>
     <ol>
-      <li ng-repeat='(id,team) in search.teams'>
+      <li ng-repeat='(id,team) in search.teams' >
         {{team.name}} 
         <button ng-click='search.removePlayer(id)'>Remove player</button>
       </li>
@@ -16,9 +16,9 @@
     <div>
       <h4>Players</h4>
       <ul>
-        <li ng-repeat='p in search.players'>
+        <li ng-repeat='p in search.players' ng-hide='p.hide'>
           {{p.Name}} &nbsp;
-          <button ng-click='search.add(search.players[$index])' ng-disabled='isDisabled'>Add Player</button>
+          <button ng-click='search.add(search.players[$index])'>Add Player</button>
         </li>
       </ul>
     </div>
