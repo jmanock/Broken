@@ -2,7 +2,7 @@
   <div ng-include="'components/navbar/navbar.html'"></div>
 
   <div ng-controller='SearchCtrl as search'>
-  <div>
+  <div ng-hide='hide'>
     <h4>Team</h4>
     <ol>
       <li ng-repeat='(id,team) in search.teams' >

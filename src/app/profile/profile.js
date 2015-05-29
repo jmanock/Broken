@@ -9,9 +9,11 @@ Auth.onAuth(function(user){
   self.user = user;
 });
 
+$scope.hide = true;
 // Load `Team`
 this.currentUser.$loaded(function(){
   self.teams = $firebaseObject(FirebaseUrl.child('userTeam').child($stateParams.id).child('team'));
+  
 });
 
 // Load `LeaderBoard`
@@ -19,6 +21,7 @@ this.players = $firebaseArray(FirebaseUrl.child('leaderboard'));
 
 // Add the `Player` to the `Team`
 this.add = function(p){
+  $scope.hide=false;
   this.count(p);
 };
 
