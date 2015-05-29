@@ -93,6 +93,8 @@ this.reset = function(){
       * Set the counter back to 0
   */
   var something = FirebaseUrl.child('teams').child(self.user.fullName);
+  var userTeam = FirebaseUrl.child('userTeam').child(self.user.uid).child('team');
+  userTeam.remove();
   something.remove();
 };
 
