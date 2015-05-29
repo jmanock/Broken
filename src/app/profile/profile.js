@@ -9,11 +9,11 @@ Auth.onAuth(function(user){
   self.user = user;
 });
 
-$scope.hide = true;
+ 
 // Load `Team`
 this.currentUser.$loaded(function(){
   self.teams = $firebaseObject(FirebaseUrl.child('userTeam').child($stateParams.id).child('team'));
-  
+
 });
 
 // Load `LeaderBoard`
@@ -31,11 +31,13 @@ this.count = function(p){
   .transaction(function(count){
     if(count === null){
       count = 0;
+      $scope.hide = true;
     }
     if(count >= 5){
       // Change to an alert or something
       console.log('That is all the players you can have!');
     }else{
+      $scope.hide = false;
       return(count || 0)+1;
     }
   },function(err, committed, ss){
@@ -70,7 +72,9 @@ this.remove = function(id){
       var userTeam = FirebaseUrl.child('userTeam').child(self.user.uid).child('team').child(id);
 
       userTeam.remove();
-      console.log(i);
+      if(i === 0){
+        $scope.hide = true;
+      }
     }
   });
 };
@@ -91,6 +95,7 @@ this.save = function(){
 this.reset = function(){
   var something = FirebaseUrl.child('teams').child(self.user.fullName);
   var userTeam = FirebaseUrl.child('userTeam').child(self.user.uid);
+  $scope.hide = true;
   userTeam.remove();
   something.remove();
 };
