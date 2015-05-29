@@ -19,7 +19,6 @@ this.players = $firebaseArray(FirebaseUrl.child('leaderboard'));
 
 // Add the `Player` to the `Team`
 this.add = function(p){
-  p.hide=true;
   this.count(p);
 };
 
@@ -53,7 +52,6 @@ this.count = function(p){
 
 // Remove a `Player` from `Team`
 this.removePlayer = function(id){
-  
   this.remove(id);
 };
 

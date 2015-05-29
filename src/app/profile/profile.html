@@ -16,7 +16,7 @@
     <div>
       <h4>Players</h4>
       <ul>
-        <li ng-repeat='p in search.players' ng-hide='p.hide'>
+        <li ng-repeat='p in search.players'>
           {{p.Name}} &nbsp;
           <button ng-click='search.add(search.players[$index])'>Add Player</button>
         </li>
