@@ -16,9 +16,10 @@ this.currentUser.$loaded(function(){
 
 // Load `LeaderBoard`
 this.players = $firebaseArray(FirebaseUrl.child('leaderboard'));
-
+$scope.isDisabled = false;
 // Add the `Player` to the `Team`
 this.add = function(p){
+  $scope.isDisabled = true;
   this.count(p);
 };
 
@@ -86,12 +87,6 @@ this.save = function(){
 
 // Reset the `Team` back to Empty
 this.reset = function(){
-  /*
-    # Need to do
-      * Delete the `teamUser`
-      * Delete the `team` only the user
-      * Set the counter back to 0
-  */
   var something = FirebaseUrl.child('teams').child(self.user.fullName);
   var userTeam = FirebaseUrl.child('userTeam').child(self.user.uid);
   userTeam.remove();
@@ -108,10 +103,5 @@ this.reset = function(){
       - Doesn't add the player but it does increase the count
   # IDEA
     * Maybe a hide / show when the add button is clicked
-  # PROBLEM
-    * Saving the team more than once
-      - Adds the team again and again
-  # IDEA
-    * Delete anything that is there then add!!!
 
 */

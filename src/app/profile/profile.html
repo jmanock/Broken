@@ -18,7 +18,7 @@
       <ul>
         <li ng-repeat='p in search.players'>
           {{p.Name}} &nbsp;
-          <button ng-click='search.add(search.players[$index])'>Add Player</button>
+          <button ng-click='search.add(search.players[$index])' ng-disabled='isDisabled'>Add Player</button>
         </li>
       </ul>
     </div>
