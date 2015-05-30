@@ -4,7 +4,7 @@ angular.module('fantasy')
 .controller('StandingsCtrl', function(FirebaseUrl, $firebaseArray, $firebaseObject, $scope){
 	
 	// Get the `Teams`
-	$scope.teams = $firebaseArray(FirebaseUrl.child('teams'));
+	var team = $firebaseArray(FirebaseUrl.child('teams'));
 	
 	// Get the `LeaderBoard`
 	var players = $firebaseArray(FirebaseUrl.child('leaderboard'));
@@ -19,7 +19,7 @@ angular.module('fantasy')
 		}); // END FOR EACH FUNCTION
 		
 		// Get the `Points` from `LeaderBoard` and give them to `Players` in `Team`
-		angular.forEach($scope.teams, function(s){
+		angular.forEach(team, function(s){
 			var second = [];
 			angular.forEach(s, function(d){
 				if(d !== null){
@@ -29,13 +29,21 @@ angular.module('fantasy')
 				}
 
 			}); // END FOR EACH `S`
+			var third = [];
 			angular.forEach(second, function(x){
 				angular.forEach(first, function(j){
 					if(j.Name === x.player){
-						x.points = j.Points;
+						 x.points = j.Points;
+						third.push({
+							name:x.player,
+							points:x.points
+						});
 					}
 				});
 			});
+			console.log(third);
+			$scope.teams = third;
+			$scope.something = team;
 		}); // END FOR EACH `SCOPE`
 		$scope.players = first;
 	}); // END LOADED
