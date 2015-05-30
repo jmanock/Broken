@@ -20,8 +20,23 @@ angular.module('fantasy')
 		
 		// Get the `Points` from `LeaderBoard` and give them to `Players` in `Team`
 		angular.forEach($scope.teams, function(s){
-			console.log(s);
-		})
+			var second = [];
+			angular.forEach(s, function(d){
+				if(d !== null){
+					if(d.player !== undefined){
+						second.push(d);
+					}
+				}
+
+			}); // END FOR EACH `S`
+			angular.forEach(second, function(x){
+				angular.forEach(first, function(j){
+					if(j.Name === x.player){
+						x.points = j.Points;
+					}
+				});
+			});
+		}); // END FOR EACH `SCOPE`
 		$scope.players = first;
 	}); // END LOADED
 	
