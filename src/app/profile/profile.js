@@ -13,9 +13,12 @@ Auth.onAuth(function(user){
 // Load `Team`
 this.currentUser.$loaded(function(){
   self.teams = $firebaseObject(FirebaseUrl.child('userTeam').child($stateParams.id).child('team'));
-  var bro = $firebaseObject(FirebaseUrl.child('userTeam').child($stateParams.id).child('count'));
-  bro.$loaded(function(data){
-    console.log(data.$value);
+  var value = $firebaseObject(FirebaseUrl.child('userTeam').child($stateParams.id).child('count'));
+  value.$loaded(function(data){
+    var show = data.$value;
+    if(show === null){ 
+      $scope.hide = true;
+    }
   });
 });
 
