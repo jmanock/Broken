@@ -18,8 +18,29 @@ angular.module('fantasy')
 				return b.Points - a.Points;
 			}); // End sort function
 		});// End for each first
+
+		var second = [];
+		angular.forEach(first, function(s){
+			second.push(s.Points);
+		});
+		var ranking = [];
+		var count = 0;
+		for(var i = 0; i<second.length; i++){
+			if(second[i] === second[i-1]){
+				var x = i - count;
+				ranking.push(x);
+				count++;
+			}else{
+				ranking.push(i+1);
+				count = 0;
+			}
+		}
+		
 		return first;
+
 	}); // End loaded
+	
+	
 	$scope.players = first;
-	console.log(first);
+
 }); // End controller
