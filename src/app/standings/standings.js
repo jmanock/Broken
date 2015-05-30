@@ -27,7 +27,6 @@ angular.module('fantasy')
 						second.push(d);
 					}
 				}
-
 			}); // END FOR EACH `S`
 			var third = [];
 			angular.forEach(second, function(x){
@@ -39,9 +38,13 @@ angular.module('fantasy')
 							points:x.points
 						});
 					}
-				});
-			});
+				}); // END FOR EACH `FIRST`
+			}); // END FOR EACH `SECOND` 
+			
+			//console.log(first); // Leaderboard
+			console.log(second); // 
 			console.log(third);
+
 			$scope.teams = third;
 			$scope.something = team;
 		}); // END FOR EACH `SCOPE`
@@ -51,16 +54,7 @@ angular.module('fantasy')
 
 
 
-// 		// Get the `Points` from `LeaderBoard` and give them to the `teamUser`
-// 		angular.forEach(first, function(leaderboard){
-// 			angular.forEach(teamUser, function(teams){
-// 				angular.forEach(teams, function(players){
-// 					if(players.name === leaderboard.Name){
-// 						players.points = leaderboard.Points;
-// 					}
-// 				});
-// 			});
-// 		});
+
 
 // 		var second = [];
 // 		var count = 0;
