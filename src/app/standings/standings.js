@@ -3,23 +3,30 @@
 angular.module('fantasy')
 .controller('StandingsCtrl', function(FirebaseUrl, $firebaseArray, $firebaseObject, $scope){
 	
+	// Get the `Teams`
 	$scope.teams = $firebaseArray(FirebaseUrl.child('teams'));
 	
+	// Get the `LeaderBoard`
+	var players = $firebaseArray(FirebaseUrl.child('leaderboard'));
 
+	players.$loaded(function(data){
+		var first = [];
+		angular.forEach(data, function(leader){
+			first.push(leader);
+			first.sort(function(a,b){
+				return b.Points - a.Points;
+			}); // END SORT FUNCTION
+		}); // END FOR EACH FUNCTION
+		
+		// Get the `Points` from `LeaderBoard` and give them to `Players` in `Team`
+		angular.forEach($scope.teams, function(s){
+			console.log(s);
+		})
+		$scope.players = first;
+	}); // END LOADED
 	
 
-// 	// Get the `LeaderBoard`
-// 	var players = $firebaseArray(FirebaseUrl.child('leaderboard'));
 
-// 	// Load `LeaderBoard` and sort based on `Points`
-// 	players.$loaded(function(data){
-// 		var first = [];
-// 		angular.forEach(data, function(leader){
-// 			first.push(leader);
-// 			first.sort(function(a,b){
-// 				return b.Points - a.Points;
-// 			}); // END SORT FUNCTION
-// 		}); // END FOR EACH FUNCTION
 
 // 		// Get the `Points` from `LeaderBoard` and give them to the `teamUser`
 // 		angular.forEach(first, function(leaderboard){
