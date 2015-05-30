@@ -14,7 +14,9 @@ Auth.onAuth(function(user){
 this.currentUser.$loaded(function(){
   self.teams = $firebaseObject(FirebaseUrl.child('userTeam').child($stateParams.id).child('team'));
   var bro = $firebaseObject(FirebaseUrl.child('userTeam').child($stateParams.id).child('count'));
-  console.log(bro);
+  bro.$loaded(function(data){
+    console.log(data.$value);
+  });
 });
 
 // Load `LeaderBoard`
