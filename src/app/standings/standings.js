@@ -35,7 +35,20 @@ angular.module('fantasy')
 				count = 0;
 			}
 		}
-		
+
+		var map = [];
+		for(var j = 0; j<second.length && j < ranking.length; j++){
+			map.push({
+				points: second[j],
+				rank: ranking[j]
+			});
+		}
+
+		for(var r = 0; r<map.length && r<first.length; r++){
+			if(first[r].Points === map[r].points){
+				first[r].Rank = map[r].rank;
+			}
+		}
 		return first;
 
 	}); // End loaded
