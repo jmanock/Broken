@@ -66,4 +66,12 @@ angular.module('fantasy')
 	
 	$scope.players = first;
 
-}); // End controller
+}) // End controller
+.filter('orderObjectBy', function(){
+	return function(items, something, asshole){
+		var filter = [];
+		angular.forEach(items, function(item){
+			console.log(item);
+		});
+	}
+})

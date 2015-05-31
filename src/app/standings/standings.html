@@ -6,8 +6,8 @@
     <h3>Teams</h3>
     <div ng-repeat='(k,v) in teams '>
       <h4>{{k}}</h4>
-      <div ng-repeat='p in v '>
-        {{p.player}}
+      <div ng-repeat='p in v |orderObjectBy:"some"'>
+        {{p.player}} &nbsp;
         {{p.points}}
       </div>
     </div>
