@@ -4,9 +4,9 @@
   <div ng-controller='StandingsCtrl as standings'>
     
     <h3>Teams</h3>
-    <div ng-repeat='t in teams '>
-      <h4>{{t.$id}}</h4>
-      <div ng-repeat='p in t'>
+    <div ng-repeat='(k,v) in teams '>
+      <h4>{{k}}</h4>
+      <div ng-repeat='p in v '>
         {{p.player}}
         {{p.points}}
       </div>

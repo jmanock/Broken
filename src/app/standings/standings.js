@@ -4,22 +4,12 @@ angular.module('fantasy')
 .controller('StandingsCtrl', function(Firebase, FirebaseUrl, $firebaseArray, $firebaseObject, $scope){
 	
 	// Get the `Teams`
-	var team = $firebaseArray(FirebaseUrl.child('teams'));
-	$scope.teams = team;
+	$scope.teams = $firebaseObject(FirebaseUrl.child('teams'));
 	
 	// Get the `LeaderBoard`
 	var players = $firebaseArray(FirebaseUrl.child('leaderboard'));
 	
-	var sex = [];
-	team.$loaded(function(data){
-		angular.forEach(data, function(t){
-			angular.forEach(t, function(k,v){
-				console.log(k);
-				console.log(v);
-			});
-		});
-	});
-
+	
 	var first = [];
 	players.$loaded(function(ps){
 		angular.forEach(ps, function(player){
@@ -59,7 +49,15 @@ angular.module('fantasy')
 				first[r].Rank = map[r].rank;
 			}
 		}
-
+		angular.forEach(first, function(some){
+			angular.forEach($scope.teams, function(team){
+				angular.forEach(team, function(ass){
+				if(ass.player === some.Name){
+					ass.points = some.Points;
+				}
+				});
+			});
+		});
 
 		return first;
 
