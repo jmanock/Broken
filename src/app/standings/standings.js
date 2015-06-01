@@ -67,11 +67,15 @@ angular.module('fantasy')
 	$scope.players = first;
 
 }) // End controller
-.filter('orderObjectBy', function(){
-	return function(items, something, asshole){
-		var filter = [];
-		angular.forEach(items, function(item){
-			console.log(item);
+.filter('somethingGood', function(){
+	return function(input){
+		var out = [];
+		angular.forEach(input, function(x){
+			out.push(x);
+			out.sort(function(a,b){
+				return b.points - a.points;
+			});
 		});
-	}
-})
+		return out;
+	};
+});
