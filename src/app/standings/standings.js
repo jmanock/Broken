@@ -65,14 +65,16 @@ angular.module('fantasy')
 	
 	
 	$scope.players = first;
-
-	$scope.total = function(v){
+	
+	$scope.total = function(k,v){
 		var total = 0;
-		var tot = [];
+		var ps = [];
 		angular.forEach(v, function(x){
 			total += x.points;
-		});
-		return total;
+			ps.push(x.player);
+		});		 
+		console.log(ps);
+		 return k + ' | ' + total + ps ;
 	};
 
 }) // End controller
@@ -85,6 +87,12 @@ angular.module('fantasy')
 				return b.points - a.points;
 			});
 		});
+		
 		return out;
 	};
-});
+})
+.filter('total', function(){
+	return function(k,v){
+		console.log(k,v);
+	}
+})
