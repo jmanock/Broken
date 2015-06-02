@@ -68,6 +68,7 @@ angular.module('fantasy')
 
 	$scope.total = function(v){
 		var total = 0;
+		var tot = [];
 		angular.forEach(v, function(x){
 			total += x.points;
 		});
@@ -86,12 +87,4 @@ angular.module('fantasy')
 		});
 		return out;
 	};
-})
-.filter('total', function(){
-	return function(input){
-
-		angular.forEach(input, function(som){
-			console.log(som);
-		})
-	}
 });
