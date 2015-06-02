@@ -68,13 +68,12 @@ angular.module('fantasy')
 	
 	$scope.total = function(k,v){
 		var total = 0;
-		var ps = [];
+		
 		angular.forEach(v, function(x){
 			total += x.points;
-			ps.push(x.player);
 		});		 
-		console.log(ps);
-		 return k + ' | ' + total + ps ;
+		
+		return total;
 	};
 
 }) // End controller
@@ -90,9 +89,22 @@ angular.module('fantasy')
 		
 		return out;
 	};
-})
-.filter('total', function(){
-	return function(k,v){
-		console.log(k,v);
-	}
-})
+});
+/*
+	* NEED
+		- Total points
+		- User name
+	* Goal
+		- Sort users based on total points
+	* Idea
+		- somehow attach total points to key
+		- run a sort function off that
+		* OR
+			- have a total function
+				- sort somehow threw that
+		* Problems
+			- need an array of objects to sort total points
+				- comes back with `nan`
+				- pushes to much junk into the array
+				- not sure if the filter will just move the names and/or players
+*/
