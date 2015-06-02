@@ -78,4 +78,9 @@ angular.module('fantasy')
 		});
 		return out;
 	};
+})
+.filter('total', function(){
+	return function(input){
+		console.log(input);
+	}
 });

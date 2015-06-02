@@ -4,7 +4,7 @@
   <div ng-controller='StandingsCtrl as standings'>
     
     <h3>Teams</h3>
-    <div ng-repeat='(k,v) in teams '>
+    <div ng-repeat='(k,v) in teams | total'>
       <h4>{{k}}</h4>
       <div ng-repeat='p in v | somethingGood'>
         {{p.player}} &nbsp;
