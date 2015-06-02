@@ -5,7 +5,7 @@
     
     <h3>Teams</h3>
     <div ng-repeat='(k,v) in teams | total'>
-      <h4>{{k}}</h4>
+      <h4>{{k}} | {{total(v)}}</h4>
       <div ng-repeat='p in v | somethingGood'>
         {{p.player}} &nbsp;
         {{p.points}}

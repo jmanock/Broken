@@ -66,6 +66,14 @@ angular.module('fantasy')
 	
 	$scope.players = first;
 
+	$scope.total = function(v){
+		var total = 0;
+		angular.forEach(v, function(x){
+			total += x.points;
+		});
+		return total;
+	};
+
 }) // End controller
 .filter('somethingGood', function(){
 	return function(input){
@@ -81,6 +89,9 @@ angular.module('fantasy')
 })
 .filter('total', function(){
 	return function(input){
-		console.log(input);
+
+		angular.forEach(input, function(som){
+			console.log(som);
+		})
 	}
 });
