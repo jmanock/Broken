@@ -68,12 +68,14 @@ angular.module('fantasy')
 	
 	$scope.total = function(k,v){
 		var total = 0;
-		
+		var tot = [];
 		angular.forEach(v, function(x){
 			total += x.points;
 		});		 
-		
+	
 		return total;
+	
+	
 	};
 
 }) // End controller
@@ -89,22 +91,23 @@ angular.module('fantasy')
 		
 		return out;
 	};
-});
-/*
-	* NEED
-		- Total points
-		- User name
-	* Goal
-		- Sort users based on total points
-	* Idea
-		- somehow attach total points to key
-		- run a sort function off that
-		* OR
-			- have a total function
-				- sort somehow threw that
-		* Problems
-			- need an array of objects to sort total points
-				- comes back with `nan`
-				- pushes to much junk into the array
-				- not sure if the filter will just move the names and/or players
-*/
+})
+.filter('total', function(){
+	var num = [];
+	return function(x){
+		var out = [];
+		if(isNaN(x)){
+			return x;
+		}else{
+			num.push(x);
+		}
+		angular.forEach(num, function(s){
+			out.push(s);
+			out.sort(function(a,b){
+				return b-a;
+			})
+		})
+		return out;
+	}
+})
+
