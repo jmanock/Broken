@@ -3,9 +3,15 @@
 
   <div ng-controller='StandingsCtrl as standings'>
     
+    <div>
+      <h3>User leaderboard</h3>
+      <div ng-repeat='s in nothing'>
+        {{s}}
+      </div>
+    </div>
     <h3>Teams</h3>
     <div ng-repeat='(k,v) in teams '>
-      <h4>{{k}} | {{total(v) | total}} </h4>
+      <h4>{{k}} | {{total(v,k)}} </h4>
       <div ng-repeat='p in v | somethingGood'>
         {{p.player}} &nbsp;
         {{p.points}}
