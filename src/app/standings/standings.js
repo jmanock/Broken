@@ -65,10 +65,10 @@ angular.module('fantasy')
 	
 	
 	$scope.players = first;
-	
+	var tot = [];
 	$scope.total = function(v,k){
 		var total = 0;
-		var tot = [];
+		
 		angular.forEach(v, function(x){
 			total += x.points;
 		});		 
@@ -76,7 +76,7 @@ angular.module('fantasy')
 			if(!isNaN(total)){
 				tot.push({
 					name:k,
-					points:total
+					points: total
 				})
 				$scope.sas(tot);
 			}
