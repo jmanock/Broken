@@ -49,14 +49,15 @@ angular.module('fantasy')
 				first[r].Rank = map[r].rank;
 			}
 		}
-		angular.forEach(first, function(some){
-			angular.forEach($scope.teams, function(team){
-				angular.forEach(team, function(ass){
-				if(ass.player === some.Name){
-					ass.points = some.Points;
-				}
-				});
-			});
+		angular.forEach(first, function(leaders){
+			 angular.forEach($scope.teams, function(team,val){
+			 	console.log(team,val);
+			// 	angular.forEach(team, function(ass){
+			// 	if(ass.player === leaders.Name){
+			// 		ass.points = leaders.Points;
+			// 	}
+			// 	});
+			 });
 		});
 
 		return first;
@@ -73,7 +74,7 @@ angular.module('fantasy')
 			total += x.points;
 
 		});		 
-		$scope.sas(total);
+		//$scope.sas(total);
 		return total;
 			// if(!isNaN(total)){
 			// 	tot.push({
@@ -87,7 +88,7 @@ angular.module('fantasy')
 		
 	};
 	$scope.sas = function(so){
-		//console.log(so);
+		console.log(so);
 	}
 
 }) // End controller
@@ -106,7 +107,7 @@ angular.module('fantasy')
 })
 .filter('total', function(){
 	return function(some){
-		console.log(some);
+		
 	}
 });
 
