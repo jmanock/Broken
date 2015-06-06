@@ -65,29 +65,29 @@ angular.module('fantasy')
 	
 	
 	$scope.players = first;
-	var tot = [];
+	
 	$scope.total = function(v,k){
 		var total = 0;
 		
 		angular.forEach(v, function(x){
 			total += x.points;
+
 		});		 
-		
-			if(!isNaN(total)){
-				tot.push({
-					name:k,
-					points: total
-				})
-				$scope.sas(tot);
-			}
+		$scope.sas(total);
+		return total;
+			// if(!isNaN(total)){
+			// 	tot.push({
+			// 		name:k,
+			// 		points: total
+			// 	})
+			// 	$scope.sas(tot);
+			// }
 			//console.log(tot);
 		
 		
 	};
 	$scope.sas = function(so){
-		angular.forEach(so, function(x){
-			
-		})
+		//console.log(so);
 	}
 
 }) // End controller
@@ -103,5 +103,10 @@ angular.module('fantasy')
 		
 		return out;
 	};
+})
+.filter('total', function(){
+	return function(some){
+		console.log(some);
+	}
 });
 
