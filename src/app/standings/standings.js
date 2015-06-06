@@ -108,18 +108,16 @@ angular.module('fantasy')
 .filter('total', function(){
 	return function(input){
 		var out = [];			
-		angular.forEach(input, function(k,v){
+			var total = 0
+		angular.forEach(input, function(x,v){
 			out.push({
 				name:v
 			});
-			angular.forEach(k,function(ps){
-				var total = 0
-				total += ps.points;
+			angular.forEach(x, function(k){
 				
 			})
+		})	
 
-		})
-		return out;		
 	}
 });
 
