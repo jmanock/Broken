@@ -109,11 +109,15 @@ angular.module('fantasy')
 	return function(some){
 		var out = [];
 		angular.forEach(some, function(k,v){
-			out.push(v);
-			out.sort(function(a,b){
-				return b.length - a.length;
-			});
+			angular.forEach(k,function(plays){
+				out.push({
+					player:plays,
+					user:v
+				});
+				console.log(out);
+			})
 			
+
 		});
 		return out;
 	}
