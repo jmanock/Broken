@@ -106,16 +106,20 @@ angular.module('fantasy')
 	};
 })
 .filter('total', function(){
-	return function(some){
-		var out = [];
-		angular.forEach(some, function(k,v){
-			angular.forEach(k,function(plays){
-				out.push(plays);
+	return function(input){
+		var out = [];			
+		angular.forEach(input, function(k,v){
+			out.push({
+				name:v
+			});
+			angular.forEach(k,function(ps){
+				var total = 0
+				total += ps.points;
+				
 			})
-			
 
-		});
-		return out;
+		})
+		return out;		
 	}
 });
 
