@@ -110,11 +110,7 @@ angular.module('fantasy')
 		var out = [];
 		angular.forEach(some, function(k,v){
 			angular.forEach(k,function(plays){
-				out.push({
-					player:plays,
-					user:v
-				});
-				console.log(out);
+				out.push(plays);
 			})
 			
 
