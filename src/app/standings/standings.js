@@ -51,12 +51,12 @@ angular.module('fantasy')
 		}
 		angular.forEach(first, function(leaders){
 			 angular.forEach($scope.teams, function(team,val){
-			 	console.log(team,val);
-			// 	angular.forEach(team, function(ass){
-			// 	if(ass.player === leaders.Name){
-			// 		ass.points = leaders.Points;
-			// 	}
-			// 	});
+			 	angular.forEach(team, function(teamPlayers){
+			 	if(teamPlayers.player === leaders.Name){
+			 		teamPlayers.points = leaders.Points;
+			 		teamPlayers.user = val;
+				}
+			 	});
 			 });
 		});
 
@@ -87,8 +87,8 @@ angular.module('fantasy')
 		
 		
 	};
-	$scope.sas = function(so){
-		console.log(so);
+	$scope.sas = function(so,k){
+		console.log(so,k);
 	}
 
 }) // End controller
@@ -107,7 +107,15 @@ angular.module('fantasy')
 })
 .filter('total', function(){
 	return function(some){
-		
+		var out = [];
+		angular.forEach(some, function(k,v){
+			out.push(v);
+			out.sort(function(a,b){
+				return b.length - a.length;
+			});
+			
+		});
+		return out;
 	}
 });
 

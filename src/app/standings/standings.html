@@ -5,18 +5,18 @@
     
     <div>
       <h3>User leaderboard</h3>
-      <div ng-repeat='s in nothing | total'>
-        {{s}}
+      <div ng-repeat='v in teams | total'>
+        {{v}} 
       </div>
     </div>
-    <h3>Teams</h3>
+    <!-- <h3>Teams</h3>
     <div ng-repeat='(k,v) in teams '>
       <h4>{{k}} | {{total(v)}} </h4>
       <div ng-repeat='p in v | somethingGood'>
-        {{p.player}} &nbsp;
+        {{p.player}} &nbsp; {{p.user}}
         {{p.points}}
       </div>
-    </div>
+    </div> -->
      
     <div>
       <h3>Leaderboard</h3>
