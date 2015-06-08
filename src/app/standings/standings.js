@@ -72,7 +72,6 @@ angular.module('fantasy')
 		
 		angular.forEach(v, function(x){
 			total += x.points;
-
 		});		 
 		//$scope.sas(total);
 		return total;
@@ -107,17 +106,19 @@ angular.module('fantasy')
 })
 .filter('total', function(){
 	return function(data){
-		var sux = [];
 		var total = 0;
-		angular.forEach(data, function(x,v){
-			angular.forEach(x, function(t){
-				if(t.points !== 'undefined'){
-					total += t.points;
-				}
-			});
-		});
-		console.log(total);
-	}
+		var sux = [];
+		angular.forEach(data, function(k,v){
+			angular.forEach(k, function(x){
+				total += x.points;
+				sux.push({
+					name:v,
+					total:total
+				});
+			})
+		})
+		console.log(sux);
+	};
 
 });
 
