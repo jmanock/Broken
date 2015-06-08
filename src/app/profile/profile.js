@@ -88,7 +88,7 @@ this.remove = function(id){
 // Save the `Team` to call in the `Standings` page
 this.save = function(){
   // need to change this var name
-  var something = FirebaseUrl.child('teams').child(self.user.fullName);
+  var something = FirebaseUrl.child('teams').child(self.user.fullName).child('team');
   something.remove();
   angular.forEach(self.teams, function(s){
     something.push({
