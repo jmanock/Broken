@@ -110,12 +110,14 @@ angular.module('fantasy')
 		var out = [];			
 			var total = 0
 		angular.forEach(input, function(x,v){
-			out.push({
-				name:v
-			});
 			angular.forEach(x, function(k){
-				
-			})
+				total += k.points;
+				out.push({
+					name:v,
+					points:total
+				});
+			});
+			console.log(out);
 		})	
 
 	}
