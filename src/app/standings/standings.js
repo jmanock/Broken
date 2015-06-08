@@ -67,7 +67,7 @@ angular.module('fantasy')
 	
 	$scope.players = first;
 	
-	$scope.total = function(v,k){
+	$scope.total = function(v){
 		var total = 0;
 		
 		angular.forEach(v, function(x){
@@ -86,8 +86,8 @@ angular.module('fantasy')
 		
 		
 	};
-	$scope.sas = function(so,k){
-		console.log(so,k);
+	$scope.somethingElse = function(v){
+		console.log(v);
 	}
 
 }) // End controller
@@ -104,21 +104,9 @@ angular.module('fantasy')
 		return out;
 	};
 })
-.filter('total', function(){
-	return function(data){
-		var total = 0;
-		var sux = [];
-		angular.forEach(data, function(k,v){
-			angular.forEach(k, function(x){
-				total += x.points;
-				sux.push({
-					name:v,
-					total:total
-				});
-			})
-		})
-		console.log(sux);
-	};
-
-});
+.filter('totalSort', function(){
+	return function(data, total){
+		console.log(total);
+	}
+})
 

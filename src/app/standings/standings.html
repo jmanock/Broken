@@ -5,12 +5,12 @@
     
     <div>
       <h3>User leaderboard</h3>
-      <div ng-repeat='(k,v) in teams | total'>
-         {{k}} 
+      <div ng-repeat='(k,v) in teams '>
+         
       </div>
     </div>
     <h3>Teams</h3>
-    <div ng-repeat='(k,v) in teams '>
+    <div ng-repeat='(k,v) in teams | orderBy:somethingElse'>
       <h4>{{k}} | {{total(v)}} </h4>
       <div ng-repeat='p in v | somethingGood'>
         {{p.player}} &nbsp; {{p.user}}
