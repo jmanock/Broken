@@ -77,13 +77,13 @@ angular.module('fantasy')
 		return total;
 	};
 $scope.cards ={
-	'cardOne':{
+	'Brit':{
 		values:{
-			optOne: 9,
+			optOne: 900,
 			optTwo:20
 		}
 	},
-	'CardTwo':{
+	'Steve':{
 		values:{
 			optOne:10,
 			optTwo:200

@@ -5,15 +5,20 @@
     
     <div>
       <h3>User leaderboard</h3>
+      
       <div ng-repeat='card in cards | orderByValue '>
-         {{card.name}} | {{value(card)}}
+      
+      {{card.name}} | {{value(card)}} 
+      <div>
+         players:{{card.values.optOne}} | player:{{card.values.optTwo}}
+         </div>
       </div>
     </div>
     <h3>Teams</h3>
-    <div ng-repeat='(k,v) in teams | orderBy:somethingElse'>
+    <div ng-repeat='(k,v) in teams '>
       <h4>{{k}} | {{total(v)}} </h4>
       <div ng-repeat='p in v | somethingGood'>
-        {{p.player}} &nbsp; {{p.user}}
+        {{p.player}} &nbsp; 
         {{p.points}}
       </div>
     </div> 
