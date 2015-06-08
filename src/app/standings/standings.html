@@ -14,14 +14,18 @@
          </div>
       </div>
     </div>
-    <h3>Teams</h3>
-    <div ng-repeat='(k,v) in teams '>
+
+     <h3>Teams</h3>
+     <div ng-repeat='team in teams | myOrderBy'>
+       {{team}}
+     </div>
+    <!--<div ng-repeat='(k,v) in teams '>
       <h4>{{k}} | {{total(v)}} </h4>
       <div ng-repeat='p in v | somethingGood'>
         {{p.player}} &nbsp; 
         {{p.points}}
       </div>
-    </div> 
+    </div>  -->
      
     <div>
       <h3>Leaderboard</h3>

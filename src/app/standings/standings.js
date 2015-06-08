@@ -54,7 +54,7 @@ angular.module('fantasy')
 			 	angular.forEach(team, function(teamPlayers){
 			 	if(teamPlayers.player === leaders.Name){
 			 		teamPlayers.points = leaders.Points;
-			 		teamPlayers.user = val;
+			 		//teamPlayers.user = val;
 				}
 			 	});
 			 });
@@ -122,6 +122,18 @@ $scope.value = function(card){
 		});
 		return array;
 	};
+})
+.filter('myOrderBy', function(){
+	return function(obj){
+		var array = [];
+		angular.forEach(obj, function(s,a){
+			Object.keys(s).forEach(function(a){
+				s[a].name = a;
+				array.push(s[a])
+			})
+		})
+		console.log(array);
+	}
 });
 
 
