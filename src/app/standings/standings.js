@@ -73,23 +73,26 @@ angular.module('fantasy')
 		angular.forEach(v, function(x){
 			total += x.points;
 		});		 
-		//$scope.sas(total);
+		
 		return total;
-			// if(!isNaN(total)){
-			// 	tot.push({
-			// 		name:k,
-			// 		points: total
-			// 	})
-			// 	$scope.sas(tot);
-			// }
-			//console.log(tot);
-		
-		
 	};
-	$scope.somethingElse = function(v){
-		console.log(v);
+$scope.cards ={
+	'cardOne':{
+		values:{
+			optOne: 9,
+			optTwo:20
+		}
+	},
+	'CardTwo':{
+		values:{
+			optOne:10,
+			optTwo:200
+		}
 	}
-
+};
+$scope.value = function(card){
+	return card.values.optOne + card.values.optTwo;
+}
 }) // End controller
 .filter('somethingGood', function(){
 	return function(input){
@@ -104,9 +107,21 @@ angular.module('fantasy')
 		return out;
 	};
 })
-.filter('totalSort', function(){
-	return function(data, total){
-		console.log(total);
+.filter('orderByValue', function(){
+	function myValueFunction(card){
+		return card.values.optOne + card.values.optTwo;
 	}
-})
+	return function(obj){
+		var array = [];
+		Object.keys(obj).forEach(function(key){
+			obj[key].name = key;
+			array.push(obj[key]);
+		});
+		array.sort(function(a,b){
+			return myValueFunction(b) - myValueFunction(a);
+		});
+		return array;
+	};
+});
+
 

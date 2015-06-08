@@ -5,8 +5,8 @@
     
     <div>
       <h3>User leaderboard</h3>
-      <div ng-repeat='(k,v) in teams '>
-         
+      <div ng-repeat='card in cards | orderByValue '>
+         {{card.name}} | {{value(card)}}
       </div>
     </div>
     <h3>Teams</h3>
