@@ -114,6 +114,7 @@ $scope.value = function(card){
 	return function(obj){
 		var array = [];
 		Object.keys(obj).forEach(function(key){
+			//console.log(obj,key)
 			obj[key].name = key;
 			array.push(obj[key]);
 		});
@@ -126,14 +127,15 @@ $scope.value = function(card){
 .filter('myOrderBy', function(){
 	return function(obj){
 		var array = [];
-		angular.forEach(obj,function(object,keyes){
-			Object.keys(object).forEach(function(key){
-				object[key].name = keyes;
-				array.push(object[key]);
+		
+		angular.forEach(obj, function(object,keyes){
+			Object.keys(object).forEach(function(k){
+				console.log(obj,keyes, object)
+				// object[keyes].name = keyes;
+				// array.push(object[keyes]);
 			})
 		})
-		console.log(array);
-		return array;
+		//console.log(array);
 	}
 });
 
