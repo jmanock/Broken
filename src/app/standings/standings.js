@@ -66,7 +66,7 @@ angular.module('fantasy')
 		return first;
 
 	}); // End loaded
-	
+	$scope.players = first;
 	$scope.total = function(teams){
 		var total = 0;
 		angular.forEach(teams, function(x){
