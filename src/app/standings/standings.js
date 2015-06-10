@@ -4,7 +4,7 @@ angular.module('fantasy')
 .controller('StandingsCtrl', function(Firebase, FirebaseUrl, $firebaseArray, $firebaseObject, $scope){
 	
 	// Get the `Teams`
-	$scope.teams = $firebaseObject(FirebaseUrl.child('teams'));
+	$scope.teams = $firebaseArray(FirebaseUrl.child('teams'));
 	
 	// Get the `LeaderBoard`
 	var players = $firebaseArray(FirebaseUrl.child('leaderboard'));
@@ -50,93 +50,19 @@ angular.module('fantasy')
 			}
 		}
 		angular.forEach(first, function(leaders){
-			 angular.forEach($scope.teams, function(team,val){
-			 	angular.forEach(team, function(teamPlayers){
-			 	if(teamPlayers.player === leaders.Name){
-			 		teamPlayers.points = leaders.Points;
-			 		//teamPlayers.user = val;
-				}
-			 	});
-			 });
-		});
+			angular.forEach($scope.teams, function(x){
+				console.log(x);
+			})
+		})
 
 		return first;
 
 	}); // End loaded
 	
-	
-	$scope.players = first;
-	
-	$scope.total = function(v){
-		var total = 0;
-		
-		angular.forEach(v, function(x){
-			total += x.points;
-		});		 
-		
-		return total;
-	};
-$scope.cards ={
-	'Brit':{
-		values:{
-			optOne: 900,
-			optTwo:20
-		}
-	},
-	'Steve':{
-		values:{
-			optOne:10,
-			optTwo:200
-		}
-	}
-};
-$scope.value = function(card){
-	return card.values.optOne + card.values.optTwo;
-}
-}) // End controller
-.filter('somethingGood', function(){
-	return function(input){
-		var out = [];
-		angular.forEach(input, function(x){
-			out.push(x);
-			out.sort(function(a,b){
-				return b.points - a.points;
-			});
-		});
-		
-		return out;
-	};
-})
-.filter('orderByValue', function(){
-	function myValueFunction(card){
-		return card.values.optOne + card.values.optTwo;
-	}
-	return function(obj){
-		var array = [];
-		Object.keys(obj).forEach(function(key){
-			//console.log(obj,key)
-			obj[key].name = key;
-			array.push(obj[key]);
-		});
-		array.sort(function(a,b){
-			return myValueFunction(b) - myValueFunction(a);
-		});
-		return array;
-	};
-})
-.filter('myOrderBy', function(){
-	return function(obj){
-		var array = [];
-		
-		angular.forEach(obj, function(object,keyes){
-			Object.keys(object).forEach(function(k){
-				console.log(obj,keyes, object)
-				// object[keyes].name = keyes;
-				// array.push(object[keyes]);
-			})
-		})
-		//console.log(array);
-	}
-});
+
+}); // End controller
+
+
+
 
 
