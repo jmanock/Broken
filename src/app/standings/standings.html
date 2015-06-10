@@ -4,10 +4,10 @@
   <div ng-controller='StandingsCtrl as standings'>      
 
      <h3>Teams</h3>
-     <div ng-repeat='team in teams | orderBy:"-$id"'>
-       <h4>{{team.$id}}</h4>
-       <div ng-repeat='t in team.team'>
-         {{t.player}}
+     <div ng-repeat='team in teams | total'>
+       <h4>{{team.$id}} | {{total(team)}}</h4>
+       <div ng-repeat='t in team.team '>
+         {{t.player}} | {{t.points}}
        </div>
      </div>
     <!--<div ng-repeat='(k,v) in teams '>

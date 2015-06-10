@@ -51,14 +51,33 @@ angular.module('fantasy')
 		}
 		angular.forEach(first, function(leaders){
 			angular.forEach($scope.teams, function(x){
-				console.log(x);
-			})
-		})
+				angular.forEach(x, function(d){
+					angular.forEach(d, function(t){
+						if(t.player !== undefined){
+							if(t.player === leaders.Name){
+								t.points = leaders.Points;
+							}
+						}
+					})
+				})
+			});
+		});
 
 		return first;
 
 	}); // End loaded
 	
+	$scope.total = function(teams){
+		var total = 0;
+		angular.forEach(teams, function(x){
+			angular.forEach(x, function(d){
+				if(d.points !== undefined){
+					total += d.points;
+				}
+			})
+		})
+		return total;
+	}
 
 }); // End controller
 
