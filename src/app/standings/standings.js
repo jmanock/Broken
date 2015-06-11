@@ -79,8 +79,12 @@ angular.module('fantasy')
 		return total;
 	}
 
-}); // End controller
-
+}) // End controller
+.filter('total', function(){
+	return function(data){
+		console.log(data);
+	}
+})
 
 
 
