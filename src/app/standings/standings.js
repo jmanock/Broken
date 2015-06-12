@@ -69,6 +69,7 @@ angular.module('fantasy')
 	$scope.players = first;
 	$scope.total = function(teams){
 		var total = 0;
+
 		angular.forEach(teams, function(x){
 			angular.forEach(x, function(d){
 				if(d.points !== undefined){
@@ -76,15 +77,15 @@ angular.module('fantasy')
 				}
 			})
 		})
-		return total;
+		var scrap = FirebaseUrl.child('total');
+		scrap.update({
+			total:total,
+			users:teams.$id
+		});
 	}
 
-}) // End controller
-.filter('total', function(){
-	return function(data){
-		console.log(data);
-	}
-})
+}); // End controller
+
 
 
 

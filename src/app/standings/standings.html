@@ -5,10 +5,10 @@
 
   
      <h3>Teams</h3>
-     <div ng-repeat='team in teams   '>
-       <h4>{{team.$id}} | {{total(team) | total}}</h4>
-       <div ng-repeat='t in team.team  | orderBy:"points"'>
-         {{t.player}} | {{t.points}} {{t}}
+     <div ng-repeat='team in teams '>
+       <h4>{{team.$id}} | {{total(team) }}</h4>
+       <div ng-repeat='t in team.team '>
+         {{t.player}} | {{t.points}} 
        </div>
      </div>
     <!--<div ng-repeat='(k,v) in teams '>
