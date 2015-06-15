@@ -87,13 +87,11 @@ angular.module('fantasy')
 			totalWeek:total,
 			totalSeason:totalSeason
 		});
-		$scope.points(totalPoints);
+		$scope.ps = totalPoints;
 		return total;
 	}
 
-$scope.points = function(tp){
-	console.log(tp);
-}
+
 }); // End controller
 
 
