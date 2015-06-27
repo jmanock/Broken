@@ -70,8 +70,6 @@ angular.module('fantasy')
 
 	$scope.total = function(teams){
 		var total = 0;
-		var totalPoints = FirebaseUrl.child('total').child(teams.$id);
-		var totalSeason = 0;
 
 		angular.forEach(teams, function(x){
 			angular.forEach(x, function(d){
@@ -80,17 +78,9 @@ angular.module('fantasy')
 				}
 			})
 		})
-
-		// Still have to test totalSeason, not sure if this will work yet.
-		totalSeason = total + totalSeason;
-		totalPoints.update({
-			totalWeek:total,
-			totalSeason:totalSeason
-		});
-		$scope.ps = totalPoints;
+		
 		return total;
-	}
-
+	};
 
 }); // End controller
 

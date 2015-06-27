@@ -3,7 +3,6 @@
 
   <div ng-controller='StandingsCtrl as standings'>      
 
-  
      <h3>Teams</h3>
      <div ng-repeat='team in teams '>
        <h4>{{team.$id}} | {{total(team) }}</h4>
@@ -11,13 +10,6 @@
          {{t.player}} | {{t.points}} 
        </div>
      </div>
-    <!--<div ng-repeat='(k,v) in teams '>
-      <h4>{{k}} | {{total(v)}} </h4>
-      <div ng-repeat='p in v | somethingGood'>
-        {{p.player}} &nbsp; 
-        {{p.points}}
-      </div>
-    </div>  -->
      
     <div>
       <h3>Leaderboard</h3>
