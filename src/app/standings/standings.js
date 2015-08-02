@@ -2,12 +2,12 @@
 
 angular.module('fantasy')
 .controller('StandingsCtrl', function(Firebase, FirebaseUrl, $firebaseArray, $firebaseObject, $scope){
-	
+
 	// Get the `Teams`
 	$scope.teams = $firebaseArray(FirebaseUrl.child('teams'));
-	
+
 	// Get the `LeaderBoard`
-	var players = $firebaseArray(FirebaseUrl.child('leaderboard'));	
+	var players = $firebaseArray(FirebaseUrl.child('leaderboard'));
 
 	var first = [];
 	players.$loaded(function(ps){
@@ -57,8 +57,8 @@ angular.module('fantasy')
 								t.points = leaders.Points;
 							}
 						}
-					})
-				})
+					});
+				});
 			});
 		});
 
@@ -76,15 +76,9 @@ angular.module('fantasy')
 				if(d.points !== undefined){
 					total += d.points;
 				}
-			})
-		})
-		
+			});
+		});
+
 		return total;
 	};
-
 }); // End controller
-
-
-
-
-
