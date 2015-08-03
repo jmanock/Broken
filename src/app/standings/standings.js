@@ -5,6 +5,10 @@ angular.module('fantasy')
 
 	// Get the `Teams`
 	$scope.teams = $firebaseArray(FirebaseUrl.child('teams'));
+	var something =  new Firebase('https://fireseedangular.firebaseio.com/Tournament/Players');
+	$scope.something = $firebaseObject(something);
+	console.log($scope.something);
+
 
 	// Get the `LeaderBoard`
 	var players = $firebaseArray(FirebaseUrl.child('leaderboard'));

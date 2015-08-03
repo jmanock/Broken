@@ -9,14 +9,14 @@ Auth.onAuth(function(user){
   self.user = user;
 });
 
- 
+
 // Load `Team`
 this.currentUser.$loaded(function(){
   self.teams = $firebaseObject(FirebaseUrl.child('userTeam').child($stateParams.id).child('team'));
   var value = $firebaseObject(FirebaseUrl.child('userTeam').child($stateParams.id).child('count'));
   value.$loaded(function(data){
     var show = data.$value;
-    if(show === null){ 
+    if(show === null){
       $scope.hide = true;
     }
   });
@@ -24,6 +24,7 @@ this.currentUser.$loaded(function(){
 
 // Load `LeaderBoard`
 this.players = $firebaseArray(FirebaseUrl.child('leaderboard'));
+
 
 // Add the `Player` to the `Team`
 this.add = function(p){
@@ -107,5 +108,3 @@ this.reset = function(){
 };
 
 });// END CONTROLLER
-
-
