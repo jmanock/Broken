@@ -6,8 +6,38 @@ angular.module('fantasy')
 	// Get the `Teams`
 	$scope.teams = $firebaseArray(FirebaseUrl.child('teams'));
 	var something =  new Firebase('https://fireseedangular.firebaseio.com/leaderboard/players');
-	$scope.something = $firebaseObject(something);
-	console.log($scope.something);
+	$scope.something = $firebaseArray(something);
+	  // console.log($scope.something);
+		$scope.something.$loaded(function(x){
+			angular.forEach(x, function(z){
+				var firstName = z.player_bio.first_name;
+				var lastName = z.player_bio.last_name;
+				console.log(firstName, lastName);
+				angular.forEach(z.holes, function(y){
+					// console.log(y.par, y.strokes);
+					var points = y.par - y.strokes;
+					var count = 0;
+					if(points === 0){
+						count = count;
+						
+					}else if(points === 1){
+						count = count + 3;
+
+					}else if(points === -1){
+						count = count - 1;
+
+					}else{
+						count = count + 5;
+
+					}
+					console.log(count);
+				});
+				// angular.forEach(z.rounds, function(y){
+				// 	console.log(y);
+				// });
+			});
+		});
+
 
 
 	// Get the `LeaderBoard`
