@@ -18,18 +18,18 @@ angular.module('fantasy')
 					var points = y.par - y.strokes;
 					var count = 0;
 					if(points === 0){
-						count = count;
-						
+
 					}else if(points === 1){
-						count = count + 3;
+						count++;
 
 					}else if(points === -1){
-						count = count - 1;
+						count--;
 
 					}else{
 						count = count + 5;
 
 					}
+
 					console.log(count);
 				});
 				// angular.forEach(z.rounds, function(y){
