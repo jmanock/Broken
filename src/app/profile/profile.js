@@ -120,10 +120,13 @@ angular.module('fantasy')
       t.push(x.PlayerName);
       return t;
     });
-    function time(){
-      setInterval(function(){
-        
-      },10000);
+
+    function jookie(j){
+      for(var i =0; i<j.length; i++){
+        setTimeout(function(y){
+          console.log(y,j[y]);
+        },i*500,i);
+      }
     }
     function shuffle(array){
       var currentIndex = array.length, temporaryValue, randomIndex;
@@ -133,11 +136,12 @@ angular.module('fantasy')
         temporaryValue = array[currentIndex];
         array[currentIndex] = array[randomIndex];
         array[randomIndex] = temporaryValue;
-        time();
+
       }
       return array;
     }
     shuffle(t);
+    jookie(t);
 
     $scope.random = t;
 
