@@ -144,7 +144,6 @@ angular.module('fantasy')
       - Based on number of players in field
     * Be able to pic a number
       - Maybe get rid of the number after picked???
-    
   */
 
   /* ToDo Back-End
@@ -161,6 +160,9 @@ angular.module('fantasy')
       - Changes order every time
   */
 
+$scope.add = function(index){
+  console.log(index);
+};
 })// End controller
 .filter('firstName', function(){
   return function(x){

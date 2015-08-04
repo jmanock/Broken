@@ -24,15 +24,21 @@
     </div> -->
     <div class='players'>
       <h3>Players</h3>
-    <ol>
-      <li ng-repeat='p in players'>{{p | firstName}}</li>
-    </ol>
+    <!-- <ol>
+      <li ng-repeat='p in players'>{{p | firstName}}
+      <button class=''>#{{$index+1}}</button></li>
+    </ol> -->
+    <ul>
+      <li ng-repeat='p in players'>
+        <button class='btn btn-success' ng-click='add($index+1)'>#{{$index+1}}</button>
+      </li>
+    </ul>
     </div>
     <div class="random">
       <h3>Random</h3>
         <ol>
           <li ng-repeat='r in random'>{{r | secondName}}</li>
-        </ol>      
+        </ol>
     </div>
 
   </div> <!--End controller -->

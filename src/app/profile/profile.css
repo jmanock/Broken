@@ -4,3 +4,9 @@
 .random{
   float:right;
 }
+.btn{
+  margin-left:1em;
+}
+li{
+  list-style-type:none;
+}
