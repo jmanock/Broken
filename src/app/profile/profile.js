@@ -120,6 +120,11 @@ angular.module('fantasy')
       t.push(x.PlayerName);
       return t;
     });
+    function time(){
+      setInterval(function(){
+        
+      },10000);
+    }
     function shuffle(array){
       var currentIndex = array.length, temporaryValue, randomIndex;
       while(0 !== currentIndex){
@@ -128,22 +133,33 @@ angular.module('fantasy')
         temporaryValue = array[currentIndex];
         array[currentIndex] = array[randomIndex];
         array[randomIndex] = temporaryValue;
+        time();
       }
       return array;
     }
     shuffle(t);
+
     $scope.random = t;
 
 
   }); // End of `Get` call
 
-  /* ToDo
+  /* ToDo Front-End
     * Have just numbers show up
       - Based on number of players in field
     * Be able to pic a number
       - Maybe get rid of the number after picked???
     * Time
       - Have a name show up after a few seconds
+  */
+
+  /* ToDo Back-End
+    - Map players with numbers after final
+    - Store pic of number
+    - Points
+    - Sorting
+    - Season or Week
+    - Fb architecture
   */
 
   /* Problems
