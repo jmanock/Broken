@@ -111,6 +111,26 @@
 'use strict';
 angular.module('fantasy')
 .controller('SearchCtrl', function($http, $scope){
-  $http.get('wgc.json');
+  $http.get('app/profile/wgc.json')
+  .success(function(something){
+    var players = something.Tournament.Players;
+    // console.log(players);
+    $scope.players = players;
 
-});// End controller
+    // angular.forEach(players, function(x){
+    //   var parts = x.PlayerName.split(',');
+    //    var sex = parts[1]+ ' ' + parts[0];
+    //
+    // });
+
+  });
+
+})// End controller
+.filter('something', function(){
+  return function(x){
+    var parts = x.PlayerName.split(',');
+    var first = parts[1]+ ' '+parts[0];
+    return first; 
+  };
+
+});

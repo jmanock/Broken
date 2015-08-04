@@ -22,7 +22,8 @@
         </li>
       </ul>
     </div> -->
-  <p ng-repeat='p in players'>
-    {{p}}
-  </p>
+    <h3>Players</h3>
+  <ol>
+    <li ng-repeat='p in players'>{{p | something}}</li>
+  </ol>
   </div> <!--End controller -->
