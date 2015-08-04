@@ -1,7 +1,6 @@
-ul{
+.players{
   float:left;
 }
-
-ol > h4 > li{
+.random{
   float:right;
 }

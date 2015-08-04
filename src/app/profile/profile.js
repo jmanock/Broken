@@ -132,7 +132,7 @@ angular.module('fantasy')
       return array;
     }
     shuffle(t);
-    console.log(t);
+    $scope.random = t;
 
 
   }); // End of `Get` call
@@ -141,9 +141,14 @@ angular.module('fantasy')
     * Have just numbers show up
       - Based on number of players in field
     * Be able to pic a number
-      - Maybe get rid of the number after picked
-    * Random Name
-      - Run to spit out name with a number
+      - Maybe get rid of the number after picked???
+    * Time
+      - Have a name show up after a few seconds
+  */
+
+  /* Problems
+    * Refresh
+      - Changes order every time
   */
 
 })// End controller
@@ -154,4 +159,11 @@ angular.module('fantasy')
     return first;
   };
 
+})
+.filter('secondName', function(){
+  return function(x){
+    var parts = x.split(',');
+    var second = parts[1]+ ' '+ parts[0];
+    return second;
+  };
 });

@@ -22,8 +22,17 @@
         </li>
       </ul>
     </div> -->
-    <h3>Players</h3>
-  <ol>
-    <li ng-repeat='p in players'>{{p | firstName}}</li>
-  </ol>
+    <div class='players'>
+      <h3>Players</h3>
+    <ol>
+      <li ng-repeat='p in players'>{{p | firstName}}</li>
+    </ol>
+    </div>
+    <div class="random">
+      <h3>Random</h3>
+        <ol>
+          <li ng-repeat='r in random'>{{r | secondName}}</li>
+        </ol>      
+    </div>
+
   </div> <!--End controller -->
