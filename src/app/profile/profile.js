@@ -121,13 +121,7 @@ angular.module('fantasy')
       return t;
     });
 
-    function jookie(j){
-      for(var i =0; i<j.length; i++){
-        setTimeout(function(y){
-          console.log(y,j[y]);
-        },i*500,i);
-      }
-    }
+
     function shuffle(array){
       var currentIndex = array.length, temporaryValue, randomIndex;
       while(0 !== currentIndex){
@@ -136,13 +130,10 @@ angular.module('fantasy')
         temporaryValue = array[currentIndex];
         array[currentIndex] = array[randomIndex];
         array[randomIndex] = temporaryValue;
-
       }
       return array;
     }
     shuffle(t);
-    jookie(t);
-
     $scope.random = t;
 
 
@@ -153,8 +144,7 @@ angular.module('fantasy')
       - Based on number of players in field
     * Be able to pic a number
       - Maybe get rid of the number after picked???
-    * Time
-      - Have a name show up after a few seconds
+    
   */
 
   /* ToDo Back-End
