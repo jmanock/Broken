@@ -2,11 +2,11 @@
   <div ng-include="'components/navbar/navbar.html'"></div>
 
   <div ng-controller='SearchCtrl as search'>
-  <div>
+  <div ng-hide='hide'>
     <h4>Team</h4>
     <ol>
-      <li ng-repeat='(id,team) in search.teams'>
-        {{team.name}} 
+      <li ng-repeat='(id,team) in search.teams' >
+        {{team.name}}
         <button ng-click='search.removePlayer(id)'>Remove player</button>
       </li>
     </ol>
@@ -23,3 +23,4 @@
       </ul>
     </div>
   </div>
+  

@@ -3,6 +3,7 @@
 
   <div ng-controller='StandingsCtrl as standings'>
 <<<<<<< HEAD
+<<<<<<< HEAD
     
     <h3>Teams</h3>
 
@@ -56,13 +57,31 @@
       </div>
     </div>
 >>>>>>> feature/addButton
+=======
+
+     <h3>Teams</h3>
+     <div ng-repeat='team in teams '>
+       <h4>{{team.$id}} | {{total(team) }}</h4>
+       <div ng-repeat='t in team.team '>
+         {{t.player}} | {{t.points}}
+       </div>
+     </div>
+
+>>>>>>> develop
     <div>
       <h3>Leaderboard</h3>
-      <ul>
+
+      <!-- <ul>
         <li ng-repeat='player in players' style='list-style-type:none;'>
           {{player.Rank}} | {{player.Name}} | {{player.Points}}
         </li>
-      </ul>
+      </ul> -->
+      <!-- <ol>
+        <li ng-repeat='some in something'>
+           {{some.player_bio.first_name}} {{some.player_bio.last_name}}
+          {{some.holes}}
+        </li> -->
+      </ol>
     </div>
   </div>
 </div>

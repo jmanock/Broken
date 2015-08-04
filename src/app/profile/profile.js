@@ -9,16 +9,26 @@ Auth.onAuth(function(user){
   self.user = user;
 });
 
+
 // Load `Team`
 this.currentUser.$loaded(function(){
   self.teams = $firebaseObject(FirebaseUrl.child('userTeam').child($stateParams.id).child('team'));
+  var value = $firebaseObject(FirebaseUrl.child('userTeam').child($stateParams.id).child('count'));
+  value.$loaded(function(data){
+    var show = data.$value;
+    if(show === null){
+      $scope.hide = true;
+    }
+  });
 });
 
 // Load `LeaderBoard`
 this.players = $firebaseArray(FirebaseUrl.child('leaderboard'));
 
+
 // Add the `Player` to the `Team`
 this.add = function(p){
+  $scope.hide=false;
   this.count(p);
 };
 
@@ -28,11 +38,13 @@ this.count = function(p){
   .transaction(function(count){
     if(count === null){
       count = 0;
+      $scope.hide = true;
     }
     if(count >= 5){
       // Change to an alert or something
       console.log('That is all the players you can have!');
     }else{
+      $scope.hide = false;
       return(count || 0)+1;
     }
   },function(err, committed, ss){
@@ -67,7 +79,9 @@ this.remove = function(id){
       var userTeam = FirebaseUrl.child('userTeam').child(self.user.uid).child('team').child(id);
 
       userTeam.remove();
-      console.log(i);
+      if(i === 0){
+        $scope.hide = true;
+      }
     }
   });
 };
@@ -75,8 +89,8 @@ this.remove = function(id){
 // Save the `Team` to call in the `Standings` page
 this.save = function(){
   // need to change this var name
-  var something = FirebaseUrl.child('teams').child(self.user.fullName);
-
+  var something = FirebaseUrl.child('teams').child(self.user.fullName).child('team');
+  something.remove();
   angular.forEach(self.teams, function(s){
     something.push({
       player: s.name
@@ -86,29 +100,11 @@ this.save = function(){
 
 // Reset the `Team` back to Empty
 this.reset = function(){
-  /*
-    # Need to do
-      * Delete the `teamUser`
-      * Delete the `team` only the user
-      * Set the counter back to 0
-  */
-  console.log('hello');
+  var something = FirebaseUrl.child('teams').child(self.user.fullName);
+  var userTeam = FirebaseUrl.child('userTeam').child(self.user.uid);
+  $scope.hide = true;
+  userTeam.remove();
+  something.remove();
 };
 
 });// END CONTROLLER
-
-
-/*
-  Bugs need to fix
-  # PROBLEM
-    * Adding the same player more than once
-      - Doesn't add the player but it does increase the count
-  # IDEA
-    * Maybe a hide / show when the add button is clicked
-  # PROBLEM
-    * Saving the team more than once
-      - Adds the team again and again
-  # IDEA
-    * Delete anything that is there then add!!!
-
-*/
