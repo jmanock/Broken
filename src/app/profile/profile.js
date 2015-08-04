@@ -114,16 +114,37 @@ angular.module('fantasy')
   $http.get('app/profile/wgc.json')
   .success(function(something){
     var players = something.Tournament.Players;
-    // console.log(players);
     $scope.players = players;
+    var t = [];
+    angular.forEach(players, function(x){
+      t.push(x.PlayerName);
+      return t;
+    });
+    function shuffle(array){
+      var currentIndex = array.length, temporaryValue, randomIndex;
+      while(0 !== currentIndex){
+        randomIndex = Math.floor(Math.random() * currentIndex);
+        currentIndex -=1;
+        temporaryValue = array[currentIndex];
+        array[currentIndex] = array[randomIndex];
+        array[randomIndex] = temporaryValue;
+      }
+      return array;
+    }
+    shuffle(t);
+    console.log(t);
 
-    // angular.forEach(players, function(x){
-    //   var parts = x.PlayerName.split(',');
-    //    var sex = parts[1]+ ' ' + parts[0];
-    //
-    // });
 
-  });
+  }); // End of `Get` call
+
+  /* ToDo
+    * Have just numbers show up
+      - Based on number of players in field
+    * Be able to pic a number
+      - Maybe get rid of the number after picked
+    * Random Name
+      - Run to spit out name with a number
+  */
 
 })// End controller
 .filter('firstName', function(){
