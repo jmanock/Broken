@@ -2,22 +2,29 @@
   <div ng-include="'components/navbar/navbar.html'"></div>
 
   <div ng-controller='StandingsCtrl as standings'>
-    
-    <h3>Teams</h3>
 
-    <div ng-repeat='t in teams'>
-      <h4>{{t.$id}}</h4>
-      <div ng-repeat='s in t'>
-        {{s.player}}
-      </div>
-    </div>
+     <h3>Teams</h3>
+     <div ng-repeat='team in teams '>
+       <h4>{{team.$id}} | {{total(team) }}</h4>
+       <div ng-repeat='t in team.team '>
+         {{t.player}} | {{t.points}}
+       </div>
+     </div>
+
     <div>
       <h3>Leaderboard</h3>
-      <ul>
+
+      <!-- <ul>
         <li ng-repeat='player in players' style='list-style-type:none;'>
           {{player.Rank}} | {{player.Name}} | {{player.Points}}
         </li>
-      </ul>
+      </ul> -->
+      <!-- <ol>
+        <li ng-repeat='some in something'>
+           {{some.player_bio.first_name}} {{some.player_bio.last_name}}
+          {{some.holes}}
+        </li> -->
+      </ol>
     </div>
   </div>
 </div>

@@ -1,85 +1,118 @@
 'use strict';
 
 angular.module('fantasy')
-.controller('StandingsCtrl', function(FirebaseUrl, $firebaseArray, $firebaseObject, $scope){
-	
+.controller('StandingsCtrl', function(Firebase, FirebaseUrl, $firebaseArray, $firebaseObject, $scope){
+
+	// Get the `Teams`
 	$scope.teams = $firebaseArray(FirebaseUrl.child('teams'));
-	
+	var something =  new Firebase('https://fireseedangular.firebaseio.com/leaderboard/players');
+	$scope.something = $firebaseArray(something);
+	  // console.log($scope.something);
+		$scope.something.$loaded(function(x){
+			angular.forEach(x, function(z){
+				var firstName = z.player_bio.first_name;
+				var lastName = z.player_bio.last_name;
+				console.log(firstName, lastName);
+				angular.forEach(z.holes, function(y){
+					// console.log(y.par, y.strokes);
+					var points = y.par - y.strokes;
+					var count = 0;
+					if(points === 0){
 
-	
+					}else if(points === 1){
+						count++;
 
-// 	// Get the `LeaderBoard`
-// 	var players = $firebaseArray(FirebaseUrl.child('leaderboard'));
+					}else if(points === -1){
+						count--;
 
-// 	// Load `LeaderBoard` and sort based on `Points`
-// 	players.$loaded(function(data){
-// 		var first = [];
-// 		angular.forEach(data, function(leader){
-// 			first.push(leader);
-// 			first.sort(function(a,b){
-// 				return b.Points - a.Points;
-// 			}); // END SORT FUNCTION
-// 		}); // END FOR EACH FUNCTION
+					}else{
+						count = count + 5;
 
-// 		// Get the `Points` from `LeaderBoard` and give them to the `teamUser`
-// 		angular.forEach(first, function(leaderboard){
-// 			angular.forEach(teamUser, function(teams){
-// 				angular.forEach(teams, function(players){
-// 					if(players.name === leaderboard.Name){
-// 						players.points = leaderboard.Points;
-// 					}
-// 				});
-// 			});
-// 		});
+					}
 
-// 		var second = [];
-// 		var count = 0;
-// 		var third = [];
-// 		angular.forEach(first, function(some){
-// 			second.push(some.Points);
-// 		});
-// 		for(var i = 0; i<second.length; i++){
-// 			if(second[i] === second[i-1]){
-// 				var x = i - count;
-// 				third.push(x);
-// 				count++;
-// 			}else{
-// 				third.push(i+1);
-// 				count = 0;
-// 			}
-// 		}
-// 		var map = [];
-// 		for(var j = 0; j<second.length && j < third.length; j++){
-// 			map.push({
-// 				points: second[j],
-// 				rank: third[j]
-// 			});
-// 		}
+					console.log(count);
+				});
+				// angular.forEach(z.rounds, function(y){
+				// 	console.log(y);
+				// });
+			});
+		});
 
-// 		for(var k = 0; k<first.length && k<map.length; k++){
-// 			if(first[k].Points === map[k].points){
-// 				first[k].Rank = map[k].rank;
-// 			}
-// 		}
-// 		$scope.players = first;
-// 	}); // END LOAD FUNCTION
 
-// $scope.getTotal = function(v){
-// 	var total = 0;
-// 	angular.forEach(v, function(p){
-// 		if(p.points === undefined){
-// 			p.points = 0;
-// 		}
-// 		total += p.points;
-// 	});
-// 	return total;
-// };
 
-// $scope.somethingGood = function(s){
-// // How to get the total into an array 
-// 	// Then need to run the rank algorithm 
-// console.log(s);	
+	// Get the `LeaderBoard`
+	var players = $firebaseArray(FirebaseUrl.child('leaderboard'));
 
-// };
+	var first = [];
+	players.$loaded(function(ps){
+		angular.forEach(ps, function(player){
+			first.push(player);
+			first.sort(function(a,b){
+				return b.Points - a.Points;
+			}); // End sort function
+		});// End for each first
 
-});
+		var second = [];
+		angular.forEach(first, function(s){
+			second.push(s.Points);
+		});
+		var ranking = [];
+		var count = 0;
+		for(var i = 0; i<second.length; i++){
+			if(second[i] === second[i-1]){
+				var x = i - count;
+				ranking.push(x);
+				count++;
+			}else{
+				ranking.push(i+1);
+				count = 0;
+			}
+		}
+
+		var map = [];
+		for(var j = 0; j<second.length && j < ranking.length; j++){
+			map.push({
+				points: second[j],
+				rank: ranking[j]
+			});
+		}
+
+		for(var r = 0; r<map.length && r<first.length; r++){
+			if(first[r].Points === map[r].points){
+				first[r].Rank = map[r].rank;
+			}
+		}
+		angular.forEach(first, function(leaders){
+			angular.forEach($scope.teams, function(x){
+				angular.forEach(x, function(d){
+					angular.forEach(d, function(t){
+						if(t.player !== undefined){
+							if(t.player === leaders.Name){
+								t.points = leaders.Points;
+							}
+						}
+					});
+				});
+			});
+		});
+
+		return first;
+
+	}); // End loaded
+	$scope.players = first;
+
+
+	$scope.total = function(teams){
+		var total = 0;
+
+		angular.forEach(teams, function(x){
+			angular.forEach(x, function(d){
+				if(d.points !== undefined){
+					total += d.points;
+				}
+			});
+		});
+
+		return total;
+	};
+}); // End controller
