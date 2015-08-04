@@ -161,7 +161,6 @@ angular.module('fantasy')
   */
 var team = [];
 $scope.add = function(t){
-
    team.push(t);
    console.log(team);
    $scope.team = team;
