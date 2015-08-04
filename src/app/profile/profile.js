@@ -159,9 +159,12 @@ angular.module('fantasy')
     * Refresh
       - Changes order every time
   */
+var team = [];
+$scope.add = function(t){
 
-$scope.add = function(index){
-  console.log(index);
+   team.push(t);
+   console.log(team);
+   $scope.team = team;
 };
 })// End controller
 .filter('firstName', function(){
