@@ -126,11 +126,11 @@ angular.module('fantasy')
   });
 
 })// End controller
-.filter('something', function(){
+.filter('firstName', function(){
   return function(x){
     var parts = x.PlayerName.split(',');
     var first = parts[1]+ ' '+parts[0];
-    return first; 
+    return first;
   };
 
 });
