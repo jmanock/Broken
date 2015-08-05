@@ -114,14 +114,17 @@ angular.module('fantasy')
   $http.get('app/profile/wgc.json')
   .success(function(something){
     var players = something.Tournament.Players;
-    $scope.players = players;
+     $scope.players = [];
+     for(var i = 0; i<players.length; i++){
+       $scope.players.push(i);
+     }
     var t = [];
     angular.forEach(players, function(x){
       t.push(x.PlayerName);
       return t;
     });
 
-
+    // Shuffle the players
     function shuffle(array){
       var currentIndex = array.length, temporaryValue, randomIndex;
       while(0 !== currentIndex){
@@ -142,13 +145,10 @@ angular.module('fantasy')
   /* ToDo Front-End
     * FireBase
       - Save to FireBase
-    * Limit
-      - Can only pick 5 numbers
+    * Split
+      - Have to have 3 sections of players
     * Map
       - Numbers to players
-    * Food for though
-      - Have seperate catagories for the players
-        ~ i.e `A`, `B`, `C` Players
   */
 
   /*
@@ -161,14 +161,19 @@ angular.module('fantasy')
 
 
 var team = [];
+$scope.isDisabled = false;
 $scope.add = function(t){
-  if(team.length <= 4){
-    team.push(t);
-    $scope.team = team;
-  }else{
-    console.log('That is Enough players');
-  }
-};
+  console.log(t);
+  // if(team.length < 5 ){
+  //   team.push(t);
+  //   this.isDisabled = true;
+  //   $scope.team = team;
+  // }else{
+  //   $scope.isDisabled = true;
+  //   console.log('That is Enough players');
+  // }
+}; // End `Add` Function
+
 })// End controller
 .filter('firstName', function(){
   return function(x){

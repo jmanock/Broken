@@ -33,8 +33,17 @@
       <button class=''>#{{$index+1}}</button></li>
     </ol> -->
     <ul>
-      <li ng-repeat='p in players'>
-        <button class='btn btn-success' ng-click='add($index+1)'>#{{$index+1}}</button>
+      A
+      <li ng-repeat='p in players | limitTo:26 | limitTo:-26'>
+         <button class='btn btn-success' ng-disabled='isDisabled' ng-click='add(p+1)'># {{p+1}}</button>
+      </li>
+      B
+       <li ng-repeat='p in players | limitTo:52 | limitTo:-26'>
+         <button class='btn btn-success' ng-disabled='isDisabled' ng-click='add(p+1)'># {{p+1}}</button>
+      </li>
+      C
+       <li ng-repeat='p in players | limitTo:77 | limitTo:-25'>
+        <button class='btn btn-success' ng-disabled='isDisabled' ng-click='add(p+1)'># {{p+1}}</button>
       </li>
     </ul>
     </div>
