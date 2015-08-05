@@ -162,15 +162,13 @@ angular.module('fantasy')
 var teamA = [];
 var teamB = [];
 var teamC = [];
-$scope.isDisbaledA = false;
-$scope.isDisabledB = false;
-$scope.isDisabledC = false;
+
 
 $scope.add = function(t){
   if(t <= 26){
     if(teamA.length <= 1){
       teamA.push(t);
-      this.isDisabledA = true;
+
     }else{
       $scope.isDisabledA = true;
       console.log('To Many A players!!!');
@@ -202,6 +200,7 @@ $scope.remove = function(t){
   if(t <= 26){
     var index = $scope.teamA.indexOf(t);
     $scope.teamA.splice(index,1);
+    $scope.players.push(t);
 
   }else if(t <= 52){
     var ind = $scope.teamB.indexOf(t);
@@ -210,10 +209,10 @@ $scope.remove = function(t){
   }else{
     var ex = $scope.teamC.indexOf(t);
     $scope.teamC.splice(ex,1);
-
   }
 
 }; // End `Remove` Function
+
 
 })// End controller
 .filter('firstName', function(){

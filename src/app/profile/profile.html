@@ -28,12 +28,10 @@
       <h5 ng-repeat='t in teamB'>B: {{t}} <button ng-click='remove(t)'>X</button></h5>
       <h5 ng-repeat='t in teamC'>C: {{t}} <button ng-click='remove(t)'>X</button></h5>
     </div>
+    
     <div class='players'>
       <h3>Players</h3>
-    <!-- <ol>
-      <li ng-repeat='p in players'>{{p | firstName}}
-      <button class=''>#{{$index+1}}</button></li>
-    </ol> -->
+
     <ul>
       A
       <li ng-repeat='p in players | limitTo:26 | limitTo:-26'>
