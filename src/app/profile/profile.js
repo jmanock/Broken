@@ -143,8 +143,7 @@ angular.module('fantasy')
   }); // End of `Get` call
 
   /* ToDo Front-End
-    * Remove
-      - button to remove player
+
     * FireBase
       - Save to FireBase
     * Map
@@ -181,7 +180,7 @@ $scope.add = function(t){
       this.isDisabledB = true;
     }else{
       $scope.isDisabledB = true;
-      console.log('To Mano B players!!!');
+      console.log('To Many B players!!!');
     }
   }else{
     if(teamC < 1){
@@ -197,6 +196,23 @@ $scope.add = function(t){
   $scope.teamC = teamC;
 
 }; // End `Add` Function
+
+$scope.remove = function(t){
+  if(t <= 26){
+    var index = $scope.teamA.indexOf(t);
+    $scope.teamA.splice(index,1);
+
+  }else if(t <= 52){
+    var ind = $scope.teamB.indexOf(t);
+    $scope.teamB.splice(ind,1);
+
+  }else{
+    var ex = $scope.teamC.indexOf(t);
+    $scope.teamC.splice(ex,1);
+
+  }
+
+}; // End `Remove` Function
 
 })// End controller
 .filter('firstName', function(){
