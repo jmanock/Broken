@@ -143,10 +143,10 @@ angular.module('fantasy')
   }); // End of `Get` call
 
   /* ToDo Front-End
+    * Object
+      - Should out put A:#, A:#, B:#, B:#, C:#
     * FireBase
       - Save to FireBase
-    * Split
-      - Have to have 3 sections of players
     * Map
       - Numbers to players
   */
@@ -163,7 +163,15 @@ angular.module('fantasy')
 var team = [];
 $scope.isDisabled = false;
 $scope.add = function(t){
-  console.log(t);
+
+  if(t <= 26){
+     a(t);
+  }else if(t <=52){
+     b(t);
+  }else{
+     c(t);
+  }
+
   // if(team.length < 5 ){
   //   team.push(t);
   //   this.isDisabled = true;
@@ -174,6 +182,34 @@ $scope.add = function(t){
   // }
 }; // End `Add` Function
 
+function a(x){
+  if(team.length < 2){
+    team.push({
+      A:x
+    });
+  }
+  console.log(team);
+
+  $scope.team = team;
+}
+function b(x){
+  if(team.length < 2){
+    team.push({
+      B:x
+    });
+  }
+
+  $scope.team = team;
+}
+function c(x){
+  if(team.length < 1){
+    team.push({
+      C:x
+    });
+  }
+
+  $scope.team = team;
+}
 })// End controller
 .filter('firstName', function(){
   return function(x){
