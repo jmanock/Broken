@@ -162,9 +162,10 @@ angular.module('fantasy')
 var teamA = [];
 var teamB = [];
 var teamC = [];
-$scope.isDisabledA = false;
+$scope.isDisbaledA = false;
 $scope.isDisabledB = false;
 $scope.isDisabledC = false;
+
 $scope.add = function(t){
   if(t <= 26){
     if(teamA.length <= 1){
