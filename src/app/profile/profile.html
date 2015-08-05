@@ -37,15 +37,15 @@
     <ul>
       A
       <li ng-repeat='p in players | limitTo:26 | limitTo:-26'>
-         <button class='btn btn-success' ng-disabled='isDisabled' ng-click='add(p+1)'># {{p+1}}</button>
+         <button class='btn btn-success' ng-disabled='isDisabledA' ng-click='add(p+1)'># {{p+1}}</button>
       </li>
       B
        <li ng-repeat='p in players | limitTo:52 | limitTo:-26'>
-         <button class='btn btn-success' ng-disabled='isDisabled' ng-click='add(p+1)'># {{p+1}}</button>
+         <button class='btn btn-success' ng-disabled='isDisabledB' ng-click='add(p+1)'># {{p+1}}</button>
       </li>
       C
        <li ng-repeat='p in players | limitTo:77 | limitTo:-25'>
-        <button class='btn btn-success' ng-disabled='isDisabled' ng-click='add(p+1)'># {{p+1}}</button>
+        <button class='btn btn-success' ng-disabled='isDisabledC' ng-click='add(p+1)'># {{p+1}}</button>
       </li>
     </ul>
     </div>

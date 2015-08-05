@@ -143,8 +143,8 @@ angular.module('fantasy')
   }); // End of `Get` call
 
   /* ToDo Front-End
-    * Object
-      - Should out put A:#, A:#, B:#, B:#, C:#
+    * Remove
+      - button to remove player
     * FireBase
       - Save to FireBase
     * Map
@@ -163,24 +163,32 @@ angular.module('fantasy')
 var teamA = [];
 var teamB = [];
 var teamC = [];
-$scope.isDisabled = false;
+$scope.isDisabledA = false;
+$scope.isDisabledB = false;
+$scope.isDisabledC = false;
 $scope.add = function(t){
   if(t <= 26){
-    if(teamA.length < 2){
+    if(teamA.length <= 1){
       teamA.push(t);
+      this.isDisabledA = true;
     }else{
-        console.log('To Many A players!!!');
+      $scope.isDisabledA = true;
+      console.log('To Many A players!!!');
     }
   }else if(t <= 52){
-    if(teamB.length < 2){
+    if(teamB.length <= 1){
       teamB.push(t);
+      this.isDisabledB = true;
     }else{
+      $scope.isDisabledB = true;
       console.log('To Mano B players!!!');
     }
   }else{
     if(teamC < 1){
       teamC.push(t);
+      this.isDisabledC = true;
     }else{
+      $scope.isDisabledC = true;
       console.log('You have a C player!');
     }
   }
@@ -188,15 +196,6 @@ $scope.add = function(t){
   $scope.teamB = teamB;
   $scope.teamC = teamC;
 
-
-  // if(team.length < 5 ){
-  //   team.push(t);
-  //   this.isDisabled = true;
-  //   $scope.team = team;
-  // }else{
-  //   $scope.isDisabled = true;
-  //   console.log('That is Enough players');
-  // }
 }; // End `Add` Function
 
 })// End controller
