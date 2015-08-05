@@ -140,25 +140,20 @@ angular.module('fantasy')
   }); // End of `Get` call
 
   /* ToDo Front-End
-    * Have just numbers show up
-      - Based on number of players in field
-    * Be able to pic a number
-      - Maybe get rid of the number after picked???
+    * FireBase
+      - Save to FireBase
+    * Limit
+      - Can only pick 5 numbers
+    * Map
+      - Numbers to players
+    * Food for though
+      - Have seperate catagories for the players
+        ~ i.e `A`, `B`, `C` Players
   */
 
-  /* ToDo Back-End
-    - Map players with numbers after final
-    - Store pic of number
-    - Points
-    - Sorting
-    - Season or Week
-    - Fb architecture
-  */
 
-  /* Problems
-    * Refresh
-      - Changes order every time
-  */
+
+
 var team = [];
 $scope.add = function(t){
    team.push(t);
