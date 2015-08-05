@@ -160,17 +160,34 @@ angular.module('fantasy')
 
 
 
-var team = [];
+var teamA = [];
+var teamB = [];
+var teamC = [];
 $scope.isDisabled = false;
 $scope.add = function(t){
-
   if(t <= 26){
-     a(t);
-  }else if(t <=52){
-     b(t);
+    if(teamA.length < 2){
+      teamA.push(t);
+    }else{
+        console.log('To Many A players!!!');
+    }
+  }else if(t <= 52){
+    if(teamB.length < 2){
+      teamB.push(t);
+    }else{
+      console.log('To Mano B players!!!');
+    }
   }else{
-     c(t);
+    if(teamC < 1){
+      teamC.push(t);
+    }else{
+      console.log('You have a C player!');
+    }
   }
+  $scope.teamA = teamA;
+  $scope.teamB = teamB;
+  $scope.teamC = teamC;
+
 
   // if(team.length < 5 ){
   //   team.push(t);
@@ -182,34 +199,6 @@ $scope.add = function(t){
   // }
 }; // End `Add` Function
 
-function a(x){
-  if(team.length < 2){
-    team.push({
-      A:x
-    });
-  }
-  console.log(team);
-
-  $scope.team = team;
-}
-function b(x){
-  if(team.length < 2){
-    team.push({
-      B:x
-    });
-  }
-
-  $scope.team = team;
-}
-function c(x){
-  if(team.length < 1){
-    team.push({
-      C:x
-    });
-  }
-
-  $scope.team = team;
-}
 })// End controller
 .filter('firstName', function(){
   return function(x){
