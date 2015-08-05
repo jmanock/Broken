@@ -151,14 +151,23 @@ angular.module('fantasy')
         ~ i.e `A`, `B`, `C` Players
   */
 
+  /*
+    * Ideas
+     - How to get scores
+      ~ json file??? (curl every hour?)
+  */
+
 
 
 
 var team = [];
 $scope.add = function(t){
-   team.push(t);
-   console.log(team);
-   $scope.team = team;
+  if(team.length <= 4){
+    team.push(t);
+    $scope.team = team;
+  }else{
+    console.log('That is Enough players');
+  }
 };
 })// End controller
 .filter('firstName', function(){
