@@ -134,11 +134,17 @@ $http.get('app/profile/leaders1.json')
     var firstName = x.player_bio.first_name;
     var lastName = x.player_bio.last_name;
     var fullName = firstName +' '+ lastName;
-    //console.log(fullName);
+    console.log(fullName);
+    var holes = x.holes;
+    angular.forEach(holes, function(z){
+      var strokes = z.strokes;
+      var par = z.par;
+      console.log(par, strokes);
+    });
 
   }); // End forEach `x`
 
-  
+
   /*
     * What do I need to put into Fb????
       ~ Names √
