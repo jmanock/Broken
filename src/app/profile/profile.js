@@ -168,6 +168,7 @@ $scope.add = function(t){
   if(t <= 26){
     if(teamA.length <= 1){
       teamA.push(t);
+      this.isDisabledA = true;
 
     }else{
       $scope.isDisabledA = true;
@@ -200,7 +201,6 @@ $scope.remove = function(t){
   if(t <= 26){
     var index = $scope.teamA.indexOf(t);
     $scope.teamA.splice(index,1);
-    $scope.players.push(t);
 
   }else if(t <= 52){
     var ind = $scope.teamB.indexOf(t);
