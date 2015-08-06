@@ -126,7 +126,7 @@ angular.module('fantasy')
 
 var ref = new Firebase('https://fireseedangular.firebaseio.com/');
 
-$http.get('app/profile/leaders1.json')
+$http.get('app/profile/leader.json')
 .success(function(plays){
   var p = plays.leaderboard.players;
 
@@ -139,7 +139,26 @@ $http.get('app/profile/leaders1.json')
     angular.forEach(holes, function(z){
       var strokes = z.strokes;
       var par = z.par;
-      console.log(par, strokes);
+      var total = par - strokes;
+      var count = 0;
+      if(strokes !== null){
+        if(total === 0){
+          console.log('par');
+          count = 0;
+        }else if(total === 1){
+          console.log('birdie');
+          count = count + 2;
+        }else if(total >= 2){
+          console.log('Thats a fucking Eagle');
+          count = count + 4;
+        }else if(total === -1){
+          console.log('bogie');
+          count = count -1;
+        }else if(total <= -2 ){
+          console.log('That over a double');
+          count = count -2;
+        }
+      }
     });
 
   }); // End forEach `x`
@@ -148,7 +167,7 @@ $http.get('app/profile/leaders1.json')
   /*
     * What do I need to put into Fb????
       ~ Names √
-      ~ Points 
+      ~ Points
         - Round Points
         - Total Points
     * What info do I have to get out of the json????
