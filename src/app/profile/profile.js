@@ -124,20 +124,34 @@ angular.module('fantasy')
       return t;
     });
 
+var ref = new Firebase('https://fireseedangular.firebaseio.com/');
+
 $http.get('app/profile/leaders1.json')
-.success(function(some){
+.success(function(plays){
+  var p = plays.leaderboard.players;
+
+  angular.forEach(p, function(x){
+    var firstName = x.player_bio.first_name;
+    var lastName = x.player_bio.last_name;
+    var fullName = firstName +' '+ lastName;
+    //console.log(fullName);
+
+  }); // End forEach `x`
+
+  
   /*
     * What do I need to put into Fb????
-      ~ Names
+      ~ Names √
       ~ Points
         - Round Points
         - Total Points
     * What info do I have to get out of the json????
       ~ Hole score
         - Math based on par vs score
-      ~ Names
-
+      ~ Names √
+      ~ Par
   */
+
 });
     // Shuffle the players
     function shuffle(array){
