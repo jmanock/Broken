@@ -124,6 +124,21 @@ angular.module('fantasy')
       return t;
     });
 
+$http.get('app/profile/leaders1.json')
+.success(function(some){
+  /*
+    * What do I need to put into Fb????
+      ~ Names
+      ~ Points
+        - Round Points
+        - Total Points
+    * What info do I have to get out of the json????
+      ~ Hole score
+        - Math based on par vs score
+      ~ Names
+
+  */
+});
     // Shuffle the players
     function shuffle(array){
       var currentIndex = array.length, temporaryValue, randomIndex;
