@@ -148,14 +148,14 @@ $http.get('app/profile/leaders1.json')
   /*
     * What do I need to put into Fb????
       ~ Names √
-      ~ Points
+      ~ Points 
         - Round Points
         - Total Points
     * What info do I have to get out of the json????
-      ~ Hole score
+      ~ Hole score √
         - Math based on par vs score
       ~ Names √
-      ~ Par
+      ~ Par √
   */
 
 });
