@@ -129,14 +129,15 @@ var ref = new Firebase('https://fireseedangular.firebaseio.com/');
 $http.get('app/profile/leader.json')
 .success(function(plays){
   var p = plays.leaderboard.players;
-
+var something = [];
   angular.forEach(p, function(x){
     var firstName = x.player_bio.first_name;
     var lastName = x.player_bio.last_name;
     var fullName = firstName +' '+ lastName;
-    console.log(fullName);
+    // console.log(fullName);
     var holes = x.holes;
     var points = 0;
+
     angular.forEach(holes, function(z){
       var strokes = z.strokes;
       var par = z.par;
@@ -163,9 +164,14 @@ $http.get('app/profile/leader.json')
       }
       return points;
     });
-console.log(points);
-  }); // End forEach `x`
+// console.log(points);
+something.push({
+  Name:fullName,
+  Points:points
+});
 
+  }); // End forEach `x`
+console.log(something);
 
   /*
     * What do I need to put into Fb????
