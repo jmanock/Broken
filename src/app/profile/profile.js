@@ -136,34 +136,34 @@ $http.get('app/profile/leader.json')
     var fullName = firstName +' '+ lastName;
     console.log(fullName);
     var holes = x.holes;
-    var count = 0;
+    var points = 0;
     angular.forEach(holes, function(z){
       var strokes = z.strokes;
       var par = z.par;
-      var total = par - strokes;
+      var score = par - strokes;
 
       if(strokes !== null){
-        if(total === 0){
+        if(score === 0){
           // console.log('par');
-          count = count;
-        }else if(total === 1){
+          points = points;
+        }else if(score === 1){
           // console.log('birdie');
-          count = count + 2;
-        }else if(total >= 2){
+          points = points + 2;
+        }else if(score >= 2){
           // console.log('Thats a fucking Eagle');
-          count = count + 4;
-        }else if(total === -1){
+          points = points + 4;
+        }else if(score === -1){
           // console.log('bogie');
-          count = count -1;
-        }else if(total <= -2 ){
+          points = points -1;
+        }else if(score <= -2 ){
           // console.log('That over a double');
-          count = count -2;
+          points = points -2;
         }
 
       }
-      return count;
+      return points;
     });
-console.log(count);
+console.log(points);
   }); // End forEach `x`
 
 
