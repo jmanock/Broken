@@ -203,21 +203,6 @@ ref.set(something);
 
   }); // End of `Get` call
 
-  /* ToDo Front-End
-
-    * FireBase
-      - Save to FireBase
-    * Map
-      - Numbers to players
-  */
-
-  /*
-    * Ideas
-     - How to get scores
-      ~ json file??? (curl every hour?)
-  */
-
-
 
 
 var teamA = [];
