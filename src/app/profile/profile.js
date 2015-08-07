@@ -111,142 +111,46 @@
 'use strict';
 angular.module('fantasy')
 .controller('SearchCtrl', function($http, $scope){
+
+  var ref = new Firebase('https://fireseedangular.firebaseio.com/Players');
+
+  // Get `Numbers` for all the players
   $http.get('app/profile/wgc.json')
-  .success(function(something){
-    var players = something.Tournament.Players;
-     $scope.players = [];
-     for(var i = 0; i<players.length; i++){
-       $scope.players.push(i);
-     }
-    var t = [];
-    angular.forEach(players, function(x){
-      t.push(x.PlayerName);
-      return t;
-    });
+  .success(function(nums){
+    var playersNumbers = nums.Tournament.Players;
+    $scope.players = [];
+    for(var i = 0; i<playersNumbers.length; i++){
+      $scope.players.push(i);
+    }
+  }); // End of `Players` call
 
-var ref = new Firebase('https://fireseedangular.firebaseio.com/Players');
+  $http.get('app/profile/leaders.json')
+  .success(function(plays){
+    var player = plays.leaderboard.players;
+    var round = plays.leaderboard.current_round;
 
-$http.get('app/profile/leaders.json')
-.success(function(plays){
-  var p = plays.leaderboard.players;
-  var round = plays.leaderboard.current_round;
-var something = [];
-  angular.forEach(p, function(x){
-    var firstName = x.player_bio.first_name;
-    var lastName = x.player_bio.last_name;
-    var fullName = firstName +' '+ lastName;
-    // console.log(fullName);
-    var holes = x.holes;
-    var points = 0;
+    // Get the `Names` of the players
+    angular.forEach(player, function(x){
+      var firstName = x.player_bio.first_name;
+      var lastName = x.player_bio.last_name;
+      var fullName = firstName + ' ' + lastName;
+      var holes = x.holes;
+      var points = 0;
+      $scope.holes(holes);
 
-    angular.forEach(holes, function(z){
-      var strokes = z.strokes;
-      var par = z.par;
-      var score = par - strokes;
+    }); // End `Player` forEach
+    $scope.holes = function(x){
+      console.log(x);
+    }; // End scope
 
-      if(strokes !== null){
-        if(score === 0){
-          // console.log('par');
-          points = points;
-        }else if(score === 1){
-          // console.log('birdie');
-          points = points + 2;
-        }else if(score >= 2){
-          // console.log('Thats a fucking Eagle');
-          points = points + 4;
-        }else if(score === -1){
-          // console.log('bogie');
-          points = points -1;
-        }else if(score <= -2 ){
-          // console.log('That over a double');
-          points = points -2;
-        }
-
-      }
-      return points;
-    });
-// console.log(points);
-if(round === 1){
-  something.push({
-    Name:fullName,
-    RoundOne:points,
-    Total:points
-  });
-// }else if(round === 2){
-//   Name:fullName,
-//   RoundOne:points,
-//   RoundTwo:points,
-//   Total:points
-//
-// }else if(round === 3){
-//   Name:fullName,
-//   RoundOne:points,
-//   RoundTwo:points,
-//   RoundThree:points,
-//   Total:points
-//
-// }else if(round === 4){
-//   Name:fullName,
-//   RoundOne:points,
-//   RoundTwo:points,
-//   RoundThree:points,
-//   RoundFour:points,
-//   Total:points
-// }
-
-
-  }); // End forEach `x`
-// console.log(something);
-ref.set(something);
+  }); // End of `Leaders` call
 
   /*
-    * What do I need to put into Fb????
-      ~ Round 1 Points √ √
-      ~ Round 2 Points
-      ~ Round 3 Points
-      ~ Round 4 Points
-      ~ Total Points
-
-      ToDo
-      * Sub menu in Fb
-        - Round 1 points
-        - Total points
-      * Save users pics
-        - list of numbers
-      * Save random of players
-        - list of the players
-
+    Need Name
+    Need var for different rounds
+    Have to add round points to name some how
+    If Names are the same add new object
   */
-
-}); // End of `$http` class
-
-$http.get('app/profile/leaders.json')
-.success(function(player){
-  var round = player.leaderboard.current_round;
-  if(round === 1){
-    console.log('this is the first round');
-  }
-
-});
-    // Shuffle the players
-    function shuffle(array){
-      var currentIndex = array.length, temporaryValue, randomIndex;
-      while(0 !== currentIndex){
-        randomIndex = Math.floor(Math.random() * currentIndex);
-        currentIndex -=1;
-        temporaryValue = array[currentIndex];
-        array[currentIndex] = array[randomIndex];
-        array[randomIndex] = temporaryValue;
-      }
-      return array;
-    }
-    shuffle(t);
-    // $scope.random = t;
-
-
-
-  }); // End of `Get` call
-
 
 
 var teamA = [];
