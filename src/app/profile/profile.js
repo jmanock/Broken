@@ -128,6 +128,11 @@ angular.module('fantasy')
   .success(function(plays){
     var player = plays.leaderboard.players;
     var round = plays.leaderboard.current_round;
+    var roundOne = [];
+    var roundTwo = [];
+    var roundThree = [];
+    var roundFour = [];
+    var points = 0;
 
     // Get the `Names` of the players
     angular.forEach(player, function(x){
@@ -135,14 +140,50 @@ angular.module('fantasy')
       var lastName = x.player_bio.last_name;
       var fullName = firstName + ' ' + lastName;
       var holes = x.holes;
-      var points = 0;
-      $scope.holes(holes);
 
+      angular.forEach(holes, function(y){
+        var strokes = y.strokes;
+        var par = y.par;
+        var score = par - strokes;
+
+        if(strokes !== null){
+          if(score === 0){
+            points = points;
+          }else if(score === 1){
+            points = points + 2;
+          }else if(score >=2){
+            points = points +4;
+          }else if(score === -1){
+            points = points -1;
+          }else if(score <= -2){
+            points = points -2;
+          }
+        }
+        return points;
+      }); // End `Holes` forEach
+      if(round === 1){
+        roundOne.push({
+          Name:fullName,
+          RoundOne:points
+        });
+      }else if(round === 2){
+        roundTwo.push({
+          Name:fullName,
+          RoundTwo:points
+        });
+      }else if(round === 3){
+        roundThree.push({
+          Name:fullName,
+          RoundThree:points
+        });
+      }else if(round === 4){
+        roundFour.push({
+          Name:fullName,
+          RoundFour:points
+        });
+      }
     }); // End `Player` forEach
-    $scope.holes = function(x){
-      console.log(x);
-    }; // End scope
-
+    console.log(roundOne);
   }); // End of `Leaders` call
 
   /*
