@@ -145,22 +145,25 @@ angular.module('fantasy')
         var strokes = y.strokes;
         var par = y.par;
         var score = par - strokes;
-
+        //console.log('Name: '+fullName + ' Par: '+ par + ' Strokes: ' + strokes);
         if(strokes !== null){
           if(score === 0){
             points = points;
-          }else if(score === 1){
+          }else if(strokes === 1){
             points = points + 2;
-          }else if(score >=2){
-            points = points +4;
-          }else if(score === -1){
+          }else if(strokes >= 2){
+            points = points + 4;
+          }else if(strokes === -1){
             points = points -1;
-          }else if(score <= -2){
+          }else if(strokes <= -2){
             points = points -2;
           }
+        }else{
+          points = 0;
         }
         return points;
       }); // End `Holes` forEach
+
       if(round === 1){
         roundOne.push({
           Name:fullName,
@@ -183,8 +186,8 @@ angular.module('fantasy')
         });
       }
     }); // End `Player` forEach
-    console.log(roundOne);
-    console.log(roundTwo);
+     console.log(roundOne);
+     console.log(roundTwo);
   }); // End of `Leaders` call
 
   /*
