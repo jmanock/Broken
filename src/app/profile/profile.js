@@ -176,11 +176,20 @@ ref.set(something);
 
   /*
     * What do I need to put into Fb????
-      ~ Round 1 Points √
+      ~ Round 1 Points √ √
       ~ Round 2 Points
       ~ Round 3 Points
       ~ Round 4 Points
       ~ Total Points
+
+      ToDo
+      * Sub menu in Fb
+        - Round 1 points
+        - Total points
+      * Save users pics
+        - list of numbers
+      * Save random of players
+        - list of the players
 
   */
 
