@@ -159,9 +159,9 @@ angular.module('fantasy')
             points = points -2;
           }
         }else{
-          points = 0;
+
         }
-        return points;
+        console.log(fullName,y,score);
       }); // End `Holes` forEach
 
       if(round === 1){
@@ -186,8 +186,8 @@ angular.module('fantasy')
         });
       }
     }); // End `Player` forEach
-     console.log(roundOne);
-     console.log(roundTwo);
+    //  console.log(roundOne);
+    //  console.log(roundTwo);
   }); // End of `Leaders` call
 
   /*
