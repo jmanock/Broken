@@ -124,11 +124,12 @@ angular.module('fantasy')
       return t;
     });
 
-var ref = new Firebase('https://fireseedangular.firebaseio.com/');
+var ref = new Firebase('https://fireseedangular.firebaseio.com/Players');
 
 $http.get('app/profile/leaders.json')
 .success(function(plays){
   var p = plays.leaderboard.players;
+  var round = plays.leaderboard.current_round;
 var something = [];
   angular.forEach(p, function(x){
     var firstName = x.player_bio.first_name;
@@ -165,10 +166,34 @@ var something = [];
       return points;
     });
 // console.log(points);
-something.push({
-  Name:fullName,
-  Points:points
-});
+if(round === 1){
+  something.push({
+    Name:fullName,
+    RoundOne:points,
+    Total:points
+  });
+// }else if(round === 2){
+//   Name:fullName,
+//   RoundOne:points,
+//   RoundTwo:points,
+//   Total:points
+//
+// }else if(round === 3){
+//   Name:fullName,
+//   RoundOne:points,
+//   RoundTwo:points,
+//   RoundThree:points,
+//   Total:points
+//
+// }else if(round === 4){
+//   Name:fullName,
+//   RoundOne:points,
+//   RoundTwo:points,
+//   RoundThree:points,
+//   RoundFour:points,
+//   Total:points
+// }
+
 
   }); // End forEach `x`
 // console.log(something);
@@ -193,6 +218,15 @@ ref.set(something);
 
   */
 
+}); // End of `$http` class
+
+$http.get('app/profile/leaders.json')
+.success(function(player){
+  var round = player.leaderboard.current_round;
+  if(round === 1){
+    console.log('this is the first round');
+  }
+
 });
     // Shuffle the players
     function shuffle(array){
@@ -207,7 +241,8 @@ ref.set(something);
       return array;
     }
     shuffle(t);
-    $scope.random = t;
+    // $scope.random = t;
+
 
 
   }); // End of `Get` call
