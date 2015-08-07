@@ -124,7 +124,7 @@ angular.module('fantasy')
     }
   }); // End of `Players` call
 
-  $http.get('app/profile/leaders.json')
+  $http.get('app/profile/r2.json')
   .success(function(plays){
     var player = plays.leaderboard.players;
     var round = plays.leaderboard.current_round;
@@ -184,13 +184,11 @@ angular.module('fantasy')
       }
     }); // End `Player` forEach
     console.log(roundOne);
+    console.log(roundTwo);
   }); // End of `Leaders` call
 
   /*
-    Need Name
-    Need var for different rounds
-    Have to add round points to name some how
-    If Names are the same add new object
+    Might be able to combine both one and two plus add them together
   */
 
 
