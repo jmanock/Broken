@@ -134,7 +134,7 @@ angular.module('fantasy')
 $scope.points = function(plays){
   var player = plays.leaderboard.players;
   var round = plays.leaderboard.current_round;
-  console.log(round);
+
   var roundOne = [];
   var roundTwo = [];
   var roundThree = [];
@@ -194,8 +194,7 @@ $scope.points = function(plays){
       });
     }
   }); // End `Player` forEach
-    console.log(roundOne);
-    console.log(roundTwo);
+    console.log(roundOne.length, roundTwo.length);
 };
   /*
     Might be able to combine both one and two plus add them together
