@@ -132,7 +132,7 @@ angular.module('fantasy')
     var roundTwo = [];
     var roundThree = [];
     var roundFour = [];
-    var points = 0;
+
 
     // Get the `Names` of the players
     angular.forEach(player, function(x){
@@ -140,30 +140,32 @@ angular.module('fantasy')
       var lastName = x.player_bio.last_name;
       var fullName = firstName + ' ' + lastName;
       var holes = x.holes;
-
+      var points = 0;
       angular.forEach(holes, function(y){
+
         var strokes = y.strokes;
         var par = y.par;
         var score = par - strokes;
-        //console.log('Name: '+fullName + ' Par: '+ par + ' Strokes: ' + strokes);
-        if(strokes !== null){
+
+        // null is getting evaluated to 0, not what I want
+        if(strokes === null){
+          score = 0;
+        }else{
           if(score === 0){
             points = points;
-          }else if(strokes === 1){
+          }else if(score === 1){
             points = points + 2;
-          }else if(strokes >= 2){
+          }else if (score >=2){
             points = points + 4;
-          }else if(strokes === -1){
+          }else if(score === -1){
             points = points -1;
-          }else if(strokes <= -2){
+          }else if(score >= -2){
             points = points -2;
           }
-        }else{
-
         }
-        console.log(fullName,y,score);
-      }); // End `Holes` forEach
 
+      }); // End `Holes` forEach
+       console.log(fullName, points);
       if(round === 1){
         roundOne.push({
           Name:fullName,
