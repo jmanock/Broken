@@ -147,7 +147,6 @@ angular.module('fantasy')
         var par = y.par;
         var score = par - strokes;
 
-        // null is getting evaluated to 0, not what I want
         if(strokes === null){
           score = 0;
         }else{
@@ -165,7 +164,7 @@ angular.module('fantasy')
         }
 
       }); // End `Holes` forEach
-       console.log(fullName, points);
+
       if(round === 1){
         roundOne.push({
           Name:fullName,
@@ -189,7 +188,7 @@ angular.module('fantasy')
       }
     }); // End `Player` forEach
     //  console.log(roundOne);
-    //  console.log(roundTwo);
+      console.log(roundTwo);
   }); // End of `Leaders` call
 
   /*
