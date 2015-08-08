@@ -123,74 +123,80 @@ angular.module('fantasy')
       $scope.players.push(i);
     }
   }); // End of `Players` call
-
-  $http.get('app/profile/r2.json')
+  $http.get('app/profile/leaders.json')
+  .success(function(x){
+    $scope.points(x);
+  });
+  $http.get('app/profile/r2final.json')
   .success(function(plays){
-    var player = plays.leaderboard.players;
-    var round = plays.leaderboard.current_round;
-    var roundOne = [];
-    var roundTwo = [];
-    var roundThree = [];
-    var roundFour = [];
-
-
-    // Get the `Names` of the players
-    angular.forEach(player, function(x){
-      var firstName = x.player_bio.first_name;
-      var lastName = x.player_bio.last_name;
-      var fullName = firstName + ' ' + lastName;
-      var holes = x.holes;
-      var points = 0;
-      angular.forEach(holes, function(y){
-
-        var strokes = y.strokes;
-        var par = y.par;
-        var score = par - strokes;
-
-        if(strokes === null){
-          score = 0;
-        }else{
-          if(score === 0){
-            points = points;
-          }else if(score === 1){
-            points = points + 2;
-          }else if (score >=2){
-            points = points + 4;
-          }else if(score === -1){
-            points = points -1;
-          }else if(score >= -2){
-            points = points -2;
-          }
-        }
-
-      }); // End `Holes` forEach
-
-      if(round === 1){
-        roundOne.push({
-          Name:fullName,
-          RoundOne:points
-        });
-      }else if(round === 2){
-        roundTwo.push({
-          Name:fullName,
-          RoundTwo:points
-        });
-      }else if(round === 3){
-        roundThree.push({
-          Name:fullName,
-          RoundThree:points
-        });
-      }else if(round === 4){
-        roundFour.push({
-          Name:fullName,
-          RoundFour:points
-        });
-      }
-    }); // End `Player` forEach
-    //  console.log(roundOne);
-      console.log(roundTwo);
+    $scope.points(plays);
   }); // End of `Leaders` call
+$scope.points = function(plays){
+  var player = plays.leaderboard.players;
+  var round = plays.leaderboard.current_round;
+  console.log(round);
+  var roundOne = [];
+  var roundTwo = [];
+  var roundThree = [];
+  var roundFour = [];
 
+
+  // Get the `Names` of the players
+  angular.forEach(player, function(x){
+    var firstName = x.player_bio.first_name;
+    var lastName = x.player_bio.last_name;
+    var fullName = firstName + ' ' + lastName;
+    var holes = x.holes;
+    var points = 0;
+    angular.forEach(holes, function(y){
+
+      var strokes = y.strokes;
+      var par = y.par;
+      var score = par - strokes;
+
+      if(strokes === null){
+        score = 0;
+      }else{
+        if(score === 0){
+          points = points;
+        }else if(score === 1){
+          points = points + 2;
+        }else if (score >=2){
+          points = points + 4;
+        }else if(score === -1){
+          points = points -1;
+        }else if(score >= -2){
+          points = points -2;
+        }
+      }
+
+    }); // End `Holes` forEach
+
+    if(round === 1){
+      roundOne.push({
+        Name:fullName,
+        RoundOne:points
+      });
+    }else if(round === 2){
+      roundTwo.push({
+        Name:fullName,
+        RoundTwo:points
+      });
+    }else if(round === 3){
+      roundThree.push({
+        Name:fullName,
+        RoundThree:points
+      });
+    }else if(round === 4){
+      roundFour.push({
+        Name:fullName,
+        RoundFour:points
+      });
+    }
+  }); // End `Player` forEach
+    console.log(roundOne);
+    console.log(roundTwo);
+};
   /*
     Might be able to combine both one and two plus add them together
   */
