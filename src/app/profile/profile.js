@@ -110,7 +110,7 @@
 // });// END CONTROLLER
 'use strict';
 angular.module('fantasy')
-.controller('SearchCtrl', function($http, $scope){
+.controller('SearchCtrl', function($http, $scope, $q){
 
   var ref = new Firebase('https://fireseedangular.firebaseio.com/Players');
 
@@ -123,14 +123,16 @@ angular.module('fantasy')
       $scope.players.push(i);
     }
   }); // End of `Players` call
-  $http.get('app/profile/leaders.json')
-  .success(function(x){
-    $scope.points(x);
+  var rOne = $http.get('app/profile/leaders.json');
+  var rTwo = $http.get('app/profile/r2final.json');
+  $q.all([rOne, rTwo]).then(function(data){
+    angular.forEach(data, function(x){
+      var plays = x.data.leaderboard.players;
+      var round = x.data.leaderboard.current_round;
+
+      console.log(plays);
+    });
   });
-  $http.get('app/profile/r2final.json')
-  .success(function(plays){
-    $scope.points(plays);
-  }); // End of `Leaders` call
 $scope.points = function(plays){
   var player = plays.leaderboard.players;
   var round = plays.leaderboard.current_round;
@@ -193,13 +195,29 @@ $scope.points = function(plays){
         RoundFour:points
       });
     }
+
   }); // End `Player` forEach
-    console.log(roundOne.length, roundTwo.length);
-};
+
+}; // End `Function`
   /*
     Might be able to combine both one and two plus add them together
   */
+$scope.something = function(round, fullName, points){
+  var roundOne = [];
+  var roundTwo = [];
+  if(round === 1){
+    roundOne.push({
+      Name:fullName,
+      Points:points
+    });
+  }else if(round === 2){
+    roundTwo.push({
+      Name:fullName,
+      Points:points
+    });
+  }
 
+};
 
 var teamA = [];
 var teamB = [];
