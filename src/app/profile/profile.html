@@ -28,7 +28,7 @@
       <h5 ng-repeat='t in teamB'>B: {{t}} <button ng-click='remove(t)'>X</button></h5>
       <h5 ng-repeat='t in teamC'>C: {{t}} <button ng-click='remove(t)'>X</button></h5>
     </div>
-    
+
     <div class='players'>
       <h3>Players</h3>
 
@@ -50,7 +50,8 @@
     <div class="random">
       <h3>Random</h3>
         <ol>
-          <li ng-repeat='r in random'>{{r | secondName}}</li>
+          <!-- <li ng-repeat='r in random'>{{r | secondName}}</li> -->
+          <li ng-repeat='s in scores'>Name: {{s.Name}} RoundOne: {{s.RoundOnePoints}} RoundTwo: {{s.RoundTwoPoints}} Total: {{s.Total}}</li>
         </ol>
     </div>
 
