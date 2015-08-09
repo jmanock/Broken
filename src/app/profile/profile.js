@@ -187,7 +187,11 @@ angular.module('fantasy')
     for(var i = 0; i<roundOne.length; i++){
       for(var j = 0; j<roundTwo.length; j++){
         if(roundOne[i].Name === roundTwo[j].Name){
-          console.log('Winner Winner chicken dinner');
+          /* What's next???
+            ~ Add points together
+            ~ Keep both points from each round
+            ~ Add other rounds to this
+          */
         }
       }
     }
