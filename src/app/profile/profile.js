@@ -202,7 +202,7 @@ angular.module('fantasy')
         }
       }
     }
-    console.log(knew);
+    ref.set(knew);
   }); // End `then function
 
 var teamA = [];
