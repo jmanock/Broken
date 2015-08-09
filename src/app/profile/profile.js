@@ -125,66 +125,73 @@ angular.module('fantasy')
   }); // End of `Players` call
   var rOne = $http.get('app/profile/leaders.json');
   var rTwo = $http.get('app/profile/r2final.json');
-  $q.all([rOne, rTwo]).then(function(data){
-    angular.forEach(data, function(x){
-      var plays = x.data.leaderboard.players;
-      var round = x.data.leaderboard.current_round;
-      var roundOne = [];
-      var roundTwo = [];
-      angular.forEach(plays, function(x){
-        var firstName = x.player_bio.first_name;
-        var lastName = x.player_bio.last_name;
-        var fullName = firstName + ' ' + lastName;
-        var holes = x.holes;
-        var points = 0;
-        angular.forEach(holes, function(y){
-          var strokes = y.strokes;
-          var par = y.par;
-          var score = par - strokes;
 
-          if(strokes === null){
-            score = 0;
-          }else{
-            if(score === 0){
-              points = points;
-            }else if(score === 1){
-              points = points + 2;
-            }else if(score >= 2){
-              points = points + 4;
-            }else if(score === -1){
-              points = points -1;
-            }else if(score >= -2){
-              points = points -2;
-            }
+  $q.all([rOne, rTwo]).then(function(result){
+    var tmp = [];
+    angular.forEach(result, function(response){
+      tmp.push(response.data);
+    });
+    return tmp;
+  }).then(function(tmpResult){
+    var players = [];
+    var roundOne = [];
+    var roundTwo = [];
+    angular.forEach(tmpResult, function(x){
+      var plays = x.leaderboard.players;
+      angular.forEach(plays, function(y){
+        players.push(y);
+      });
+    });
+    angular.forEach(players, function(t){
+      var firstName = t.player_bio.first_name;
+      var lastName = t.player_bio.last_name;
+      var fullName = firstName + ' ' + lastName;
+      var holes = t.holes;
+      var points = 0;
+      var round = t.current_round;
+
+      angular.forEach(holes, function(z){
+        var strokes = z.strokes;
+        var par = z.par;
+        var score = par - strokes;
+
+        if(strokes === null){
+          score = 0;
+        }else{
+          if(score === 0){
+            points = points;
+          }else if(score === 1){
+            points = points + 1;
+          }else if(score >= 2){
+            points = points + 4;
+          }else if(score === -1){
+            points = points -1;
+          }else if(score >= -2){
+            points = points -2;
           }
+        }
+      }); // End `Holes` forEach
+      if(round === 1){
+        roundOne.push({
+          Name:fullName,
+          Points:points
+        });
+      }else{
+        roundTwo.push({
+          Name:fullName,
+          Points:points
+        });
+      }
 
-        }); // End `Holes` forEach
-        console.log(fullName, points);
-
-      }); // End `Plays` forEach
-
-    }); // End `data` forEach
-  }); // End `then` callback
-
-  /*
-    Might be able to combine both one and two plus add them together
-  */
-$scope.something = function(round, fullName, points){
-  var roundOne = [];
-  var roundTwo = [];
-  if(round === 1){
-    roundOne.push({
-      Name:fullName,
-      Points:points
-    });
-  }else if(round === 2){
-    roundTwo.push({
-      Name:fullName,
-      Points:points
-    });
-  }
-
-};
+    }); // End `Players` forEach
+    for(var i = 0; i<roundOne.length; i++){
+      for(var j = 0; j<roundTwo.length; j++){
+        if(roundOne[i].Name === roundTwo[j].Name){
+          console.log('Winner Winner chicken dinner');
+        }
+      }
+    }
+  }); // End `then function
 
 var teamA = [];
 var teamB = [];
