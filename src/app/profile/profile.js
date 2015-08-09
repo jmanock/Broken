@@ -184,6 +184,7 @@ angular.module('fantasy')
       }
 
     }); // End `Players` forEach
+    var knew = [];
     for(var i = 0; i<roundOne.length; i++){
       for(var j = 0; j<roundTwo.length; j++){
         if(roundOne[i].Name === roundTwo[j].Name){
@@ -192,9 +193,16 @@ angular.module('fantasy')
             ~ Keep both points from each round
             ~ Add other rounds to this
           */
+          knew.push({
+            Name:roundOne[i].Name,
+            RoundOnePoints:roundOne[i].Points,
+            RoundTwoPoints:roundTwo[j].Points,
+            Total:roundOne[i].Points + roundTwo[j].Points
+          });
         }
       }
     }
+    console.log(knew);
   }); // End `then function
 
 var teamA = [];
