@@ -115,13 +115,14 @@ angular.module('fantasy')
   var ref = new Firebase('https://fireseedangular.firebaseio.com/Players');
 
   // Get `Numbers` for all the players
-  $http.get('app/profile/wgc.json')
+  $http.get('app/profile/log0.json')
   .success(function(nums){
     var playersNumbers = nums.Tournament.Players;
-    $scope.players = [];
-    for(var i = 0; i<playersNumbers.length; i++){
-      $scope.players.push(i);
-    }
+    // $scope.players = [];
+    // for(var i = 0; i<playersNumbers.length; i++){
+    //   $scope.players.push(i);
+    // }
+    $scope.players = playersNumbers;
   }); // End of `Players` call
   var rOne = $http.get('app/profile/leaders.json');
   var rTwo = $http.get('app/profile/r2final.json');
@@ -210,35 +211,37 @@ var teamC = [];
 
 
 $scope.add = function(t){
-  if(t <= 26){
-    if(teamA.length <= 1){
-      teamA.push(t);
-      this.isDisabledA = true;
-
-    }else{
-      $scope.isDisabledA = true;
-      console.log('To Many A players!!!');
-    }
-  }else if(t <= 52){
-    if(teamB.length <= 1){
-      teamB.push(t);
-      this.isDisabledB = true;
-    }else{
-      $scope.isDisabledB = true;
-      console.log('To Many B players!!!');
-    }
-  }else{
-    if(teamC < 1){
-      teamC.push(t);
-      this.isDisabledC = true;
-    }else{
-      $scope.isDisabledC = true;
-      console.log('You have a C player!');
-    }
-  }
-  $scope.teamA = teamA;
-  $scope.teamB = teamB;
-  $scope.teamC = teamC;
+  // Get rid of the hard code numbers
+  console.log(t.length);
+  // if(t <= 26){
+  //   if(teamA.length <= 1){
+  //     teamA.push(t);
+  //     this.isDisabledA = true;
+  //
+  //   }else{
+  //     $scope.isDisabledA = true;
+  //     console.log('To Many A players!!!');
+  //   }
+  // }else if(t <= 52){
+  //   if(teamB.length <= 1){
+  //     teamB.push(t);
+  //     this.isDisabledB = true;
+  //   }else{
+  //     $scope.isDisabledB = true;
+  //     console.log('To Many B players!!!');
+  //   }
+  // }else{
+  //   if(teamC < 1){
+  //     teamC.push(t);
+  //     this.isDisabledC = true;
+  //   }else{
+  //     $scope.isDisabledC = true;
+  //     console.log('You have a C player!');
+  //   }
+  // }
+  // $scope.teamA = teamA;
+  // $scope.teamB = teamB;
+  // $scope.teamC = teamC;
 
 }; // End `Add` Function
 

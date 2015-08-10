@@ -1,11 +1,23 @@
 'use strict';
-
+var fs = require('fs');
 var request = require('request');
 
-var url = 'http://www.pgatour.com/data/r/033/leaderboard-v2.json';
+var urls = new Array('http://www.pgatour.com/data/r/033/field.json');
 
-request(url, function(error, response, body){
-  if(!error && response.statusCode === 200){
-    console.log(body);
-  }
-});
+function scrape(url, file){
+  request(url, function(err, response, body){
+    if(!err && response.statusCode === 200){
+      console.log('request Url: ' +url);
+      console.log('request file: ' + file);
+      fs.writeFile(file, body);
+    }
+  });
+}
+for(var i = 0; i<urls.length; i++){
+  var file = 'log'+[i]+'.json';
+  var url = urls[i];
+
+  console.log(url);
+  console.log(file);
+  scrape(url,file);
+}
