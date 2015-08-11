@@ -31,20 +31,22 @@ $(document).ready(function(){
         players.push({
           Name:first
         });
-        
-      }
 
+      }
+      var rankings = [];
       for(var d = 0; d<fedex.length; d++){
         var fist = fedex[d].Name;
         for(var e = 0; e<players.length; e++){
           var second = players[e].Name;
           if(fist === second){
-            console.log('I think we are on to something here??');
+            rankings.push({
+              Name:second
+            });
           }
         }
 
       }
-
+      console.log(rankings);
     });
   }); // End `FedexStandings`
 
