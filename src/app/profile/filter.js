@@ -52,7 +52,7 @@ $(document).ready(function(){
       console.log(aPlayers);
       console.log(bPlayers);
       console.log(cPlayers);
-      console.log(rankings.length);
+      
     });
   }); // End `FedexStandings`
 
