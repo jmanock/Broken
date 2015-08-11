@@ -136,7 +136,7 @@ $http.get('app/profile/fedexStandings.json')
     });
   });
 }); // End `Fedex`
-console.log(players);
+
   // Get `Numbers` for all the players
   $http.get('app/profile/log0.json')
   .success(function(nums){
