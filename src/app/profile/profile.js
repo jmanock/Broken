@@ -113,7 +113,30 @@ angular.module('fantasy')
 .controller('SearchCtrl', function($http, $scope, $q){
 
   var ref = new Firebase('https://fireseedangular.firebaseio.com/Players');
+var players = [];
+$http.get('app/profile/fedexStandings.json')
+.success(function(x){
 
+  var sux = x.tours;
+  angular.forEach(sux, function(x){
+    var rsux = x.years;
+    angular.forEach(rsux, function(x){
+      var vrsux = x.stats;
+      angular.forEach(vrsux, function(x){
+        var verysux = x.details;
+        angular.forEach(verysux, function(x){
+          var firstName = x.plrName.first;
+          var lastName = x.plrName.last;
+          var fullName = firstName + ' ' + lastName;
+          players.push(fullName);
+          return players;
+        });
+      });
+
+    });
+  });
+}); // End `Fedex`
+console.log(players);
   // Get `Numbers` for all the players
   $http.get('app/profile/log0.json')
   .success(function(nums){
@@ -123,6 +146,13 @@ angular.module('fantasy')
     //   $scope.players.push(i);
     // }
     $scope.players = playersNumbers;
+    for(var i = 0; i<playersNumbers.length; i++){
+      for(var j = 0; j<players.length; j++){
+        if(playersNumbers[i] === players[j]){
+          console.log('we might have something to work with here');
+        }
+      }
+    }
   }); // End of `Players` call
   var rOne = $http.get('app/profile/leaders.json');
   var rTwo = $http.get('app/profile/r2final.json');
