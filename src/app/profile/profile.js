@@ -113,17 +113,22 @@ angular.module('fantasy')
 .controller('SearchCtrl', function($http, $scope, $q){
 
   var ref = new Firebase('https://fireseedangular.firebaseio.com/Players');
-var players = [];
-$http.get('app/profile/fedexStandings.json')
-.success(function(x){
+  var players = $http.get('app/profile/log0.json');
+  var fedEx = $http.get('app/profile/fedexStandings.json');
+  $q.all([players, fedEx]).then(function(result){
+    var tmp = [];
+    angular.forEach(result, function(response){
+      tmp.push(response.data);
+    });
+    return tmp;
+  }).then(function(tmpResult){
+    angular.forEach(tmpResult, function(x){
+      console.log(x.Tournament.Players);
+    });
+  }); // End `players, fedEx` call
 
-}); // End `Fedex`
 
-  // Get `Numbers` for all the players
-  $http.get('app/profile/log0.json')
-  .success(function(nums){
 
-  }); // End of `Players` call
   var rOne = $http.get('app/profile/leaders.json');
   var rTwo = $http.get('app/profile/r2final.json');
 
@@ -202,9 +207,8 @@ $http.get('app/profile/fedexStandings.json')
       }
     }
     ref.set(knew);
-    $scope.scores = knew;
-  }); // End `then function
 
+  }); // End `rOne, rTwo` call
 
 
 

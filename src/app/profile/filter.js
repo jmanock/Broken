@@ -49,10 +49,10 @@ $(document).ready(function(){
       var aPlayers = rankings.slice(0,25);
       var bPlayers = rankings.slice(26,72);
       var cPlayers = rankings.slice(73);
-      console.log(aPlayers);
-      console.log(bPlayers);
-      console.log(cPlayers);
-      
+      // console.log(aPlayers);
+      // console.log(bPlayers);
+      // console.log(cPlayers);
+
     });
   }); // End `FedexStandings`
 
