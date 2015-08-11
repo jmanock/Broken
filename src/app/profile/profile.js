@@ -303,6 +303,7 @@ $scope.remove = function(t){
 })
 .filter('secondName', function(){
   return function(x){
+
     var parts = x.split(',');
     var second = parts[1]+ ' '+ parts[0];
     return second;
