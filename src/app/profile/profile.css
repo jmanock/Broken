@@ -1,7 +1,13 @@
-ul{
+.players{
   float:left;
 }
-
-ol > h4 > li{
+.random{
   float:right;
+}
+.btn{
+  margin-left:1em;
+}
+li{
+  list-style-type:none;
+  margin-bottom:10px;
 }
