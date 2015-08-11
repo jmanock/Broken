@@ -13,7 +13,10 @@ $(document).ready(function(){
             var firstName = something[a].plrName.first;
             var lastName = something[a].plrName.last;
             var fullName = firstName + ' ' + lastName;
-            fedex.push(fullName);
+            fedex.push({
+              Name:fullName
+            });
+
           }
         }
       }
@@ -24,16 +27,19 @@ $(document).ready(function(){
       for(var c = 0; c<nums.length; c++){
         var pName = nums[c].PlayerName;
         var parts = pName.split(',');
-        var first = parts[1] + ' ' + parts[0];
-        players.push(first);
+        var first = parts[1]+' '+parts[0];
+        players.push({
+          Name:first
+        });
+        console.log(players);
       }
-      for(var d = 0; d<players.length; d++){
-        for(var e = 0; e<fedex.length; e++){
-          var fist = fedex[e];
-          var second = players[d];
-          if(second === fist){
-            console.log('this should fucking work');
-          }
+
+      for(var d = 0; d<fedex.length; d++){
+        var fist = fedex[d].Name;
+        for(var e = 0; e<players.length; e++){
+          var second = players[e].Name;
+
+
         }
 
       }
