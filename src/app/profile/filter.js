@@ -26,20 +26,21 @@ $(document).ready(function(){
       var nums = b.Tournament.Players;
       for(var c = 0; c<nums.length; c++){
         var pName = nums[c].PlayerName;
-        var parts = pName.split(',');
+        var parts = pName.split(', ');
         var first = parts[1]+' '+parts[0];
         players.push({
           Name:first
         });
-        console.log(players);
+        
       }
 
       for(var d = 0; d<fedex.length; d++){
         var fist = fedex[d].Name;
         for(var e = 0; e<players.length; e++){
           var second = players[e].Name;
-
-
+          if(fist === second){
+            console.log('I think we are on to something here??');
+          }
         }
 
       }
