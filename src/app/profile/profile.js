@@ -117,42 +117,12 @@ var players = [];
 $http.get('app/profile/fedexStandings.json')
 .success(function(x){
 
-  var sux = x.tours;
-  angular.forEach(sux, function(x){
-    var rsux = x.years;
-    angular.forEach(rsux, function(x){
-      var vrsux = x.stats;
-      angular.forEach(vrsux, function(x){
-        var verysux = x.details;
-        angular.forEach(verysux, function(x){
-          var firstName = x.plrName.first;
-          var lastName = x.plrName.last;
-          var fullName = firstName + ' ' + lastName;
-          players.push(fullName);
-          return players;
-        });
-      });
-
-    });
-  });
 }); // End `Fedex`
 
   // Get `Numbers` for all the players
   $http.get('app/profile/log0.json')
   .success(function(nums){
-    var playersNumbers = nums.Tournament.Players;
-    // $scope.players = [];
-    // for(var i = 0; i<playersNumbers.length; i++){
-    //   $scope.players.push(i);
-    // }
-    $scope.players = playersNumbers;
-    for(var i = 0; i<playersNumbers.length; i++){
-      for(var j = 0; j<players.length; j++){
-        if(playersNumbers[i] === players[j]){
-          console.log('we might have something to work with here');
-        }
-      }
-    }
+
   }); // End of `Players` call
   var rOne = $http.get('app/profile/leaders.json');
   var rTwo = $http.get('app/profile/r2final.json');
@@ -235,59 +205,16 @@ $http.get('app/profile/fedexStandings.json')
     $scope.scores = knew;
   }); // End `then function
 
-var teamA = [];
-var teamB = [];
-var teamC = [];
+
 
 
 $scope.add = function(t){
-  // Get rid of the hard code numbers
-  console.log(t.length);
-  // if(t <= 26){
-  //   if(teamA.length <= 1){
-  //     teamA.push(t);
-  //     this.isDisabledA = true;
-  //
-  //   }else{
-  //     $scope.isDisabledA = true;
-  //     console.log('To Many A players!!!');
-  //   }
-  // }else if(t <= 52){
-  //   if(teamB.length <= 1){
-  //     teamB.push(t);
-  //     this.isDisabledB = true;
-  //   }else{
-  //     $scope.isDisabledB = true;
-  //     console.log('To Many B players!!!');
-  //   }
-  // }else{
-  //   if(teamC < 1){
-  //     teamC.push(t);
-  //     this.isDisabledC = true;
-  //   }else{
-  //     $scope.isDisabledC = true;
-  //     console.log('You have a C player!');
-  //   }
-  // }
-  // $scope.teamA = teamA;
-  // $scope.teamB = teamB;
-  // $scope.teamC = teamC;
+
 
 }; // End `Add` Function
 
 $scope.remove = function(t){
-  if(t <= 26){
-    var index = $scope.teamA.indexOf(t);
-    $scope.teamA.splice(index,1);
 
-  }else if(t <= 52){
-    var ind = $scope.teamB.indexOf(t);
-    $scope.teamB.splice(ind,1);
-
-  }else{
-    var ex = $scope.teamC.indexOf(t);
-    $scope.teamC.splice(ex,1);
-  }
 
 }; // End `Remove` Function
 
