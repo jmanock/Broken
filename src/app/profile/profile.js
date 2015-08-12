@@ -114,18 +114,15 @@ angular.module('fantasy')
 
   var ref = new Firebase('https://fireseedangular.firebaseio.com/Players');
   var players = $http.get('app/profile/log0.json');
+  var play = 'app/profile/log0.json';
   var fedEx = $http.get('app/profile/fedexStandings.json');
-  $q.all([players, fedEx]).then(function(result){
-    var tmp = [];
-    angular.forEach(result, function(response){
-      tmp.push(response.data);
-    });
-    return tmp;
-  }).then(function(tmpResult){
-    angular.forEach(tmpResult, function(x){
-      console.log(x.Tournament.Players);
-    });
-  }); // End `players, fedEx` call
+  $http.get(play)
+  .success(function(data){
+    console.log(data);
+  }).then(fedEx)
+  .success(function(x){
+    console.log(x);
+  });
 
 
 
