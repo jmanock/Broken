@@ -248,10 +248,12 @@ angular.module('fantasy')
   }); // End `rOne, rTwo` call
 
 
-
+var teamPlayers = [];
 $scope.add = function(p){
-  var teamPlayers = [];
-  teamPlayers.push(p);
+
+  teamPlayers.push({
+    Name:p
+  });
   $scope.team = teamPlayers;
 
 }; // End `Add` Function
