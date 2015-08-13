@@ -153,11 +153,11 @@ angular.module('fantasy')
       var aPlayers = rankings.splice(0,25);
       var bPlayers = rankings.splice(26,72);
       var cPlayers = rankings;
-      // console.log(aPlayers.length);
+
       $scope.aPlayers = aPlayers;
-      // console.log(bPlayers.length);
+
       $scope.bPlayers = bPlayers;
-      // console.log(cPlayers.length);
+
       $scope.cPlayers = cPlayers;
     }); // End `Get FedExStandings`
   }); // End `Get Players`
@@ -230,7 +230,9 @@ angular.module('fantasy')
       for(var j = 0; j<roundTwo.length; j++){
         if(roundOne[i].Name === roundTwo[j].Name){
           /* What's next???
-            ~ have to work on round three and four
+            ~ Maybe not rounds but days
+              - Have to split into days not rounds
+            ~ Come up with a way to do something???
           */
           knew.push({
             Name:roundOne[i].Name,
@@ -247,8 +249,10 @@ angular.module('fantasy')
 
 
 
-$scope.add = function(t){
-
+$scope.add = function(p){
+  var teamPlayers = [];
+  teamPlayers.push(p);
+  $scope.team = teamPlayers;
 
 }; // End `Add` Function
 

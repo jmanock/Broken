@@ -24,18 +24,18 @@
     </div> -->
     <div>
       <h3>Team</h3>
-
+      <p ng-repeat='p in team'>{{p}}</p>
     </div>
 
     <div class='players'>
       <h3>Players</h3>
       <ul>
         <h3>A Players</h3>
-        <li ng-repeat = 'p in aPlayers'>{{p}} <button class='btn btn-success' ng-click='add($index)'>Add Player</button></li>
+        <li ng-repeat = 'p in aPlayers'>{{p}} <button class='btn btn-success' ng-click='add(p)'>Add Player</button></li>
         <h3>B Players</h3>
-        <li ng-repeat='p in bPlayers'>{{p}} <button class='btn btn-success' ng-click='add($index)'>Add Player</button></li>
+        <li ng-repeat='p in bPlayers'>{{p}} <button class='btn btn-success' ng-click='add(p)'>Add Player</button></li>
         <h3>C Players</h3>
-        <li ng-repeat='p in cPlayers'>{{p}} <button class='btn btn-success' ng-click='add($index)'>Add Player</button></li>
+        <li ng-repeat='p in cPlayers'>{{p}} <button class='btn btn-success' ng-click='add(p)'>Add Player</button></li>
       </ul>
     <!-- <ul>
       A
