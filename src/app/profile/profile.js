@@ -249,17 +249,32 @@ angular.module('fantasy')
 
 
 var teamPlayers = [];
+var count = 0;
 $scope.aPlayersAdd = function(p){
-  
-   $scope.add(p);
+  count++;
+  if(count<=2){
+    $scope.add(p);
+  }else{
+    console.log('To Many A players');
+  }
 }; // End `aPlayersAdd` Function
 
 $scope.bPlayersAdd = function(p){
-  $scope.add(p);
+  count++;
+  if(count<=2){
+    $scope.add(p);
+  }else{
+    console.log('To Many B players');
+  }
 }; // End `bPlayersAdd` Function
 
 $scope.cPlayersAdd = function(p){
-  $scope.add(p);
+  count++;
+  if(count<=2){
+    $scope.add(p);
+  }else{
+    console.log('To Many C players');
+  }
 }; // End `cPlayersAdd`
 
 $scope.add = function(p){
