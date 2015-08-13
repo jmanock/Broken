@@ -31,26 +31,13 @@
       <h3>Players</h3>
       <ul>
         <h3>A Players</h3>
-        <li ng-repeat = 'p in aPlayers'>{{p}} <button class='btn btn-success' ng-click='add(p)'>Add Player</button></li>
+        <li ng-repeat = 'p in aPlayers'>{{p}} <button class='btn btn-success' ng-click='aPlayersAdd(p)'>Add Player</button></li>
         <h3>B Players</h3>
-        <li ng-repeat='p in bPlayers'>{{p}} <button class='btn btn-success' ng-click='add(p)'>Add Player</button></li>
+        <li ng-repeat='p in bPlayers'>{{p}} <button class='btn btn-success' ng-click='bPlayersAdd(p)'>Add Player</button></li>
         <h3>C Players</h3>
-        <li ng-repeat='p in cPlayers'>{{p}} <button class='btn btn-success' ng-click='add(p)'>Add Player</button></li>
+        <li ng-repeat='p in cPlayers'>{{p}} <button class='btn btn-success' ng-click='cPlayersAdd(p)'>Add Player</button></li>
       </ul>
-    <!-- <ul>
-      A
-      <li ng-repeat='p in players | limitTo:26 | limitTo:-26'>
-         <button class='btn btn-success' ng-disabled='isDisabledA' ng-click='add(p+1)'># {{p+1}}</button>
-      </li>
-      B
-       <li ng-repeat='p in players | limitTo:52 | limitTo:-26'>
-         <button class='btn btn-success' ng-disabled='isDisabledB' ng-click='add(p+1)'># {{p+1}}</button>
-      </li>
-      C
-       <li ng-repeat='p in players | limitTo:77 | limitTo:-25'>
-        <button class='btn btn-success' ng-disabled='isDisabledC' ng-click='add(p+1)'># {{p+1}}</button>
-      </li>
-    </ul> -->
+
     <p ng-repeat='p in players '>{{p | firstName}}</p>
     </div>
     <div class="random">

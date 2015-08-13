@@ -249,13 +249,21 @@ angular.module('fantasy')
 
 
 var teamPlayers = [];
+$scope.aPlayersAdd = function(p){
+   $scope.add(p);
+}; // End `aPlayersAdd` Function
+
+$scope.bPlayersAdd = function(p){
+  $scope.add(p);
+}; // End `bPlayersAdd` Function
+
+$scope.cPlayersAdd = function(p){
+  $scope.add(p);
+}; // End `cPlayersAdd`
+
 $scope.add = function(p){
-
-  teamPlayers.push({
-    Name:p
-  });
+  teamPlayers.push(p);
   $scope.team = teamPlayers;
-
 }; // End `Add` Function
 
 $scope.remove = function(t){
