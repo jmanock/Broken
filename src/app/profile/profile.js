@@ -126,7 +126,7 @@ angular.module('fantasy')
       var first = parts[1]+' '+parts[0];
       players.push(first);
     });
-    
+
     $http.get('app/profile/fedexStandings.json')
     .success(function(result){
       var fedEx = [];
@@ -142,8 +142,15 @@ angular.module('fantasy')
           }); // End `C`
         }); // End `B`
       }); // End `A`
-      // console.log(fedEx);
-      // console.log(players);
+      for(var i = 0; i<players.length; i++){
+        for(var j = 0; j<fedEx.length; j++){
+          if(players[i] === fedEx[j]){
+            console.log('You got this shit to work in angular SON!!!');
+          }
+        }
+      }
+
+       
     }); // End `Get FedExStandings`
   }); // End `Get Players`
 
