@@ -249,10 +249,12 @@ angular.module('fantasy')
 
 
 var teamPlayers = [];
-var count = 0;
+var countA = 0;
+var countB = 0;
+var countC = 0;
 $scope.aPlayersAdd = function(p){
-  count++;
-  if(count<=2){
+  countA++;
+  if(countA<=2){
     $scope.add(p);
   }else{
     console.log('To Many A players');
@@ -260,8 +262,8 @@ $scope.aPlayersAdd = function(p){
 }; // End `aPlayersAdd` Function
 
 $scope.bPlayersAdd = function(p){
-  count++;
-  if(count<=2){
+  countB++;
+  if(countB<=2){
     $scope.add(p);
   }else{
     console.log('To Many B players');
@@ -269,11 +271,12 @@ $scope.bPlayersAdd = function(p){
 }; // End `bPlayersAdd` Function
 
 $scope.cPlayersAdd = function(p){
-  count++;
-  if(count<=2){
+  countC++;
+  if(countC<=2){
     $scope.add(p);
   }else{
     console.log('To Many C players');
+
   }
 }; // End `cPlayersAdd`
 
