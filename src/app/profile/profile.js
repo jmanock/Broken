@@ -253,40 +253,52 @@ var countA = 0;
 var countB = 0;
 var countC = 0;
 $scope.aPlayersAdd = function(p){
-  countA++;
-  if(countA<=2){
-    $scope.add(p);
+  if(countA<=1){
+    countA++;
+    $scope.add(p,'A');
   }else{
     console.log('To Many A players');
   }
 }; // End `aPlayersAdd` Function
 
 $scope.bPlayersAdd = function(p){
-  countB++;
   if(countB<=2){
-    $scope.add(p);
+    countB++;
+    $scope.add(p,'B');
   }else{
     console.log('To Many B players');
   }
 }; // End `bPlayersAdd` Function
 
 $scope.cPlayersAdd = function(p){
-  countC++;
   if(countC<=2){
-    $scope.add(p);
+    countC++;
+    $scope.add(p,'C');
   }else{
     console.log('To Many C players');
 
   }
 }; // End `cPlayersAdd`
 
-$scope.add = function(p){
-  teamPlayers.push(p);
+$scope.add = function(p,x){
+  teamPlayers.push({
+    Name:p,
+    Rank:x
+  });
   $scope.team = teamPlayers;
+  console.log(teamPlayers);
 }; // End `Add` Function
 
-$scope.remove = function(t){
-  teamPlayers.splice(t,1);
+$scope.remove = function(t,x){
+  // Have to remove player and add back to count of the letter
+  if(t.Rank === 'A'){
+    countA--;
+  }else if(t.Rank === 'B'){
+    countB--;
+  }else if(t.Rank === 'C'){
+    countC--;
+  }
+  teamPlayers.splice(x);
 }; // End `Remove` Function
 
 })// End controller
