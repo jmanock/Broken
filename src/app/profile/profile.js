@@ -153,9 +153,12 @@ angular.module('fantasy')
       var aPlayers = rankings.splice(0,25);
       var bPlayers = rankings.splice(26,72);
       var cPlayers = rankings;
-      console.log(aPlayers.length);
-      console.log(bPlayers.length);
-      console.log(cPlayers.length);
+      // console.log(aPlayers.length);
+      $scope.aPlayers = aPlayers;
+      // console.log(bPlayers.length);
+      $scope.bPlayers = bPlayers;
+      // console.log(cPlayers.length);
+      $scope.cPlayers = cPlayers;
     }); // End `Get FedExStandings`
   }); // End `Get Players`
 

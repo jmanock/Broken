@@ -24,14 +24,19 @@
     </div> -->
     <div>
       <h3>Team</h3>
-      <h5 ng-repeat='t in teamA'>A: {{t}} <button ng-click='remove(t)'>X</button></h5>
-      <h5 ng-repeat='t in teamB'>B: {{t}} <button ng-click='remove(t)'>X</button></h5>
-      <h5 ng-repeat='t in teamC'>C: {{t}} <button ng-click='remove(t)'>X</button></h5>
+
     </div>
 
     <div class='players'>
       <h3>Players</h3>
-
+      <ul>
+        <h3>A Players</h3>
+        <li ng-repeat = 'p in aPlayers'>{{p}}</li>
+        <h3>B Players</h3>
+        <li ng-repeat='p in bPlayers'>{{p}}</li>
+        <h3>C Players</h3>
+        <li ng-repeat='p in cPlayers'>{{p}}</li>
+      </ul>
     <!-- <ul>
       A
       <li ng-repeat='p in players | limitTo:26 | limitTo:-26'>
