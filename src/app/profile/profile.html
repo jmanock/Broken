@@ -30,17 +30,17 @@
     <div class='players'>
       <h3>Players</h3>
       <ul class='nav nav-tabs'>
-        <li><a href ng-click='showDetails = ! showDetails'>A Players</a></li>
-        <li><a href ng-click='showDetails = ! showDetails'>B Players</a></li>
-        <li><a href ng-click='showDetails = ! showDetails'>C Players</a></li>
+        <li><a href ng-click='selected=1'>A Players</a></li>
+        <li><a href ng-click='selected=2'>B Players</a></li>
+        <li><a href ng-click='selected=3'>C Players</a></li>
       </ul>
-      <div ng-hide='showDetails'>
+      <div ng-show='selected == 1'>
         <li ng-repeat='p in aPlayers'>{{p}}</li>
       </div>
-      <div ng-show='showDetails'>
+      <div ng-show='selected == 2'>
         <li ng-repeat='p in bPlayers'>{{p}}</li>
       </div>
-      <div ng-show='showDetails'>
+      <div ng-show='selected == 3'>
         <li ng-repeat='p in cPlayers'>{{p}}</li>
       </div>
       <!-- <ul>
