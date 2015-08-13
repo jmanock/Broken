@@ -267,8 +267,7 @@ $scope.add = function(p){
 }; // End `Add` Function
 
 $scope.remove = function(t){
-
-
+  teamPlayers.splice(t,1);
 }; // End `Remove` Function
 
 

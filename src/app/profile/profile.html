@@ -24,7 +24,7 @@
     </div> -->
     <div>
       <h3>Team</h3>
-      <p ng-repeat='p in team'>{{p}}</p>
+      <p ng-repeat='p in team'>{{p}} <button class='btn btn-danger' ng-click='remove($index)'>X</button></p>
     </div>
 
     <div class='players'>
