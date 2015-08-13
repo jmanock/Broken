@@ -262,7 +262,7 @@ $scope.aPlayersAdd = function(p){
 }; // End `aPlayersAdd` Function
 
 $scope.bPlayersAdd = function(p){
-  if(countB<=2){
+  if(countB<=1){
     countB++;
     $scope.add(p,'B');
   }else{
@@ -271,7 +271,7 @@ $scope.bPlayersAdd = function(p){
 }; // End `bPlayersAdd` Function
 
 $scope.cPlayersAdd = function(p){
-  if(countC<=2){
+  if(countC<=1){
     countC++;
     $scope.add(p,'C');
   }else{
