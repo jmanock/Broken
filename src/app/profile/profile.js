@@ -250,6 +250,7 @@ angular.module('fantasy')
 
 var teamPlayers = [];
 $scope.aPlayersAdd = function(p){
+  
    $scope.add(p);
 }; // End `aPlayersAdd` Function
 
@@ -270,12 +271,6 @@ $scope.remove = function(t){
   teamPlayers.splice(t,1);
 }; // End `Remove` Function
 
-this.setTab = function(tabId){
-  this.tab = tabId;
-};
-this.isSet = function(tabId){
-  return this.tab === tabId;
-};
 })// End controller
 .filter('firstName', function(){
   return function(x){

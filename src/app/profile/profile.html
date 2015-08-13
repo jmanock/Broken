@@ -29,28 +29,28 @@
 
     <div class='players'>
       <h3>Players</h3>
-      <ul class='nav nav-tabs'>
+      <!-- <ul class='nav nav-tabs'>
         <li><a href ng-click='selected=1'>A Players</a></li>
         <li><a href ng-click='selected=2'>B Players</a></li>
         <li><a href ng-click='selected=3'>C Players</a></li>
       </ul>
       <div ng-show='selected == 1'>
-        <li ng-repeat='p in aPlayers'>{{p}}</li>
+        <li ng-repeat='p in aPlayers'>{{p}} <button class='btn btn-success' ng-click='aPlayers($index)'>Add Player</button></li>
       </div>
       <div ng-show='selected == 2'>
-        <li ng-repeat='p in bPlayers'>{{p}}</li>
+        <li ng-repeat='p in bPlayers'>{{p}} <button class='btn btn-success' ng-click='bPlayers(p)'>Add Player</button></li>
       </div>
       <div ng-show='selected == 3'>
-        <li ng-repeat='p in cPlayers'>{{p}}</li>
-      </div>
-      <!-- <ul>
+        <li ng-repeat='p in cPlayers'>{{p}} <button class='btn btn-success' ng-click='cPlayers(p)'>Add Player</button></li>
+      </div> -->
+      <ul>
         <h3>A Players</h3>
         <li id='aPlayers' ng-repeat = 'p in aPlayers'>{{p}} <button class='btn btn-success' ng-click='aPlayersAdd(p)'>Add Player</button></li>
         <h3>B Players</h3>
         <li ng-repeat='p in bPlayers'>{{p}} <button class='btn btn-success' ng-click='bPlayersAdd(p)'>Add Player</button></li>
         <h3>C Players</h3>
         <li ng-repeat='p in cPlayers'>{{p}} <button class='btn btn-success' ng-click='cPlayersAdd(p)'>Add Player</button></li>
-      </ul> -->
+      </ul> 
 
     </div>
     <div class="random">
