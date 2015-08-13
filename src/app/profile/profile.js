@@ -142,15 +142,20 @@ angular.module('fantasy')
           }); // End `C`
         }); // End `B`
       }); // End `A`
-      for(var i = 0; i<players.length; i++){
-        for(var j = 0; j<fedEx.length; j++){
-          if(players[i] === fedEx[j]){
-            console.log('You got this shit to work in angular SON!!!');
+      var rankings = [];
+      for(var i = 0; i<fedEx.length; i++){
+        for(var j = 0; j<players.length; j++){
+          if(players[j] === fedEx[i]){
+            rankings.push(fedEx[i]);
           }
         }
       }
-
-       
+      var aPlayers = rankings.splice(0,25);
+      var bPlayers = rankings.splice(26,72);
+      var cPlayers = rankings;
+      console.log(aPlayers.length);
+      console.log(bPlayers.length);
+      console.log(cPlayers.length);
     }); // End `Get FedExStandings`
   }); // End `Get Players`
 
