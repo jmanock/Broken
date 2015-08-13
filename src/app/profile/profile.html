@@ -30,17 +30,17 @@
     <div class='players'>
       <h3>Players</h3>
       <ul class='nav nav-tabs'>
-        <li><a href ng-click='aPlayers'>A Players</a></li>
-        <li><a href ng-click='bPlayers'>B Players</a></li>
-        <li><a href ng-click='cPlayers'>C Players</a></li>
+        <li><a href ng-click='showDetails = ! showDetails'>A Players</a></li>
+        <li><a href ng-click='showDetails = ! showDetails'>B Players</a></li>
+        <li><a href ng-click='showDetails = ! showDetails'>C Players</a></li>
       </ul>
-      <div ng-show='aPlayers'>
+      <div ng-hide='showDetails'>
         <li ng-repeat='p in aPlayers'>{{p}}</li>
       </div>
-      <div ng-hide='bPlayers'>
+      <div ng-show='showDetails'>
         <li ng-repeat='p in bPlayers'>{{p}}</li>
       </div>
-      <div ng-hide='cPlayers'>
+      <div ng-show='showDetails'>
         <li ng-repeat='p in cPlayers'>{{p}}</li>
       </div>
       <!-- <ul>
