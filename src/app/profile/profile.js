@@ -298,7 +298,7 @@ $scope.remove = function(t,x){
   }else if(t.Rank === 'C'){
     countC--;
   }
-  teamPlayers.splice(x);
+  teamPlayers.splice(x,1);
 }; // End `Remove` Function
 
 })// End controller
