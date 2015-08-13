@@ -113,16 +113,39 @@ angular.module('fantasy')
 .controller('SearchCtrl', function($http, $scope, $q){
 
   var ref = new Firebase('https://fireseedangular.firebaseio.com/Players');
-  var players = $http.get('app/profile/log0.json');
-  var play = 'app/profile/log0.json';
-  var fedEx = $http.get('app/profile/fedexStandings.json');
-  $http.get(play)
+
+  // var players = $http.get('app/profile/log0.json');
+  // var fedEx = $http.get('app/profile/fedexStandings.json');
+  $http.get('app/profile/log0.json')
   .success(function(data){
-    console.log(data);
-  }).then(fedEx)
-  .success(function(x){
-    console.log(x);
-  });
+    var players = [];
+    var nums = data.Tournament.Players;
+    angular.forEach(nums, function(x){
+      var pName = x.PlayerName;
+      var parts = pName.split(', ');
+      var first = parts[1]+' '+parts[0];
+      players.push(first);
+    });
+    
+    $http.get('app/profile/fedexStandings.json')
+    .success(function(result){
+      var fedEx = [];
+      angular.forEach(result.tours, function(a){
+        angular.forEach(a.years, function(b){
+          angular.forEach(b.stats, function(c){
+            angular.forEach(c.details, function(e){
+              var firstName = e.plrName.first;
+              var lastName = e.plrName.last;
+              var fullName = firstName + ' ' + lastName;
+              fedEx.push(fullName);
+            }); // End `E`
+          }); // End `C`
+        }); // End `B`
+      }); // End `A`
+      // console.log(fedEx);
+      // console.log(players);
+    }); // End `Get FedExStandings`
+  }); // End `Get Players`
 
 
 
