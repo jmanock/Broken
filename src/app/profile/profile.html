@@ -22,9 +22,9 @@
         </li>
       </ul>
     </div> -->
-    <button ng-click='showMe=true'>Tis the A Players</button>
-    <button ng-click='something = true; showMe=true'>Tis the B Players</button>
-    <button ng-click='somethingElse = ture'>Tis the C Players</button>
+    <button ng-click='aPlayers=true; bPlayers=true; cPlayers=true'>Tis the A Players</button>
+    <button ng-click='aPlayers=false; bPlayers=false; cPlayers=true'>Tis the B Players</button>
+    <button ng-click='aPlayers=false; bPlayers=true; cPlayers=false'>Tis the C Players</button>
     <!--  Show aPlayers, Hide bPlayers, Hide cPlayers -->
     <!--  Show bPlayers, Hide aPlayers, Hide cPlayers -->
     <!--  Show cPlayers, Hide aPlayers, Hide bPlayers -->
@@ -36,17 +36,17 @@
     <div class='players'>
       <h3>Players</h3>
       <ul>
-        <div class='aPlayers' ng-hide='showMe'>
+        <div class='aPlayers' ng-show='aPlayers'>
           <h3>A Players</h3>
           <li ng-repeat='p in aPlayers'>{{p}} <button class='btn btn-success' ng-click='aPlayersAdd(p)'>Add Player</button></li>
         </div>
 
-        <div class='bPlayers'>
+        <div class='bPlayers' ng-hide='bPlayers'>
           <h3>B Players</h3>
           <li ng-repeat='p in bPlayers'>{{p}} <button class='btn btn-success' ng-click='bPlayersAdd(p)'>Add Player</button></li>
         </div>
 
-        <div class='cPlayers'>
+        <div class='cPlayers' ng-hide='cPlayers'>
           <h3>C Players</h3>
           <li ng-repeat='p in cPlayers'>{{p}} <button class='btn btn-success' ng-click='cPlayersAdd(p)'>Add Player</button></li>
         </div>
