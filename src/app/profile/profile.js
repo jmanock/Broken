@@ -276,7 +276,6 @@ $scope.cPlayersAdd = function(p){
     $scope.add(p,'C');
   }else{
     console.log('To Many C players');
-
   }
 }; // End `cPlayersAdd`
 
@@ -300,6 +299,8 @@ $scope.remove = function(t,x){
   }
   teamPlayers.splice(x,1);
 }; // End `Remove` Function
+
+
 
 })// End controller
 .filter('firstName', function(){

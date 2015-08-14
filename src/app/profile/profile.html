@@ -22,6 +22,7 @@
         </li>
       </ul>
     </div> -->
+    <button ng-click='showMe=true'>Click Me Please</button>
     <div>
       <h3>Team</h3>
       <p ng-repeat='p in team | orderBy:"Rank"'>{{p}} <button class='btn btn-danger' ng-click='remove(p,$index)'>X</button></p>
@@ -32,14 +33,14 @@
       <ul>
         <div class='aPlayers'>
           <h3>A Players</h3>
-          <li ng-repeat='p in aPlayers'>{{p}} <button class='btn btn-success' ng-click='aPlayersAdd(p)'>Add Player</button></li>
+          <li ng-hide='showMe' ng-repeat='p in aPlayers'>{{p}} <button class='btn btn-success' ng-click='aPlayersAdd(p)'>Add Player</button></li>
         </div>
 
         <div class='bPlayers'>
           <h3>B Players</h3>
           <li ng-repeat='p in bPlayers'>{{p}} <button class='btn btn-success' ng-click='bPlayersAdd(p)'>Add Player</button></li>
         </div>
-        
+
         <div class='cPlayers'>
           <h3>C Players</h3>
           <li ng-repeat='p in cPlayers'>{{p}} <button class='btn btn-success' ng-click='cPlayersAdd(p)'>Add Player</button></li>
