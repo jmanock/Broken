@@ -30,12 +30,20 @@
     <div class='players'>
       <h3>Players</h3>
       <ul>
-        <h3>A Players</h3>
-        <li id='aPlayers' ng-repeat = 'p in aPlayers'>{{p}} <button class='btn btn-success' ng-click='aPlayersAdd(p)'>Add Player</button></li>
-        <h3>B Players</h3>
-        <li ng-repeat='p in bPlayers'>{{p}} <button class='btn btn-success' ng-click='bPlayersAdd(p)'>Add Player</button></li>
-        <h3>C Players</h3>
-        <li ng-repeat='p in cPlayers'>{{p}} <button class='btn btn-success' ng-click='cPlayersAdd(p)'>Add Player</button></li>
+        <div class='aPlayers'>
+          <h3>A Players</h3>
+          <li ng-repeat='p in aPlayers'>{{p}} <button class='btn btn-success' ng-click='aPlayersAdd(p)'>Add Player</button></li>
+        </div>
+
+        <div class='bPlayers'>
+          <h3>B Players</h3>
+          <li ng-repeat='p in bPlayers'>{{p}} <button class='btn btn-success' ng-click='bPlayersAdd(p)'>Add Player</button></li>
+        </div>
+        
+        <div class='cPlayers'>
+          <h3>C Players</h3>
+          <li ng-repeat='p in cPlayers'>{{p}} <button class='btn btn-success' ng-click='cPlayersAdd(p)'>Add Player</button></li>
+        </div>
       </ul>
 
     </div>
