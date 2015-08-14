@@ -1,6 +1,9 @@
 .players{
   float:left;
+  width:20em;
+  border:1px solid orange;
 }
+
 .random{
   float:right;
 }
@@ -10,4 +13,8 @@
 li{
   list-style-type:none;
   margin-bottom:10px;
+  line-height:3em;
+}
+input[type='button']{
+  min-width:70px;
 }

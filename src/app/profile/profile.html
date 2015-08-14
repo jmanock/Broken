@@ -24,8 +24,8 @@
     </div> -->
 
 
-    <div>
-      <p ng-repeat='p in team | orderBy:"Rank"'>{{p}} <button class='btn btn-danger' ng-click='remove(p,$index)'>X</button></p>
+    <div class='team'>
+      <p ng-repeat='p in team | orderBy:"Rank"'>{{p}} <button class='btn pull-right' ng-click='remove(p,$index)'>X</button></p>
     </div>
 
     <ul class='nav nav-pills'>
@@ -33,22 +33,22 @@
       <li ng-class='{active:search.isSet(2)}'><a href ng-click='search.setTab(2)'>B Players</a></li>
       <li ng-class='{active:search.isSet(3)}'><a href ng-click='search.setTab(3)'>C Players</a></li>
     </ul>
-    
+
     <div class='players'>
       <ul>
         <div class='aPlayers' ng-show='search.isSet(1)'>
           <h3>A Players</h3>
-          <li ng-repeat='p in aPlayers'>{{p}} <button class='btn btn-success' ng-click='aPlayersAdd(p)'>Add Player</button></li>
+          <li ng-repeat='p in aPlayers'>{{p}} <button class='btn pull-right' ng-click='aPlayersAdd(p)'>Add Player</button></li>
         </div>
 
         <div class='bPlayers' ng-show='search.isSet(2)'>
           <h3>B Players</h3>
-          <li ng-repeat='p in bPlayers'>{{p}} <button class='btn btn-success' ng-click='bPlayersAdd(p)'>Add Player</button></li>
+          <li ng-repeat='p in bPlayers'>{{p}} <button class='btn pull-right' ng-click='bPlayersAdd(p)'>Add Player</button></li>
         </div>
 
         <div class='cPlayers' ng-show='search.isSet(3)'>
           <h3>C Players</h3>
-          <li ng-repeat='p in cPlayers'>{{p}} <button class='btn btn-success' ng-click='cPlayersAdd(p)'>Add Player</button></li>
+          <li ng-repeat='p in cPlayers'>{{p}} <button class='btn pull-right' ng-click='cPlayersAdd(p)'>Add Player</button></li>
         </div>
       </ul>
 
