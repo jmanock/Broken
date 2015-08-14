@@ -300,7 +300,13 @@ $scope.remove = function(t,x){
   teamPlayers.splice(x,1);
 }; // End `Remove` Function
 
-
+this.search = 1;
+this.setTab = function(tabId){
+  this.search = tabId;
+};
+this.isSet = function(tabId){
+  return this.search === tabId;
+};
 
 })// End controller
 .filter('firstName', function(){

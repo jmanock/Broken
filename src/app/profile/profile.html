@@ -22,9 +22,14 @@
         </li>
       </ul>
     </div> -->
-    <button ng-click='tab = tab=="aPlayers"?null:"aPlayers"' ng-class='{selected:tab=="aPlayers"}'>Tis the A Players</button>
-    <button ng-click='tab = tab=="b"?null:"bPlayers"' ng-class='{selected:tab=="bPlayers"}'>Tis the B Players</button>
-    <button ng-click='tab = tab=="c"?null:"cPlayers"' ng-class='{selected:tab=="cPlayers"}'>Tis the C Players</button>
+    <ul class='nav nav-pills'>
+      <li ng-class='{active:search.isSet(1)}'><a href ng-click='search.setTab(1)'>A Players</a></li>
+      <li ng-class='{active:search.isSet(2)}'><a href ng-click='search.setTab(2)'>B Players</a></li>
+      <li ng-class='{active:search.isSet(3)}'><a href ng-click='search.setTab(3)'>C Players</a></li>
+    </ul>
+    <!-- <button ng-click='tab = tab=="aPlayers"?false:"aPlayers"' ng-class='{selected:tab=="aPlayers"}'>Tis the A Players</button>
+    <button ng-click='tab = tab=="b"?false:"bPlayers"' ng-class='{selected:tab=="bPlayers"}'>Tis the B Players</button>
+    <button ng-click='tab = tab=="c"?false:"cPlayers"' ng-class='{selected:tab=="cPlayers"}'>Tis the C Players</button> -->
     <!--  Show aPlayers, Hide bPlayers, Hide cPlayers -->
     <!--  Show bPlayers, Hide aPlayers, Hide cPlayers -->
     <!--  Show cPlayers, Hide aPlayers, Hide bPlayers -->
@@ -36,17 +41,17 @@
     <div class='players'>
       <h3>Players</h3>
       <ul>
-        <div class='aPlayers' ng-show='tab =="aPlayers"'>
+        <div class='aPlayers' ng-show='search.isSet(1)'>
           <h3>A Players</h3>
           <li ng-repeat='p in aPlayers'>{{p}} <button class='btn btn-success' ng-click='aPlayersAdd(p)'>Add Player</button></li>
         </div>
 
-        <div class='bPlayers' ng-show='tab =="bPlayers"'>
+        <div class='bPlayers' ng-show='search.isSet(2)'>
           <h3>B Players</h3>
           <li ng-repeat='p in bPlayers'>{{p}} <button class='btn btn-success' ng-click='bPlayersAdd(p)'>Add Player</button></li>
         </div>
 
-        <div class='cPlayers' ng-show='tab =="cPlayers"'>
+        <div class='cPlayers' ng-show='search.isSet(3)'>
           <h3>C Players</h3>
           <li ng-repeat='p in cPlayers'>{{p}} <button class='btn btn-success' ng-click='cPlayersAdd(p)'>Add Player</button></li>
         </div>
