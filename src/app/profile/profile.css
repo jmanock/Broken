@@ -14,5 +14,11 @@ li{
   list-style-type:none;
   margin-bottom:10px;
   line-height:2.5em;
-  
+}
+p{
+  line-height:2.5em;
+}
+.team{
+  border:1px solid green;
+  margin-right:40em;
 }
