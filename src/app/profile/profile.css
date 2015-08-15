@@ -13,8 +13,6 @@
 li{
   list-style-type:none;
   margin-bottom:10px;
-  line-height:3em;
-}
-input[type='button']{
-  min-width:70px;
+  line-height:2.5em;
+  
 }
