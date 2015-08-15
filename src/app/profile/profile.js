@@ -149,6 +149,7 @@ angular.module('fantasy')
           if(players[j] === fedEx[i]){
             rankings.push(fedEx[i]);
             players.splice(j,1);
+
           }
         }
       }
@@ -167,7 +168,7 @@ console.log(players);
 
       var aPlayers = rankings.splice(0,25);
       var bPlayers = rankings.splice(26,72);
-      var cPlayers = rankings;
+      var cPlayers = players;
 
       $scope.aPlayers = aPlayers;
 
