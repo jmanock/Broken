@@ -143,7 +143,7 @@ angular.module('fantasy')
         }); // End `B`
       }); // End `A`
       var rankings = [];
-      var notRankings = [];
+
       for(var i = 0; i<fedEx.length; i++){
         for(var j = 0; j<players.length; j++){
           if(players[j] === fedEx[i]){
@@ -153,22 +153,12 @@ angular.module('fantasy')
           }
         }
       }
-console.log(players);
-      // for(var f = 0; f<players.length; f++){
-      //   for(var g = 0; g<fedEx.length; g++){
-      //       if(players[f] === fedEx[g]){
-      //         // If the player is in both
-      //         // Take out the player???
-      //         players.splice(f,1);
-      //       }
-      //   }
-      //
-      // }
 
 
       var aPlayers = rankings.splice(0,25);
-      var bPlayers = rankings.splice(26,72);
-      var cPlayers = players;
+      var bPlayers = rankings.splice(26,88);
+      var something =  rankings.concat(players);
+      var cPlayers = something;
 
       $scope.aPlayers = aPlayers;
 
