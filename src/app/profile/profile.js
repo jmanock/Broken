@@ -116,7 +116,12 @@ angular.module('fantasy')
 /*
   ToDo
     ~ Save team to firebase
+      - Not sure if I want a save button
+      - Or just add them when the button is clicked
+      
     ~ Show a better way of the team
+    ~ Maybe disable buttons when limit is reached?
+      - Undisable if a player is removed
 */
   $http.get('app/profile/log0.json')
   .success(function(data){
