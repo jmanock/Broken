@@ -113,9 +113,11 @@ angular.module('fantasy')
 .controller('SearchCtrl', function($http, $scope, $q){
 
   var ref = new Firebase('https://fireseedangular.firebaseio.com/Players');
-
-  // var players = $http.get('app/profile/log0.json');
-  // var fedEx = $http.get('app/profile/fedexStandings.json');
+/*
+  ToDo
+    ~ Save team to firebase
+    ~ Show a better way of the team
+*/
   $http.get('app/profile/log0.json')
   .success(function(data){
     var players = [];
@@ -235,11 +237,7 @@ angular.module('fantasy')
     for(var i = 0; i<roundOne.length; i++){
       for(var j = 0; j<roundTwo.length; j++){
         if(roundOne[i].Name === roundTwo[j].Name){
-          /* What's next???
-            ~ Maybe not rounds but days
-              - Have to split into days not rounds
-            ~ Come up with a way to do something???
-          */
+
           knew.push({
             Name:roundOne[i].Name,
             RoundOnePoints:roundOne[i].Points,
