@@ -176,7 +176,6 @@ $scope.add = function(p,x){
     ToDo
     ~ Save to FirebaseUrl
     ~ Be able to Add/ Remove players to/from team
-      - With the rules already set up
   */
 var userTeam = FirebaseUrl.child('userTeam').child(self.user.fullName).child('team').child(p);
          userTeam.set({
@@ -195,6 +194,9 @@ $scope.remove = function(t,x){
   }else if(t.Rank === 'C'){
     countC--;
   }
+  var userTeam = FirebaseUrl.child('userTeam').child(self.user.fullName).child('team').child(t.Name);
+  userTeam.remove();
+  
   teamPlayers.splice(x,1);
 }; // End `Remove` Function
 
