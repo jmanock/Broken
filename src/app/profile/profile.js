@@ -48,11 +48,7 @@
 //     }else if(committed){
 //       var id = ss.val()-1;
 //       console.log(id);
-//       var userTeam = FirebaseUrl.child('userTeam').child(self.user.uid).child('team').child(p.$id);
 //
-//       userTeam.update({
-//         name: p.Name
-//       });
 //     }
 //   });
 // };
@@ -175,13 +171,19 @@ $scope.cPlayersAdd = function(p){
   }
 }; // End `cPlayersAdd`
 
+
 $scope.add = function(p,x){
   teamPlayers.push({
     Name:p,
     Rank:x
   });
+var userTeam = FirebaseUrl.child('userTeam').child(self.user.fullName).child('team');
+         userTeam.set({
+           Name: p,
+           Rank:x
+         });
   $scope.team = teamPlayers;
-  console.log(teamPlayers);
+
 }; // End `Add` Function
 
 $scope.remove = function(t,x){
