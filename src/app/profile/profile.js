@@ -74,13 +74,9 @@ angular.module('fantasy')
    });
 /*
   ToDo
-    ~ Save team to firebase
-      - Not sure if I want a save button
-      - Or just add them when the button is clicked
-
-    ~ Show a better way of the team
-    ~ Maybe disable buttons when limit is reached?
-      - Undisable if a player is removed
+    ~ Use Firebase to show the team
+    ~ Add Player to Firebase √
+    ~ Remove Player from Firebase √
 */
   $http.get('app/profile/log0.json')
   .success(function(data){
@@ -172,11 +168,7 @@ $scope.add = function(p,x){
     Name:p,
     Rank:x
   });
-  /*
-    ToDo
-    ~ Save to FirebaseUrl
-    ~ Be able to Add/ Remove players to/from team
-  */
+
 var userTeam = FirebaseUrl.child('userTeam').child(self.user.fullName).child('team').child(p);
          userTeam.set({
            Rank:x
@@ -196,7 +188,7 @@ $scope.remove = function(t,x){
   }
   var userTeam = FirebaseUrl.child('userTeam').child(self.user.fullName).child('team').child(t.Name);
   userTeam.remove();
-  
+
   teamPlayers.splice(x,1);
 }; // End `Remove` Function
 
