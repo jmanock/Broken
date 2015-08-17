@@ -138,12 +138,7 @@ var countA = 0;
 var countB = 0;
 var countC = 0;
 $scope.aPlayersAdd = function(p){
-  /*
-    ToDo
-    ~ Save to FirebaseUrl
-    ~ Be able to Add/ Remove players to/from team
-      - With the rules already set up
-  */
+
   if(countA<=1){
     countA++;
     $scope.add(p,'A');
@@ -177,9 +172,14 @@ $scope.add = function(p,x){
     Name:p,
     Rank:x
   });
-var userTeam = FirebaseUrl.child('userTeam').child(self.user.fullName).child('team');
+  /*
+    ToDo
+    ~ Save to FirebaseUrl
+    ~ Be able to Add/ Remove players to/from team
+      - With the rules already set up
+  */
+var userTeam = FirebaseUrl.child('userTeam').child(self.user.fullName).child('team').child(p);
          userTeam.set({
-           Name: p,
            Rank:x
          });
   $scope.team = teamPlayers;
@@ -187,7 +187,7 @@ var userTeam = FirebaseUrl.child('userTeam').child(self.user.fullName).child('te
 }; // End `Add` Function
 
 $scope.remove = function(t,x){
-  // Have to remove player and add back to count of the letter
+
   if(t.Rank === 'A'){
     countA--;
   }else if(t.Rank === 'B'){
