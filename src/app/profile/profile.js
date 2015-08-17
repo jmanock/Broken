@@ -2,12 +2,7 @@
 // angular.module('fantasy')
 // .controller('SearchCtrl', function(FirebaseUrl, $scope, $firebaseArray, $firebaseObject, $stateParams, Auth){
 //
-// var self = this;
-// // Setup `CurrentUser`
-// this.currentUser = $firebaseArray(FirebaseUrl.child('users').child($stateParams.id));
-// Auth.onAuth(function(user){
-//   self.user = user;
-// });
+
 //
 //
 // // Load `Team`
@@ -67,58 +62,26 @@
 //   this.remove(id);
 // };
 //
-// this.remove = function(id){
-//   FirebaseUrl.child('userTeam').child(self.user.uid).child('count')
-//   .transaction(function(id){
-//     return(id || 0)-1;
-//   }, function(err, committed, ss){
-//     if(err){
-//       console.log(err);
-//     }else if(committed){
-//       var i = ss.val();
-//       var userTeam = FirebaseUrl.child('userTeam').child(self.user.uid).child('team').child(id);
-//
-//       userTeam.remove();
-//       if(i === 0){
-//         $scope.hide = true;
-//       }
-//     }
-//   });
-// };
-//
-// // Save the `Team` to call in the `Standings` page
-// this.save = function(){
-//   // need to change this var name
-//   var something = FirebaseUrl.child('teams').child(self.user.fullName).child('team');
-//   something.remove();
-//   angular.forEach(self.teams, function(s){
-//     something.push({
-//       player: s.name
-//     });
-//   });
-// };
-//
-// // Reset the `Team` back to Empty
-// this.reset = function(){
-//   var something = FirebaseUrl.child('teams').child(self.user.fullName);
-//   var userTeam = FirebaseUrl.child('userTeam').child(self.user.uid);
-//   $scope.hide = true;
-//   userTeam.remove();
-//   something.remove();
-// };
-//
-// });// END CONTROLLER
+
+
+
+
 'use strict';
 angular.module('fantasy')
-.controller('SearchCtrl', function($http, $scope, $q){
+.controller('SearchCtrl', function($http, $scope, $q, Auth, FirebaseUrl, $firebaseArray, $stateParams){
 
-  var ref = new Firebase('https://fireseedangular.firebaseio.com/Players');
+   var self = this;
+   // Setup `CurrentUser`
+   this.currentUser = $firebaseArray(FirebaseUrl.child('users').child($stateParams.id));
+   Auth.onAuth(function(user){
+   self.user = user;
+   });
 /*
   ToDo
     ~ Save team to firebase
       - Not sure if I want a save button
       - Or just add them when the button is clicked
-      
+
     ~ Show a better way of the team
     ~ Maybe disable buttons when limit is reached?
       - Undisable if a player is removed
@@ -252,7 +215,7 @@ angular.module('fantasy')
         }
       }
     }
-    ref.set(knew);
+
 
   }); // End `rOne, rTwo` call
 
@@ -262,9 +225,16 @@ var countA = 0;
 var countB = 0;
 var countC = 0;
 $scope.aPlayersAdd = function(p){
+  /*
+    ToDo
+    ~ Save to FirebaseUrl
+    ~ Be able to Add/ Remove players to/from team
+      - With the rules already set up
+  */
   if(countA<=1){
     countA++;
     $scope.add(p,'A');
+
   }else{
     console.log('To Many A players');
   }
