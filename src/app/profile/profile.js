@@ -68,7 +68,7 @@
 
 'use strict';
 angular.module('fantasy')
-.controller('SearchCtrl', function($http, $scope, $q, Auth, FirebaseUrl, $firebaseArray, $stateParams){
+.controller('SearchCtrl', function($http, $scope, Auth, FirebaseUrl, $firebaseArray, $stateParams){
 
    var self = this;
    // Setup `CurrentUser`
@@ -124,7 +124,6 @@ angular.module('fantasy')
         }
       }
 
-
       var aPlayers = rankings.splice(0,25);
       var bPlayers = rankings.splice(26,88);
       var something =  rankings.concat(players);
@@ -137,88 +136,6 @@ angular.module('fantasy')
       $scope.cPlayers = cPlayers;
     }); // End `Get FedExStandings`
   }); // End `Get Players`
-
-
-
-  var rOne = $http.get('app/profile/leaders.json');
-  var rTwo = $http.get('app/profile/r2final.json');
-
-  $q.all([rOne, rTwo]).then(function(result){
-    var tmp = [];
-    angular.forEach(result, function(response){
-      tmp.push(response.data);
-    });
-    return tmp;
-  }).then(function(tmpResult){
-    var players = [];
-    var roundOne = [];
-    var roundTwo = [];
-    angular.forEach(tmpResult, function(x){
-      var plays = x.leaderboard.players;
-      angular.forEach(plays, function(y){
-        players.push(y);
-      });
-    });
-    angular.forEach(players, function(t){
-      var firstName = t.player_bio.first_name;
-      var lastName = t.player_bio.last_name;
-      var fullName = firstName + ' ' + lastName;
-      var holes = t.holes;
-      var points = 0;
-      var round = t.current_round;
-
-      angular.forEach(holes, function(z){
-        var strokes = z.strokes;
-        var par = z.par;
-        var score = par - strokes;
-
-        if(strokes === null){
-          score = 0;
-        }else{
-          if(score === 0){
-            points = points;
-          }else if(score === 1){
-            points = points + 1;
-          }else if(score >= 2){
-            points = points + 4;
-          }else if(score === -1){
-            points = points -1;
-          }else if(score >= -2){
-            points = points -2;
-          }
-        }
-      }); // End `Holes` forEach
-      if(round === 1){
-        roundOne.push({
-          Name:fullName,
-          Points:points
-        });
-      }else{
-        roundTwo.push({
-          Name:fullName,
-          Points:points
-        });
-      }
-
-    }); // End `Players` forEach
-    var knew = [];
-    for(var i = 0; i<roundOne.length; i++){
-      for(var j = 0; j<roundTwo.length; j++){
-        if(roundOne[i].Name === roundTwo[j].Name){
-
-          knew.push({
-            Name:roundOne[i].Name,
-            RoundOnePoints:roundOne[i].Points,
-            RoundTwoPoints:roundTwo[j].Points,
-            Total:roundOne[i].Points + roundTwo[j].Points
-          });
-        }
-      }
-    }
-
-
-  }); // End `rOne, rTwo` call
-
 
 var teamPlayers = [];
 var countA = 0;
