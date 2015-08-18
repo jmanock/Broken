@@ -102,7 +102,6 @@ var countA = 0;
 var countB = 0;
 var countC = 0;
 $scope.aPlayersAdd = function(p){
-
   if(countA<=1){
     countA++;
     $scope.add(p,'A',countA);
@@ -139,10 +138,21 @@ $scope.add = function(p,x,c){
   var userTeamCount = FirebaseUrl.child('userTeam').child(self.user.fullName);
   /*
   Have to get countA, countB out not just count
+  Maybe use x with this???
   */
-  userTeamCount.update({
-    count:c
-  });
+  if(x === 'A'){
+    userTeamCount.update({
+      countA:c
+    });
+  }else if(x === 'B'){
+    userTeamCount.update({
+      countB:c
+    });
+  }else if(x === 'C'){
+    userTeamCount.update({
+      countC:c
+    });
+  }
 
 }; // End `Add` Function
 
