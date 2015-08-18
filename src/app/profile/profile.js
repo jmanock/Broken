@@ -29,21 +29,22 @@ angular.module('fantasy')
    self.user = user;
    });
 
-   var something = [];
    this.currentUser.$loaded(function(){
      var team = $firebaseArray(FirebaseUrl.child('userTeam').child(self.user.fullName).child('team'));
-    //  $scope.teams = team;
-    something.push(team);
-    
+      $scope.teams = team;
    });
 
 
 /*
   ToDo
-    ~ Use Firebase to show the team √
-    ~ Have to finde a way to keep the count with a loaded team
-    ~ Add Player to Firebase √
-    ~ Remove Player from Firebase √
+    ~ Showing the team
+      - Need to keep track of the count for a,b,c players
+      Ideas???
+      ~ pass the count with everything else?
+      ~ remove the count with the remove button
+      - So you cant add 100 players on a refresh
+    ~ Remove button from both Firebase and the count
+
 */
   $http.get('app/profile/log0.json')
   .success(function(data){
@@ -104,7 +105,7 @@ $scope.aPlayersAdd = function(p){
 
   if(countA<=1){
     countA++;
-    $scope.add(p,'A');
+    $scope.add(p,'A',countA);
 
   }else{
     console.log('To Many A players');
@@ -114,7 +115,7 @@ $scope.aPlayersAdd = function(p){
 $scope.bPlayersAdd = function(p){
   if(countB<=1){
     countB++;
-    $scope.add(p,'B');
+    $scope.add(p,'B',countB);
   }else{
     console.log('To Many B players');
   }
@@ -123,24 +124,20 @@ $scope.bPlayersAdd = function(p){
 $scope.cPlayersAdd = function(p){
   if(countC<=1){
     countC++;
-    $scope.add(p,'C');
+    $scope.add(p,'C',countC);
   }else{
     console.log('To Many C players');
   }
 }; // End `cPlayersAdd`
 
 
-$scope.add = function(p,x){
-  teamPlayers.push({
-    Name:p,
-    Rank:x
-  });
-
+$scope.add = function(p,x,c){
+console.log(c);
 var userTeam = FirebaseUrl.child('userTeam').child(self.user.fullName).child('team').child(p);
          userTeam.set({
            Rank:x
          });
-  $scope.team = teamPlayers;
+
 
 }; // End `Add` Function
 
