@@ -102,8 +102,20 @@ $scope.cPlayersAdd = function(p){
 
 $scope.add = function(p,x){
   var userTeam = FirebaseUrl.child('userTeam').child(self.user.fullName).child('team').child(p);
-
-  if(x === 'A'){
+  var something = [];
+  angular.forEach(userTeam, function(x){
+    angular.forEach(x.o, function(i){
+      something.push(i);
+    });
+  });
+  /*
+    ~ Got to figure out how to stop adding the same person twice
+      - If the player is there dont mess with the count
+    ~ The player doesn't get added but the count gets added to
+  */
+  var reds = something.slice(3);
+  console.log(reds);
+  if(x === 'A' ){
     FirebaseUrl.child('userTeam').child(self.user.fullName).child('CountA')
     .transaction(function(count){
       if(count === null){
