@@ -132,12 +132,17 @@ $scope.cPlayersAdd = function(p){
 
 
 $scope.add = function(p,x,c){
-console.log(c);
-var userTeam = FirebaseUrl.child('userTeam').child(self.user.fullName).child('team').child(p);
-         userTeam.set({
-           Rank:x
-         });
-
+  var userTeam = FirebaseUrl.child('userTeam').child(self.user.fullName).child('team').child(p);
+  userTeam.update({
+    Rank:x
+  });
+  var userTeamCount = FirebaseUrl.child('userTeam').child(self.user.fullName);
+  /*
+  Have to get countA, countB out not just count
+  */
+  userTeamCount.update({
+    count:c
+  });
 
 }; // End `Add` Function
 
