@@ -160,7 +160,11 @@ console.log(obj.Rank);
   ~ Need to adjust the counter of the right letter
 */
 var removePlayer = FirebaseUrl.child('userTeam').child(self.user.fullName).child('team').child(obj.$id);
-
+var counter = FirebaseUrl.child('userTeam').child(self.user.fullName);
+if(obj.Rank === 'A'){
+  removePlayer.remove();
+  
+}
 }; // End `Remove` Function
 
 this.search = 1;
