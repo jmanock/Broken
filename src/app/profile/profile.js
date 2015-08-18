@@ -20,7 +20,7 @@
 
 'use strict';
 angular.module('fantasy')
-.controller('SearchCtrl', function($http, $scope, Auth, FirebaseUrl, $firebaseArray, $stateParams){
+.controller('SearchCtrl', function($http, $scope, Auth, FirebaseUrl, $firebaseArray, $firebaseObject, $stateParams){
 
    var self = this;
    // Setup `CurrentUser`
@@ -29,11 +29,15 @@ angular.module('fantasy')
    self.user = user;
    });
 
+   var something = [];
    this.currentUser.$loaded(function(){
-     $scope.teams = $firebaseArray(FirebaseUrl.child('userTeam').child(self.user.fullName).child('team'));
-
+     var team = $firebaseArray(FirebaseUrl.child('userTeam').child(self.user.fullName).child('team'));
+    //  $scope.teams = team;
+    something.push(team);
+    
    });
-console.log($scope.teams);
+
+
 /*
   ToDo
     ~ Use Firebase to show the team √
