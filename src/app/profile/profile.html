@@ -25,8 +25,8 @@
 
 
     <div class='team'>
-      <p ng-repeat='p in team | orderBy:"Rank"'>{{p}} <button class='btn pull-right' ng-click='remove(p,$index)'>X</button></p>
-      <p ng-repeat='t in teams | orderBy:"Rank"'>{{t.Rank}} | {{t.$id}} <button class='btn pull-right' ng-click='remove(t,$index)'>X</button></p>
+      <h3>Team</h3>
+      <p ng-repeat='t in teams | orderBy:"Rank"'>{{t.Rank}} | {{t.$id}} <button class='btn pull-right' ng-click='remove(t)'>X</button></p>
     </div>
 
     <ul class='nav nav-pills'>

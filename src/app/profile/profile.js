@@ -136,10 +136,7 @@ $scope.add = function(p,x,c){
     Rank:x
   });
   var userTeamCount = FirebaseUrl.child('userTeam').child(self.user.fullName);
-  /*
-  Have to get countA, countB out not just count
-  Maybe use x with this???
-  */
+
   if(x === 'A'){
     userTeamCount.update({
       countA:c
@@ -156,19 +153,14 @@ $scope.add = function(p,x,c){
 
 }; // End `Add` Function
 
-$scope.remove = function(t,x){
+$scope.remove = function(obj){
+console.log(obj.Rank);
+/*
+  ~ Need to remove the player √
+  ~ Need to adjust the counter of the right letter
+*/
+var removePlayer = FirebaseUrl.child('userTeam').child(self.user.fullName).child('team').child(obj.$id);
 
-  if(t.Rank === 'A'){
-    countA--;
-  }else if(t.Rank === 'B'){
-    countB--;
-  }else if(t.Rank === 'C'){
-    countC--;
-  }
-  var userTeam = FirebaseUrl.child('userTeam').child(self.user.fullName).child('team').child(t.Name);
-  userTeam.remove();
-
-  teamPlayers.splice(x,1);
 }; // End `Remove` Function
 
 this.search = 1;
