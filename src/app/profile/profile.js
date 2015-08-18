@@ -171,7 +171,7 @@ $scope.add = function(p,x){
 }; // End `Add` Function
 
 $scope.remove = function(t){
-console.log(t);
+  var userTeam = FirebaseUrl.child('userTeam').child(self.user.fullName).child('team').child(t.$id);
   if(t.Rank === 'A'){
     FirebaseUrl.child('userTeam').child(self.user.fullName).child('CountA')
     .transaction(function(id){
@@ -180,17 +180,32 @@ console.log(t);
       if(err){
         console.log(err);
       }else if(committed){
-        var userTeam = FirebaseUrl.child('userTeam').child(self.user.fullName).child('team').child(t.$id);
+        userTeam.remove();
+      }
+    });
+  }else if(t.Rank === 'B'){
+    FirebaseUrl.child('userTeam').child(self.user.fullName).child('CountB')
+    .transaction(function(id){
+      return(id || 0)-1;
+    },function(err, committed){
+      if(err){
+        console.log(err);
+      }else if(committed){
+        userTeam.remove();
+      }
+    });
+  }else if(t.Rank === 'C'){
+    FirebaseUrl.child('userTeam').child(self.user.fullName).child('CountC')
+    .transaction(function(id){
+      return(id || 0)-1;
+    },function(err, committed){
+      if(err){
+        console.log(err);
+      }else if(committed){
         userTeam.remove();
       }
     });
   }
-  // FirebaseUrl.child('userTeam').child(self.user.uid).child('CountA')
-
-/*
-  ~ Need to remove the player √
-  ~ Need to adjust the counter of the right letter
-*/
 
 }; // End `Remove` Function
 
