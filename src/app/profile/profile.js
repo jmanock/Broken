@@ -13,51 +13,7 @@
 //     var show = data.$value;
 //     if(show === null){
 //       $scope.hide = true;
-//     }
-//   });
-// });
-//
-// // Load `LeaderBoard`
-// this.players = $firebaseArray(FirebaseUrl.child('leaderboard'));
-//
-//
-// // Add the `Player` to the `Team`
-// this.add = function(p){
-//   $scope.hide=false;
-//   this.count(p);
-// };
-//
-// this.count = function(p){
-//   // Set-up a `Counter` to limit `Players` added
-//   FirebaseUrl.child('userTeam').child(self.user.uid).child('count')
-//   .transaction(function(count){
-//     if(count === null){
-//       count = 0;
-//       $scope.hide = true;
-//     }
-//     if(count >= 5){
-//       // Change to an alert or something
-//       console.log('That is all the players you can have!');
-//     }else{
-//       $scope.hide = false;
-//       return(count || 0)+1;
-//     }
-//   },function(err, committed, ss){
-//     if(err){
-//       console.log(err);
-//     }else if(committed){
-//       var id = ss.val()-1;
-//       console.log(id);
-//
-//     }
-//   });
-// };
-//
-// // Remove a `Player` from `Team`
-// this.removePlayer = function(id){
-//   this.remove(id);
-// };
-//
+
 
 
 
@@ -72,9 +28,16 @@ angular.module('fantasy')
    Auth.onAuth(function(user){
    self.user = user;
    });
+
+   this.currentUser.$loaded(function(){
+     $scope.teams = $firebaseArray(FirebaseUrl.child('userTeam').child(self.user.fullName).child('team'));
+
+   });
+console.log($scope.teams);
 /*
   ToDo
-    ~ Use Firebase to show the team
+    ~ Use Firebase to show the team √
+    ~ Have to finde a way to keep the count with a loaded team
     ~ Add Player to Firebase √
     ~ Remove Player from Firebase √
 */
