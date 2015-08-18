@@ -34,18 +34,6 @@ angular.module('fantasy')
       $scope.teams = team;
    });
 
-
-/*
-  ToDo
-    ~ Showing the team
-      - Need to keep track of the count for a,b,c players
-      Ideas???
-      ~ pass the count with everything else?
-      ~ remove the count with the remove button
-      - So you cant add 100 players on a refresh
-    ~ Remove button from both Firebase and the count
-
-*/
   $http.get('app/profile/log0.json')
   .success(function(data){
     var players = [];
@@ -97,59 +85,88 @@ angular.module('fantasy')
     }); // End `Get FedExStandings`
   }); // End `Get Players`
 
-var teamPlayers = [];
-var countA = 0;
-var countB = 0;
-var countC = 0;
-$scope.aPlayersAdd = function(p){
-  if(countA<=1){
-    countA++;
-    $scope.add(p,'A',countA);
 
-  }else{
-    console.log('To Many A players');
-  }
+$scope.aPlayersAdd = function(p){
+
+  $scope.add(p,'A');
 }; // End `aPlayersAdd` Function
 
 $scope.bPlayersAdd = function(p){
-  if(countB<=1){
-    countB++;
-    $scope.add(p,'B',countB);
-  }else{
-    console.log('To Many B players');
-  }
+  $scope.add(p, 'B');
 }; // End `bPlayersAdd` Function
 
 $scope.cPlayersAdd = function(p){
-  if(countC<=1){
-    countC++;
-    $scope.add(p,'C',countC);
-  }else{
-    console.log('To Many C players');
-  }
+  $scope.add(p, 'C');
 }; // End `cPlayersAdd`
 
 
-$scope.add = function(p,x,c){
+$scope.add = function(p,x){
   var userTeam = FirebaseUrl.child('userTeam').child(self.user.fullName).child('team').child(p);
-  userTeam.update({
-    Rank:x
-  });
-  var userTeamCount = FirebaseUrl.child('userTeam').child(self.user.fullName);
 
   if(x === 'A'){
-    userTeamCount.update({
-      countA:c
+    FirebaseUrl.child('userTeam').child(self.user.fullName).child('CountA')
+    .transaction(function(count){
+      if(count === null){
+        count = 0;
+      }if(count >=2){
+        console.log('To Many A Players');
+      }else{
+        return(count || 0)+1;
+      }
+    },function(err, committed){
+      if(err){
+        console.log(err);
+      }else if(committed){
+
+        userTeam.update({
+          Rank:x
+        });
+      }
     });
+
   }else if(x === 'B'){
-    userTeamCount.update({
-      countB:c
+    FirebaseUrl.child('userTeam').child(self.user.fullName).child('CountB')
+    .transaction(function(count){
+      if(count === null){
+        count = 0;
+      }if(count >= 2){
+        console.log('To Many B Players');
+      }else{
+        return(count || 0)+1;
+      }
+    },function(err, committed){
+      if(err){
+        console.log(err);
+      }else if(committed){
+
+        userTeam.update({
+          Rank:x
+        });
+      }
     });
+
   }else if(x === 'C'){
-    userTeamCount.update({
-      countC:c
+    FirebaseUrl.child('userTeam').child(self.user.fullName).child('CountC')
+    .transaction(function(count){
+      if(count === null){
+        count = 0;
+      }if(count >= 1){
+        console.log('To Many C Players');
+      }else{
+        return(count || 0)+1;
+      }
+    },function(err, committed){
+      if(err){
+        console.log(err);
+      }else if(committed){
+
+        userTeam.update({
+          Rank:x
+        });
+      }
     });
-  }
+  } // End `if` statment
+
 
 }; // End `Add` Function
 
@@ -163,7 +180,7 @@ var removePlayer = FirebaseUrl.child('userTeam').child(self.user.fullName).child
 var counter = FirebaseUrl.child('userTeam').child(self.user.fullName);
 if(obj.Rank === 'A'){
   removePlayer.remove();
-  
+
 }
 }; // End `Remove` Function
 
