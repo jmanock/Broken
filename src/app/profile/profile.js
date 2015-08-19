@@ -94,6 +94,7 @@ $scope.aPlayersAdd = function(p){
       console.log('this should one work one time');
     }else{
       angular.forEach(data, function(x){
+        console.log(x.$id);
         if(x.$id !== p){
           $scope.add(p,'A');
         }else{
@@ -106,20 +107,7 @@ $scope.aPlayersAdd = function(p){
 
 $scope.bPlayersAdd = function(p){
   var teams = $firebaseArray(FirebaseUrl.child('userTeam').child(self.user.fullName).child('team'));
-  teams.$loaded().then(function(data){
-    if(data.length === 0){
-      $scope.add(p,'B');
-      console.log('this should only work once');
-    }else{
-      angular.forEach(data, function(x){
-        if(x.$id !== p){
-          $scope.add(p,'B');
-        }else{
-          console.log('You have that B player already');
-        }
-      });
-    }
-  });
+  console.log(p);
 }; // End `bPlayersAdd` Function
 
 $scope.cPlayersAdd = function(p){
@@ -130,6 +118,7 @@ $scope.cPlayersAdd = function(p){
       console.log('this should only fire once');
     }else{
       angular.forEach(data, function(x){
+
         if(x.$id !== p){
           $scope.add(p,'C');
         }else{
