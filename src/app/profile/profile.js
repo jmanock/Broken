@@ -102,19 +102,23 @@ $scope.cPlayersAdd = function(p){
 
 $scope.add = function(p,x){
   var userTeam = FirebaseUrl.child('userTeam').child(self.user.fullName).child('team').child(p);
-  var something = [];
-  angular.forEach(userTeam, function(x){
-    angular.forEach(x.o, function(i){
-      something.push(i);
-    });
-  });
+
   /*
-    ~ Got to figure out how to stop adding the same person twice
-      - If the player is there dont mess with the count
-    ~ The player doesn't get added but the count gets added to
+    WAYS TO FIX THE ADDING THE SAME PERSONE TWICE BUG
+      ~ Have a team array saved on the back in
+        - Run a check to see if the player is already there
+      * Dont think I can do any of this on the frontend (refresh would kill it)
+      ~ Disable add buttons
+        - This might be a pain to disable them reable them
+      ~ Remove the player
+        - Might kill everything if to many people are on at once
+    PROBLEMS
+      * Disable buttons is going to be hard with a lot of steps
+      * Remove player wont work, everyone would have there own players list?
+      * Maybe Hide the player? But then how would you show it again
+        - The pass back and forth is something to look into 
   */
-  var reds = something.slice(3);
-  console.log(reds);
+
   if(x === 'A' ){
     FirebaseUrl.child('userTeam').child(self.user.fullName).child('CountA')
     .transaction(function(count){
