@@ -124,7 +124,9 @@ $scope.add = function(p,x){
       }
     });
   }; // End `addPlayers` Function
-addPlayers();
+  team.$loaded().then(function(data){
+    addPlayers();
+  });
 }; // End `Add` Function
 
 $scope.remove = function(t){
