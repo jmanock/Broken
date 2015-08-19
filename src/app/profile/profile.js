@@ -103,13 +103,15 @@ $scope.add = function(p,x){
   var userTeam = FirebaseUrl.child('userTeam').child(self.user.fullName).child('team').child(p);
   var team = $firebaseArray(FirebaseUrl.child('userTeam').child(self.user.fullName).child('team'));
 
+  var addPlayers = function(){
     FirebaseUrl.child('userTeam').child(self.user.fullName).child('Count'+x)
     .transaction(function(count){
       if(count === null){
         count = 0;
       }if(count >= 2){
-        console.log('To Many A Players');
+        // console.log('To Many Players');
       }else{
+        console.log(count);
         return(count || 0)+1;
       }
     },function(err, committed){
@@ -121,7 +123,8 @@ $scope.add = function(p,x){
         });
       }
     });
-
+  }; // End `addPlayers` Function
+addPlayers();
 }; // End `Add` Function
 
 $scope.remove = function(t){
