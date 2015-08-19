@@ -91,6 +91,7 @@ $scope.aPlayersAdd = function(p){
   teams.$loaded().then(function(data){
     if(data.length === 0){
       $scope.add(p,'A');
+      console.log('this should one work one time');
     }else{
       angular.forEach(data, function(x){
         if(x.$id !== p){
@@ -108,6 +109,7 @@ $scope.bPlayersAdd = function(p){
   teams.$loaded().then(function(data){
     if(data.length === 0){
       $scope.add(p,'B');
+      console.log('this should only work once');
     }else{
       angular.forEach(data, function(x){
         if(x.$id !== p){
@@ -125,6 +127,7 @@ $scope.cPlayersAdd = function(p){
   teams.$loaded().then(function(data){
     if(data.length === 0){
       $scope.add(p, 'C');
+      console.log('this should only fire once');
     }else{
       angular.forEach(data, function(x){
         if(x.$id !== p){
