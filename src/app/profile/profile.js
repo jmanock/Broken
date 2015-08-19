@@ -103,10 +103,12 @@ $scope.add = function(p,x){
   var userTeam = FirebaseUrl.child('userTeam').child(self.user.fullName).child('team').child(p);
   var teams = $firebaseArray(FirebaseUrl.child('userTeam').child(self.user.fullName).child('team'));
   if(x === 'A' ){
-    
+    // Cant loaded anything thats not there
     teams.$loaded().then(function(data){
+      console.log(data);
       angular.forEach(data, function(x){
-        if(x.$id !== p){
+        console.log(x);
+        if(x.$id !== p || data.length === 0){
           FirebaseUrl.child('userTeam').child(self.user.fullName).child('CountA')
           .transaction(function(count){
             if(count === null){
