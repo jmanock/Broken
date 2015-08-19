@@ -87,54 +87,23 @@ angular.module('fantasy')
   }); // End `Get Players`
 
 $scope.aPlayersAdd = function(p){
-  var teams = $firebaseArray(FirebaseUrl.child('userTeam').child(self.user.fullName).child('team'));
-  teams.$loaded().then(function(data){
-    if(data.length === 0){
-      $scope.add(p,'A');
-      console.log('this should one work one time');
-    }else{
-      angular.forEach(data, function(x){
-        console.log(x.$id);
-        if(x.$id !== p){
-          $scope.add(p,'A');
-        }else{
-          console.log('You have that A player already');
-        }
-      });
-    }
-  });
+  $scope.add(p,'A');
 }; // End `aPlayersAdd` Function
 
 $scope.bPlayersAdd = function(p){
-  var teams = $firebaseArray(FirebaseUrl.child('userTeam').child(self.user.fullName).child('team'));
-  console.log(p);
+  $scope.add(p,'B');
 }; // End `bPlayersAdd` Function
 
 $scope.cPlayersAdd = function(p){
-  var teams = $firebaseArray(FirebaseUrl.child('userTeam').child(self.user.fullName).child('team'));
-  teams.$loaded().then(function(data){
-    if(data.length === 0){
-      $scope.add(p, 'C');
-      console.log('this should only fire once');
-    }else{
-      angular.forEach(data, function(x){
-
-        if(x.$id !== p){
-          $scope.add(p,'C');
-        }else{
-          console.log('You have that C player already');
-        }
-      });
-    }
-  });
+  $scope.add(p,'C');
 }; // End `cPlayersAdd`
 
 
 $scope.add = function(p,x){
   var userTeam = FirebaseUrl.child('userTeam').child(self.user.fullName).child('team').child(p);
+  var team = $firebaseArray(FirebaseUrl.child('userTeam').child(self.user.fullName).child('team'));
 
-  if(x === 'A' ){
-    FirebaseUrl.child('userTeam').child(self.user.fullName).child('CountA')
+    FirebaseUrl.child('userTeam').child(self.user.fullName).child('Count'+x)
     .transaction(function(count){
       if(count === null){
         count = 0;
@@ -152,49 +121,6 @@ $scope.add = function(p,x){
         });
       }
     });
-
-  }else if(x === 'B'){
-    FirebaseUrl.child('userTeam').child(self.user.fullName).child('CountB')
-    .transaction(function(count){
-      if(count === null){
-        count = 0;
-      }if(count >= 2){
-        console.log('To Many B Players');
-      }else{
-        return(count || 0)+1;
-      }
-    },function(err, committed){
-      if(err){
-        console.log(err);
-      }else if(committed){
-        userTeam.update({
-          Rank:x
-        });
-      }
-    });
-
-  }else if(x === 'C'){
-    FirebaseUrl.child('userTeam').child(self.user.fullName).child('CountC')
-    .transaction(function(count){
-      if(count === null){
-        count = 0;
-      }if(count >= 1){
-        console.log('To Many C Players');
-      }else{
-        return(count || 0)+1;
-      }
-    },function(err, committed){
-      if(err){
-        console.log(err);
-      }else if(committed){
-
-        userTeam.update({
-          Rank:x
-        });
-      }
-    });
-  } // End `if` statment
-
 
 }; // End `Add` Function
 
