@@ -87,50 +87,78 @@ angular.module('fantasy')
   }); // End `Get Players`
 
 $scope.aPlayersAdd = function(p){
-  $scope.add(p,'A');
+  var teams = $firebaseArray(FirebaseUrl.child('userTeam').child(self.user.fullName).child('team'));
+  teams.$loaded().then(function(data){
+    if(data.length === 0){
+      $scope.add(p,'A');
+    }else{
+      angular.forEach(data, function(x){
+        if(x.$id !== p){
+          $scope.add(p,'A');
+        }else{
+          console.log('You have that A player already');
+        }
+      });
+    }
+  });
 }; // End `aPlayersAdd` Function
 
 $scope.bPlayersAdd = function(p){
-  $scope.add(p, 'B');
+  var teams = $firebaseArray(FirebaseUrl.child('userTeam').child(self.user.fullName).child('team'));
+  teams.$loaded().then(function(data){
+    if(data.length === 0){
+      $scope.add(p,'B');
+    }else{
+      angular.forEach(data, function(x){
+        if(x.$id !== p){
+          $scope.add(p,'B');
+        }else{
+          console.log('You have that B player already');
+        }
+      });
+    }
+  });
 }; // End `bPlayersAdd` Function
 
 $scope.cPlayersAdd = function(p){
-  $scope.add(p, 'C');
+  var teams = $firebaseArray(FirebaseUrl.child('userTeam').child(self.user.fullName).child('team'));
+  teams.$loaded().then(function(data){
+    if(data.length === 0){
+      $scope.add(p, 'C');
+    }else{
+      angular.forEach(data, function(x){
+        if(x.$id !== p){
+          $scope.add(p,'C');
+        }else{
+          console.log('You have that C player already');
+        }
+      });
+    }
+  });
 }; // End `cPlayersAdd`
 
 
 $scope.add = function(p,x){
   var userTeam = FirebaseUrl.child('userTeam').child(self.user.fullName).child('team').child(p);
-  var teams = $firebaseArray(FirebaseUrl.child('userTeam').child(self.user.fullName).child('team'));
+
   if(x === 'A' ){
-    // Cant loaded anything thats not there
-    teams.$loaded().then(function(data){
-      console.log(data);
-      angular.forEach(data, function(x){
-        console.log(x);
-        if(x.$id !== p || data.length === 0){
-          FirebaseUrl.child('userTeam').child(self.user.fullName).child('CountA')
-          .transaction(function(count){
-            if(count === null){
-              count = 0;
-            }if(count >=2){
-              console.log('To Many A Players');
-            }else{
-              return(count || 0)+1;
-            }
-          }, function(err, committed){
-            if(err){
-              console.log(err);
-            }else if(committed){
-              userTeam.update({
-                Rank:x
-              });
-            }
-          });
-        }else{
-          console.log('This Player has already been added');
-        }
-      });
+    FirebaseUrl.child('userTeam').child(self.user.fullName).child('CountA')
+    .transaction(function(count){
+      if(count === null){
+        count = 0;
+      }if(count >= 2){
+        console.log('To Many A Players');
+      }else{
+        return(count || 0)+1;
+      }
+    },function(err, committed){
+      if(err){
+        console.log(err);
+      }else if(committed){
+        userTeam.update({
+          Rank:x
+        });
+      }
     });
 
   }else if(x === 'B'){
@@ -147,7 +175,6 @@ $scope.add = function(p,x){
       if(err){
         console.log(err);
       }else if(committed){
-
         userTeam.update({
           Rank:x
         });
