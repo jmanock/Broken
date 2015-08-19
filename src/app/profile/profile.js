@@ -34,6 +34,7 @@ angular.module('fantasy')
       $scope.teams = team;
    });
 
+
   $http.get('app/profile/log0.json')
   .success(function(data){
     var players = [];
@@ -85,9 +86,7 @@ angular.module('fantasy')
     }); // End `Get FedExStandings`
   }); // End `Get Players`
 
-
 $scope.aPlayersAdd = function(p){
-
   $scope.add(p,'A');
 }; // End `aPlayersAdd` Function
 
@@ -102,42 +101,34 @@ $scope.cPlayersAdd = function(p){
 
 $scope.add = function(p,x){
   var userTeam = FirebaseUrl.child('userTeam').child(self.user.fullName).child('team').child(p);
-
-  /*
-    WAYS TO FIX THE ADDING THE SAME PERSONE TWICE BUG
-      ~ Have a team array saved on the back in
-        - Run a check to see if the player is already there
-      * Dont think I can do any of this on the frontend (refresh would kill it)
-      ~ Disable add buttons
-        - This might be a pain to disable them reable them
-      ~ Remove the player
-        - Might kill everything if to many people are on at once
-    PROBLEMS
-      * Disable buttons is going to be hard with a lot of steps
-      * Remove player wont work, everyone would have there own players list?
-      * Maybe Hide the player? But then how would you show it again
-        - The pass back and forth is something to look into 
-  */
-
+  var teams = $firebaseArray(FirebaseUrl.child('userTeam').child(self.user.fullName).child('team'));
   if(x === 'A' ){
-    FirebaseUrl.child('userTeam').child(self.user.fullName).child('CountA')
-    .transaction(function(count){
-      if(count === null){
-        count = 0;
-      }if(count >=2){
-        console.log('To Many A Players');
-      }else{
-        return(count || 0)+1;
-      }
-    },function(err, committed){
-      if(err){
-        console.log(err);
-      }else if(committed){
-
-        userTeam.update({
-          Rank:x
-        });
-      }
+    
+    teams.$loaded().then(function(data){
+      angular.forEach(data, function(x){
+        if(x.$id !== p){
+          FirebaseUrl.child('userTeam').child(self.user.fullName).child('CountA')
+          .transaction(function(count){
+            if(count === null){
+              count = 0;
+            }if(count >=2){
+              console.log('To Many A Players');
+            }else{
+              return(count || 0)+1;
+            }
+          }, function(err, committed){
+            if(err){
+              console.log(err);
+            }else if(committed){
+              userTeam.update({
+                Rank:x
+              });
+            }
+          });
+        }else{
+          console.log('This Player has already been added');
+        }
+      });
     });
 
   }else if(x === 'B'){
