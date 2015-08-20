@@ -128,7 +128,13 @@ $scope.add = function(p,x){
     if(data.length === 0){
       addPlayers();
     }else{
-      addPlayers();
+      angular.forEach(data, function(x){
+        if(x.$id === p){
+          console.log('Sorry you added that player');
+        }else{
+          addPlayers();
+        }
+      });
     }
   });
 }; // End `Add` Function
