@@ -136,9 +136,9 @@ $scope.add = function(p,x){
           * running the forEach and sending the players to addPlayers function
         */
         if(x.$id === p){
-          console.log('Sorry you have that player');
+          // Dont send it to addPlayers()
         }else{
-          p = addPlayers();
+          // If its not equal only send p to addPlayer()
         }
       });
     }
