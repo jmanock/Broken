@@ -126,14 +126,11 @@ $scope.add = function(p,x){
   }; // End `addPlayers` Function
   team.$loaded().then(function(data){
     if(data.length === 0){
-      addPlayers();
+        addPlayers();
     }else{
       angular.forEach(data, function(x){
-        if(x.$id === p){
-          console.log('Sorry you added that player');
-        }else{
-          addPlayers();
-        }
+        
+
       });
     }
   });
