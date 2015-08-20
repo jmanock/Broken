@@ -129,8 +129,17 @@ $scope.add = function(p,x){
         addPlayers();
     }else{
       angular.forEach(data, function(x){
-        
-
+        /*
+         ~ Only want to check and see not add all the other players
+         PROBLEM
+         - The counter is getting fucked up
+          * running the forEach and sending the players to addPlayers function
+        */
+        if(x.$id === p){
+          console.log('Sorry you have that player');
+        }else{
+          p = addPlayers();
+        }
       });
     }
   });
