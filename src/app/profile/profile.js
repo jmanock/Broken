@@ -99,56 +99,19 @@ $scope.cPlayersAdd = function(p){
 }; // End `cPlayersAdd`
 
 /*
-  This works but with a BIG BUG
-  * Could count the rank
-  * Add save button
-    - Then displaying the team local vs backend gets hard?
-  * Hide the players once clicked
-    - Disable/ reenable is going to be a FUCKING SHIT STROM
-  * Everone could have there own players catagory?
-  * Run a check against the players added
-    - This is a bitch cause the count FUCKS UP
+  WHAT I WANT TO DO
+  ~ Only add two players from each section
+    * Select a player
+    * Add to Firebase
+    * Add one to a counter
+    * Cant add more than two players from each section
+    * Cant add same player more than once
+    * Counter cant change tring to add the same player twice
 */
 $scope.add = function(p,x){
-  var userTeam = FirebaseUrl.child('userTeam').child(self.user.fullName).child('team').child(p);
-  var team = $firebaseArray(FirebaseUrl.child('userTeam').child(self.user.fullName).child('team'));
-
-  var addPlayers = function(){
-    FirebaseUrl.child('userTeam').child(self.user.fullName).child('Count'+x)
-    .transaction(function(count){
-      if(count === null){
-        count = 0;
-      }if(count >= 2){
-        // console.log('To Many Players');
-      }else{
-        console.log(count);
-        return(count || 0)+1;
-      }
-    },function(err, committed){
-      if(err){
-        console.log(err);
-      }else if(committed){
-        userTeam.update({
-          Rank:x
-        });
-      }
-    });
-  }; // End `addPlayers` Function
-  team.$loaded().then(function(data){
-    if(data.length === 0){
-        addPlayers();
-    }else{
-      angular.forEach(data, function(x){
-        /*
-          ToDo
-            * This is going to go threw the people who are in fb already
-            * And run a check against the player tring to be added
-            * Maybe a better way would be a save button???
-        */
-
-      });
-    }
-  });
+  // var userTeam = FirebaseUrl.child('userTeam').child(self.user.fullName).child('team').child(p);
+  // var team = $firebaseArray(FirebaseUrl.child('userTeam').child(self.user.fullName).child('team'));
+console.log(p,x);
 }; // End `Add` Function
 
 $scope.remove = function(t){
