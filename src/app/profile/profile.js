@@ -105,12 +105,14 @@ $scope.players = [
 var teamos = [];
 $scope.something = function(x){
   /*
-    * Check buttons
-    * On to step two
+    
   */
+  $scope.somethingWrong = function(p){
+    console.log(p);
+  };
   teamos.push(x);
   $scope.teamos = teamos;
-  console.log('clickie');
+  console.log(x);
 };
 var teamPlayers = [];
 $scope.add = function(p,x){
