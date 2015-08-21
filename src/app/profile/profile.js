@@ -106,9 +106,9 @@ var teamos = [];
 $scope.isDisabled = false;
 $scope.something = function(x){
   /*
-    STEP TWO
-    * Add button disable after ADD click
-    * Add button enable after REMOVE click
+    Step Three
+    * Only disable the PlayerAdded button when the add button is clicked
+    * Only enable the PlayerAdded button when the remove button is clicked
   */
   $scope.somethingWrong = function(p){
     $scope.isDisabled = false;
