@@ -24,7 +24,7 @@
     </div> -->
 
 
-    <div class='team'>
+    <!-- <div class='team'>
       <h3>Team</h3>
       <p ng-repeat='t in teams | orderBy:"Rank"'>{{t.Rank}} | {{t.$id}} <button class='btn pull-right' ng-click='remove(t)'>X</button></p>
     </div>
@@ -53,7 +53,21 @@
         </div>
       </ul>
 
-    </div>
+    </div> -->
 
-
+    <h3>Fixed Version 1(useing 2 radio buttons)</h3>
+    <input type="radio" ng-model='new_account1' name='register'
+    id='radio_newAccount1' value='true' class='pull-left'>
+    <label for="radio_new_account1"> New Account</label>
+    <br>
+    <input type="radio" ng-model='new_account1' name='register'
+    id='radio_existing_account1' value='false' class='pull-left'>
+    <label for="radio_existing_account"> Existing Account</label>
+    <hr>
+    password:
+    <input type="password" ng-disabled='new_account1 === "false"' id='login-password'
+    name='password' ng-model='password'>
+    <pre>New_account1: {{new_account1}}</pre>
+    <pre>typeof new_account1: {{type_of_new_account1}}</pre>
+    <hr>
   </div> <!--End controller -->
