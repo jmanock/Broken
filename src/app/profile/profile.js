@@ -113,9 +113,15 @@ $scope.add = function(p,x){
   // var userTeam = FirebaseUrl.child('userTeam').child(self.user.fullName).child('team').child(p);
   // var team = $firebaseArray(FirebaseUrl.child('userTeam').child(self.user.fullName).child('team'));
 
+  // Take the p for player add to team list
+  // disable the player that is clicked
+
 }; // End `Add` Function
 
 $scope.remove = function(t){
+  // Remove player from team list
+  // enable from players list
+
   var userTeam = FirebaseUrl.child('userTeam').child(self.user.fullName).child('team').child(t.$id);
   if(t.Rank === 'A'){
     FirebaseUrl.child('userTeam').child(self.user.fullName).child('CountA')
