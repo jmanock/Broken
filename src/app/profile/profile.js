@@ -87,7 +87,7 @@ angular.module('fantasy')
   }); // End `Get Players`
 
 $scope.aPlayersAdd = function(p){
-  
+
   $scope.add(p,'A');
 }; // End `aPlayersAdd` Function
 
@@ -108,24 +108,12 @@ $scope.cPlayersAdd = function(p){
     * Cant add more than two players from each section
     * Cant add same player more than once
     * Counter cant change tring to add the same player twice
+    * Count pass the index of the player back and forth for disabled option?
 */
 var countA = 0;
 $scope.add = function(p,x){
-  var userTeam = FirebaseUrl.child('userTeam').child(self.user.fullName).child('team').child(p);
+  // var userTeam = FirebaseUrl.child('userTeam').child(self.user.fullName).child('team').child(p);
   // var team = $firebaseArray(FirebaseUrl.child('userTeam').child(self.user.fullName).child('team'));
-
-  if(x === 'A' ){
-    var count = FirebaseUrl.child('userTeam').child(self.user.fullName);
-    countA++;
-    if(countA <= 2){
-      userTeam.set({
-        Rank:x,
-      });
-      count.update({
-        CountA:countA
-      });
-    }
-  }
 
 }; // End `Add` Function
 
