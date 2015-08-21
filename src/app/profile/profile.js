@@ -108,12 +108,24 @@ $scope.cPlayersAdd = function(p){
     * Cant add same player more than once
     * Counter cant change tring to add the same player twice
 */
+var countA = 0;
 $scope.add = function(p,x){
   var userTeam = FirebaseUrl.child('userTeam').child(self.user.fullName).child('team').child(p);
   // var team = $firebaseArray(FirebaseUrl.child('userTeam').child(self.user.fullName).child('team'));
-  userTeam.update({
-    Rank:x
-  });
+
+  if(x === 'A'){
+    var count = FirebaseUrl.child('userTeam').child(self.user.fullName);
+    countA++;
+    if(countA <= 2){
+      userTeam.update({
+        Rank:x
+      });
+      count.update({
+        CountA:countA
+      });
+    }
+  }
+
 }; // End `Add` Function
 
 $scope.remove = function(t){
