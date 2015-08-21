@@ -24,9 +24,10 @@
     </div> -->
 
 
-    <!-- <div class='team'>
+    <div class='team'>
       <h3>Team</h3>
-      <p ng-repeat='t in teams | orderBy:"Rank"'>{{t.Rank}} | {{t.$id}} <button class='btn pull-right' ng-click='remove(t)'>X</button></p>
+      <p ng-repeat='t in team | orderBy:"Rank"'>{{t}} <button class='btn pull-right' ng-click='remove(t)'
+        ng-model='isDisabled'>X</button></p>
     </div>
 
     <ul class='nav nav-pills'>
@@ -39,7 +40,8 @@
       <ul>
         <div class='aPlayers' ng-show='search.isSet(1)'>
           <h3>A Players</h3>
-          <li ng-repeat='p in aPlayers'>{{p}} <button class='btn pull-right' ng-click='aPlayersAdd(p)'>Add Player</button></li>
+          <li ng-repeat='p in aPlayers'>{{p}} <button class='btn pull-right' ng-click='aPlayersAdd(p)'
+             ng-model='isDisabled'>Add Player</button></li>
         </div>
 
         <div class='bPlayers' ng-show='search.isSet(2)'>
@@ -53,27 +55,6 @@
         </div>
       </ul>
 
-    </div> -->
-    <div ng-init="value = 'off'">
-      <button ng-click="value = {'on':'off', 'off':'on'}[value]">On/Off</button>
-      <h3 ng-show="value == 'on'">Something???</h3>
     </div>
-    <h3>Fixed Version 1(useing 2 radio buttons)</h3>
-    <input type="radio" ng-model='new_account1' name='register'
-    id='radio_newAccount1' value='true' class='pull-left'>
-    <label for="radio_new_account1"> Remove Player</label>
 
-
-    <br>
-    <input type="radio" ng-model='new_account1' name='register'
-    id='radio_existing_account1' value='false' class='pull-left'>
-    <label for="radio_existing_account"> Add Player</label>
-
-    <hr>
-    password:
-    <input type="password" ng-disabled='new_account1 === "false"' id='login-password'
-    name='password' ng-model='password'>
-    <pre>New_account1: {{new_account1}}</pre>
-    <pre>typeof new_account1: {{type_of_new_account1}}</pre>
-    <hr>
   </div> <!--End controller -->
