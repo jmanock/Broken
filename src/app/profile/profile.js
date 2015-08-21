@@ -98,7 +98,17 @@ $scope.cPlayersAdd = function(p){
   $scope.add(p,'C');
 }; // End `cPlayersAdd`
 
-
+/*
+  This works but with a BIG BUG
+  * Could count the rank
+  * Add save button
+    - Then displaying the team local vs backend gets hard?
+  * Hide the players once clicked
+    - Disable/ reenable is going to be a FUCKING SHIT STROM
+  * Everone could have there own players catagory?
+  * Run a check against the players added
+    - This is a bitch cause the count FUCKS UP
+*/
 $scope.add = function(p,x){
   var userTeam = FirebaseUrl.child('userTeam').child(self.user.fullName).child('team').child(p);
   var team = $firebaseArray(FirebaseUrl.child('userTeam').child(self.user.fullName).child('team'));
@@ -130,16 +140,12 @@ $scope.add = function(p,x){
     }else{
       angular.forEach(data, function(x){
         /*
-         ~ Only want to check and see not add all the other players
-         PROBLEM
-         - The counter is getting fucked up
-          * running the forEach and sending the players to addPlayers function
+          ToDo
+            * This is going to go threw the people who are in fb already
+            * And run a check against the player tring to be added
+            * Maybe a better way would be a save button???
         */
-        if(x.$id === p){
-          // Dont send it to addPlayers()
-        }else{
-          // If its not equal only send p to addPlayer()
-        }
+
       });
     }
   });
