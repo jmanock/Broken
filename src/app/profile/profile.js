@@ -87,6 +87,7 @@ angular.module('fantasy')
   }); // End `Get Players`
 
 $scope.aPlayersAdd = function(p){
+  
   $scope.add(p,'A');
 }; // End `aPlayersAdd` Function
 
@@ -113,12 +114,12 @@ $scope.add = function(p,x){
   var userTeam = FirebaseUrl.child('userTeam').child(self.user.fullName).child('team').child(p);
   // var team = $firebaseArray(FirebaseUrl.child('userTeam').child(self.user.fullName).child('team'));
 
-  if(x === 'A'){
+  if(x === 'A' ){
     var count = FirebaseUrl.child('userTeam').child(self.user.fullName);
     countA++;
     if(countA <= 2){
-      userTeam.update({
-        Rank:x
+      userTeam.set({
+        Rank:x,
       });
       count.update({
         CountA:countA
