@@ -99,7 +99,19 @@ $scope.cPlayersAdd = function(p){
   $scope.add(p,'C');
 }; // End `cPlayersAdd`
 
-
+$scope.players = [
+  'joe','steve', 'brit', 'mason', 'kelly'
+];
+var teamos = [];
+$scope.something = function(x){
+  /*
+    * Check buttons
+    * On to step two
+  */
+  teamos.push(x);
+  $scope.teamos = teamos;
+  console.log('clickie');
+};
 var teamPlayers = [];
 $scope.add = function(p,x){
   /*

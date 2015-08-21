@@ -24,7 +24,7 @@
     </div> -->
 
 
-    <div class='team'>
+    <!-- <div class='team'>
       <h3>Team</h3>
       <p ng-repeat='t in team | orderBy:"Rank"'>{{t}} <button class='btn pull-right' ng-click='remove(t)'
         ng-model='isDisabled'>X</button></p>
@@ -40,8 +40,7 @@
       <ul>
         <div class='aPlayers' ng-show='search.isSet(1)'>
           <h3>A Players</h3>
-          <li ng-repeat='p in aPlayers'>{{p}} <button class='btn pull-right' ng-click='aPlayersAdd(p)'
-             ng-model='isDisabled'>Add Player</button></li>
+          <li ng-repeat='p in aPlayers'>{{p}} <button class='btn pull-right' ng-click='aPlayersAdd(p)'>Add Player</button></li>
         </div>
 
         <div class='bPlayers' ng-show='search.isSet(2)'>
@@ -55,6 +54,11 @@
         </div>
       </ul>
 
-    </div>
-
+    </div> -->
+<div>
+  <h1>Team</h1>
+  <p ng-repeat='t in teamos'>{{t}} <button ng-click='something(t)'>Remove</button></p>
+  <h1>Players</h1>
+  <p ng-repeat='p in players'>{{p}} <button ng-click='something(p)'>Add</button></p>
+</div>
   </div> <!--End controller -->
