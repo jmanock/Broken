@@ -101,16 +101,14 @@ $scope.cPlayersAdd = function(p){
 
 /*
   WHAT I WANT TO DO
-  ~ Only add two players from each section
-    * Select a player
-    * Add to Firebase
-    * Add one to a counter
-    * Cant add more than two players from each section
-    * Cant add same player more than once
-    * Counter cant change tring to add the same player twice
-    * Count pass the index of the player back and forth for disabled option?
+  ~ Click Add Player
+    * Add to Team list
+    * Disable add player from players list
+  ~ Click Remove Player
+    * Remove from team list
+    * Enable player from players list
 */
-var countA = 0;
+
 $scope.add = function(p,x){
   // var userTeam = FirebaseUrl.child('userTeam').child(self.user.fullName).child('team').child(p);
   // var team = $firebaseArray(FirebaseUrl.child('userTeam').child(self.user.fullName).child('team'));
