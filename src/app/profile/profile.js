@@ -111,11 +111,13 @@ $scope.something = function(x){
     * Only enable the PlayerAdded button when the remove button is clicked
   */
   $scope.somethingWrong = function(p){
-    $scope.isDisabled = false;
+    console.log(this);
+    teamos.splice(p,1);
+    this.isDisabled = false;
   };
   teamos.push(x);
   $scope.teamos = teamos;
-  $scope.isDisabled = true;
+  this.isDisabled = true;
   return false;
 };
 var teamPlayers = [];
