@@ -40,7 +40,7 @@
       <ul>
         <div class='aPlayers' ng-show='search.isSet(1)'>
           <h3>A Players</h3>
-          <li ng-repeat='p in aPlayers'>{{p}} <button class='btn pull-right' ng-click='aPlayersAdd(p)'>Add Player</button></li>
+          <li ng-repeat='p in aPlayers | orderBy:-p'>{{p}} <button class='btn pull-right' ng-click='aPlayersAdd(p)'>Add Player</button></li>
         </div>
 
         <div class='bPlayers' ng-show='search.isSet(2)'>
