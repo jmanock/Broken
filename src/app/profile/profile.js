@@ -104,13 +104,19 @@ var players = [
 var teamie = [];
 $scope.players = players;
 $scope.addMe = function(x){
-  console.log(x);
   teamie.push(x);
+  var index = players.indexOf(x);
+  players.splice(index,1);
 };
+/*
+  Add players to team array
+  Remove players form team array
+*/
 
 $scope.removeMe = function(x){
-  console.log(x);
-  teamie.slice(x,1);
+  var index = teamie.indexOf(x);
+  teamie.splice(index,1);
+  players.push(x);
 };
 $scope.teamie = teamie;
 var teamPlayers = [];
