@@ -98,10 +98,10 @@ $scope.bPlayersAdd = function(p){
 $scope.cPlayersAdd = function(p){
   $scope.add(p,'C');
 }; // End `cPlayersAdd`
-
-$scope.players = [
+var players = [
   'joe','steve', 'brit', 'mason', 'kelly'
 ];
+$scope.players = players;
 var teamos = [];
 $scope.something = function(x){
   /*
@@ -112,7 +112,7 @@ $scope.something = function(x){
   $scope.somethingWrong = function(p){
 
     teamos.splice(p,1);
-    $scope.players.push(p);
+    players.push(p);
   };
   teamos.push(x);
   $scope.players.splice(x,1);
