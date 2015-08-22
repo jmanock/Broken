@@ -90,18 +90,31 @@ var teamPlayers = [];
 $scope.aPlayersAdd = function(p){
   var index = $scope.aPlayers.indexOf(p);
   $scope.aPlayers.splice(index,1);
-  teamPlayers.push(p);
+  teamPlayers.push({
+    Name:p,
+    Rank:'A'
+  });
 
 }; // End `aPlayersAdd` Function
-$scope.team = teamPlayers;
+
 $scope.bPlayersAdd = function(p){
-  $scope.add(p,'B');
+  var index = $scope.bPlayers.indexOf(p);
+  $scope.bPlayers.splice(index,1);
+  teamPlayers.push({
+    Name:p,
+    Rank:'B'
+  });
 }; // End `bPlayersAdd` Function
 
 $scope.cPlayersAdd = function(p){
-  $scope.add(p,'C');
+  var index = $scope.cPlayers.indexOf(p);
+  $scope.cPlayers.splice(index,1);
+  teamPlayers.push({
+    Name:p,
+    Rank:'C'
+  });
 }; // End `cPlayersAdd`
-
+$scope.team = teamPlayers;
 
 
 $scope.add = function(p,x){
@@ -114,7 +127,13 @@ $scope.add = function(p,x){
 $scope.remove = function(x){
   var index = teamPlayers.indexOf(x);
   teamPlayers.splice(index,1);
-  $scope.aPlayers.push(x);
+  if(x.Rank === 'A'){
+    $scope.aPlayers.push(x.Name);
+  }else if(x.Rank === 'B'){
+    $scope.bPlayers.push(x.Name);
+  }else{
+    $scope.cPlayers.push(x.Name);
+  }
 
 };
 $scope.remover = function(t){

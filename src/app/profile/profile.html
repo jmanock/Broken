@@ -45,12 +45,12 @@
 
         <div class='bPlayers' ng-show='search.isSet(2)'>
           <h3>B Players</h3>
-          <li ng-repeat='p in bPlayers'>{{p}} <button class='btn pull-right' ng-click='bPlayersAdd(p)'>Add Player</button></li>
+          <li ng-repeat='p in bPlayers | orderBy:-p'>{{p}} <button class='btn pull-right' ng-click='bPlayersAdd(p)'>Add Player</button></li>
         </div>
 
         <div class='cPlayers' ng-show='search.isSet(3)'>
           <h3>C Players</h3>
-          <li ng-repeat='p in cPlayers'>{{p}} <button class='btn pull-right' ng-click='cPlayersAdd(p)'>Add Player</button></li>
+          <li ng-repeat='p in cPlayers | orderBy:-p'>{{p}} <button class='btn pull-right' ng-click='cPlayersAdd(p)'>Add Player</button></li>
         </div>
       </ul>
 
