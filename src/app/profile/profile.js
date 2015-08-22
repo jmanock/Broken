@@ -104,20 +104,14 @@ var players = [
 $scope.players = players;
 var teamos = [];
 $scope.something = function(x){
-  /*
-    Step Three
-    * Only disable the PlayerAdded button when the add button is clicked
-    * Only enable the PlayerAdded button when the remove button is clicked
-  */
-  $scope.somethingWrong = function(p){
-
-    teamos.splice(p,1);
-    players.push(p);
-  };
   teamos.push(x);
-  $scope.players.splice(x,1);
-  $scope.teamos = teamos;
+  players.splice(x,1);
 
+};
+$scope.teamos = teamos;
+$scope.somethingWrong = function(x){
+  teamos.splice(x,1);
+  players.push(x);
 };
 var teamPlayers = [];
 $scope.add = function(p,x){
