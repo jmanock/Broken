@@ -103,21 +103,20 @@ $scope.players = [
   'joe','steve', 'brit', 'mason', 'kelly'
 ];
 var teamos = [];
-this.isDisabled = false;
-this.something = function(x){
+$scope.something = function(x){
   /*
     Step Three
     * Only disable the PlayerAdded button when the add button is clicked
     * Only enable the PlayerAdded button when the remove button is clicked
   */
-  this.somethingWrong = function(p){
+  $scope.somethingWrong = function(p){
 
     teamos.splice(p,1);
-    this.isDisabled = false;
+    $scope.players.push(p);
   };
   teamos.push(x);
+  $scope.players.splice(x,1);
   $scope.teamos = teamos;
-  this.isDisabled = true;
 
 };
 var teamPlayers = [];
