@@ -86,11 +86,14 @@ angular.module('fantasy')
     }); // End `Get FedExStandings`
   }); // End `Get Players`
 
+var teamPlayers = [];
 $scope.aPlayersAdd = function(p){
+  var index = $scope.aPlayers.indexOf(p);
+  $scope.aPlayers.splice(index,1);
+  teamPlayers.push(p);
 
-  $scope.add(p,'A');
 }; // End `aPlayersAdd` Function
-
+$scope.team = teamPlayers;
 $scope.bPlayersAdd = function(p){
   $scope.add(p,'B');
 }; // End `bPlayersAdd` Function
@@ -98,48 +101,21 @@ $scope.bPlayersAdd = function(p){
 $scope.cPlayersAdd = function(p){
   $scope.add(p,'C');
 }; // End `cPlayersAdd`
-var players = [
-  'joe','steve', 'brit', 'mason', 'kelly'
-];
-var teamie = [];
-$scope.players = players;
-$scope.addMe = function(x){
-  teamie.push(x);
-  var index = players.indexOf(x);
-  players.splice(index,1);
-};
-/*
-  Add players to team array
-  Remove players form team array
-*/
 
-$scope.removeMe = function(x){
-  var index = teamie.indexOf(x);
-  teamie.splice(index,1);
-  players.push(x);
-};
-$scope.teamie = teamie;
-var teamPlayers = [];
+
+
 $scope.add = function(p,x){
-  /*
-    * Disable the button
-    * Add to team array √
-    * Add remove button √
-  */
-  $scope.isDisabled = true;
-  teamPlayers.push(p);
-  $scope.team = teamPlayers;
+
+
 
 
 }; // End `Add` Function
 
-$scope.remove = function(){
-  /*
-    * Remove player from team
-    * Enable add button
-  */
-  console.log('this should say something');
-  $scope.isDiabled = false;
+$scope.remove = function(x){
+  var index = teamPlayers.indexOf(x);
+  teamPlayers.splice(index,1);
+  $scope.aPlayers.push(x);
+
 };
 $scope.remover = function(t){
   // Remove player from team list
