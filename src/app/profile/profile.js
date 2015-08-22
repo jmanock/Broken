@@ -86,45 +86,41 @@ angular.module('fantasy')
     }); // End `Get FedExStandings`
   }); // End `Get Players`
 
-var teamPlayers = [];
+
 $scope.aPlayersAdd = function(p){
   var index = $scope.aPlayers.indexOf(p);
   $scope.aPlayers.splice(index,1);
-  teamPlayers.push({
-    Name:p,
-    Rank:'A'
-  });
-
+  $scope.add(p,'A');
 }; // End `aPlayersAdd` Function
 
 $scope.bPlayersAdd = function(p){
   var index = $scope.bPlayers.indexOf(p);
   $scope.bPlayers.splice(index,1);
-  teamPlayers.push({
-    Name:p,
-    Rank:'B'
-  });
+  $scope.add(p,'B');
 }; // End `bPlayersAdd` Function
 
 $scope.cPlayersAdd = function(p){
   var index = $scope.cPlayers.indexOf(p);
   $scope.cPlayers.splice(index,1);
-  teamPlayers.push({
-    Name:p,
-    Rank:'C'
-  });
+  $scope.add(p,'C');
 }; // End `cPlayersAdd`
-$scope.team = teamPlayers;
-
 
 $scope.add = function(p,x){
-
-
-
-
+  /*
+    ToDo
+    * Put the player and rank into firebase
+    * Have Firebase show the Players and rank
+    * Add Rules ie the counter
+  */
 }; // End `Add` Function
 
 $scope.remove = function(x){
+  /*
+    ToDo
+    * Remove from firebase
+    * Subtract from the counter
+    * Add back to the players list
+  */
   var index = teamPlayers.indexOf(x);
   teamPlayers.splice(index,1);
   if(x.Rank === 'A'){
@@ -135,48 +131,7 @@ $scope.remove = function(x){
     $scope.cPlayers.push(x.Name);
   }
 
-};
-$scope.remover = function(t){
-  // Remove player from team list
-  // enable from players list
-
-  var userTeam = FirebaseUrl.child('userTeam').child(self.user.fullName).child('team').child(t.$id);
-  if(t.Rank === 'A'){
-    FirebaseUrl.child('userTeam').child(self.user.fullName).child('CountA')
-    .transaction(function(id){
-      return(id || 0)-1;
-    }, function(err, committed){
-      if(err){
-        console.log(err);
-      }else if(committed){
-        userTeam.remove();
-      }
-    });
-  }else if(t.Rank === 'B'){
-    FirebaseUrl.child('userTeam').child(self.user.fullName).child('CountB')
-    .transaction(function(id){
-      return(id || 0)-1;
-    },function(err, committed){
-      if(err){
-        console.log(err);
-      }else if(committed){
-        userTeam.remove();
-      }
-    });
-  }else if(t.Rank === 'C'){
-    FirebaseUrl.child('userTeam').child(self.user.fullName).child('CountC')
-    .transaction(function(id){
-      return(id || 0)-1;
-    },function(err, committed){
-      if(err){
-        console.log(err);
-      }else if(committed){
-        userTeam.remove();
-      }
-    });
-  }
-
-}; // End `Remove` Function
+}; // End `Remove`
 
 this.search = 1;
 this.setTab = function(tabId){
