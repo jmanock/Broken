@@ -101,18 +101,18 @@ $scope.cPlayersAdd = function(p){
 var players = [
   'joe','steve', 'brit', 'mason', 'kelly'
 ];
+var teamie = [];
 $scope.players = players;
-var teamos = [];
-$scope.something = function(x){
-  teamos.push(x);
-  players.splice(x,1);
+$scope.addMe = function(x){
+  console.log(x);
+  teamie.push(x);
+};
 
+$scope.removeMe = function(x){
+  console.log(x);
+  teamie.slice(x,1);
 };
-$scope.teamos = teamos;
-$scope.somethingWrong = function(x){
-  teamos.splice(x,1);
-  players.push(x);
-};
+$scope.teamie = teamie;
 var teamPlayers = [];
 $scope.add = function(p,x){
   /*
