@@ -29,6 +29,7 @@ angular.module('fantasy')
    self.user = user;
    });
 
+  // Set up the `Players` List
   $http.get('app/profile/log0.json')
   .success(function(data){
     var players = [];
@@ -80,27 +81,29 @@ angular.module('fantasy')
     }); // End `Get FedExStandings`
   }); // End `Get Players`
 
-  this.currentUser.$loaded(function(){
-    var team = $firebaseArray(FirebaseUrl.child('userTeam').child(self.user.fullName).child('team'));
+// Load `Team` and Remove players
+this.currentUser.$loaded(function(){
+  var team = $firebaseArray(FirebaseUrl.child('userTeam').child(self.user.fullName).child('team'));
 
-    team.$loaded().then(function(data){
-      angular.forEach(data, function(x){
-        var index;
-        if(x.Rank === 'A'){
-          index = $scope.aPlayers.indexOf(x.$id);
-          $scope.aPlayers.splice(index,1);
-        }else if(x.Rank === 'B'){
-          index = $scope.bPlayers.indexOf(x.$id);
-          $scope.bPlayers.splice(index,1);
-        }else{
-          index = $scope.cPlayers.indexOf(x.$id);
-          $scope.cPlayers.splice(index,1);
-        }
-      });
+  team.$loaded().then(function(data){
+    angular.forEach(data, function(x){
+      var index;
+      if(x.Rank === 'A'){
+        index = $scope.aPlayers.indexOf(x.$id);
+        $scope.aPlayers.splice(index,1);
+      }else if(x.Rank === 'B'){
+        index = $scope.bPlayers.indexOf(x.$id);
+        $scope.bPlayers.splice(index,1);
+      }else{
+        index = $scope.cPlayers.indexOf(x.$id);
+        $scope.cPlayers.splice(index,1);
+      }
     });
-     $scope.team = team;
   });
+   $scope.team = team;
+}); // End `Loaded`
 
+// Send Players to `add` Function and Remove from Players list
 $scope.aPlayersAdd = function(p){
   var index = $scope.aPlayers.indexOf(p);
   $scope.aPlayers.splice(index,1);
@@ -119,6 +122,7 @@ $scope.cPlayersAdd = function(p){
   $scope.add(p,'C');
 }; // End `cPlayersAdd`
 
+// Add player and Counter to Firebase
 $scope.add = function(p,x){
   var userTeam = FirebaseUrl.child('userTeam').child(self.user.fullName).child('team').child(p);
   var count = function(c){
@@ -128,7 +132,7 @@ $scope.add = function(p,x){
         count = 0;
       }
       if(count >= c){
-        console.log('That is all the '+x+'players you can have');
+        console.log('That is all the '+x+' Players you can have');
       }else{
         return(count || 0)+1;
       }
@@ -151,13 +155,8 @@ $scope.add = function(p,x){
   }
 }; // End `Add` Function
 
+// `Remove` player and add them back to player list
 $scope.remove = function(x){
-  /*
-    ToDo
-    * Remove from firebase
-    * Subtract from the counter
-    * Add back to the players list
-  */
   var userTeam = FirebaseUrl.child('userTeam').child(self.user.fullName).child('team').child(x.$id);
   var count = function(){
     FirebaseUrl.child('userTeam').child(self.user.fullName).child('Count'+x.Rank)
@@ -182,9 +181,8 @@ $scope.remove = function(x){
     count();
   }
 }; // End `Remove` Function
-$scope.removePlayer = function(x,y){
-  $scope.aPlayer.push(x.$id);
-};
+
+// Tab Sections
 this.search = 1;
 this.setTab = function(tabId){
   this.search = tabId;
@@ -192,9 +190,6 @@ this.setTab = function(tabId){
 this.isSet = function(tabId){
   return this.search === tabId;
 };
-
-
-
 
 })// End controller
 .filter('firstName', function(){
