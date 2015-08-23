@@ -108,10 +108,39 @@ $scope.cPlayersAdd = function(p){
 $scope.add = function(p,x){
   /*
     ToDo
-    * Put the player and rank into firebase
+    * Put the player and rank into firebase √
     * Have Firebase show the Players and rank
     * Add Rules ie the counter
   */
+  var userTeam = FirebaseUrl.child('userTeam').child(self.user.fullName).child('team').child(p);
+  var count = function(c){
+    FirebaseUrl.child('userTeam').child(self.user.fullName).child('count'+x)
+    .transaction(function(count){
+      if(count === null){
+        count = 0;
+      }
+      if(count >= c){
+        console.log('That is all the '+x+'players you can have');
+      }else{
+        return(count || 0)+1;
+      }
+    },function(err,committed){
+      if(err){
+        console.log(err);
+      }else if(committed){
+        userTeam.update({
+          Rank:x
+        });
+      }
+    });
+  }; // End `Count` Function
+  if(x === 'A'){
+    count(2);
+  }else if(x === 'B'){
+    count(2);
+  }else{
+    count(1);
+  }
 }; // End `Add` Function
 
 $scope.remove = function(x){
