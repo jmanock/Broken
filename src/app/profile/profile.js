@@ -29,12 +29,6 @@ angular.module('fantasy')
    self.user = user;
    });
 
-   this.currentUser.$loaded(function(){
-     var team = $firebaseArray(FirebaseUrl.child('userTeam').child(self.user.fullName).child('team'));
-      $scope.team = team;
-   });
-
-
   $http.get('app/profile/log0.json')
   .success(function(data){
     var players = [];
@@ -86,6 +80,29 @@ angular.module('fantasy')
     }); // End `Get FedExStandings`
   }); // End `Get Players`
 
+  this.currentUser.$loaded(function(){
+    var team = $firebaseArray(FirebaseUrl.child('userTeam').child(self.user.fullName).child('team'));
+    /*
+      ToDo
+      * Run something to take out the players in the team
+    */
+    team.$loaded().then(function(data){
+      angular.forEach(data, function(x){
+        var index;
+        if(x.Rank === 'A'){
+          index = $scope.aPlayers.indexOf(x.$id);
+          $scope.aPlayers.splice(index,1);
+        }else if(x.Rank === 'B'){
+          index = $scope.bPlayers.indexOf(x.$id);
+          $scope.bPlayers.splice(index,1);
+        }else{
+          index = $scope.cPlayers.indexOf(x.$id);
+          $scope.cPlayers.splice(index,1);
+        }
+      });
+    });
+     $scope.team = team;
+  });
 
 $scope.aPlayersAdd = function(p){
   var index = $scope.aPlayers.indexOf(p);
