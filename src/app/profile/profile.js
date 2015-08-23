@@ -31,7 +31,7 @@ angular.module('fantasy')
 
    this.currentUser.$loaded(function(){
      var team = $firebaseArray(FirebaseUrl.child('userTeam').child(self.user.fullName).child('team'));
-      $scope.teams = team;
+      $scope.team = team;
    });
 
 
@@ -106,12 +106,6 @@ $scope.cPlayersAdd = function(p){
 }; // End `cPlayersAdd`
 
 $scope.add = function(p,x){
-  /*
-    ToDo
-    * Put the player and rank into firebase √
-    * Have Firebase show the Players and rank
-    * Add Rules ie the counter
-  */
   var userTeam = FirebaseUrl.child('userTeam').child(self.user.fullName).child('team').child(p);
   var count = function(c){
     FirebaseUrl.child('userTeam').child(self.user.fullName).child('count'+x)
@@ -150,14 +144,28 @@ $scope.remove = function(x){
     * Subtract from the counter
     * Add back to the players list
   */
-  var index = teamPlayers.indexOf(x);
-  teamPlayers.splice(index,1);
+  var userTeam = FirebaseUrl.child('userTeam').child(self.user.fullName).child('team').child(x.$id);
+  var count = function(){
+    FirebaseUrl.child('userTeam').child(self.user.fullName).child('count'+x.Rank)
+    .transaction(function(id){
+      return(id || 0)-1;
+    },function(err, committed){
+      if(err){
+        console.log(err);
+      }else if(committed){
+        userTeam.remove();
+      }
+    });
+  }; // End `Count` Function
   if(x.Rank === 'A'){
-    $scope.aPlayers.push(x.Name);
+    // Add player back to list in 'A'
+    count();
   }else if(x.Rank === 'B'){
-    $scope.bPlayers.push(x.Name);
+    // Add player back to list in 'b'
+    count();
   }else{
-    $scope.cPlayers.push(x.Name);
+    // Add player back to list in 'c'
+    count();
   }
 
 }; // End `Remove`
