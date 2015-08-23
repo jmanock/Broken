@@ -82,10 +82,7 @@ angular.module('fantasy')
 
   this.currentUser.$loaded(function(){
     var team = $firebaseArray(FirebaseUrl.child('userTeam').child(self.user.fullName).child('team'));
-    /*
-      ToDo
-      * Run something to take out the players in the team
-    */
+
     team.$loaded().then(function(data){
       angular.forEach(data, function(x){
         var index;
@@ -125,7 +122,7 @@ $scope.cPlayersAdd = function(p){
 $scope.add = function(p,x){
   var userTeam = FirebaseUrl.child('userTeam').child(self.user.fullName).child('team').child(p);
   var count = function(c){
-    FirebaseUrl.child('userTeam').child(self.user.fullName).child('count'+x)
+    FirebaseUrl.child('userTeam').child(self.user.fullName).child('Count'+x)
     .transaction(function(count){
       if(count === null){
         count = 0;
@@ -163,10 +160,10 @@ $scope.remove = function(x){
   */
   var userTeam = FirebaseUrl.child('userTeam').child(self.user.fullName).child('team').child(x.$id);
   var count = function(){
-    FirebaseUrl.child('userTeam').child(self.user.fullName).child('count'+x.Rank)
+    FirebaseUrl.child('userTeam').child(self.user.fullName).child('Count'+x.Rank)
     .transaction(function(id){
       return(id || 0)-1;
-    },function(err, committed){
+    }, function(err, committed){
       if(err){
         console.log(err);
       }else if(committed){
@@ -175,18 +172,19 @@ $scope.remove = function(x){
     });
   }; // End `Count` Function
   if(x.Rank === 'A'){
-    // Add player back to list in 'A'
+    $scope.aPlayers.push(x.$id);
     count();
   }else if(x.Rank === 'B'){
-    // Add player back to list in 'b'
+    $scope.bPlayers.push(x.$id);
     count();
   }else{
-    // Add player back to list in 'c'
+    $scope.cPlayers.push(x.$id);
     count();
   }
-
-}; // End `Remove`
-
+}; // End `Remove` Function
+$scope.removePlayer = function(x,y){
+  $scope.aPlayer.push(x.$id);
+};
 this.search = 1;
 this.setTab = function(tabId){
   this.search = tabId;
