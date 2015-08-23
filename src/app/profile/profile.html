@@ -2,59 +2,36 @@
   <div ng-include="'components/navbar/navbar.html'"></div>
 
   <div ng-controller='SearchCtrl as search'>
-  <!-- <div ng-hide='hide'>
-    <h4>Team</h4>
-    <ol>
-      <li ng-repeat='(id,team) in search.teams' >
-        {{team.name}}
-        <button ng-click='search.removePlayer(id)'>Remove player</button>
-      </li>
-    </ol>
-    <button ng-click='search.save(search.team)'>Save Team</button>
-    <button ng-click='search.reset(search.team)'>Reset Team</button>
-  </div>
-    <div>
-      <h4>Players</h4>
-      <ul>
-        <li ng-repeat='p in search.players'>
-          {{p.Name}} &nbsp;
-          <button ng-click='search.add(search.players[$index])'>Add Player</button>
-        </li>
-      </ul>
-    </div> -->
-    <div>
+
+   <div class='team'>
       <h3>Team</h3>
-      <h5 ng-repeat='t in teamA'>A: {{t}} <button ng-click='remove(t)'>X</button></h5>
-      <h5 ng-repeat='t in teamB'>B: {{t}} <button ng-click='remove(t)'>X</button></h5>
-      <h5 ng-repeat='t in teamC'>C: {{t}} <button ng-click='remove(t)'>X</button></h5>
+      <p ng-repeat='t in team | orderBy:"Rank"'>{{t.Rank}} | {{t.$id}} <button class='btn pull-right' ng-click='remove(t)'>X</button></p>
     </div>
+
+    <ul class='nav nav-pills'>
+      <li ng-class='{active:search.isSet(1)}'><a href ng-click='search.setTab(1)'>A Players</a></li>
+      <li ng-class='{active:search.isSet(2)}'><a href ng-click='search.setTab(2)'>B Players</a></li>
+      <li ng-class='{active:search.isSet(3)}'><a href ng-click='search.setTab(3)'>C Players</a></li>
+    </ul>
 
     <div class='players'>
-      <h3>Players</h3>
+      <ul>
+        <div class='aPlayers' ng-show='search.isSet(1)'>
+          <h3>A Players</h3>
+          <li ng-repeat='p in aPlayers | orderBy:-p'>{{p}} <button class='btn pull-right' ng-click='aPlayersAdd(p)'>Add Player</button></li>
+        </div>
 
-    <!-- <ul>
-      A
-      <li ng-repeat='p in players | limitTo:26 | limitTo:-26'>
-         <button class='btn btn-success' ng-disabled='isDisabledA' ng-click='add(p+1)'># {{p+1}}</button>
-      </li>
-      B
-       <li ng-repeat='p in players | limitTo:52 | limitTo:-26'>
-         <button class='btn btn-success' ng-disabled='isDisabledB' ng-click='add(p+1)'># {{p+1}}</button>
-      </li>
-      C
-       <li ng-repeat='p in players | limitTo:77 | limitTo:-25'>
-        <button class='btn btn-success' ng-disabled='isDisabledC' ng-click='add(p+1)'># {{p+1}}</button>
-      </li>
-    </ul> -->
-    <p ng-repeat='p in players '>{{p | firstName}}</p>
-    </div>
-    <div class="random">
-      <h3>Random</h3>
-        <ol>
-          <!-- <li ng-repeat='r in random'>{{r | secondName}}</li> -->
-          <li ng-repeat='s in scores'>Name: {{s.Name}} RoundOne: {{s.RoundOnePoints}} RoundTwo: {{s.RoundTwoPoints}} Total: {{s.Total}}</li>
-        </ol>
+        <div class='bPlayers' ng-show='search.isSet(2)'>
+          <h3>B Players</h3>
+          <li ng-repeat='p in bPlayers | orderBy:-p'>{{p}} <button class='btn pull-right' ng-click='bPlayersAdd(p)'>Add Player</button></li>
+        </div>
+
+        <div class='cPlayers' ng-show='search.isSet(3)'>
+          <h3>C Players</h3>
+          <li ng-repeat='p in cPlayers | orderBy:-p'>{{p}} <button class='btn pull-right' ng-click='cPlayersAdd(p)'>Add Player</button></li>
+        </div>
+      </ul>
+
     </div>
 
   </div> <!--End controller -->
-  <script src='app/profile/filter.js'></script>

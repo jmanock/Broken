@@ -2,12 +2,7 @@
 // angular.module('fantasy')
 // .controller('SearchCtrl', function(FirebaseUrl, $scope, $firebaseArray, $firebaseObject, $stateParams, Auth){
 //
-// var self = this;
-// // Setup `CurrentUser`
-// this.currentUser = $firebaseArray(FirebaseUrl.child('users').child($stateParams.id));
-// Auth.onAuth(function(user){
-//   self.user = user;
-// });
+
 //
 //
 // // Load `Team`
@@ -18,279 +13,183 @@
 //     var show = data.$value;
 //     if(show === null){
 //       $scope.hide = true;
-//     }
-//   });
-// });
-//
-// // Load `LeaderBoard`
-// this.players = $firebaseArray(FirebaseUrl.child('leaderboard'));
-//
-//
-// // Add the `Player` to the `Team`
-// this.add = function(p){
-//   $scope.hide=false;
-//   this.count(p);
-// };
-//
-// this.count = function(p){
-//   // Set-up a `Counter` to limit `Players` added
-//   FirebaseUrl.child('userTeam').child(self.user.uid).child('count')
-//   .transaction(function(count){
-//     if(count === null){
-//       count = 0;
-//       $scope.hide = true;
-//     }
-//     if(count >= 5){
-//       // Change to an alert or something
-//       console.log('That is all the players you can have!');
-//     }else{
-//       $scope.hide = false;
-//       return(count || 0)+1;
-//     }
-//   },function(err, committed, ss){
-//     if(err){
-//       console.log(err);
-//     }else if(committed){
-//       var id = ss.val()-1;
-//       console.log(id);
-//       var userTeam = FirebaseUrl.child('userTeam').child(self.user.uid).child('team').child(p.$id);
-//
-//       userTeam.update({
-//         name: p.Name
-//       });
-//     }
-//   });
-// };
-//
-// // Remove a `Player` from `Team`
-// this.removePlayer = function(id){
-//   this.remove(id);
-// };
-//
-// this.remove = function(id){
-//   FirebaseUrl.child('userTeam').child(self.user.uid).child('count')
-//   .transaction(function(id){
-//     return(id || 0)-1;
-//   }, function(err, committed, ss){
-//     if(err){
-//       console.log(err);
-//     }else if(committed){
-//       var i = ss.val();
-//       var userTeam = FirebaseUrl.child('userTeam').child(self.user.uid).child('team').child(id);
-//
-//       userTeam.remove();
-//       if(i === 0){
-//         $scope.hide = true;
-//       }
-//     }
-//   });
-// };
-//
-// // Save the `Team` to call in the `Standings` page
-// this.save = function(){
-//   // need to change this var name
-//   var something = FirebaseUrl.child('teams').child(self.user.fullName).child('team');
-//   something.remove();
-//   angular.forEach(self.teams, function(s){
-//     something.push({
-//       player: s.name
-//     });
-//   });
-// };
-//
-// // Reset the `Team` back to Empty
-// this.reset = function(){
-//   var something = FirebaseUrl.child('teams').child(self.user.fullName);
-//   var userTeam = FirebaseUrl.child('userTeam').child(self.user.uid);
-//   $scope.hide = true;
-//   userTeam.remove();
-//   something.remove();
-// };
-//
-// });// END CONTROLLER
+
+
+
+
+
 'use strict';
 angular.module('fantasy')
-.controller('SearchCtrl', function($http, $scope, $q){
+.controller('SearchCtrl', function($http, $scope, Auth, FirebaseUrl, $firebaseArray, $firebaseObject, $stateParams){
 
-  var ref = new Firebase('https://fireseedangular.firebaseio.com/Players');
-var players = [];
-$http.get('app/profile/fedexStandings.json')
-.success(function(x){
+   var self = this;
+   // Setup `CurrentUser`
+   this.currentUser = $firebaseArray(FirebaseUrl.child('users').child($stateParams.id));
+   Auth.onAuth(function(user){
+   self.user = user;
+   });
 
-  var sux = x.tours;
-  angular.forEach(sux, function(x){
-    var rsux = x.years;
-    angular.forEach(rsux, function(x){
-      var vrsux = x.stats;
-      angular.forEach(vrsux, function(x){
-        var verysux = x.details;
-        angular.forEach(verysux, function(x){
-          var firstName = x.plrName.first;
-          var lastName = x.plrName.last;
-          var fullName = firstName + ' ' + lastName;
-          players.push(fullName);
-          return players;
-        });
-      });
-
-    });
-  });
-}); // End `Fedex`
-
-  // Get `Numbers` for all the players
+  // Set up the `Players` List
   $http.get('app/profile/log0.json')
-  .success(function(nums){
-    var playersNumbers = nums.Tournament.Players;
-    // $scope.players = [];
-    // for(var i = 0; i<playersNumbers.length; i++){
-    //   $scope.players.push(i);
-    // }
-    $scope.players = playersNumbers;
-    for(var i = 0; i<playersNumbers.length; i++){
-      for(var j = 0; j<players.length; j++){
-        if(playersNumbers[i] === players[j]){
-          console.log('we might have something to work with here');
-        }
-      }
-    }
-  }); // End of `Players` call
-  var rOne = $http.get('app/profile/leaders.json');
-  var rTwo = $http.get('app/profile/r2final.json');
-
-  $q.all([rOne, rTwo]).then(function(result){
-    var tmp = [];
-    angular.forEach(result, function(response){
-      tmp.push(response.data);
-    });
-    return tmp;
-  }).then(function(tmpResult){
+  .success(function(data){
     var players = [];
-    var roundOne = [];
-    var roundTwo = [];
-    angular.forEach(tmpResult, function(x){
-      var plays = x.leaderboard.players;
-      angular.forEach(plays, function(y){
-        players.push(y);
-      });
+    var nums = data.Tournament.Players;
+    angular.forEach(nums, function(x){
+      var pName = x.PlayerName;
+      var parts = pName.split(', ');
+      var first = parts[1]+' '+parts[0];
+      players.push(first);
     });
-    angular.forEach(players, function(t){
-      var firstName = t.player_bio.first_name;
-      var lastName = t.player_bio.last_name;
-      var fullName = firstName + ' ' + lastName;
-      var holes = t.holes;
-      var points = 0;
-      var round = t.current_round;
 
-      angular.forEach(holes, function(z){
-        var strokes = z.strokes;
-        var par = z.par;
-        var score = par - strokes;
+    $http.get('app/profile/fedexStandings.json')
+    .success(function(result){
+      var fedEx = [];
+      angular.forEach(result.tours, function(a){
+        angular.forEach(a.years, function(b){
+          angular.forEach(b.stats, function(c){
+            angular.forEach(c.details, function(e){
+              var firstName = e.plrName.first;
+              var lastName = e.plrName.last;
+              var fullName = firstName + ' ' + lastName;
+              fedEx.push(fullName);
+            }); // End `E`
+          }); // End `C`
+        }); // End `B`
+      }); // End `A`
+      var rankings = [];
 
-        if(strokes === null){
-          score = 0;
-        }else{
-          if(score === 0){
-            points = points;
-          }else if(score === 1){
-            points = points + 1;
-          }else if(score >= 2){
-            points = points + 4;
-          }else if(score === -1){
-            points = points -1;
-          }else if(score >= -2){
-            points = points -2;
+      for(var i = 0; i<fedEx.length; i++){
+        for(var j = 0; j<players.length; j++){
+          if(players[j] === fedEx[i]){
+            rankings.push(fedEx[i]);
+            players.splice(j,1);
+
           }
         }
-      }); // End `Holes` forEach
-      if(round === 1){
-        roundOne.push({
-          Name:fullName,
-          Points:points
-        });
+      }
+
+      var aPlayers = rankings.splice(0,25);
+      var bPlayers = rankings.splice(26,88);
+      var something =  rankings.concat(players);
+      var cPlayers = something;
+
+      $scope.aPlayers = aPlayers;
+
+      $scope.bPlayers = bPlayers;
+
+      $scope.cPlayers = cPlayers;
+    }); // End `Get FedExStandings`
+  }); // End `Get Players`
+
+// Load `Team` and Remove players
+this.currentUser.$loaded(function(){
+  var team = $firebaseArray(FirebaseUrl.child('userTeam').child(self.user.fullName).child('team'));
+
+  team.$loaded().then(function(data){
+    angular.forEach(data, function(x){
+      var index;
+      if(x.Rank === 'A'){
+        index = $scope.aPlayers.indexOf(x.$id);
+        $scope.aPlayers.splice(index,1);
+      }else if(x.Rank === 'B'){
+        index = $scope.bPlayers.indexOf(x.$id);
+        $scope.bPlayers.splice(index,1);
       }else{
-        roundTwo.push({
-          Name:fullName,
-          Points:points
+        index = $scope.cPlayers.indexOf(x.$id);
+        $scope.cPlayers.splice(index,1);
+      }
+    });
+  });
+   $scope.team = team;
+}); // End `Loaded`
+
+// Send Players to `add` Function and Remove from Players list
+$scope.aPlayersAdd = function(p){
+  var index = $scope.aPlayers.indexOf(p);
+  $scope.aPlayers.splice(index,1);
+  $scope.add(p,'A');
+}; // End `aPlayersAdd` Function
+
+$scope.bPlayersAdd = function(p){
+  var index = $scope.bPlayers.indexOf(p);
+  $scope.bPlayers.splice(index,1);
+  $scope.add(p,'B');
+}; // End `bPlayersAdd` Function
+
+$scope.cPlayersAdd = function(p){
+  var index = $scope.cPlayers.indexOf(p);
+  $scope.cPlayers.splice(index,1);
+  $scope.add(p,'C');
+}; // End `cPlayersAdd`
+
+// Add player and Counter to Firebase
+$scope.add = function(p,x){
+  var userTeam = FirebaseUrl.child('userTeam').child(self.user.fullName).child('team').child(p);
+  var count = function(c){
+    FirebaseUrl.child('userTeam').child(self.user.fullName).child('Count'+x)
+    .transaction(function(count){
+      if(count === null){
+        count = 0;
+      }
+      if(count >= c){
+        console.log('That is all the '+x+' Players you can have');
+      }else{
+        return(count || 0)+1;
+      }
+    },function(err,committed){
+      if(err){
+        console.log(err);
+      }else if(committed){
+        userTeam.update({
+          Rank:x
         });
       }
-
-    }); // End `Players` forEach
-    var knew = [];
-    for(var i = 0; i<roundOne.length; i++){
-      for(var j = 0; j<roundTwo.length; j++){
-        if(roundOne[i].Name === roundTwo[j].Name){
-          /* What's next???
-            ~ have to work on round three and four
-          */
-          knew.push({
-            Name:roundOne[i].Name,
-            RoundOnePoints:roundOne[i].Points,
-            RoundTwoPoints:roundTwo[j].Points,
-            Total:roundOne[i].Points + roundTwo[j].Points
-          });
-        }
-      }
-    }
-    ref.set(knew);
-    $scope.scores = knew;
-  }); // End `then function
-
-var teamA = [];
-var teamB = [];
-var teamC = [];
-
-
-$scope.add = function(t){
-  // Get rid of the hard code numbers
-  console.log(t.length);
-  // if(t <= 26){
-  //   if(teamA.length <= 1){
-  //     teamA.push(t);
-  //     this.isDisabledA = true;
-  //
-  //   }else{
-  //     $scope.isDisabledA = true;
-  //     console.log('To Many A players!!!');
-  //   }
-  // }else if(t <= 52){
-  //   if(teamB.length <= 1){
-  //     teamB.push(t);
-  //     this.isDisabledB = true;
-  //   }else{
-  //     $scope.isDisabledB = true;
-  //     console.log('To Many B players!!!');
-  //   }
-  // }else{
-  //   if(teamC < 1){
-  //     teamC.push(t);
-  //     this.isDisabledC = true;
-  //   }else{
-  //     $scope.isDisabledC = true;
-  //     console.log('You have a C player!');
-  //   }
-  // }
-  // $scope.teamA = teamA;
-  // $scope.teamB = teamB;
-  // $scope.teamC = teamC;
-
+    });
+  }; // End `Count` Function
+  if(x === 'A'){
+    count(2);
+  }else if(x === 'B'){
+    count(2);
+  }else{
+    count(1);
+  }
 }; // End `Add` Function
 
-$scope.remove = function(t){
-  if(t <= 26){
-    var index = $scope.teamA.indexOf(t);
-    $scope.teamA.splice(index,1);
-
-  }else if(t <= 52){
-    var ind = $scope.teamB.indexOf(t);
-    $scope.teamB.splice(ind,1);
-
+// `Remove` player and add them back to player list
+$scope.remove = function(x){
+  var userTeam = FirebaseUrl.child('userTeam').child(self.user.fullName).child('team').child(x.$id);
+  var count = function(){
+    FirebaseUrl.child('userTeam').child(self.user.fullName).child('Count'+x.Rank)
+    .transaction(function(id){
+      return(id || 0)-1;
+    }, function(err, committed){
+      if(err){
+        console.log(err);
+      }else if(committed){
+        userTeam.remove();
+      }
+    });
+  }; // End `Count` Function
+  if(x.Rank === 'A'){
+    $scope.aPlayers.push(x.$id);
+    count();
+  }else if(x.Rank === 'B'){
+    $scope.bPlayers.push(x.$id);
+    count();
   }else{
-    var ex = $scope.teamC.indexOf(t);
-    $scope.teamC.splice(ex,1);
+    $scope.cPlayers.push(x.$id);
+    count();
   }
-
 }; // End `Remove` Function
 
+// Tab Sections
+this.search = 1;
+this.setTab = function(tabId){
+  this.search = tabId;
+};
+this.isSet = function(tabId){
+  return this.search === tabId;
+};
 
 })// End controller
 .filter('firstName', function(){
