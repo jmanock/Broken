@@ -116,21 +116,20 @@
 
 	angular.module('fantasy')
 	.controller('StandingsCtrl', function($http, $scope, $q){
+
+		var player = [];
 	$http.get('app/standings/json/field.json')
 	.success(function(data){
-		console.log(data);
-		/*
-			ToDo (This way)
-				* Need the players json
-					- Get the ids from that json
-				* Need to scorecard dir
-				* Cross ref player id with scorecard id
-				SCORECARD PLAYER JSON
-				HAS
-				* Hole Score
-				* Hole Number
-				*
-		*/
+		var Players = data.Tournament.Players;
+		angular.forEach(Players, function(x){
+			var pName = x.PlayerName;
+			var id = x.TournamentPlayerId;
+			player.push({
+				Name:pName,
+				Id:id
+			});
+		});
+		console.log(player);
 	});
 
 // 	var rOne = $http.get('app/profile/leaders.json');
