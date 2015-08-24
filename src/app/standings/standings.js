@@ -116,19 +116,9 @@
 
 	angular.module('fantasy')
 	.controller('StandingsCtrl', function($http, $scope, $q){
-	$http.get('app/standings/json/p2.json')
+	$http.get('app/standings/json/field.json')
 	.success(function(data){
-		angular.forEach(data, function(x){
-			var rounds = x.rnds;
-			console.log(x.rnds);
-			angular.forEach(rounds, function(y){
-				var holes = y.holes;
-				console.log(holes);
-				angular.forEach(holes, function(z){
-					// console.log(z);
-				});
-			});
-		});
+		console.log(data);
 		/*
 			ToDo (This way)
 				* Need the players json
