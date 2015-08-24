@@ -122,8 +122,10 @@
 	.success(function(data){
 		var Players = data.Tournament.Players;
 		angular.forEach(Players, function(x){
-			var pName = x.PlayerName;
+			
 			var id = x.TournamentPlayerId;
+			var parts = x.PlayerName.split(',');
+	    var pName = parts[1]+ ' '+parts[0];
 			player.push({
 				Name:pName,
 				Id:id
