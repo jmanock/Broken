@@ -122,7 +122,7 @@
 	.success(function(data){
 		var Players = data.Tournament.Players;
 		angular.forEach(Players, function(x){
-			
+
 			var id = x.TournamentPlayerId;
 			var parts = x.PlayerName.split(',');
 	    var pName = parts[1]+ ' '+parts[0];
@@ -131,7 +131,10 @@
 				Id:id
 			});
 		});
-		console.log(player);
+		$http.get('app/standings/json/p2.json')
+		.success(function(data){
+			console.log(data.p.rnds);
+		});
 	});
 
 // 	var rOne = $http.get('app/profile/leaders.json');

@@ -21,15 +21,22 @@ var urls = [];
 for(var x = 0; x<something.length; x++){
   var rId = something[x].Id;
   var link = url+'/'+rId+'.json';
-  urls.push(link);
+  urls.push({
+    links:link,
+    Name:something[x].Name
+  });
 }
-for(var z = 0; z<urls.length; z++){
-  request(urls[z], function(error, response, header){
+var callMe = function(x){
+  request(x, function(error, response, header){
     if(!error && response.statusCode === 200){
-      var jC = JSON.parse(header);
-      console.log(jC);
+      var jc = JSON.parse(header);
+      var id = jc.p.id;
+      console.log(id);
     }
   });
+};
+for(var z = 0; z<urls.length; z++){
+  callMe(urls[z].links);
 }
 
 /*
