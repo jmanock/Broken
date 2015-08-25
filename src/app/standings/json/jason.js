@@ -22,24 +22,29 @@ for(var x = 0; x<something.length; x++){
   var rId = something[x].Id;
   var link = url+'/'+rId+'.json';
   urls.push({
-    links:link,
+    Links:link,
     Name:something[x].Name
   });
 }
-var callMe = function(x){
-  request(x, function(error, response, header){
+var thing = function(id,rounds){
+  for(var i = 0; i<rounds.length; i++){
+    console.log(rounds[i]);
+  }
+};
+var callMe = function(Link){
+  var something = [];
+  request(Link, function(error, response, header){
     if(!error && response.statusCode === 200){
       var jc = JSON.parse(header);
       var id = jc.p.id;
-      console.log(id);
+      var rounds = jc.p.rnds;
+      thing(id,rounds);
     }
   });
+
 };
 for(var z = 0; z<urls.length; z++){
-  callMe(urls[z].links);
+  var link = urls[z].Links;
+  var Name = urls[z].Names;
+  callMe(link,Name);
 }
-
-/*
-  ToDo
-  * Got the urls, and names
-*/

@@ -133,7 +133,7 @@
 		});
 		$http.get('app/standings/json/p2.json')
 		.success(function(data){
-			console.log(data.p.rnds);
+			console.log(data.p);
 		});
 	});
 
