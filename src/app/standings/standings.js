@@ -133,7 +133,23 @@
 		});
 		$http.get('app/standings/json/p2.json')
 		.success(function(data){
-			console.log(data.p);
+			var rounds = data.p.rnds;
+			var roundOne = [];
+			var roundTwo = [];
+			angular.forEach(rounds, function(x){
+				var roundNum = x.n;
+				var holes = x.holes;
+				if(roundNum === '1'){
+					 roundOne.push(holes);
+
+				}else{
+					 roundTwo.push(holes);
+
+				}
+				console.log(roundOne);
+			});
+
+
 		});
 	});
 
