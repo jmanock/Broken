@@ -35,77 +35,41 @@ for(var i = 0; i<player.length; i++){
     Id:id
   });
 }
-var PlayerStats = [];
-var FinalPlayerStats = [];
-var points = 0;
+var fire = function(id,points){
+  console.log(id,points);
+};
 var firstRound = function(oneRound){
-  /*
-    Has to be a way where I can get the id then all the holes
-  */
   for(var i = 0; i<oneRound.length; i++){
     var id = oneRound[i].Id;
+    var points = 0;
     var holes = oneRound[i].Holes;
-    console.log(id);
+    // console.log(id);
     for(var j = 0; j<holes.length && j<courseStats.length; j++){
-      var holeNum = holes[j].cNum;
-      var score = holes[j].sc;
-      var Par = courseStats[j].Par;
       var courseNum = courseStats[j].Hole;
-      var total = Par - score;
+      var holeNum = holes[j].cNum;
       if(courseNum === holeNum){
-        if(total === 0){
-          console.log('Par');
-        }else if(total === 1){
-          console.log('Birdie');
-        }else if(total >= 2){
-          console.log('Eagle or better');
-        }else if(total === -1){
-          console.log('Bogie');
-        }else if(total >= -2){
-          console.log('Double or worse');
-        }
-      }
-    
-    }
 
-  }
-  // for(var i = 0; i<oneRound.length; i++){
-  //   var holes = oneRound[i].Holes;
-  //   var playerId = oneRound[i].Id;
-  //   for(var j = 0; j<holes.length; j++){
-  //     var holeNumber = holes[j].cNum;
-  //     var score = holes[j].sc;
-  //     PlayerStats.push({
-  //       Hole:holeNumber,
-  //       Score:score,
-  //       PlayerId:playerId
-  //     });
-  //   }
-  // }
-  //
-  // for(var a = 0; a<PlayerStats.length; a++){
-  //   var hole = PlayerStats[a].Hole;
-  //   var Score = PlayerStats[a].Score;
-  //   var id = PlayerStats[a].PlayerId;
-  //   for(var b = 0; b<courseStats.length; b++){
-  //     var cHole = courseStats[b].Hole;
-  //     var cPar = courseStats[b].Par;
-  //     if(hole === cHole){
-  //       FinalPlayerStats.push({
-  //         Id:id,
-  //         Score:Score,
-  //         Par:cPar
-  //       });
-  //
-  //     }
-  //   }
-  // }
-  // for(var c = 0; c<FinalPlayerStats.length; c++){
-  //   var pScore = FinalPlayerStats[c].Score;
-  //   var par = FinalPlayerStats[c].Par;
-  //   var total = par - pScore;
-  //   // Not going to work, I have to get the holes into there own object
-  // }
+        var sPar = courseStats[j].Par;
+        var score = holes[j].sc;
+        var total = sPar - score;
+
+        if(total === 0){
+          points = points;
+        }else if(total === 1){
+          points = points + 2;
+        }else if(total >= 2){
+          points = points + 4;
+        }else if(total === -1){
+          points = points -1;
+        }else if(total >= -2){
+          points = points -2;
+        }
+
+      } // End `Num` equals if
+    } // End `For holes and coursStats`
+    fire(id, points);
+  } // End `oneRound` for statment
+
 }; // End function
 var points = function(id,rounds){
   var roundOne = [];
