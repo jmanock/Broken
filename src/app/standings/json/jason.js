@@ -29,48 +29,36 @@ for(var i = 0; i<ParCourse.length; i++){
 var Rounds = [];
 var Final = [];
 var points = function(id, rounds){
-  var Name = function(x){
-    console.log(id,x);
 
-  }; // End `Names` Function
-  var totalPoints = function(Holes, Points,x){
-
-    for(var i = 0; i<Holes.length && i<Course.length; i++){
-      var holeNum = Holes[i].cNum;
-      var courseNum = Course[i].Hole;
-      if(holeNum === courseNum){
-        var coursePar = Course[i].Par;
-        var score = Holes[i].sc;
-        var total = coursePar - score;
-        if(total === 0){
-          Points = Points;
-        }else if(total === 1){
-          Points = Points + 2;
-        }else if(total >= 2){
-          Points = Points + 4;
-        }else if(total === -1){
-          Points = Points -1;
-        }else if(total >= -2){
-          Points = Points -2;
-        }
-      } // End `if` hole and course num are equal
-    }// end for statment
-    Final.push(Points);
-    console.log(Final);
-
-  }; // End `TotalPoints` Function
   for(var i = 0; i<rounds.length; i++){
     var points = 0;
     var roundNum = rounds[i].n;
     var holes = rounds[i].holes;
-
-    if(roundNum === '1'){
-       totalPoints(holes,points,1);
-    }else if(roundNum === '2'){
-       totalPoints(holes,points,2);
-    }
-
   } // End `Rounds` For Statment
+  function totalPoints(){
+    for(var i =0; i<holes.length && Course.length; i++){
+      var holeNum = holes[i].cNum;
+      var courseNum = Course[i].Hole;
+      if(holeNum === courseNum){
+        var Par = Course[i].Par;
+        var Score = holes[i].sc;
+        var total = Par - Score;
+        if(total === 0){
+          points = points;
+        }else if(total === 1){
+          points = points + 2;
+        }else if(total >= 2){
+          points = points +4;
+        }else if(total === -1){
+          points = points -1;
+        }else if(total >= -2){
+          points = points -2;
+        }
+      } // End `If` Statment
+    } // End `For` Statment
+  } // End `TotalPoints` Function
+  console.log(id, points);
+  return totalPoints();
 
 }; // End `Points` Function
 
