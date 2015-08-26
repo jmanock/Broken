@@ -27,12 +27,37 @@ for(var i = 0; i<ParCourse.length; i++){
 } // End `ParCourse` for statment
 
 var Rounds = [];
+var Final = [];
 var points = function(id, rounds){
+  var Name = function(x){
+    console.log(id,x);
+
+  }; // End `Names` Function
   var totalPoints = function(Holes, Points,x){
-    console.log(Points,x);
-    // Take apart holes
-    // add Points
-    // store id, points, round num
+
+    for(var i = 0; i<Holes.length && i<Course.length; i++){
+      var holeNum = Holes[i].cNum;
+      var courseNum = Course[i].Hole;
+      if(holeNum === courseNum){
+        var coursePar = Course[i].Par;
+        var score = Holes[i].sc;
+        var total = coursePar - score;
+        if(total === 0){
+          Points = Points;
+        }else if(total === 1){
+          Points = Points + 2;
+        }else if(total >= 2){
+          Points = Points + 4;
+        }else if(total === -1){
+          Points = Points -1;
+        }else if(total >= -2){
+          Points = Points -2;
+        }
+      } // End `if` hole and course num are equal
+    }// end for statment
+    Final.push(Points);
+    console.log(Final);
+
   }; // End `TotalPoints` Function
   for(var i = 0; i<rounds.length; i++){
     var points = 0;
@@ -43,10 +68,6 @@ var points = function(id, rounds){
        totalPoints(holes,points,1);
     }else if(roundNum === '2'){
        totalPoints(holes,points,2);
-    }else if(roundNum === '3'){
-       totalPoints(holes,points,3);
-    }else if(roundNum === '4'){
-       totalPoints(holes,points,4);
     }
 
   } // End `Rounds` For Statment
