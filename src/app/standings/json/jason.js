@@ -29,19 +29,23 @@ parCourse.forEach(function(i){
 
 function start(){
   var Player = Players.Tournament.Players;
-
+  var Field = [];
   Player.forEach(function(i){
-    var points = 0;
+
     var id = i.TournamentPlayerId;
     var parts = i.PlayerName.split(', ');
     var pName = parts[1]+' '+parts[0];
     var links = url+'/'+id+'.json';
+
     request(links, function(error, response, header){
       if(!error && response.statusCode === 200){
         var data = JSON.parse(header);
         var rounds = data.p.rnds;
-        rounds.forEach(function(x){
 
+        rounds.forEach(function(x){
+          var points = 0;
+          var roundOne, roundTwo, roundThree, roundFour;
+          var RoundNum = x.n;
           var holes = x.holes;
           for(var j = 0; j<holes.length && j<Course.length; j++){
             var holeNum = holes[j].cNum;
@@ -50,24 +54,72 @@ function start(){
               var Par = Course[j].Par;
               var Score = holes[j].sc;
               var Total = Par - Score;
-
-              if(Total === 0){
-                points = points;
-              }else if(Total === 1){
-                points = points + 2;
-              }else if(Total >= 2){
-                points = points + 4;
-              }else if(Total === -1){
-                points = points -1;
-              }else if(Total >= -2){
-                points = points -2;
+              if(RoundNum === '1'){
+                if(Total === 0){
+                  points = points;
+                }else if(Total === 1){
+                  points = points + 2;
+                }else if(Total >= 2){
+                  points = points + 4;
+                }else if(Total === -1){
+                  points = points -1;
+                }else if(Total >= -2){
+                  points = points -2;
+                }
+                roundOne = points;
+              }else if(RoundNum === '2'){
+                if(Total === 0){
+                  points = points;
+                }else if(Total === 1){
+                  points = points + 2;
+                }else if(Total >= 2){
+                  points = points + 4;
+                }else if(Total === -1){
+                  points = points -1;
+                }else if(Total >= -2){
+                  points = points -2;
+                }
+                roundTwo = points;
+              }else if(RoundNum === '3'){
+                if(Total === 0){
+                  points = points;
+                }else if(Total === 1){
+                  points = points + 2;
+                }else if(Total >= 2){
+                  points = points + 4;
+                }else if(Total === -1){
+                  points = points -1;
+                }else if(Total >= -2){
+                  points = points -2;
+                }
+                roundThree = points;
+              }else if(RoundNum === '4'){
+                if(Total === 0){
+                  points = points;
+                }else if(Total === 1){
+                  points = points + 2;
+                }else if(Total >= 2){
+                  points = points + 4;
+                }else if(Total === -1){
+                  points = points -1;
+                }else if(Total >= -2){
+                  points = points -2;
+                }
+                roundFour = points;
               }
-            } // End `Equal` Statment
-            
-          } // End `For` Statment
 
+
+            } // End `Equal` Statment
+
+          } // End `For` Statment
+          Field.push({
+            RoundOne:roundOne,
+            RoundTwo:roundTwo,
+            RoundThree:roundThree,
+            RoundFour:roundFour
+          });
         }); // End `Rounds` forEach
-        console.log(pName, points);
+        console.log(Field);
       } // End `Error` if Statment
     }); // End `Request` function
   }); // End `Players` forEach
