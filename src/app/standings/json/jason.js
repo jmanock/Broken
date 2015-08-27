@@ -12,12 +12,26 @@ var Par = JSON.parse(CoursePar);
 
 var url = 'http://www.pgatour.com/data/r/033/2015/scorecards';
 
+var parCourse = Par.courses;
+var Course = [];
+parCourse.forEach(function(i){
+  var holes = i.holes;
+  holes.forEach(function(x){
+    var holeNumber = x.number;
+    var holePar = x.parValue;
+    Course.push({
+      Hole:holeNumber,
+      Par:holePar
+    });
+  });
 
+});
 
 function start(){
-  var Field = [];
   var Player = Players.Tournament.Players;
+
   Player.forEach(function(i){
+    var points = 0;
     var id = i.TournamentPlayerId;
     var parts = i.PlayerName.split(', ');
     var pName = parts[1]+' '+parts[0];
@@ -27,10 +41,35 @@ function start(){
         var data = JSON.parse(header);
         var rounds = data.p.rnds;
         rounds.forEach(function(x){
-          console.log(x);
-        });
-      }
-    });
-  });
+
+          var holes = x.holes;
+          for(var j = 0; j<holes.length && j<Course.length; j++){
+            var holeNum = holes[j].cNum;
+            var courseNum = Course[j].Hole;
+            if(holeNum === courseNum){
+              var Par = Course[j].Par;
+              var Score = holes[j].sc;
+              var Total = Par - Score;
+
+              if(Total === 0){
+                points = points;
+              }else if(Total === 1){
+                points = points + 2;
+              }else if(Total >= 2){
+                points = points + 4;
+              }else if(Total === -1){
+                points = points -1;
+              }else if(Total >= -2){
+                points = points -2;
+              }
+            } // End `Equal` Statment
+            
+          } // End `For` Statment
+
+        }); // End `Rounds` forEach
+        console.log(pName, points);
+      } // End `Error` if Statment
+    }); // End `Request` function
+  }); // End `Players` forEach
 }
 start();
