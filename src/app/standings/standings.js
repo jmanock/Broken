@@ -115,95 +115,122 @@
 	'use strict';
 
 	angular.module('fantasy')
-	.controller('StandingsCtrl', function($http, $scope){
-	$http.get('app/standings/json/leaderboard.json')
+	.controller('StandingsCtrl', function($http, $scope, $q){
+
+		var player = [];
+	$http.get('app/standings/json/field.json')
 	.success(function(data){
-		/*
-		Trying to Find
-		~ Score cards from each round of each player
-			- Run points system off that
-				~ What I have now wont work becasue of delays and time
-				- Have to find a way to just get the round scorecards
-		*/
+		var Players = data.Tournament.Players;
+		angular.forEach(Players, function(x){
+
+			var id = x.TournamentPlayerId;
+			var parts = x.PlayerName.split(',');
+	    var pName = parts[1]+ ' '+parts[0];
+			player.push({
+				Name:pName,
+				Id:id
+			});
+		});
+		$http.get('app/standings/json/p2.json')
+		.success(function(data){
+			var rounds = data.p.rnds;
+			var roundOne = [];
+			var roundTwo = [];
+			angular.forEach(rounds, function(x){
+				var roundNum = x.n;
+				var holes = x.holes;
+				if(roundNum === '1'){
+					 roundOne.push(holes);
+
+				}else{
+					 roundTwo.push(holes);
+
+				}
+				console.log(roundOne);
+			});
+
+
+		});
 	});
-	var rOne = $http.get('app/profile/leaders.json');
-  var rTwo = $http.get('app/profile/r2final.json');
 
-// POINTS FUNCTION BASED ON SCORES
-
-  $q.all([rOne, rTwo]).then(function(result){
-    var tmp = [];
-    angular.forEach(result, function(response){
-      tmp.push(response.data);
-    });
-    return tmp;
-  }).then(function(tmpResult){
-    var players = [];
-    var roundOne = [];
-    var roundTwo = [];
-    angular.forEach(tmpResult, function(x){
-      var plays = x.leaderboard.players;
-      angular.forEach(plays, function(y){
-        players.push(y);
-      });
-    });
-    angular.forEach(players, function(t){
-      var firstName = t.player_bio.first_name;
-      var lastName = t.player_bio.last_name;
-      var fullName = firstName + ' ' + lastName;
-      var holes = t.holes;
-      var points = 0;
-      var round = t.current_round;
-
-      angular.forEach(holes, function(z){
-        var strokes = z.strokes;
-        var par = z.par;
-        var score = par - strokes;
-
-        if(strokes === null){
-          score = 0;
-        }else{
-          if(score === 0){
-            points = points;
-          }else if(score === 1){
-            points = points + 1;
-          }else if(score >= 2){
-            points = points + 4;
-          }else if(score === -1){
-            points = points -1;
-          }else if(score >= -2){
-            points = points -2;
-          }
-        }
-      }); // End `Holes` forEach
-      if(round === 1){
-        roundOne.push({
-          Name:fullName,
-          Points:points
-        });
-      }else{
-        roundTwo.push({
-          Name:fullName,
-          Points:points
-        });
-      }
-
-    }); // End `Players` forEach
-    var knew = [];
-    for(var i = 0; i<roundOne.length; i++){
-      for(var j = 0; j<roundTwo.length; j++){
-        if(roundOne[i].Name === roundTwo[j].Name){
-
-          knew.push({
-            Name:roundOne[i].Name,
-            RoundOnePoints:roundOne[i].Points,
-            RoundTwoPoints:roundTwo[j].Points,
-            Total:roundOne[i].Points + roundTwo[j].Points
-          });
-        }
-      }
-    }
-
-
-  }); // End `rOne, rTwo` call
+// 	var rOne = $http.get('app/profile/leaders.json');
+//   var rTwo = $http.get('app/profile/r2final.json');
+//
+// // POINTS FUNCTION BASED ON SCORES
+//
+//   $q.all([rOne, rTwo]).then(function(result){
+//     var tmp = [];
+//     angular.forEach(result, function(response){
+//       tmp.push(response.data);
+//     });
+//     return tmp;
+//   }).then(function(tmpResult){
+//     var players = [];
+//     var roundOne = [];
+//     var roundTwo = [];
+//     angular.forEach(tmpResult, function(x){
+//       var plays = x.leaderboard.players;
+//       angular.forEach(plays, function(y){
+//         players.push(y);
+//       });
+//     });
+//     angular.forEach(players, function(t){
+//       var firstName = t.player_bio.first_name;
+//       var lastName = t.player_bio.last_name;
+//       var fullName = firstName + ' ' + lastName;
+//       var holes = t.holes;
+//       var points = 0;
+//       var round = t.current_round;
+//
+//       angular.forEach(holes, function(z){
+//         var strokes = z.strokes;
+//         var par = z.par;
+//         var score = par - strokes;
+//
+//         if(strokes === null){
+//           score = 0;
+//         }else{
+//           if(score === 0){
+//             points = points;
+//           }else if(score === 1){
+//             points = points + 1;
+//           }else if(score >= 2){
+//             points = points + 4;
+//           }else if(score === -1){
+//             points = points -1;
+//           }else if(score >= -2){
+//             points = points -2;
+//           }
+//         }
+//       }); // End `Holes` forEach
+//       if(round === 1){
+//         roundOne.push({
+//           Name:fullName,
+//           Points:points
+//         });
+//       }else{
+//         roundTwo.push({
+//           Name:fullName,
+//           Points:points
+//         });
+//       }
+//
+//     }); // End `Players` forEach
+//     var knew = [];
+//     for(var i = 0; i<roundOne.length; i++){
+//       for(var j = 0; j<roundTwo.length; j++){
+//         if(roundOne[i].Name === roundTwo[j].Name){
+//
+//           knew.push({
+//             Name:roundOne[i].Name,
+//             RoundOnePoints:roundOne[i].Points,
+//             RoundTwoPoints:roundTwo[j].Points,
+//             Total:roundOne[i].Points + roundTwo[j].Points
+//           });
+//         }
+//       }
+//     }
+//
+//
+//   }); // End `rOne, rTwo` call
 }); // End controller
