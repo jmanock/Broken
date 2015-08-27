@@ -1,7 +1,23 @@
-ul{
+.players{
   float:left;
+  width:30em;
+  border:1px solid orange;
 }
 
-ol > h4 > li{
+.random{
   float:right;
+}
+.btn{
+  margin-left:1em;
+}
+li{
+  list-style-type:none;
+  margin-bottom:10px;
+  line-height:2.5em;
+}
+p{
+  line-height:2.5em;
+}
+.team{
+  margin-right:40em;
 }
