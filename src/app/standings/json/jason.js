@@ -25,7 +25,12 @@ Field.forEach(function(i){
    var somedick = JSON.parse(something);
    var names = somedick.p.id;
    if(names === i.Id){
-     console.log(i.Name);
+     var rounds = somedick.p.rnds;
+     var knewName = i.Name;
+     console.log(knewName);
+     rounds.forEach(function(z){
+       console.log(z);
+     });
    }
 
 });
