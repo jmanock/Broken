@@ -9,6 +9,7 @@ var Par = JSON.parse(CoursePar);
 
 var Field = [];
 var Player = Players.Tournament.Players;
+var ParCourse = Par.courses;
 Player.forEach(function(x){
   var id = x.TournamentPlayerId;
   var parts = x.PlayerName.split(', ');
@@ -18,8 +19,8 @@ Player.forEach(function(x){
     Name:pName
   });
 });
-Field.forEach(function(i){
 
+Field.forEach(function(i){
    var team = 'players/'+i.Id+'.json';
    var something = fs.readFileSync(team);
    var somedick = JSON.parse(something);
@@ -29,7 +30,18 @@ Field.forEach(function(i){
      var knewName = i.Name;
      console.log(knewName);
      rounds.forEach(function(z){
-       console.log(z);
+       var roundsPlayed = z.n;
+       var roundsPlayedHoles = z.holes;
+       if(roundsPlayed === '1'){
+         roundsPlayedHoles.forEach(function(t){
+           ParCourse.forEach(function(a){
+             var holeNumber = a.number;
+             var holePar = a.parValue;
+             var playerHoleNumber = t.cNum;
+             var scoreNumber = t.sc;
+           });
+         });
+       }
      });
    }
 
