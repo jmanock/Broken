@@ -31,7 +31,10 @@ ParCourse.forEach(function(a){
     });
   });
 });
-
+var RoundOne = [];
+var RoundTwo = [];
+var RoundThree = [];
+var RoundFour = [];
 Field.forEach(function(i){
    var team = 'players/'+i.Id+'.json';
    var something = fs.readFileSync(team);
@@ -65,15 +68,109 @@ Field.forEach(function(i){
                }else if(total >= 2){
                  Points = Points + 4;
                }
-
              }
-
            });
-           
          });
-         console.log(Points);
+         RoundOne.push({
+           Name:knewName,
+           Round:1,
+           Points:Points
+         });
+       }else if(roundsPlayed === '2'){
+         var Points = 0;
+         roundsPlayedHoles.forEach(function(t){
+           CourseStats.forEach(function(c){
+             var csHole = c.Hole;
+             var csPar = c.Par;
+             var playerNumber = t.cNum;
+             var scoreNumber = t.sc;
+             if(csHole === playerNumber){
+               var total = csPar - scoreNumber;
+               if(total === 0){
+                 Points = Points;
+               }else if(total === -1){
+                 Points = Points -1;
+               }else if(total <= -2){
+                 Points = Points -2;
+               }else if(total === 1){
+                 Points = Points + 2;
+               }else if(total >= 2){
+                 Points = Points + 4;
+               }
+             }
+           });
+         });
+         RoundTwo.push({
+           Name:knewName,
+           Round:2,
+           Points:Points
+         });
+       }else if(roundsPlayed === '3'){
+         var Points = 0;
+         roundsPlayedHoles.forEach(function(t){
+           CourseStats.forEach(function(c){
+             var csHole = c.Hole;
+             var csPar = c.Par;
+             var playerNumber = t.cNum;
+             var scoreNumber = t.sc;
+             if(csHole === playerNumber){
+               var total = csPar - scoreNumber;
+               if(total === 0){
+                 Points = Points;
+               }else if(total === -1){
+                 Points = Points -1;
+               }else if(total <= -2){
+                 Points = Points -2;
+               }else if(total === 1){
+                 Points = Points + 2;
+               }else if(total >= 2){
+                 Points = Points + 4;
+               }
+             }
+           });
+         });
+         RoundThree.push({
+           Name:knewName,
+           Round:3,
+           Points:Points
+         });
+       }else if(roundsPlayed === '4'){
+         var Points = 0;
+         roundsPlayedHoles.forEach(function(t){
+           CourseStats.forEach(function(c){
+            var csHole = c.Hole;
+            var csPar = c.Par;
+            var playerNumber = t.cNum;
+            var scoreNumber = t.sc;
+            if(csHole === playerNumber){
+              var total = csPar - scoreNumber;
+              if(total === 0){
+                Points = Points;
+              }else if(total === -1){
+                Points = Points -1;
+              }else if(total <= -2){
+                Points = Points -2;
+              }else if(total === 1){
+                Points = Points + 2;
+              }else if(total >= 2){
+                Points = Points + 4;
+              }
+            }
+           });
+         });
+         RoundFour.push({
+           Name:knewName,
+           Round:4,
+           Points:Points
+         });
        }
+
      });
+
    }
 
 });
+console.log('RoundOne: ', RoundOne.length);
+console.log('RoundTwo: ', RoundTwo.length);
+console.log('RoundThree: ', RoundThree.length);
+console.log('RoundFour: ', RoundFour.length);
