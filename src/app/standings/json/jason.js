@@ -45,6 +45,7 @@ Field.forEach(function(i){
        var roundsPlayed = z.n;
        var roundsPlayedHoles = z.holes;
        if(roundsPlayed === '1'){
+         var Points = 0;
          roundsPlayedHoles.forEach(function(t){
            CourseStats.forEach(function(c){
              var csHole = c.Hole;
@@ -53,10 +54,24 @@ Field.forEach(function(i){
              var scoreNumber = t.sc;
              if(csHole === playerHoleNumber){
                var total = csPar - scoreNumber;
-               console.log(total);
+               if(total === 0){
+                 Points = Points;
+               }else if(total === -1){
+                 Points = Points -1;
+               }else if(total <= -2){
+                 Points = Points -2;
+               }else if(total === 1){
+                 Points = Points + 2;
+               }else if(total >= 2){
+                 Points = Points + 4;
+               }
+
              }
+
            });
+           
          });
+         console.log(Points);
        }
      });
    }
