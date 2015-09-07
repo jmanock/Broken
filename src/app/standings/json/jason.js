@@ -8,6 +8,7 @@ var Players = JSON.parse(TourneyPlayer);
 var Par = JSON.parse(CoursePar);
 
 var Field = [];
+var CourseStats = [];
 var Player = Players.Tournament.Players;
 var ParCourse = Par.courses;
 Player.forEach(function(x){
@@ -17,6 +18,14 @@ Player.forEach(function(x){
   Field.push({
     Id:id,
     Name:pName
+  });
+});
+ParCourse.forEach(function(a){
+  var holeNumber = a.number;
+  var holePar = a.parValue;
+  CourseStats.push({
+    Hole:holeNumber,
+    Par:holePar
   });
 });
 
@@ -34,12 +43,9 @@ Field.forEach(function(i){
        var roundsPlayedHoles = z.holes;
        if(roundsPlayed === '1'){
          roundsPlayedHoles.forEach(function(t){
-           ParCourse.forEach(function(a){
-             var holeNumber = a.number;
-             var holePar = a.parValue;
-             var playerHoleNumber = t.cNum;
-             var scoreNumber = t.sc;
-           });
+           var playerHoleNumber = t.cNum;
+           var scoreNumber = t.sc;
+
          });
        }
      });
