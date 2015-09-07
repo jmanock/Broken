@@ -21,11 +21,14 @@ Player.forEach(function(x){
   });
 });
 ParCourse.forEach(function(a){
-  var holeNumber = a.number;
-  var holePar = a.parValue;
-  CourseStats.push({
-    Hole:holeNumber,
-    Par:holePar
+  var holes = a.holes;
+  holes.forEach(function(b){
+    var holeNumber = b.number;
+    var parNumber = b.parValue;
+    CourseStats.push({
+      Hole:holeNumber,
+      Par:parNumber
+    });
   });
 });
 
@@ -43,9 +46,16 @@ Field.forEach(function(i){
        var roundsPlayedHoles = z.holes;
        if(roundsPlayed === '1'){
          roundsPlayedHoles.forEach(function(t){
-           var playerHoleNumber = t.cNum;
-           var scoreNumber = t.sc;
-
+           CourseStats.forEach(function(c){
+             var csHole = c.Hole;
+             var csPar = c.Par;
+             var playerHoleNumber = t.cNum;
+             var scoreNumber = t.sc;
+             if(csHole === playerHoleNumber){
+               var total = csPar - scoreNumber;
+               console.log(total);
+             }
+           });
          });
        }
      });
