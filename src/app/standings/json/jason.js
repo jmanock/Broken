@@ -164,11 +164,8 @@ Field.forEach(function(i){
            Points:Points
          });
        }
-
      });
-
    }
-
 });
 console.log('RoundOne: ', RoundOne.length);
 console.log('RoundTwo: ', RoundTwo.length);
