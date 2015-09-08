@@ -43,7 +43,7 @@ Field.forEach(function(i){
    if(names === i.Id){
      var rounds = somedick.p.rnds;
      var knewName = i.Name;
-     console.log(knewName);
+
      rounds.forEach(function(z){
        var roundsPlayed = z.n;
        var roundsPlayedHoles = z.holes;
@@ -167,7 +167,39 @@ Field.forEach(function(i){
      });
    }
 });
-console.log('RoundOne: ', RoundOne.length);
-console.log('RoundTwo: ', RoundTwo.length);
-console.log('RoundThree: ', RoundThree.length);
-console.log('RoundFour: ', RoundFour.length);
+
+var Final = [];
+RoundOne.forEach(function(z){
+  var rOneName = z.Name;
+  var rOnePoints = z.Points;
+  RoundTwo.forEach(function(y){
+    var rTwoName = y.Name;
+    var rTwoPoints = y.Points;
+    if(rOneName === rTwoName){
+      Final.push({
+        Name:rOneName,
+        RoundOne:rOnePoints,
+        RoundTwo:rTwoPoints,
+        Total:rOnePoints + rTwoPoints
+      });
+    }
+  });
+});
+// Final has both the first and second rounds together
+// Now have to put in the third and fourth
+RoundThree.forEach(function(q){
+  var rThreeName = q.Name;
+  var rThreePoints = q.Points;
+  Final.forEach(function(w){
+    var finalOneRound = w.RoundOne;
+    var finalTwoRound = w.RoundTwo;
+    var finalTotal = w.Total;
+    var finalName = w.Name;
+    if(rThreeName === finalName){
+      w.RoundThree = rThreePoints;
+      Final.join(w.RondThree);
+      Final.concat(finalTotal + w.RoundThree);
+    }
+  });
+});
+console.log(Final);
