@@ -178,6 +178,7 @@ Field.forEach(function(i){
    }
 });
 
+// Have to Push Round One to Final first to get it on fb
 var Final = [];
 RoundOne.forEach(function(z){
   var rOneName = z.Name;
@@ -228,4 +229,4 @@ Final.sort(function(a,b){
   return b.Total -a.Total;
 });
 console.log(Final);
-// ref.set(Final);
+ref.set(Final);
