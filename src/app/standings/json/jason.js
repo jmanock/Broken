@@ -191,14 +191,25 @@ RoundThree.forEach(function(q){
   var rThreeName = q.Name;
   var rThreePoints = q.Points;
   Final.forEach(function(w){
-    var finalOneRound = w.RoundOne;
-    var finalTwoRound = w.RoundTwo;
     var finalTotal = w.Total;
     var finalName = w.Name;
     if(rThreeName === finalName){
       w.RoundThree = rThreePoints;
       Final.join(w.RondThree);
       Final.concat(finalTotal + w.RoundThree);
+    }
+  });
+});
+RoundFour.forEach(function(e){
+  var rFourName = e.Name;
+  var rFourPoints = e.Points;
+  Final.forEach(function(r){
+    var fTotal = r.Total;
+    var fName = r.Name;
+    if(rFourName === fName){
+      r.RoundFour = rFourPoints;
+      Final.join(r.RoundFour);
+      //Final.concat(fTotal + r.RoundFour);
     }
   });
 });
