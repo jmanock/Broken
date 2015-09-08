@@ -195,8 +195,9 @@ RoundThree.forEach(function(q){
     var finalName = w.Name;
     if(rThreeName === finalName){
       w.RoundThree = rThreePoints;
+      w.Total = finalTotal + w.RoundThree;
       Final.join(w.RondThree);
-      Final.concat(finalTotal + w.RoundThree);
+      Final.join(w.Total);
     }
   });
 });
@@ -208,8 +209,9 @@ RoundFour.forEach(function(e){
     var fName = r.Name;
     if(rFourName === fName){
       r.RoundFour = rFourPoints;
+      r.Total = fTotal + r.RoundFour;
       Final.join(r.RoundFour);
-      //Final.concat(fTotal + r.RoundFour);
+      Final.join(r.Total);
     }
   });
 });
