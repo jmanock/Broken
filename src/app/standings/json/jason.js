@@ -1,7 +1,7 @@
 'use strict';
 var fs = require('fs');
-var request = require('request');
-
+var Firebase = require('Firebase');
+var ref = new Firebase('https://reditclone.firebaseio.com/leaderboard');
 var TourneyPlayer = fs.readFileSync('field.json');
 var CoursePar = fs.readFileSync('course.json');
 var Players = JSON.parse(TourneyPlayer);
@@ -20,6 +20,7 @@ Player.forEach(function(x){
     Name:pName
   });
 });
+
 ParCourse.forEach(function(a){
   var holes = a.holes;
   holes.forEach(function(b){
@@ -56,17 +57,19 @@ Field.forEach(function(i){
              var playerHoleNumber = t.cNum;
              var scoreNumber = t.sc;
              if(csHole === playerHoleNumber){
-               var total = csPar - scoreNumber;
-               if(total === 0){
-                 Points = Points;
-               }else if(total === -1){
-                 Points = Points -1;
-               }else if(total <= -2){
-                 Points = Points -2;
-               }else if(total === 1){
-                 Points = Points + 2;
-               }else if(total >= 2){
-                 Points = Points + 4;
+               if(scoreNumber !== ''){
+                 var total = csPar - scoreNumber;
+                 if(total === 0){
+                   Points = Points;
+                 }else if(total === -1){
+                   Points = Points -1;
+                 }else if(total <= -2){
+                   Points = Points -2;
+                 }else if(total === 1){
+                   Points = Points + 2;
+                 }else if(total >= 2){
+                   Points = Points + 4;
+                 }
                }
              }
            });
@@ -85,17 +88,19 @@ Field.forEach(function(i){
              var playerNumber = t.cNum;
              var scoreNumber = t.sc;
              if(csHole === playerNumber){
-               var total = csPar - scoreNumber;
-               if(total === 0){
-                 Points = Points;
-               }else if(total === -1){
-                 Points = Points -1;
-               }else if(total <= -2){
-                 Points = Points -2;
-               }else if(total === 1){
-                 Points = Points + 2;
-               }else if(total >= 2){
-                 Points = Points + 4;
+               if(scoreNumber !== ''){
+                 var total = csPar - scoreNumber;
+                 if(total === 0){
+                   Points = Points;
+                 }else if(total === -1){
+                   Points = Points -1;
+                 }else if(total <= -2){
+                   Points = Points -2;
+                 }else if(total === 1){
+                   Points = Points + 2;
+                 }else if(total >= 2){
+                   Points = Points + 4;
+                 }
                }
              }
            });
@@ -114,17 +119,19 @@ Field.forEach(function(i){
              var playerNumber = t.cNum;
              var scoreNumber = t.sc;
              if(csHole === playerNumber){
-               var total = csPar - scoreNumber;
-               if(total === 0){
-                 Points = Points;
-               }else if(total === -1){
-                 Points = Points -1;
-               }else if(total <= -2){
-                 Points = Points -2;
-               }else if(total === 1){
-                 Points = Points + 2;
-               }else if(total >= 2){
-                 Points = Points + 4;
+               if(scoreNumber !== ''){
+                 var total = csPar - scoreNumber;
+                 if(total === 0){
+                   Points = Points;
+                 }else if(total === -1){
+                   Points = Points -1;
+                 }else if(total <= -2){
+                   Points = Points -2;
+                 }else if(total === 1){
+                   Points = Points + 2;
+                 }else if(total >= 2){
+                   Points = Points + 4;
+                 }
                }
              }
            });
@@ -134,6 +141,7 @@ Field.forEach(function(i){
            Round:3,
            Points:Points
          });
+
        }else if(roundsPlayed === '4'){
          var Points = 0;
          roundsPlayedHoles.forEach(function(t){
@@ -143,17 +151,19 @@ Field.forEach(function(i){
             var playerNumber = t.cNum;
             var scoreNumber = t.sc;
             if(csHole === playerNumber){
-              var total = csPar - scoreNumber;
-              if(total === 0){
-                Points = Points;
-              }else if(total === -1){
-                Points = Points -1;
-              }else if(total <= -2){
-                Points = Points -2;
-              }else if(total === 1){
-                Points = Points + 2;
-              }else if(total >= 2){
-                Points = Points + 4;
+              if(scoreNumber !== ''){
+                var total = csPar - scoreNumber;
+                if(total === 0){
+                  Points = Points;
+                }else if(total === -1){
+                  Points = Points -1;
+                }else if(total <= -2){
+                  Points = Points -2;
+                }else if(total === 1){
+                  Points = Points + 2;
+                }else if(total >= 2){
+                  Points = Points + 4;
+                }
               }
             }
            });
@@ -185,8 +195,7 @@ RoundOne.forEach(function(z){
     }
   });
 });
-// Final has both the first and second rounds together
-// Now have to put in the third and fourth
+
 RoundThree.forEach(function(q){
   var rThreeName = q.Name;
   var rThreePoints = q.Points;
@@ -215,4 +224,8 @@ RoundFour.forEach(function(e){
     }
   });
 });
+Final.sort(function(a,b){
+  return b.Total -a.Total;
+});
 console.log(Final);
+// ref.set(Final);
