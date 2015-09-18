@@ -93,61 +93,32 @@ Field.forEach(function(d){
       fFinal(RoundsPlayed,Points,knewName);
   }
   function fFinal(RoundsPlayed, Points, Name){
-    var text = [];
-    text.push({
+
+    final.push({
       Name:Name,
       Rounds:RoundsPlayed,
       Points:Points
     });
-    var seen = {};
-    text = text.filter(function(entry){
-      var previous;
-      if(seen.hasOwnProperty(entry.Name)){
-        previous = seen[entry.Name];
-        previous = text.push(entry.Points);
-        return false;
-      }
-      if(!Array.isArray(entry.Points)){
-        entry.Points = [entry.Points];
-      }
-      seen[entry.Name] = entry;
-      return true;
-    });
-console.log(JSON.stringify(text,null,2),'pre');
+
   }
 
 });
+transFormArr(final);
+function transFormArr(orig){
+  var newArr = [];
+  var types = {};
+  var i = 0;
+  var j;
+  var cur;
 
-// var data = [    {
-//         label: "Book1",
-//         data: "US edition"
-//     },    {
-//         label: "Book1",
-//         data: "UK edition"
-//     },    {
-//         label: "Book2",
-//         data: "CAN edition"
-//     }];
-// var seen = {};
-// data = data.filter(function(entry) {
-//     var previous;
-//     // Have we seen this label before?
-//     if (seen.hasOwnProperty(entry.label)) {
-//         // Yes, grab it and add this data to it
-//         previous = seen[entry.label];
-//         previous.data.push(entry.data);
-//         // Don't keep this entry, we've merged it into the previous one
-//         return false;
-//     }
-//     // entry.data probably isn't an array; make it one for consistency
-//     if (!Array.isArray(entry.data)) {
-//         entry.data = [entry.data];
-//     }
-//
-//     // Remember that we've seen it
-//     seen[entry.label] = entry;
-//
-//     // Keep this one, we'll merge any others that match into it
-//     return true;
-// });
-//
+  for( j = orig.length; i<j; i++ ){
+    cur = orig[i];
+    if(!(cur.Name in types)){
+      types[cur.Name] = {Name: cur.Name, Points:[]};
+      newArr.push(types[cur.Name]);
+    }
+    types[cur.Name].Points.push(cur.Points);
+  }
+  console.log(newArr);
+  return newArr;
+}
