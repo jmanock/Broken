@@ -91,25 +91,56 @@ Field.forEach(function(d){
 
       });
       fFinal(RoundsPlayed,Points,knewName);
-      // Send the results to some place
-      // Name
-      //  RoundOne
-      //    Points
-      //  RoundTwo
-      //    Points
-      //  RoundThree
-      //    Points
-      //  Round Four
-      //    Points
-      //  Total
-      //    Points
   }
   function fFinal(RoundsPlayed, Points, Name){
-    final.push({
+    var text = [];
+    text.push({
       Name:Name,
-      Round:RoundsPlayed,
-      Points:Points,
+      Rounds:RoundsPlayed,
+      Points:Points
     });
-    console.log(final);
   }
 });
+var data = [
+    {
+        label: "Book1",
+        data: "US edition"
+    },
+    {
+        label: "Book1",
+        data: "UK edition"
+    },
+    {
+        label: "Book2",
+        data: "CAN edition"
+    }
+];
+console.log("Before:");
+console.log(JSON.stringify(data, null, 2), "pre");
+var seen = {};
+data = data.filter(function(entry) {
+    var previous;
+
+    // Have we seen this label before?
+    if (seen.hasOwnProperty(entry.label)) {
+        // Yes, grab it and add this data to it
+        previous = seen[entry.label];
+        previous.data.push(entry.data);
+
+        // Don't keep this entry, we've merged it into the previous one
+        return false;
+    }
+
+    // entry.data probably isn't an array; make it one for consistency
+    if (!Array.isArray(entry.data)) {
+        entry.data = [entry.data];
+    }
+
+    // Remember that we've seen it
+    seen[entry.label] = entry;
+
+    // Keep this one, we'll merge any others that match into it
+    return true;
+});
+console.log("After:");
+console.log(JSON.stringify(data, null, 2), "pre");
