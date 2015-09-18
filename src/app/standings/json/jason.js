@@ -1,7 +1,7 @@
 'use strict';
 var fs = require('fs');
-// var Firebase = require('Firebase');
-// var ref = new Firebase('https://reditclone.firebaseio.com/testLeaderboard');
+var Firebase = require('firebase');
+var ref = new Firebase('https://reditclone.firebaseio.com/testLeaderboard');
 
 var TourneyPlayer = fs.readFileSync('field.json');
 var CoursePar = fs.readFileSync('course.json');
@@ -103,22 +103,18 @@ Field.forEach(function(d){
   }
 
 });
-transFormArr(final);
-function transFormArr(orig){
-  var newArr = [];
-  var types = {};
-  var i = 0;
-  var j;
-  var cur;
 
-  for( j = orig.length; i<j; i++ ){
-    cur = orig[i];
-    if(!(cur.Name in types)){
-      types[cur.Name] = {Name: cur.Name, Points:[]};
-      newArr.push(types[cur.Name]);
-    }
-    types[cur.Name].Points.push(cur.Points);
+var newArr = [];
+var types = {};
+var i = 0;
+var j;
+var cur;
+for(j = final.length; i<j; i++){
+  cur = final[i];
+  if(!(cur.Name in types)){
+    types[cur.Name] ={Name: cur.Name, Points:[]};
+    newArr.push(types[cur.Name]);
   }
-  console.log(newArr);
-  return newArr;
+  types[cur.Name].Points.push(cur.Points);
 }
+ref.set(final);
