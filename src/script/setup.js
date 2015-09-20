@@ -4,16 +4,16 @@ var request = require('request');
 var cheerio = require('cheerio');
 var Firebase = require('Firebase');
 var ref = new Firebase('https://reditclone.firebaseio.com/leaderboard');
-<<<<<<< HEAD
+
 var url = ('https://sports.yahoo.com/golf/pga/leaderboard');
-=======
+
 var url = ('http://www.sports.yahoo.com/golf/pga/leaderboard');
->>>>>>> develop
+
 var golfers = [];
 
 
-<<<<<<< HEAD
-<<<<<<< HEAD
+
+
 			links.each(function(i, link){
 				var urls = $(link).attr('href');
 				var page = ('https://sports.yahoo.com' + urls);
@@ -153,4 +153,3 @@ var secondCall = function(page, i){
 	});
 };
 firstCall();
->>>>>>> release/RELEASE
