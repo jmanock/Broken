@@ -35,10 +35,7 @@ ParCourse.forEach(function(b){
 });
 
 var final = [];
-// var RoundOne = [];
-// var RoundTwo = [];
-// var RoundThree = [];
-// var RoundFour = [];
+
 Field.forEach(function(d){
   var team = 'players/'+d.Id+'.json';
   var something = fs.readFileSync(team);
@@ -54,15 +51,6 @@ Field.forEach(function(d){
       var roundsPlayedHoles = e.holes;
       var Points = 0;
       pPoints(roundsPlayedHoles, Points, roundsPlayed);
-      // if(roundsPlayed === '1'){
-      //   var Points = 0;
-      //
-      //   pPoints(roundsPlayedHoles, Points, roundsPlayed);
-      // }else if(roundsPlayed === '2'){
-      //   var Points = 0;
-      //   pPoints(roundsPlayedHoles, Points, roundsPlayed);
-      // }
-
     });
   }
   function pPoints(HolesPlayed, Points, RoundsPlayed){
