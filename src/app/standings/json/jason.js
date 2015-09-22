@@ -91,7 +91,7 @@ Field.forEach(function(d){
   }
 
 });
-
+// Works well change some of the names
 var newArr = [];
 var types = {};
 var i = 0;
